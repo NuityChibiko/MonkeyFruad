@@ -1,6 +1,6 @@
 const express = require("express"),
   bodyParser = require("body-parser"),
-  passport = require("passport"),
+  // passport = require("passport"),
   flash = require("connect-flash"),
   // passportLocal = require('passport-local'),
   indexRoutes = require("./routes/index"),
@@ -10,8 +10,6 @@ const express = require("express"),
 // set up express
  app = express();
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 // app
 // Set Route

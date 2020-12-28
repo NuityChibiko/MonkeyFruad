@@ -12,6 +12,7 @@ router.post("/edit/:id", function (req, res) {
   res.json({ success: true });
 });
 router.get("/:id", function (req, res) {
+  const postID = req.params.id;
   res.json({ success: true });
 });
 router.post("/delete/:id", function (req, res) {
