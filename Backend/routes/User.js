@@ -12,6 +12,7 @@ router.post("/login", function (req, res) {
   res.json({ success: true });
 });
 router.get("/:id", function (req, res) {
+    const userID = req.params.id;
   res.json({ success: true });
 });
 module.exports = router;
