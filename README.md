@@ -1,2 +1,2 @@
 # MonkeyFruad
-<h2> This Software Engineering Project </h2>
+<h2> This is Software Engineering Project </h2>
