@@ -6,7 +6,7 @@ import "./navbar.css";
 const Usernvabar = () => {
   return (
     <div className="Navbar">
-        <Navbar variant="dark">
+        <Navbar variant="dark" expand="lg">
         <Navbar.Brand href="/">Monkey Fraud</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
