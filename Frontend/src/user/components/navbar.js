@@ -7,7 +7,7 @@ const Usernvabar = () => {
   return (
     <div className="Navbar">
         <Navbar variant="dark" expand="lg">
-        <Navbar.Brand href="/">Monkey Fraud</Navbar.Brand>
+        <Navbar.Brand href="/" className="head">Monkey Fraud</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -22,7 +22,7 @@ const Usernvabar = () => {
               <NavDropdown.Divider />
               <NavDropdown.Item href="/help">ช่องทางการช่วยเหลือ</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/contact">ติดต่อเรา</Nav.Link>
+            <Nav.Link href="/contractus">ติดต่อเรา</Nav.Link>
             
           </Nav>
           <Form inline>
