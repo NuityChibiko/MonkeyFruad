@@ -22,7 +22,7 @@ const Usernvabar = () => {
               <NavDropdown.Divider />
               <NavDropdown.Item href="/help">ช่องทางการช่วยเหลือ</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/contact">ติดต่อเรา</Nav.Link>
+            <Nav.Link href="/contractus">ติดต่อเรา</Nav.Link>
             
           </Nav>
           <Form inline>
