@@ -1,0 +1,74 @@
+.container {
+    width: 70%;
+    background-color: #D3D3D3;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 15px;
+}
+
+.left{ 
+    margin-right: 20px;
+}
+
+span{ 
+    color: red;
+}
+
+.linkrule,.linkrule:hover{ 
+    display: inline-block;
+    color: red;
+    margin-left: 10px;
+}
+
+.checkbox{ 
+    display: inline;
+}
+
+.img-holder img {
+    width: 15%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.buttonpost{
+    width: 100%;
+}
+
+.profile-headers-img {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.profile-headers-img img.img-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.rank-label-container {
+    margin-top: -19px;
+    text-align: center;
+}
+
+/* .label.label-default.rank-label {
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 50%;
+} */
+
+.buttonedit,.buttonedit:visited {
+    border-radius: 50%;
+    border: none;
+}
+
+.fas {
+    color: black;
+}
