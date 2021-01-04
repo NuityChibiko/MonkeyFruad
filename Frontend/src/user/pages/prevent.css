@@ -25,7 +25,7 @@ h1 {
     margin-right: 230px;
  }
 
-.container {
+.container-prevent {
     width: 70%;
     background-color: white;
     border-radius: 10px;
