@@ -5,6 +5,7 @@ const Createpost = () => {
     <div>
       <Navbar />
       <h1>Createpost</h1>
+      <h1>Hello</h1>
     </div>
   );
 };
