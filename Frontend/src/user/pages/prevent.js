@@ -7,7 +7,7 @@ const Prevent = () => {
     <div>
       <Navbar />
       <h1>รู้ไว้ไม่โดนโกง</h1>
-      <div className="container">
+      <div className="container-prevent">
         <div className="row">
           <div className="column">
             <img src="/prevent1.png" className="image" />
