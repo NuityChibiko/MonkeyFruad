@@ -3,31 +3,47 @@ import { Form, Col, FormControl, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 const Formpost = () => {
-  const [imagesPreviewUrls, setimagesPreviewUrls] = useState([]); //  สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
 
-  const pic = (event) => {
-    event.preventDefault();
+  const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
+  const [imagesProfile, setImagesProfile] = useState("/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
+
+  // ฟังก์ชันเปลี่ยนรูปโปร
+  const ProfileChange = (event) => {  
+  
+    event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
-    
+    let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
+    reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
+    reader.onload = (event) => {
+      setImagesProfile(event.target.result); // ใส่ข้อมูลเข้าไปยัง state ผาน setImagesProfile
+    };
+
+  };
+
+// ฟังก์ชันอัพโหลดไฟล์ 
+  const FileUpload = (event) => { 
+   
+    setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
+    event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
+    let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
+
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
       let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
       reader.readAsDataURL(files[i]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
       reader.onload = (event) => {
         // ใส่ข้อมูลเข้าไปยัง state ผาน  setimagesPreviewUrls
-        setimagesPreviewUrls((prevState) => [
-          ...prevState,
-          event.target.result,
-        ]);
+        setImagesFile((prevState) => [...prevState, event.target.result]);
         //  PrevState เป็น Parameter ในการเรียก State ก่อนหน้ามาแล้วรวม Array กับ fileที่อัพโหลดเข้ามา
       };
     }
   };
+  
   return (
     <div className="container">
       <div className="container2">
         <div className="profile-headers-img">
-          <img className="img-circle" src="/profile.png" />
+          <img className="img-circle" src={imagesProfile} />
           <div className="rank-label-container">
             <span className="label label-default rank-label">
               <div class="ImageUpload">
@@ -38,9 +54,11 @@ const Formpost = () => {
                 </label>
                 <div className="buttoninput">
                   <input
+                    className="upload"
                     id="FileInput"
                     type="file"
-                    onchange="readURL(this,'Picture')"
+                    onChange={ProfileChange}
+                    multiple
                   />
                 </div>
               </div>
@@ -187,9 +205,14 @@ const Formpost = () => {
             </span>
           </Form.File.Label>
 
-          <input className="upload" type="file" onChange={pic} multiple />
+          <input
+            className="upload"
+            type="file"
+            onChange={FileUpload}
+            multiple
+          />
           <div className="img-holder">
-            {imagesPreviewUrls.map((imagePreviewUrl) => {
+            {imagesFile.map((imagePreviewUrl) => {
               return (
                 <img
                   key={imagePreviewUrl}
