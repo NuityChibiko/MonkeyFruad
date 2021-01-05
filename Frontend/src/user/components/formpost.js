@@ -1,55 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
 import { Form, Col, FormControl, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 const Formpost = () => {
-  const fileobj= [];
-  const [imagesPreviewUrls, setimagesPreviewUrls] = useState([]);
+  const [imagesPreviewUrls, setimagesPreviewUrls] = useState([]); //  สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
+
   const pic = (event) => {
-    event.preventDefault()
- 
-    let files = event.target.files
-    fileobj.push(files);
-
-    for (var i = 0; i < fileobj[0].length; i++) {
-     let reader = new FileReader();
-      reader.readAsDataURL(fileobj[0][i]);
-      reader.onload = event => {
-      imagesPreviewUrls.push(event.target.result);   
-      setimagesPreviewUrls([...new Set(imagesPreviewUrls)]);
-      } 
-
+    event.preventDefault();
+    let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
+    
+    //ทำการวนข้อมูลภายใน Array
+    for (var i = 0; i < files.length; i++) {
+      let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
+      reader.readAsDataURL(files[i]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
+      reader.onload = (event) => {
+        // ใส่ข้อมูลเข้าไปยัง state ผาน  setimagesPreviewUrls
+        setimagesPreviewUrls((prevState) => [
+          ...prevState,
+          event.target.result,
+        ]);
+        //  PrevState เป็น Parameter ในการเรียก State ก่อนหน้ามาแล้วรวม Array กับ fileที่อัพโหลดเข้ามา
+      };
+    }
   };
-  
-
-    // const reader = new FileReader();
-    // let file = event.target.files[0];
-    // reader.onload = () => {
-    //       setpreviewState(reader.result);
-    //       console.log(reader.result)
-    // }
-    // reader.readAsDataURL(file);
-}
-console.log(imagesPreviewUrls)
   return (
     <div className="container">
       <div className="container2">
         <div className="profile-headers-img">
-          <img
-            className="img-circle"
-            src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
-          />
+          <img className="img-circle" src="/profile.png" />
           <div className="rank-label-container">
             <span className="label label-default rank-label">
-              <button className="buttonedit">
-                <i class="fas fa-edit"></i>
-              </button>
+              <div class="ImageUpload">
+                <label for="FileInput">
+                  <div className="fileinput">
+                    <img className="uplodeprofile" src="/edit.png" />
+                  </div>
+                </label>
+                <div className="buttoninput">
+                  <input
+                    id="FileInput"
+                    type="file"
+                    onchange="readURL(this,'Picture')"
+                  />
+                </div>
+              </div>
             </span>
           </div>
         </div>
-        <Form>
+        <Form className="formsize">
           <Form.Row>
-            <Form.Group as={Col} className="left" controlId="formGridName">
+            <Form.Group
+              as={Col}
+              className="left col-lg-6 col-12"
+              controlId="formGridName"
+            >
               <Form.Label>
                 ชื่อ (ผู้โกง)<span>*</span>
               </Form.Label>
@@ -65,7 +69,11 @@ console.log(imagesPreviewUrls)
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} className="left" controlId="formGridId">
+            <Form.Group
+              as={Col}
+              className="left col-lg-6 col-12"
+              controlId="formGridId"
+            >
               <Form.Label>
                 เลขบัตรประชาชน (ผู้โกง)<span>*</span>
               </Form.Label>
@@ -83,7 +91,7 @@ console.log(imagesPreviewUrls)
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left"
+              className="left col-lg-6 col-12"
               controlId="formGridNameproduct"
             >
               <Form.Label>
@@ -105,7 +113,11 @@ console.log(imagesPreviewUrls)
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} className="left" controlId="formGridPrice">
+            <Form.Group
+              as={Col}
+              className="left col-lg-6 col-12"
+              controlId="formGridPrice"
+            >
               <Form.Label>
                 จำนวนเงิน (บาท)<span>*</span>
               </Form.Label>
@@ -137,7 +149,11 @@ console.log(imagesPreviewUrls)
           </Form.Row>
 
           <Form.Row>
-            <Form.Group as={Col} className="left" controlId="formGridDate">
+            <Form.Group
+              as={Col}
+              className="left col-lg-6 col-12"
+              controlId="formGridDate"
+            >
               <Form.Label>
                 วันที่โดนโกง<span>*</span>
               </Form.Label>
@@ -164,27 +180,26 @@ console.log(imagesPreviewUrls)
             <Form.Control as="textarea" rows={3} />
           </Form.Group>
 
-          <Form.File id="formcheck-api-regular">
-            <Form.File.Label>
-              <span>
-                **กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น
-                ภาพถ่ายหน้าจอ (แชท)
-              </span>
-            </Form.File.Label>
-            <Form.File.Input
-              name="file[]"
-              multiple
-              onChange={pic}
-              required
-            />
-          </Form.File>
-          
-          {imagesPreviewUrls.map((imagePreviewUrl) => {
-            return <div className="img-holder">
-            <img key={imagePreviewUrl} src={imagePreviewUrl} alt="" id="img" />
+          <Form.File.Label>
+            <span>
+              **กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
+              (แชท)
+            </span>
+          </Form.File.Label>
+
+          <input className="upload" type="file" onChange={pic} multiple />
+          <div className="img-holder">
+            {imagesPreviewUrls.map((imagePreviewUrl) => {
+              return (
+                <img
+                  key={imagePreviewUrl}
+                  className="imgpreview"
+                  alt="previewImg"
+                  src={imagePreviewUrl}
+                />
+              );
+            })}
           </div>
-        })}
-         
 
           <Form.Row>
             <Form.Group id="formGridCheckbox">

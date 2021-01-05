@@ -29,11 +29,6 @@ const Usernvabar = () => {
             <FormControl type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" className="mr-sm-2" />
             <Button className="button"><i class="material-icons">search</i></Button>
             <Nav.Link className="link" href="/login">เข้าสู่ระบบ</Nav.Link>
-            {/* <NavDropdown title="รูป" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/login">ล็อคอิน</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="/signup">สมัครสมาชิก</NavDropdown.Item>
-            </NavDropdown> */}
           </Form>
         </Navbar.Collapse>
       </Navbar>
