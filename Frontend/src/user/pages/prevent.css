@@ -4,3 +4,45 @@ h1 {
     font-size: 30px;
     font-family: 'Kanit', sans-serif;
 }
+
+.image {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    width: 200px;
+    }
+
+.column{
+    display: block;
+    margin: auto;
+    /* background-color: salmon; */
+}
+ .a{
+     margin-left: 200px;
+ }
+
+ .b{
+    margin-right: 230px;
+ }
+
+.container-prevent {
+    width: 70%;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 15px;
+}
+.text{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 80px;
+    margin-top: 20px;
+}
