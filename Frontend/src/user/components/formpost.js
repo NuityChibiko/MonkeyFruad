@@ -3,25 +3,34 @@ import { Form, Col, FormControl, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 const Formpost = () => {
-  const [previewState, setpreviewState] = useState([]);
-
-  console.log()
+  const fileobj= [];
+  const [imagesPreviewUrls, setimagesPreviewUrls] = useState([]);
   const pic = (event) => {
-    // console.log(event.target.files[]);
-    var reader = new FileReader()
-    return new Promise(function (resolve, reject) {
-        reader.onload = function (event) {
-          resolve(event.target.result)
-        }
-    
-    reader.readAsDataURL(event);
-    })
-  }
-  const readAsDataURL = (target) => {
-    // target => <input type="file" id="file">
-    var filesArray = Array.prototype.slice.call(target.files)      
-    return Promise.all(filesArray.map(pic))
-  }
+    event.preventDefault()
+ 
+    let files = event.target.files
+    fileobj.push(files);
+
+    for (var i = 0; i < fileobj[0].length; i++) {
+     let reader = new FileReader();
+      reader.readAsDataURL(fileobj[0][i]);
+      reader.onload = event => {
+      imagesPreviewUrls.push(event.target.result);   
+      setimagesPreviewUrls([...new Set(imagesPreviewUrls)]);
+      } 
+
+  };
+  
+
+    // const reader = new FileReader();
+    // let file = event.target.files[0];
+    // reader.onload = () => {
+    //       setpreviewState(reader.result);
+    //       console.log(reader.result)
+    // }
+    // reader.readAsDataURL(file);
+}
+console.log(imagesPreviewUrls)
   return (
     <div className="container">
       <div className="container2">
@@ -165,16 +174,17 @@ const Formpost = () => {
             <Form.File.Input
               name="file[]"
               multiple
-              onChange={(event) => {
-                pic(event);
-              }}
+              onChange={pic}
               required
             />
           </Form.File>
-
-          <div className="img-holder">
-            <img src={previewState} alt="" id="img" />
+          
+          {imagesPreviewUrls.map((imagePreviewUrl) => {
+            return <div className="img-holder">
+            <img key={imagePreviewUrl} src={imagePreviewUrl} alt="" id="img" />
           </div>
+        })}
+         
 
           <Form.Row>
             <Form.Group id="formGridCheckbox">
