@@ -4,8 +4,10 @@ passport = require("passport");
 (multer = require("multer")), (router = express.Router());
 const bcrypt = require("bcryptjs");
 router.get("/signup", function (req, res) {
-const firebase = firestore.collection("User")
-    console.log(firebase)
+const ref = firestore.collection("User")
+    ref.add().then(()=>{
+      console.log("add successfull")
+    }).catch((err)=> console.log(err))
         // const { username,password,passwordcheck,firstname,lastname} = req.body
     
         // if(!username || !password || !firstname || !lastname || !passwordcheck){
