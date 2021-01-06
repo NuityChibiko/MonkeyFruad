@@ -4,8 +4,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 const Formpost = () => {
 
+  // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
+  
   const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
   const [imagesProfile, setImagesProfile] = useState("/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
+  const [name, setName] = useState();
+  const [surname, setSurname] = useState();
+  const [id, setId] = useState();
+  const [accountnumber, setAccountnumber] = useState();
+  const [nameproduct, setNameproduct] = useState();
+  const [productcategory, setProductcategory] = useState();
+  const [money, setMoney] = useState();
+  const [bank, setBank] = useState();
+  const [datetime, setDatetime] = useState();
+  const [social, setSocial] = useState();
+  const [other, setOther] = useState();
 
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
@@ -75,14 +88,18 @@ const Formpost = () => {
               <Form.Label>
                 ชื่อ (ผู้โกง)<span>*</span>
               </Form.Label>
-              <Form.Control type="name" placeholder="" required />
+              <Form.Control type="name" placeholder="" onChange={(event)=>{
+                setName(event.target.value)
+              }} required />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastname">
               <Form.Label>
                 นามสกุล (ผู้โกง)<span>*</span>
               </Form.Label>
-              <Form.Control type="lastname" placeholder="" required />
+              <Form.Control type="lastname" placeholder="" required onChange={(event)=>{
+                setSurname(event.target.value)
+              }} />
             </Form.Group>
           </Form.Row>
 
@@ -95,14 +112,18 @@ const Formpost = () => {
               <Form.Label>
                 เลขบัตรประชาชน (ผู้โกง)<span>*</span>
               </Form.Label>
-              <Form.Control type="id" placeholder="" required />
+              <Form.Control type="id" placeholder="" required onChange={(event)=>{
+                setId(event.target.value)
+              }} />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridAccountnumber">
               <Form.Label>
                 เลขที่บัญชี (ผู้โกง)<span>*</span>
               </Form.Label>
-              <Form.Control type="accountnumber" placeholder="" required />
+              <Form.Control type="accountnumber" placeholder="" required onChange={(event)=>{
+                setAccountnumber(event.target.value)
+              }} />
             </Form.Group>
           </Form.Row>
 
@@ -115,14 +136,18 @@ const Formpost = () => {
               <Form.Label>
                 ชื่อสินค้า<span>*</span>
               </Form.Label>
-              <Form.Control type="nameproduct" placeholder="" required />
+              <Form.Control type="nameproduct" placeholder="" required  onChange={(event)=>{
+                setNameproduct(event.target.value)
+              }}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
               <Form.Label>
                 หมวดหมู่สินค้า<span>*</span>
               </Form.Label>
-              <Form.Control as="select" defaultValue="Choose..." required>
+              <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
+                setProductcategory(event.target.value)
+              }}>
                 <option>เลือก...</option>
                 <option>แฟชั่น</option>
                 <option>ออนไลน์</option>
@@ -139,14 +164,18 @@ const Formpost = () => {
               <Form.Label>
                 จำนวนเงิน (บาท)<span>*</span>
               </Form.Label>
-              <Form.Control type="nameproduct" placeholder="" required />
+              <Form.Control type="nameproduct" placeholder="" required onChange={(event)=>{
+                setMoney(event.target.value)
+              }}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
               <Form.Label>
                 ธนาคาร<span>*</span>
               </Form.Label>
-              <Form.Control as="select" defaultValue="Choose..." required>
+              <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
+                setBank(event.target.value)
+              }}>
                 <option>เลือก...</option>
                 <option>ธนาคารกรุงเทพ</option>
                 <option>ธนาคารกรุงไทย</option>
@@ -175,14 +204,18 @@ const Formpost = () => {
               <Form.Label>
                 วันที่โดนโกง<span>*</span>
               </Form.Label>
-              <Form.Control type="datetime-local" placeholder="" required />
+              <Form.Control type="datetime-local" placeholder="" required  onChange={(event)=>{
+                setDatetime(event.target.value)
+              }}/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridSocial">
               <Form.Label>
                 ช่องทางที่โดนโกง<span>*</span>
               </Form.Label>
-              <Form.Control as="select" defaultValue="Choose..." required>
+              <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
+                setSocial(event.target.value)
+              }}>
                 <option>เลือก...</option>
                 <option>Facebook</option>
                 <option>Instagram</option>
@@ -195,7 +228,9 @@ const Formpost = () => {
 
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>รายละเอียดเพิ่มเติม</Form.Label>
-            <Form.Control as="textarea" rows={3} />
+            <Form.Control as="textarea" rows={3} onChange={(event)=>{
+                setOther(event.target.value)
+              }} />
           </Form.Group>
 
           <Form.File.Label>
