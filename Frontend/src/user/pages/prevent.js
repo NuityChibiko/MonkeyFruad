@@ -10,7 +10,7 @@ const Prevent = () => {
       <div className="container-prevent">
         <div className="row">
           <div className="column">
-            <img src="/prevent1.png" className="image" />
+            <img src="/img/prevent1.png" className="image" />
             <p className="text">
               ซื้อสินค้าออนไลน์แล้ว
               <br />
@@ -18,7 +18,7 @@ const Prevent = () => {
             </p>
           </div>
           <div className="column">
-            <img src="/prevent2.png" className="image" />
+            <img src="/img/prevent2.png" className="image" />
             <p className="text">
               ล่อลวงให้โอนเงินค่าสินค้าล่วงหน้า
               <br />
@@ -26,7 +26,7 @@ const Prevent = () => {
             </p>
           </div>
           <div className="column">
-            <img src="/prevent3.png" className="image" />
+            <img src="/img/prevent3.png" className="image" />
             <p className="text">
               เมื่อโอนเงินแล้วผู้ขายจะหายตัวไป
               <br />
@@ -36,7 +36,7 @@ const Prevent = () => {
         </div>
         <div className="row">
           <div className="column a">
-            <img src="/prevent6.png" className="image" />
+            <img src="/img/prevent6.png" className="image" />
             <p className="text">
               ปลอม SMS จากธนาคารเพื่อ
               <br />
@@ -46,7 +46,7 @@ const Prevent = () => {
             </p>
           </div>
           <div className="column b">
-            <img src="/prevent7.png" className="image" />
+            <img src="/img/prevent7.png" className="image" />
             <p className="text">
               อ้างว่า เว็บซื้อขายสินค้า เป็นคนกลาง
               <br />
@@ -58,15 +58,15 @@ const Prevent = () => {
         </div>
         <div className="row">
           <div className="column">
-            <img src="/prevent4.png" className="image" />
+            <img src="/img/prevent4.png" className="image" />
             <p className="text">เปลี่ยนชื่อและเบอร์โทรฯ ไม่ซ้ำกัน</p>
           </div>
           <div className="column">
-            <img src="/prevent5.png" className="image" />
+            <img src="/img/prevent5.png" className="image" />
             <p className="text">นัดเจอเพื่อรับของก่อนแล้วโอนทีหลัง</p>
           </div>
           <div className="column">
-            <img src="/prevent8.png" className="image" />
+            <img src="/img/prevent8.png" className="image" />
             <p className="text">ขายสินค้าถูกกว่าท้องตลาดเกินไป</p>
           </div>
         </div>
