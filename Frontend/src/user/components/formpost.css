@@ -1,6 +1,6 @@
-.container {
+.container-formpost {
     width: 70%;
-    background-color: #D3D3D3;
+    background-color: white;
     border-radius: 10px;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -12,6 +12,7 @@
     padding-right: 40px;
     font-family: 'Kanit', sans-serif;
     font-size: 20px;
+    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
 }
 
 .left{ 
@@ -42,14 +43,13 @@ span{
     width: 100%;
 }
 
-.profile-headers-img {
+.profile-bad-img {
     text-align: center;
     padding-bottom: 20px;
 }
 
-.profile-headers-img img.img-circle {
+.profile-bad-img img.img-circle {
     width: 120px;
-    height: 120px;
     border-radius: 50%;
 }
 

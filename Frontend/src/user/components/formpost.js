@@ -53,9 +53,9 @@ const Formpost = () => {
   };
   
   return (
-    <div className="container">
-      <div className="container2">
-        <div className="profile-headers-img">
+    <div className="container-formpost">
+      <div className="container-formpost1">
+        <div className="profile-bad-img">
           <img className="img-circle" src={imagesProfile} />
           <div className="rank-label-container">
             <span className="label label-default rank-label">
@@ -268,7 +268,7 @@ const Formpost = () => {
             </Form.Group>
           </Form.Row>
 
-          <Button className="buttonpost" variant="success" type="submit">
+          <Button className="buttonpost" variant="success" type="submit" href="/post/mypost">
             โพสต์
           </Button>
         </Form>
