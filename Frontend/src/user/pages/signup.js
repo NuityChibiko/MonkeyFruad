@@ -21,30 +21,30 @@ const [province,setProvince] = useState("")
 const [country,setCountry] = useState("")
 const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
-
+const [repass,setRepass] = useState("")
+const [checkpass , setCheckpass] = useState(false)
   const SignupSubmit = (e) =>{
     e.preventDefault();
     console.log("submit")
    const getSignup =  axios.post("http://localhost:7000/user/signup", { firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
-    province:province,country:country,email:email,password:password
+    province:province,country:country,email:email,password:password,repass:repass
   }).then((result)=>{
     console.log(result.data)
+    if(result.data.msg == "password and repass not match"){
+    setCheckpass(true)
+    }
   }).catch((err)=>{
     console.log(err)
   })
-
   }
   const selectSex = (e) =>{
-    
     if(e.target.value === "male")
     {
       setSex(e.target.value)
     }
     else
     setSex(e.target.value)
-    
   }
-
   return (
     <div>
       <Navbar />
@@ -54,7 +54,9 @@ const [password,setPassword] = useState("")
           <img src="/img/logoLogin.png" className="LogoLogin" />
 
           <p className="h2 text-center mb-4 font-weight-bold">สมัครสมาชิก</p>
- 
+
+          {checkpass ? (<h1>password and repass not matchw</h1>) : false}
+          
           <div className="Email">
               <MDBInput onChange={(e)=>{
                  setEmail(e.target.value)
@@ -68,7 +70,9 @@ const [password,setPassword] = useState("")
             </div>
 
             <div className="Email">
-              <MDBInput  className="" label="Confirm Password" group type="password" validate />
+              <MDBInput onChange={(e)=>{
+                setRepass(e.target.value)
+              }} className="" label="Confirm Password" group type="password" validate />
             </div>
 
           <div className="LoginInputForm">

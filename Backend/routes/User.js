@@ -6,15 +6,23 @@ const bcrypt = require("bcryptjs");
 const { Result } = require("express-validator");
 router.post("/signup", async (req, res) =>{
   try {
-const {firstname,surname,sex,date,province,country,email,password} = req.body
-auth.createUserWithEmailAndPassword(email,password).then(async(result)=>{
-  res.json({msg:result})
-  if(!!result){
+const {firstname,surname,sex,date,province,country,email,password,repass} = req.body
+if(repass !== password){
+return res.json({msg:"password and repass not match"})
+}
+else{
+  // const userRef = firestore.collection("User").get().then((querySnapshot)=>{
+  //   querySnapshot.forEach((doc)=>{
+  //     if(doc.get("email") === email)
+  //     {
+  //      return res.status(400).json({msg:"your email does't use"})
+  //     }
+  //   })
+  // })
+auth.createUserWithEmailAndPassword(email,password).then((result)=>{
+  if(result){
     const userRef = firestore.collection("User").doc(result.user.uid)
-    const doc = await userRef.get()
-    res.json({msg:doc})
-    if(!doc.data()){
-      await userRef.set({
+       userRef.set({
         uid:result.user.uid,
         email : result.user.email,
         firstname : firstname,
@@ -25,12 +33,12 @@ auth.createUserWithEmailAndPassword(email,password).then(async(result)=>{
         country:country,
         role:"user"
       })
-    }
+      return res.json({msg:"ok"})
   }
 }
 ).catch((err)=>{
-  res.status(400).json({error : err.message})
-})
+  res.status(400).json({error : err})
+})}
   }
   catch (err){
     res.status(400).json({error : err.message})
