@@ -11,14 +11,6 @@ if(repass !== password){
 return res.json({msg:"password and repass not match"})
 }
 else{
-  // const userRef = firestore.collection("User").get().then((querySnapshot)=>{
-  //   querySnapshot.forEach((doc)=>{
-  //     if(doc.get("email") === email)
-  //     {
-  //      return res.status(400).json({msg:"your email does't use"})
-  //     }
-  //   })
-  // })
 auth.createUserWithEmailAndPassword(email,password).then((result)=>{
   if(result){
     const userRef = firestore.collection("User").doc(result.user.uid)
@@ -74,10 +66,14 @@ router.post("/remember", function (req, res) {
   res.json({ success: true });
 });
 router.post("/login", function (req, res) {
-    // const {email,password} = req.body
-    // const userLogin =  auth.signInWithEmailAndPassword(email,password)
-    // if(!userLogin)
-    // res.json({ success: true });
+    const {email,password} = req.body
+    const userLogin =  auth.signInWithEmailAndPassword(email,password).then((result)=>{
+      
+      res.json({ success:result });
+    }).catch((err)=>{
+      res.status(400).json({error : err})
+    })
+    
 });
 
 

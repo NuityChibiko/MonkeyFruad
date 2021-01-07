@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef} from "react";
+import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,6 +9,29 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 // import { FacebookLoginButton, GoogleLoginButton  } from "react-social-login-buttons";
 import axios from "axios";
 const Login = () => {
+  let history = useHistory();
+  const userRef = useRef(firestore.collection("User")).current;
+  const [email,setEmail] = useState("")
+  const [password,setPassword] = useState("")
+
+  
+
+  const LoginSubmit = (e) =>{
+    e.preventDefault()
+  //   const getLogin =  axios.post("http://localhost:7000/user/login", {email:email,password:password})
+  //   .then((result)=>{
+  //     setEmail(result.data.success.user.email)
+  // }).catch((err)=>{
+  //   console.log(err)
+  
+  // })
+  const userLogin =  auth.signInWithEmailAndPassword(email,password).then((result)=>{
+    console.log(result)
+  }).catch((err)=>{
+    console.log(err)
+  })
+  }
+
   const googleLogin = async (e) => {
     e.preventDefault();
     const userCredential = await auth.signInWithPopup(googleProvider);
@@ -20,7 +44,7 @@ const Login = () => {
   };
   return (
     <div>
-      <Navbar />
+      <Navbar/>
       <div className="container-login">
         <form className="LoginForm">
           <img src="/img/logoLogin.png" className="LogoLogin" />
@@ -37,6 +61,9 @@ const Login = () => {
               validate
               error="wrong"
               success="right"
+              onChange={(e)=>{
+                setEmail(e.target.value)
+              }}
             />
             <MDBInput
               className="InputPassword"
@@ -45,6 +72,9 @@ const Login = () => {
               group
               type="password"
               validate
+              onChange={(e)=>{
+                setPassword(e.target.value)
+              }}
             />
           </div>
 
@@ -57,9 +87,9 @@ const Login = () => {
             </div>
           </div>
 
-          <button className="btn-block LoginButton">
+          <a onClick={LoginSubmit} className="btn-block LoginButton">
             <p className="mx-auto my-1">เข้าสู่ระบบ</p>
-          </button>
+          </a>
 
           <div className="Signup text-center pt-3">
             <span></span>
