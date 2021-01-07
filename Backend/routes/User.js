@@ -1,12 +1,14 @@
-const {auth,firestore} = require("../models/index")
+const {auth,firestore,googleProvider} = require("../models/index")
 const express = require("express"),
 passport = require("passport");
 (multer = require("multer")), (router = express.Router());
 const bcrypt = require("bcryptjs");
+const { Result } = require("express-validator");
 router.get("/signup", function (req, res) {
-  console.log("add successfull")
 
-// const ref = firestore.collection("User")
+console.log("add successfull")
+const ref = firestore.collection("User")
+console.log(ref)
 // auth.createUserWithEmailAndPassword(email,password).then(async(result)=>{
 //   if(result){
 //     const userRef = firestore.collection("User").doc(result.user.uid)
@@ -59,6 +61,8 @@ router.post("/login", function (req, res) {
     // if(!userLogin)
     // res.json({ success: true });
 });
+
+
 router.get("/:id", function (req, res) {
   const userID = req.params.id;
   res.json({ success: true });
