@@ -4,26 +4,37 @@ passport = require("passport");
 (multer = require("multer")), (router = express.Router());
 const bcrypt = require("bcryptjs");
 const { Result } = require("express-validator");
-router.get("/signup", function (req, res) {
-
-console.log("add successfull")
-const ref = firestore.collection("User")
-console.log(ref)
-// auth.createUserWithEmailAndPassword(email,password).then(async(result)=>{
-//   if(result){
-//     const userRef = firestore.collection("User").doc(result.user.uid)
-//     const doc = await userRef.get()
-//     if(!doc.data()){
-//       await userRef.set({
-//         uid:result.user.uid,
-//         email : result.user.email
-//       })
-//     }
-//   }
-// }
-// ).catch((err)=>{
-//   console.log(err)
-// })
+router.post("/signup", async (req, res) =>{
+  try {
+const {firstname,surname,sex,date,province,country,email,password} = req.body
+auth.createUserWithEmailAndPassword(email,password).then(async(result)=>{
+  res.json({msg:result})
+  if(!!result){
+    const userRef = firestore.collection("User").doc(result.user.uid)
+    const doc = await userRef.get()
+    res.json({msg:doc})
+    if(!doc.data()){
+      await userRef.set({
+        uid:result.user.uid,
+        email : result.user.email,
+        firstname : firstname,
+        surname : surname,
+        sex:sex,
+        date:date,
+        province:province,
+        country:country,
+        role:"user"
+      })
+    }
+  }
+}
+).catch((err)=>{
+  res.status(400).json({error : err.message})
+})
+  }
+  catch (err){
+    res.status(400).json({error : err.message})
+}
 
 
    
@@ -49,9 +60,8 @@ console.log(ref)
         //     res.status(500).json({error : err.message})
         // }
     
-  res.json({ success: false,
   });
-});
+
 router.post("/remember", function (req, res) {
   res.json({ success: true });
 });
