@@ -1,13 +1,30 @@
- const firestore  = require("../models/index")
+const {auth,firestore} = require("../models/index")
 const express = require("express"),
 passport = require("passport");
 (multer = require("multer")), (router = express.Router());
 const bcrypt = require("bcryptjs");
 router.get("/signup", function (req, res) {
-const ref = firestore.collection("User")
-    ref.add().then(()=>{
-      console.log("add successfull")
-    }).catch((err)=> console.log(err))
+  console.log("add successfull")
+
+// const ref = firestore.collection("User")
+// auth.createUserWithEmailAndPassword(email,password).then(async(result)=>{
+//   if(result){
+//     const userRef = firestore.collection("User").doc(result.user.uid)
+//     const doc = await userRef.get()
+//     if(!doc.data()){
+//       await userRef.set({
+//         uid:result.user.uid,
+//         email : result.user.email
+//       })
+//     }
+//   }
+// }
+// ).catch((err)=>{
+//   console.log(err)
+// })
+
+
+   
         // const { username,password,passwordcheck,firstname,lastname} = req.body
     
         // if(!username || !password || !firstname || !lastname || !passwordcheck){
