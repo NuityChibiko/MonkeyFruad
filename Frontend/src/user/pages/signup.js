@@ -13,7 +13,7 @@ const Signup = () => {
       <div className="container-login">
         <form className='LoginForm'>
         
-          <img src="/logoLogin.png" className="LogoLogin" />
+          <img src="/img/logoLogin.png" className="LogoLogin" />
 
           <p className="h2 text-center mb-4 font-weight-bold">เข้าสู่ระบบ</p>
 
