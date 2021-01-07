@@ -27,6 +27,7 @@ const Login = () => {
   // })
   const userLogin =  auth.signInWithEmailAndPassword(email,password).then((result)=>{
     console.log(result)
+    history.push("/");
   }).catch((err)=>{
     console.log(err)
   })
@@ -87,13 +88,13 @@ const Login = () => {
             </div>
           </div>
 
-          <a onClick={LoginSubmit} className="btn-block LoginButton">
-            <p className="mx-auto my-1">เข้าสู่ระบบ</p>
-          </a>
+          <button onClick={LoginSubmit} className="btn-block LoginButton">
+            <p    className="mx-auto my-1">เข้าสู่ระบบ</p>
+          </button>
 
           <div className="Signup text-center pt-3">
             <span></span>
-            <a href="./signup">สมัครสมาชิก</a>
+            <bu href="./signup">สมัครสมาชิก</bu>
             <hr></hr>
           </div>
 

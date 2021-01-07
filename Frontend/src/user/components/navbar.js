@@ -65,11 +65,13 @@ console.log(user)
             <Nav.Link href="/contractus">ติดต่อเรา</Nav.Link>
            
           </Nav>
-          {user ?  (<button onClick={logout}>logout</button>) : (<Form inline>
+          <Form inline>
               <FormControl type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" className="mr-sm-2" />
               <Button className="button"><i class="material-icons">search</i></Button>
+            </Form>
+          {user ?  (<button onClick={logout}>logout</button>) : (
               <Nav.Link className="link" href="/login">เข้าสู่ระบบ</Nav.Link>
-            </Form>) }
+            )}
             
         </Navbar.Collapse>
       </Navbar>
