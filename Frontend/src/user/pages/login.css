@@ -47,6 +47,11 @@ h1 {
     padding: 6px;
 }
 
+.LoginButton:hover {
+    background-color: #9b1b1b;
+    border: 1px solid #9b1b1b;
+}
+
 .LoginButton p {
     color: white;
     font-size: 18px;
@@ -55,6 +60,10 @@ h1 {
 .Signup a {
     color: #212529;
     font-size: 18px;
+}
+
+.Signup a:hover, .ForgotPassword a:hover {
+    color: #9b1b1b;
 }
 
 .Signup hr {
@@ -69,12 +78,23 @@ h1 {
     padding: 6px;
 }
 
+.LoginFacebook:hover {
+    background-color: #30477a;
+    border: 1px solid #30477a;
+}
+
 .LoginGoogle {
     background-color: #CB4023;
     border: 1px solid #CB4023;
     border-radius: 10px;
     padding: 6px;
 }
+
+.LoginGoogle:hover {
+    background-color: #a5331d;
+    border: 1px solid #a5331d;
+}
+
 
 .LoginFacebook p, .LoginGoogle {
     color: white;
@@ -95,6 +115,4 @@ h1 {
     height: 150px;
     margin: 0 auto;
     display: block;
-    font-size: 30px;
-    font-family: 'Kanit', sans-serif;
 }
