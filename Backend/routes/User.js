@@ -1,13 +1,32 @@
- const firestore  = require("../models/index")
+const {auth,firestore,googleProvider} = require("../models/index")
 const express = require("express"),
 passport = require("passport");
 (multer = require("multer")), (router = express.Router());
 const bcrypt = require("bcryptjs");
+const { Result } = require("express-validator");
 router.get("/signup", function (req, res) {
+
+console.log("add successfull")
 const ref = firestore.collection("User")
-    ref.add().then(()=>{
-      console.log("add successfull")
-    }).catch((err)=> console.log(err))
+console.log(ref)
+// auth.createUserWithEmailAndPassword(email,password).then(async(result)=>{
+//   if(result){
+//     const userRef = firestore.collection("User").doc(result.user.uid)
+//     const doc = await userRef.get()
+//     if(!doc.data()){
+//       await userRef.set({
+//         uid:result.user.uid,
+//         email : result.user.email
+//       })
+//     }
+//   }
+// }
+// ).catch((err)=>{
+//   console.log(err)
+// })
+
+
+   
         // const { username,password,passwordcheck,firstname,lastname} = req.body
     
         // if(!username || !password || !firstname || !lastname || !passwordcheck){
@@ -42,6 +61,8 @@ router.post("/login", function (req, res) {
     // if(!userLogin)
     // res.json({ success: true });
 });
+
+
 router.get("/:id", function (req, res) {
   const userID = req.params.id;
   res.json({ success: true });

@@ -12,8 +12,9 @@ import Help from "./user/pages/help";
 import Rank from "./user/pages/ranking";
 import Editpost from "./user/pages/editpost";
 import History from "./user/pages/history";
-
+import "./app.css";
 import Axios from "axios"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // ที่รวม Routh ต่างๆ
 const App = () => {
