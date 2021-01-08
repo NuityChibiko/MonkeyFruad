@@ -12,7 +12,13 @@ import Help from "./user/pages/help";
 import Rank from "./user/pages/ranking";
 import Editpost from "./user/pages/editpost";
 import History from "./user/pages/history";
+<<<<<<< HEAD
+import Mypost from "./user/pages/mypost";
+
+import Axios from "axios"
+=======
 import "./app.css";
+>>>>>>> develope
 
 // ที่รวม Routh ต่างๆ
 const App = () => {
@@ -21,6 +27,9 @@ const App = () => {
       <Switch>
         <Route path="/" exact>
           <Home />
+        </Route>
+        <Route path="/post/mypost" exact>
+          <Mypost />
         </Route>
         <Route path="/post/history" exact>
           <History />
