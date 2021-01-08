@@ -59,8 +59,8 @@ const Formpost = () => {
           <img className="img-circle" src={imagesProfile} />
           <div className="rank-label-container">
             <span className="label label-default rank-label">
-              <div class="ImageUpload">
-                <label for="FileInput">
+              <div className="ImageUpload">
+                <label htmlFor="FileInput">
                   <div className="fileinput">
                     <img className="uplodeprofile" src="/img/edit.png" />
                   </div>
