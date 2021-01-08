@@ -173,11 +173,7 @@ const Mypost = () => {
                             <img className="img-bad"src="/img/nui.jpg" />
                             <img className="img-bad"src="/img/nui.jpg" />
                         </div>
-                    </Form>
-                </div>
-            </div>
         </div>
-    </div>
   );
 };
 
