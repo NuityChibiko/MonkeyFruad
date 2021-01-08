@@ -1,5 +1,5 @@
-import React, { useEffect, useState, Component } from "react";
-import { Form, Col, FormControl, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 const Formpost = () => {
@@ -7,7 +7,7 @@ const Formpost = () => {
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
   
   const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
-  const [imagesProfile, setImagesProfile] = useState("/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
+  const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [id, setId] = useState();
@@ -63,10 +63,10 @@ const Formpost = () => {
           <img className="img-circle" src={imagesProfile} />
           <div className="rank-label-container">
             <span className="label label-default rank-label">
-              <div class="ImageUpload">
-                <label for="FileInput">
+              <div className="ImageUpload">
+                <label htmlFor="FileInput">
                   <div className="fileinput">
-                    <img className="uplodeprofile" src="/edit.png" />
+                    <img className="uplodeprofile" src="/img/edit.png" />
                   </div>
                 </label>
                 <div className="buttoninput">
