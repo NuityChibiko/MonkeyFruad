@@ -1,43 +1,45 @@
-import React, { useEffect, useState ,useRef} from "react";
+import React, { useState} from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { firestore, auth, googleProvider,facebookProvider } from "../Frontfirebase";
-// import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
-// import { FacebookLoginButton, GoogleLoginButton  } from "react-social-login-buttons";
+import {
+  auth,
+  googleProvider,
+  facebookProvider,
+} from "../Frontfirebase";
+import { MDBInput } from "mdbreact";
 import axios from "axios";
 const Login = () => {
   let history = useHistory();
-  const userRef = useRef(firestore.collection("User")).current;
-  const [email,setEmail] = useState("")
-  const [password,setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  
-
-  const LoginSubmit = (e) =>{
-    e.preventDefault()
-  //   const getLogin =  axios.post("http://localhost:7000/user/login", {email:email,password:password})
-  //   .then((result)=>{
-  //     setEmail(result.data.success.user.email)
-  // }).catch((err)=>{
-  //   console.log(err)
-  
-  // })
-  const userLogin =  auth.signInWithEmailAndPassword(email,password).then((result)=>{
-    console.log(result)
-    history.push("/");
-  }).catch((err)=>{
-    console.log(err)
-  })
-  }
+  const LoginSubmit = (e) => {
+    e.preventDefault();
+ auth.signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(result);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const googleLogin = async (e) => {
     e.preventDefault();
-    const userCredential = await auth.signInWithPopup(googleProvider);
-    console.log(userCredential.user);
+    const result = await auth.signInWithPopup(googleProvider);
+    axios.post("http://localhost:7000/user/googlesignup", { result: result })
+      .then((result) => {
+        console.log(result.data);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
   const facebookLogin = async (e) => {
     e.preventDefault();
     const userCredential = await auth.signInWithPopup(facebookProvider);
@@ -45,7 +47,7 @@ const Login = () => {
   };
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div className="container-login">
         <form className="LoginForm">
           <img src="/img/logoLogin.png" className="LogoLogin" />
@@ -62,8 +64,8 @@ const Login = () => {
               validate
               error="wrong"
               success="right"
-              onChange={(e)=>{
-                setEmail(e.target.value)
+              onChange={(e) => {
+                setEmail(e.target.value);
               }}
             />
             <MDBInput
@@ -73,8 +75,8 @@ const Login = () => {
               group
               type="password"
               validate
-              onChange={(e)=>{
-                setPassword(e.target.value)
+              onChange={(e) => {
+                setPassword(e.target.value);
               }}
             />
           </div>
@@ -89,7 +91,7 @@ const Login = () => {
           </div>
 
           <button onClick={LoginSubmit} className="btn-block LoginButton">
-            <p    className="mx-auto my-1">เข้าสู่ระบบ</p>
+            <p className="mx-auto my-1">เข้าสู่ระบบ</p>
           </button>
 
           <div className="Signup text-center pt-3">

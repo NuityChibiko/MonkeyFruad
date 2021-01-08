@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../components/navbar";
 import "./prevent.css";
-import { Image } from "react-bootstrap";
 const Prevent = () => {
   return (
     <div>
