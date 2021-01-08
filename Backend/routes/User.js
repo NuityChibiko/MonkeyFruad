@@ -7,6 +7,7 @@ const { Result } = require("express-validator");
 router.post("/signup", async (req, res) =>{
   try {
 const {firstname,surname,sex,date,province,country,email,password,repass} = req.body
+
 if(repass !== password){
 return res.json({msg:"password and repass not match"})
 }
@@ -26,6 +27,7 @@ auth.createUserWithEmailAndPassword(email,password).then((result)=>{
         role:"user"
       })
       return res.json({msg:"ok"})
+      
   }
 }
 ).catch((err)=>{
