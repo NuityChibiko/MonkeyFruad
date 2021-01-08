@@ -22,10 +22,11 @@ const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
 const [repass,setRepass] = useState("")
 const [checkpass , setCheckpass] = useState(false)
+
   const SignupSubmit = (e) =>{
     e.preventDefault();
     console.log("submit")
-   const getSignup =  axios.post("http://localhost:7000/user/signup", { firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
+   axios.post("http://localhost:7000/user/signup", { firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
     province:province,country:country,email:email,password:password,repass:repass
   }).then((result)=>{
     console.log(result.data)
