@@ -28,7 +28,8 @@ const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
 const [repass,setRepass] = useState("")
 const [checkpass , setCheckpass] = useState(false)
-
+const [user,setUser] = useState(null)
+const [isLogin,setisLogin] = useState(false)
   const SignupSubmit = (e) =>{
     e.preventDefault();
     console.log("submit")
@@ -39,6 +40,8 @@ const [checkpass , setCheckpass] = useState(false)
     if(result.data.msg == "password and repass not match"){
     setCheckpass(true)
     }
+    
+    history.push('/')
   }).catch((err)=>{
     console.log(err)
   })
