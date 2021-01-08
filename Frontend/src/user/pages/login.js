@@ -94,7 +94,7 @@ const Login = () => {
 
           <div className="Signup text-center pt-3">
             <span></span>
-            <bu href="./signup">สมัครสมาชิก</bu>
+            <a href="./signup">สมัครสมาชิก</a>
             <hr></hr>
           </div>
 

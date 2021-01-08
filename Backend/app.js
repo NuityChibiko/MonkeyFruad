@@ -2,7 +2,7 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   // passport = require("passport"),
   flash = require("connect-flash"),
-  //  cors = require('cors')
+   cors = require('cors')
   // passportLocal = require('passport-local'),
   indexRoutes = require("./routes/index"),
   userRoutes = require("./routes/User"),
@@ -11,7 +11,7 @@ const express = require("express"),
 // set up express
  app = express();
  app.use(express.json())
-
+ app.use(cors())
 
 // app
 // Set Route
