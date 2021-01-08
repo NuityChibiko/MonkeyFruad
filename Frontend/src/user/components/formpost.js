@@ -2,6 +2,7 @@ import React, { useEffect, useState, Component } from "react";
 import { Form, Col, FormControl, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
+import Axios from "axios"
 const Formpost = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
@@ -51,7 +52,17 @@ const Formpost = () => {
       };
     }
   };
-  
+
+
+const handlesubmit = async (e) =>{
+  try{
+    e.preventDefault()
+    let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
+    let data = await Axios.post("http://localhost:7000/post/create",sentdata)
+  }catch(err){
+    console.log(err)
+  }
+}
   return (
     <div className="container">
       <div className="container2">
@@ -78,7 +89,7 @@ const Formpost = () => {
             </span>
           </div>
         </div>
-        <Form className="formsize">
+        <Form className="formsize" onSubmit={handlesubmit}>
           <Form.Row>
             <Form.Group
               as={Col}
