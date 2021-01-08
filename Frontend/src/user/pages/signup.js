@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Navbar from "../components/navbar";
 import "./signup.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import { Label, Input } from 'reactstrap';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
-import { Form, Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { MDBInput } from 'mdbreact';
+import { Form } from "react-bootstrap";
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
