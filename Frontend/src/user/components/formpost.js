@@ -19,6 +19,10 @@ const Formpost = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState();
+ 
+  const ImageHoverZoom = ({ imagePreviewUrl }) => {
+    
+  }
 
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
@@ -246,7 +250,7 @@ const Formpost = () => {
             onChange={FileUpload}
             multiple
           />
-          <div className="img-holder">
+          <div className="container-img-holder">
             {imagesFile.map((imagePreviewUrl) => {
               return (
                 <img
@@ -254,6 +258,9 @@ const Formpost = () => {
                   className="imgpreview"
                   alt="previewImg"
                   src={imagePreviewUrl}
+                  style={{ overflow: "hidden" }}
+                  onMouseOver={(e) => (e.currentTarget.style = { transform: "scale(1.25)", overflow: "hidden" })}
+                  onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
                 />
               );
             })}
@@ -268,7 +275,7 @@ const Formpost = () => {
             </Form.Group>
           </Form.Row>
 
-          <Button className="buttonpost" variant="success" type="submit" href="/post/mypost">
+          <Button className="buttonpost" type="submit" href="/post/mypost">
             โพสต์
           </Button>
         </Form>

@@ -3,7 +3,7 @@
     background-color: white;
     border-radius: 10px;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 50px;
@@ -29,18 +29,28 @@ span{
     margin-left: 10px;
 }
 
+.linkrule{
+    margin-top: 10px;
+}
+
 .checkbox{ 
     display: inline;
 }
 
-.img-holder img {
-    width: 15%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 .buttonpost{
     width: 100%;
+    font-size: 20px;
+    background-color: #b30101;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.buttonpost:hover{
+    width: 100%;
+    font-size: 20px;
+    background-color: #8B0000;
+    border: none;
+    border-radius: 0.5rem;
 }
 
 .profile-bad-img {
@@ -64,11 +74,37 @@ span{
     border-radius: 50%;
 } */
 
-.imgpreview{
-    margin-top: 50px;
-    margin-right: 10px;
-    margin-left: 0;
+.upload{
+    margin-top: 10px;
 }
+
+.container-img-holder .imgpreview {
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.imgpreview {
+    overflow: hidden;
+  }
+  
+.imgpreview img{
+    transition: all 0.3s ease 0s;
+    width: 100%;
+  }
+  
+ .imgpreview:hover {
+    transform: scale(2.0);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* .img-wrapper{
+    overflow:hidden;
+  }
+  img.hover-zoom:hover {
+    transform: scale(1.25);
+  } */
 
 .uplodeprofile{ 
     width: 20px;
