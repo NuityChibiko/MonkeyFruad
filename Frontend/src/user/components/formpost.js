@@ -1,5 +1,5 @@
-import React, { useEffect, useState, Component } from "react";
-import { Form, Col, FormControl, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 const Formpost = () => {
@@ -59,8 +59,8 @@ const Formpost = () => {
           <img className="img-circle" src={imagesProfile} />
           <div className="rank-label-container">
             <span className="label label-default rank-label">
-              <div class="ImageUpload">
-                <label for="FileInput">
+              <div className="ImageUpload">
+                <label htmlFor="FileInput">
                   <div className="fileinput">
                     <img className="uplodeprofile" src="/img/edit.png" />
                   </div>
