@@ -12,7 +12,7 @@ import Help from "./user/pages/help";
 import Rank from "./user/pages/ranking";
 import Editpost from "./user/pages/editpost";
 import History from "./user/pages/history";
-import Mypost from "./user/pages/mypost";
+// import Mypost from "./user/pages/mypost";
 import "./app.css";
 
 
@@ -26,9 +26,9 @@ const App = () => {
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/post/mypost" exact>
+        {/* <Route path="/post/mypost" exact>
           <Mypost />
-        </Route>
+        </Route> */}
         <Route path="/post/history" exact>
           <History />
         </Route>  
