@@ -1,9 +1,9 @@
-.container {
+.container-formpost {
     width: 70%;
-    background-color: #D3D3D3;
+    background-color: white;
     border-radius: 10px;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 50px;
@@ -12,6 +12,7 @@
     padding-right: 40px;
     font-family: 'Kanit', sans-serif;
     font-size: 20px;
+    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
 }
 
 .left{ 
@@ -28,28 +29,45 @@ span{
     margin-left: 10px;
 }
 
+.linkrule{
+    margin-top: 10px;
+}
+
 .checkbox{ 
     display: inline;
 }
 
-.img-holder img {
-    width: 15%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
 .buttonpost{
     width: 100%;
+    font-size: 20px;
+    background-color: #b30101;
+    border: none;
+    border-radius: 0.5rem;
 }
 
-.profile-headers-img {
+.buttonpost:hover{
+    width: 100%;
+    font-size: 20px;
+    background-color: #8B0000;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.buttonpost:active{
+    width: 100%;
+    font-size: 20px;
+    background-color: #8B0000;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.profile-bad-img {
     text-align: center;
     padding-bottom: 20px;
 }
 
-.profile-headers-img img.img-circle {
+.profile-bad-img img.img-circle {
     width: 120px;
-    height: 120px;
     border-radius: 50%;
 }
 
@@ -64,11 +82,37 @@ span{
     border-radius: 50%;
 } */
 
-.imgpreview{
-    margin-top: 50px;
-    margin-right: 10px;
-    margin-left: 0;
+.upload{
+    margin-top: 10px;
 }
+
+.container-img-holder .imgpreview {
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.imgpreview {
+    overflow: hidden;
+  }
+  
+.imgpreview img{
+    transition: all 0.3s ease 0s;
+    width: 100%;
+  }
+  
+ .imgpreview:hover {
+    transform: scale(2.5);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* .img-wrapper{
+    overflow:hidden;
+  }
+  img.hover-zoom:hover {
+    transform: scale(1.25);
+  } */
 
 .uplodeprofile{ 
     width: 20px;

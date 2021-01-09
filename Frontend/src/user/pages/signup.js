@@ -1,16 +1,12 @@
 import React, {  useState } from "react";
+import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./signup.css";
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { MDBInput } from 'mdbreact';
 import { Form } from "react-bootstrap";
-import '@fortawesome/fontawesome-free/css/all.min.css'; 
-import 'bootstrap-css-only/css/bootstrap.min.css'; 
-import 'mdbreact/dist/css/mdb.css';
 import axios from "axios";
-
 const Signup = () => {
-
+  let history = useHistory();
 const [firstname,setFirstname] = useState("")
 const [surname,setSurname] = useState("")
 const [sex,setSex] = useState("")
@@ -32,6 +28,7 @@ const [checkpass , setCheckpass] = useState(false)
     if(result.data.msg == "password and repass not match"){
     setCheckpass(true)
     }
+    history.push('/')
   }).catch((err)=>{
     console.log(err)
   })
