@@ -16,6 +16,7 @@ import Mypost from "./user/pages/mypost";
 import "./app.css";
 import Axios from "axios"
 
+// import Mypost from "./user/pages/mypost";
 
 // ที่รวม Routh ต่างๆ
 const App = () => {
@@ -25,9 +26,9 @@ const App = () => {
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/post/mypost" exact>
+        {/* <Route path="/post/mypost" exact>
           <Mypost />
-        </Route>
+        </Route> */}
         <Route path="/post/history" exact>
           <History />
         </Route>  
@@ -58,9 +59,6 @@ const App = () => {
         <Route path="/help" exact>
           <Help />
         </Route>
-        <Route path="/post/mypost" exact>
-          <Mypost />   
-        </Route>   
         <Route path="/contractus" exact>
           <Contractus />
         </Route>

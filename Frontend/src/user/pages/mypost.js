@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { Dropdown, DropdownButton}  from 'react-bootstrap';
-import { Form, Col, FormControl, Button } from "react-bootstrap";
-import Navbar from "../components/navbar";
-import "./mypost.css";
-const Mypost = () => {
-    const [isActive, setIsActive] = useState(false);
-    const onClick = () => setIsActive(!isActive);
+// import React, { useEffect, useState } from "react";
+// import { Dropdown, DropdownButton}  from 'react-bootstrap';
+// import { Form, Col, FormControl, Button } from "react-bootstrap";
+// import Navbar from "../components/navbar";
+// import "./mypost.css";
+// const Mypost = () => {
+//     const [isActive, setIsActive] = useState(false);
+//     const onClick = () => setIsActive(!isActive);
 
-    const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
-    const [imagesProfile, setImagesProfile] = useState("/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
-    const [name, setName] = useState();
-    const [surname, setSurname] = useState();
-    const [id, setId] = useState();
-    const [accountnumber, setAccountnumber] = useState();
-    const [nameproduct, setNameproduct] = useState();
-    const [productcategory, setProductcategory] = useState();
-    const [money, setMoney] = useState();
-    const [bank, setBank] = useState();
-    const [datetime, setDatetime] = useState();
-    const [social, setSocial] = useState();
-    const [other, setOther] = useState();
+//     const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
+//     const [imagesProfile, setImagesProfile] = useState("/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
+//     const [name, setName] = useState();
+//     const [surname, setSurname] = useState();
+//     const [id, setId] = useState();
+//     const [accountnumber, setAccountnumber] = useState();
+//     const [nameproduct, setNameproduct] = useState();
+//     const [productcategory, setProductcategory] = useState();
+//     const [money, setMoney] = useState();
+//     const [bank, setBank] = useState();
+//     const [datetime, setDatetime] = useState();
+//     const [social, setSocial] = useState();
+//     const [other, setOther] = useState();
     
 
   return (
