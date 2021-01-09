@@ -11,7 +11,7 @@ const express = require("express"),
 // set up express
  app = express();
  app.use(express.json())
-
+ app.use(cors())
 
 // app
 // Set Route
@@ -24,4 +24,3 @@ const port = process.env.port || 7000;
 app.listen(port, () => {
   console.log("server start on port 7000");
 });
-
