@@ -1,5 +1,12 @@
 import React, { useEffect, useState, Component } from "react";
 import { Form, Col, FormControl, Button } from "react-bootstrap";
+import {useParams } from "react-router-dom"
+import {
+  auth,
+  googleProvider,
+  facebookProvider,
+  firestore
+} from "../Frontfirebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 import Axios from "axios"
@@ -20,6 +27,10 @@ const Formeditpost = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState();
+
+  const [show, Setshow] = useState();
+
+  const { uid } = useParams()
 
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
@@ -54,11 +65,32 @@ const Formeditpost = () => {
   };
 
 
+  const ok = async () =>{
+    
+    
+     const showdata = await firestore.collection("Post").where("uid", "==", uid).onSnapshot((querySnapshot) =>{
+       
+        let item = []
+        querySnapshot.forEach((doc) =>{
+          
+          item.push(doc.data())
+          console.log(item)
+        })
+        Setshow(item)
+      })
+    }
+  console.log(show)
+
+  useEffect(() => {
+    ok()
+}, [])
+
+ 
 const handlesubmit = async (e) =>{
   try{
     e.preventDefault()
     let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
-    let data = await Axios.post("http://localhost:7000/post/create",sentdata)
+    let data = await Axios.post(`http://localhost:7000/post/edit/${uid}`,sentdata)
   }catch(err){
     console.log(err)
   }
@@ -77,13 +109,14 @@ const handlesubmit = async (e) =>{
                   </div>
                 </label>
                 <div className="buttoninput">
-                  <input
+                   <input
                     className="upload"
                     id="FileInput"
                     type="file"
                     onChange={ProfileChange}
                     multiple
-                  />
+                    
+                  /> 
                 </div>
               </div>
             </span>
@@ -99,18 +132,16 @@ const handlesubmit = async (e) =>{
               <Form.Label>
                 ชื่อ (ผู้โกง)<span>*</span>
               </Form.Label>
-              <Form.Control type="name" placeholder="" onChange={(event)=>{
-                setName(event.target.value)
-              }} required />
-            </Form.Group>
+              
+              {show ? <Form.Control type="text" placeholder="" value={show[0].name} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
+           
+           </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastname">
               <Form.Label>
                 นามสกุล (ผู้โกง)<span>*</span>
               </Form.Label>
-              <Form.Control type="lastname" placeholder="" required onChange={(event)=>{
-                setSurname(event.target.value)
-              }} />
+              {show ? <Form.Control type="name" placeholder="" value={show[0].surname} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
           </Form.Row>
 
@@ -123,18 +154,14 @@ const handlesubmit = async (e) =>{
               <Form.Label>
                 เลขบัตรประชาชน (ผู้โกง)<span>*</span>
               </Form.Label>
-              <Form.Control type="id" placeholder="" required onChange={(event)=>{
-                setId(event.target.value)
-              }} />
+              {show ? <Form.Control type="name" placeholder="" value={show[0].id} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridAccountnumber">
               <Form.Label>
                 เลขที่บัญชี (ผู้โกง)<span>*</span>
               </Form.Label>
-              <Form.Control type="accountnumber" placeholder="" required onChange={(event)=>{
-                setAccountnumber(event.target.value)
-              }} />
+              {show ? <Form.Control type="name" placeholder="" value={show[0].accountnumber} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
           </Form.Row>
 
@@ -147,22 +174,28 @@ const handlesubmit = async (e) =>{
               <Form.Label>
                 ชื่อสินค้า<span>*</span>
               </Form.Label>
-              <Form.Control type="nameproduct" placeholder="" required  onChange={(event)=>{
-                setNameproduct(event.target.value)
-              }}/>
+              {show ? <Form.Control type="name" placeholder="" value={show[0].nameproduct} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
               <Form.Label>
                 หมวดหมู่สินค้า<span>*</span>
               </Form.Label>
-              <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
+              {show ? <Form.Control as="select" defaultValue="Choose..."   required     value={show[0].productcategory} onChange={(event)=>{
+                //value={show[0].productcategory}
                 setProductcategory(event.target.value)
               }}>
                 <option>เลือก...</option>
                 <option>แฟชั่น</option>
                 <option>ออนไลน์</option>
-              </Form.Control>
+              </Form.Control> : <Form.Control as="select" defaultValue="Choose..."   required  onChange={(event)=>{
+                //value={show[0].productcategory}
+                setProductcategory(event.target.value)
+              }}>
+                <option>เลือก...</option>
+                <option>แฟชั่น</option>
+                <option>ออนไลน์</option>
+              </Form.Control>}
             </Form.Group>
           </Form.Row>
 
@@ -175,16 +208,15 @@ const handlesubmit = async (e) =>{
               <Form.Label>
                 จำนวนเงิน (บาท)<span>*</span>
               </Form.Label>
-              <Form.Control type="nameproduct" placeholder="" required onChange={(event)=>{
-                setMoney(event.target.value)
-              }}/>
+              {show ? <Form.Control type="name" placeholder="" value={show[0].money} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
               <Form.Label>
                 ธนาคาร<span>*</span>
               </Form.Label>
-              <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
+              {show ? <Form.Control as="select" defaultValue="Choose..."    value={show[0].bank} required  onChange={(event)=>{
+             
                 setBank(event.target.value)
               }}>
                 <option>เลือก...</option>
@@ -202,7 +234,26 @@ const handlesubmit = async (e) =>{
                 <option>ธนาคารยูโอบี</option>
                 <option>ธนาคารสแตนดาร์ดชาร์เตอร์ด</option>
                 <option>ธนาคารไอซีบีซี</option>
-              </Form.Control>
+              </Form.Control> : <Form.Control as="select" defaultValue="Choose..."  required  onChange={(event)=>{
+             
+             setBank(event.target.value)
+           }}>
+             <option>เลือก...</option>
+             <option>ธนาคารกรุงเทพ</option>
+             <option>ธนาคารกรุงไทย</option>
+             <option>ธนาคารกรุงศรีอยุธยา</option>
+             <option>ธนาคารกสิกรไทย</option>
+             <option>ธนาคารเกียรตินาคิน</option>
+             <option>ธนาคารซีไอเอ็มบีไทย</option>
+             <option>ธนาคารทหารไทย</option>
+             <option>ธนาคารทิสโก้</option>
+             <option>ธนาคารไทยพาณิชย์</option>
+             <option>ธนาคารธนชาต</option>
+             <option>ธนาคารนครหลวงไทย</option>
+             <option>ธนาคารยูโอบี</option>
+             <option>ธนาคารสแตนดาร์ดชาร์เตอร์ด</option>
+             <option>ธนาคารไอซีบีซี</option>
+           </Form.Control>}
             </Form.Group>
           </Form.Row>
 
@@ -215,16 +266,15 @@ const handlesubmit = async (e) =>{
               <Form.Label>
                 วันที่โดนโกง<span>*</span>
               </Form.Label>
-              <Form.Control type="datetime-local" placeholder="" required  onChange={(event)=>{
-                setDatetime(event.target.value)
-              }}/>
+              {show ? <Form.Control type="name" placeholder="" value={show[0].datetime} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridSocial">
               <Form.Label>
                 ช่องทางที่โดนโกง<span>*</span>
               </Form.Label>
-              <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
+              {show ? <Form.Control as="select" defaultValue="Choose..."   value={show[0].social} required  onChange={(event)=>{
+              
                 setSocial(event.target.value)
               }}>
                 <option>เลือก...</option>
@@ -233,15 +283,23 @@ const handlesubmit = async (e) =>{
                 <option>Twitter</option>
                 <option>Line</option>
                 <option>Website</option>
-              </Form.Control>
+              </Form.Control> : <Form.Control as="select" defaultValue="Choose..."  required  onChange={(event)=>{
+              
+              setSocial(event.target.value)
+            }}>
+              <option>เลือก...</option>
+              <option>Facebook</option>
+              <option>Instagram</option>
+              <option>Twitter</option>
+              <option>Line</option>
+              <option>Website</option>
+            </Form.Control>}
             </Form.Group>
           </Form.Row>
 
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>รายละเอียดเพิ่มเติม</Form.Label>
-            <Form.Control as="textarea" rows={3} onChange={(event)=>{
-                setOther(event.target.value)
-              }} />
+            {show ? <Form.Control type="name" placeholder="" Value={show[0].other} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
           </Form.Group>
 
           <Form.File.Label>
@@ -280,7 +338,7 @@ const handlesubmit = async (e) =>{
           </Form.Row>
 
           <Button className="buttonpost" variant="success" type="submit">
-            โพสต์
+            แก้ไข
           </Button>
         </Form>
       </div>

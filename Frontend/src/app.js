@@ -1,5 +1,7 @@
 // import package and file
+import React, {useEffect,useRef,useState,useContext} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { firestore, auth} from "./user/Frontfirebase";
 import Home from "./user/pages/index";
 import Contractus from "./user/pages/contractus";
 import Createpost from "./user/pages/createpost";
@@ -12,25 +14,56 @@ import Help from "./user/pages/help";
 import Rank from "./user/pages/ranking";
 import Editpost from "./user/pages/editpost";
 import History from "./user/pages/history";
+import usercontext from "./user/context/usercontext"
 import "./app.css";
-import Axios from "axios"
-
 
 // ที่รวม Routh ต่างๆ
 const App = () => {
+  const userRef = useRef(firestore.collection("User")).current;
+  const [user,setUser] = useState(null);
+  const [isLogin,setisLogin] = useState(false)
+
+  useEffect(()=>{
+    const authUnsubscribe = auth.onAuthStateChanged((firebaseUser)=>{
+      if(firebaseUser){
+        userRef.doc(firebaseUser.uid).onSnapshot((doc)=>{
+          if(doc.data()){
+            const userData = {
+              uid:doc.data().uid,
+              email:doc.data().email,
+              firstname:doc.data().firstname,
+              surname:doc.data().surname,
+              country:doc.data().country,
+              province:doc.data().province,
+              role:doc.data().role,
+              sex:doc.data().sex
+            };
+            setUser(userData);
+            setisLogin(true)
+          }
+      })
+      }else{
+        setUser(null);
+      }
+  });return () =>{
+authUnsubscribe();
+  };
+  },[userRef]);
+
   return (
     <Router>
+      <usercontext.Provider value={ {user,setUser}}>
       <Switch>
         <Route path="/" exact>
           <Home />
         </Route>
         <Route path="/post/history" exact>
           <History />
-        </Route>  
+        </Route>
         <Route path="/post/create" exact>
           <Createpost />
         </Route>
-        <Route path="/post/edit/:id" exact>
+        <Route path="/post/edit/:uid" exact>
           <Editpost />
         </Route>
         <Route path="/post" exact>
@@ -58,6 +91,7 @@ const App = () => {
           <Contractus />
         </Route>
       </Switch>
+      </usercontext.Provider>
     </Router>
   );
 };

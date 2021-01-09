@@ -12,6 +12,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-validator": "^6.9.0",
+    "firebase-admin": "^9.4.2",
     "firestore": "^1.1.6",
     "flash": "^1.1.0",
     "multer": "^1.4.2",
@@ -20,7 +21,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "firebase": "^8.2.1"
+    "firebase": "^8.2.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
