@@ -6,7 +6,7 @@ const Createpost = () => {
   return (
     <div className="allpage">
       <Navbar />
-      <h1>สร้างโพสต์</h1>
+      <h1 className="h1-createpost">สร้างโพสต์</h1>
       <Formpost />
     </div>
   );

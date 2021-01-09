@@ -62,7 +62,7 @@ const Formpost = () => {
           <img className="img-circle" src={imagesProfile} />
           <div className="rank-label-container">
             <span className="label label-default rank-label">
-              <div className="ImageUpload">
+              <div className="imageUpload">
                 <label htmlFor="FileInput">
                   <div className="fileinput">
                     <img className="uplodeprofile" src="/img/edit.png" />
@@ -85,9 +85,8 @@ const Formpost = () => {
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left col-lg-6 col-12"
-              controlId="formGridName"
-            >
+              className="form-left col-lg-6 col-12"
+              controlId="formGridName">
               <Form.Label>
                 ชื่อ (ผู้โกง)<span>*</span>
               </Form.Label>
@@ -109,7 +108,7 @@ const Formpost = () => {
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left col-lg-6 col-12"
+              className="form-left col-lg-6 col-12"
               controlId="formGridId"
             >
               <Form.Label>
@@ -133,7 +132,7 @@ const Formpost = () => {
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left col-lg-6 col-12"
+              className="form-left col-lg-6 col-12"
               controlId="formGridNameproduct"
             >
               <Form.Label>
@@ -161,7 +160,7 @@ const Formpost = () => {
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left col-lg-6 col-12"
+              className="form-left col-lg-6 col-12"
               controlId="formGridPrice"
             >
               <Form.Label>
@@ -201,7 +200,7 @@ const Formpost = () => {
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left col-lg-6 col-12"
+              className="form-left col-lg-6 col-12"
               controlId="formGridDate"
             >
               <Form.Label>

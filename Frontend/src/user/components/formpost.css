@@ -6,7 +6,7 @@
     margin-bottom: 100px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 50px;
     padding-left: 40px;
     padding-right: 40px;
@@ -15,8 +15,8 @@
     box-shadow: 10px 20px 50px rgba(0,0,0,.2);
 }
 
-.left{ 
-    margin-right: 20px;
+.form-left{ 
+    margin-right: 10px;
 }
 
 span{ 
@@ -26,11 +26,7 @@ span{
 .linkrule,.linkrule:hover{ 
     display: inline-block;
     color: red;
-    margin-left: 10px;
-}
-
-.linkrule{
-    margin-top: 10px;
+    margin-left: 20px;
 }
 
 .checkbox{ 
@@ -66,7 +62,7 @@ span{
     padding-bottom: 20px;
 }
 
-.profile-bad-img img.img-circle {
+.profile-bad-img img .img-circle{
     width: 120px;
     border-radius: 50%;
 }
@@ -130,7 +126,7 @@ span{
     background-color: white;
 }
 
-@media (min-width: 1024px){
+/* @media (min-width: 1024px){
     .container{
         width: 80%;
         margin-top: 50px;
@@ -213,4 +209,4 @@ span{
     .formsize label{
         font-size: 20px;
     }
-} 
+}  */
