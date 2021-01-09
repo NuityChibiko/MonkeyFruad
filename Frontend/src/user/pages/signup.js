@@ -1,12 +1,10 @@
-import React, {  useState ,useHistory} from "react";
+import React, {  useState } from "react";
+import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./signup.css";
-
 import { MDBInput } from 'mdbreact';
 import { Form } from "react-bootstrap";
-
 import axios from "axios";
-
 const Signup = () => {
   let history = useHistory();
 const [firstname,setFirstname] = useState("")
