@@ -1,8 +1,9 @@
-import React, {useEffect,useRef,useState} from "react";
+import React, { useContext,useEffect,useRef,useState} from "react";
 import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./navbar.css";
-import { firestore, auth} from "../Frontfirebase";
+import { firestore, auth, googleProvider,facebookProvider } from "../Frontfirebase";
 const Usernvabar = () => {
   const userRef = useRef(firestore.collection("User")).current;
   const [user,setUser] = useState(null);
@@ -66,7 +67,7 @@ console.log(user)
           </Nav>
           <Form inline>
               <FormControl type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" className="mr-sm-2" />
-              <Button className="button"><i className="material-icons">search</i></Button>
+              <Button className="button"><i class="material-icons">search</i></Button>
             </Form>
           {isLogin ?  (<button onClick={logout}>logout</button>) : (
               <Nav.Link className="link" href="/login">เข้าสู่ระบบ</Nav.Link>

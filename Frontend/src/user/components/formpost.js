@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Form, Col, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 const Formpost = () => {
 
@@ -285,3 +284,4 @@ const Formpost = () => {
 };
 
 export default Formpost;
+
