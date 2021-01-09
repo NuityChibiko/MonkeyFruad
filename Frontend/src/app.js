@@ -12,19 +12,11 @@ import Help from "./user/pages/help";
 import Rank from "./user/pages/ranking";
 import Editpost from "./user/pages/editpost";
 import History from "./user/pages/history";
-<<<<<<< HEAD
 import Mypost from "./user/pages/mypost";
-
-import Axios from "axios"
-=======
 import "./app.css";
-<<<<<<< HEAD
 import Axios from "axios"
 import Mypost from "./user/pages/mypost";
 
-=======
->>>>>>> develope
->>>>>>> c5dfa2d9872f3d6aff5fab27e6ac60c91b8bfc55
 
 // ที่รวม Routh ต่างๆ
 const App = () => {
@@ -67,9 +59,6 @@ const App = () => {
         <Route path="/help" exact>
           <Help />
         </Route>
-        <Route path="/post/mypost" exact>
-          <Mypost />   
-        </Route>   
         <Route path="/contractus" exact>
           <Contractus />
         </Route>
