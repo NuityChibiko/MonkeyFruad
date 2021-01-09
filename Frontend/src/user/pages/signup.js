@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useState ,useHistory} from "react";
 import Navbar from "../components/navbar";
 import "./signup.css";
 
@@ -8,7 +8,7 @@ import { Form } from "react-bootstrap";
 import axios from "axios";
 
 const Signup = () => {
-
+  let history = useHistory();
 const [firstname,setFirstname] = useState("")
 const [surname,setSurname] = useState("")
 const [sex,setSex] = useState("")
@@ -30,6 +30,7 @@ const [checkpass , setCheckpass] = useState(false)
     if(result.data.msg == "password and repass not match"){
     setCheckpass(true)
     }
+    history.push('/')
   }).catch((err)=>{
     console.log(err)
   })
