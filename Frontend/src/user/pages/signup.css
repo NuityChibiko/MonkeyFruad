@@ -3,9 +3,6 @@ h1 {
     text-align: center;
     font-size: 25px;
     font-family: 'Kanit', sans-serif;
-<<<<<<< HEAD
-    color: #8B0000;
-=======
 }
 
 .container-login {
@@ -179,5 +176,4 @@ h1 {
     font-size: inherit;
     display: inline-block;
     color: inherit;
->>>>>>> develope
 }

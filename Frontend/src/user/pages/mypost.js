@@ -29,7 +29,7 @@ const Mypost = () => {
         <div className="container-mypost">
             <div className="cotainer-mypost2">
                 <div className="profile-img">
-                    <img className="img-circle" src="/profile.png" />
+                    <img className="img-circle" src="/img/profile.png" />
                         <div className="name">
                             @Nuitychibiko
                         </div><br/>
@@ -50,7 +50,7 @@ const Mypost = () => {
                     <div className="menu-containersetting">
                         <div onClick={onClick} className="buttonsetting">
                             <img className="img-setting"
-                                src="/setting.png"
+                                src="/img/setting.png"
                                 alt="User avatar">
                             </img>
                         </div>
@@ -70,7 +70,7 @@ const Mypost = () => {
 
                 <div className="container-mypost3">
                     <div className="profile-bad-img">
-                        <img className="img-circle" src="/profile.png" />
+                        <img className="img-circle" src="/img/profile.png" />
                     </div>
                     <Form className="formsize">
                         <Form.Row>
@@ -169,9 +169,12 @@ const Mypost = () => {
                             </Form.Label>
                         </Form.Group>
                         <div className="img-holder-bad">
-                            <img className="img-bad"src="/nui.jpg" />
-                            <img className="img-bad"src="/nui.jpg" />
-                            <img className="img-bad"src="/nui.jpg" />
+                            <img className="img-bad"src="/img/nui.jpg" />
+                            <img className="img-bad"src="/img/nui.jpg" />
+                            <img className="img-bad"src="/img/nui.jpg" />
+                        </div>
+                        <div className="form">
+                        
                         </div>
                     </Form>
                 </div>
