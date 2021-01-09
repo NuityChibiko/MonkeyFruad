@@ -1,4 +1,4 @@
-h1 { 
+.h1-help { 
     margin-top: 50px;
     text-align: center;
     font-size: 30px;
@@ -8,7 +8,7 @@ h1 {
 
 .container-help {
     width: 70%;
-    /* background-color: red; */
+    /* background-color: blue; */
     border-radius: 10px;
     margin-top: 40px;
     margin-bottom: 50px;
@@ -22,67 +22,19 @@ h1 {
     font-size: 20px; 
 }
 
-.card {
+.card-help {
     width: 270px;
-    border-radius: 10px;
     box-shadow: 10px 20px 50px rgba(0,0,0,.2);
     margin-bottom: 100px;
-}
-
-.image{
-    width: 200px;
-    margin-top: 20px;
-}
-
-
-.textred{
-    color: red;
-    font-size: 18px;
-}
-
-.textred2{
-    color: red;
-    font-size: 18px;
-    margin-left: 87px ;
-}
-
-.textwhite{
-    color: white;
-}
-
-.text{
-    text-align: center;
-    font-size: 18px;
-}
-
-.cardtext{
-    font-size: 15px;
-}
-
-
-.emty{
-    margin-top: 80px;
-}
-
-.left{
-    margin-left: 260px;
-}
-
-.right{
-    margin-right: 140px;
-}
-
-.image2{
-    background-color: white;
-    border-radius: 50%;
-    position:absolute;
-    margin-left: 100px;
-    margin-top: -370px;
     display: block;
-    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
+    float: left;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 21px;
+    margin-right: 21px;
+
 }
 
-.card2 {
+.card-help2 {
     background-color: white;
     width: 370px;
     border-radius: 10px;
@@ -90,4 +42,82 @@ h1 {
     margin-bottom: 100px;
     text-align: center;
     margin-top: 100px;
+    display: block;
+    float: left;
+    margin-left: 23px;
+    margin-right: 23px;
+}
+
+.textred-help{
+    color: red;
+    font-size: 18px;
+}
+
+.textred2-help{
+    color: red;
+    font-size: 18px;
+    margin-left: 87px ;
+}
+
+.textwhite-help{
+    color: white;
+}
+
+.text-help{
+    text-align: center;
+    font-size: 20px;
+    color:blue;
+}
+
+.cardtext-help{
+    font-size: 15px;
+}
+
+
+.emty-help{
+    margin-top: 80px;
+}
+
+.left-help{
+    margin-left: 220px;
+}
+
+.right-help{
+    margin-right: 140px;
+}
+
+.image-help1{
+    width: 100px;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    background: blue;
+}
+
+.image-help2{
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
+    position:absolute;
+    margin-left: -280px;
+    margin-top: 15px;
+}
+
+.image-help3-left{
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
+    position:absolute;
+    margin-left: -900px;
+    margin-top: 370px;
+}
+
+.image-help3-right{
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
+    position:absolute;
+    margin-left: -490px;
+    margin-top: 370px;
 }
