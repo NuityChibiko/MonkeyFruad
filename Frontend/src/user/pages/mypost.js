@@ -50,7 +50,7 @@ const Mypost = () => {
                     <div className="menu-containersetting">
                         <div onClick={onClick} className="buttonsetting">
                             <img className="img-setting"
-                                src="/img/setting.png"
+                                src="/setting.png"
                                 alt="User avatar">
                             </img>
                         </div>
@@ -169,11 +169,15 @@ const Mypost = () => {
                             </Form.Label>
                         </Form.Group>
                         <div className="img-holder-bad">
-                            <img className="img-bad"src="/img/nui.jpg" />
-                            <img className="img-bad"src="/img/nui.jpg" />
-                            <img className="img-bad"src="/img/nui.jpg" />
+                            <img className="img-bad"src="/img//nui.jpg" />
+                            <img className="img-bad"src="/img//nui.jpg" />
+                            <img className="img-bad"src="/img//nui.jpg" />
                         </div>
+                    </Form>
+                </div>
+            </div>
         </div>
+    </div>
   );
 };
 
