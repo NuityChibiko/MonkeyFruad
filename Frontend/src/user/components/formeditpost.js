@@ -66,13 +66,9 @@ const Formeditpost = () => {
 
 
   const ok = async () =>{
-    
-    
      const showdata = await firestore.collection("Post").where("uid", "==", uid).onSnapshot((querySnapshot) =>{
-       
         let item = []
         querySnapshot.forEach((doc) =>{
-          
           item.push(doc.data())
           console.log(item)
         })
@@ -141,7 +137,7 @@ const handlesubmit = async (e) =>{
               <Form.Label>
                 นามสกุล (ผู้โกง)<span>*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" value={show[0].surname} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
+              {show ? <Form.Control type="name" placeholder="" value={show[0].surname} onChange={(event)=>{setSurname(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
           </Form.Row>
 
@@ -154,14 +150,14 @@ const handlesubmit = async (e) =>{
               <Form.Label>
                 เลขบัตรประชาชน (ผู้โกง)<span>*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" value={show[0].id} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
+              {show ? <Form.Control type="name" placeholder="" value={show[0].id} onChange={(event)=>{setId(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridAccountnumber">
               <Form.Label>
                 เลขที่บัญชี (ผู้โกง)<span>*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" value={show[0].accountnumber} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
+              {show ? <Form.Control type="name" placeholder="" value={show[0].accountnumber} onChange={(event)=>{setAccountnumber(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
           </Form.Row>
 
@@ -174,7 +170,7 @@ const handlesubmit = async (e) =>{
               <Form.Label>
                 ชื่อสินค้า<span>*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" value={show[0].nameproduct} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
+              {show ? <Form.Control type="name" placeholder="" value={show[0].nameproduct} onChange={(event)=>{setNameproduct(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
@@ -208,7 +204,7 @@ const handlesubmit = async (e) =>{
               <Form.Label>
                 จำนวนเงิน (บาท)<span>*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" value={show[0].money} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
+              {show ? <Form.Control type="name" placeholder="" value={show[0].money} onChange={(event)=>{setMoney(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
@@ -266,7 +262,7 @@ const handlesubmit = async (e) =>{
               <Form.Label>
                 วันที่โดนโกง<span>*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" value={show[0].datetime} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
+              {show ? <Form.Control type="name" placeholder="" value={show[0].datetime} onChange={(event)=>{setDatetime(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridSocial">
@@ -299,7 +295,7 @@ const handlesubmit = async (e) =>{
 
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>รายละเอียดเพิ่มเติม</Form.Label>
-            {show ? <Form.Control type="name" placeholder="" Value={show[0].other} onChange={(event)=>{setName(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
+            {show ? <Form.Control type="name" placeholder="" Value={show[0].other} onChange={(event)=>{setOther(event.target.value)}} required /> : <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />}
           </Form.Group>
 
           <Form.File.Label>
