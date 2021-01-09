@@ -44,7 +44,7 @@ const Post = () => {
 
 
 
-const deleted = async(uid) =>{
+const deleted = async (uid) =>{
   const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
   console.log(postdelete.data)
 }

@@ -14,8 +14,12 @@ import Help from "./user/pages/help";
 import Rank from "./user/pages/ranking";
 import Editpost from "./user/pages/editpost";
 import History from "./user/pages/history";
+import mypost from "./user/pages/mypost";
 import usercontext from "./user/context/usercontext"
+
+
 import "./app.css";
+import Mypost from "./user/pages/mypost";
 
 // ที่รวม Routh ต่างๆ
 const App = () => {
@@ -48,7 +52,7 @@ const App = () => {
   });return () =>{
 authUnsubscribe();
   };
-  },[userRef]);
+  },[]);
 
   return (
     <Router>
@@ -89,6 +93,9 @@ authUnsubscribe();
         </Route>
         <Route path="/contractus" exact>
           <Contractus />
+        </Route>
+        <Route path="/mypost" exact>
+          <Mypost />
         </Route>
       </Switch>
       </usercontext.Provider>
