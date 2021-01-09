@@ -14,7 +14,7 @@ import Editpost from "./user/pages/editpost";
 import History from "./user/pages/history";
 import Mypost from "./user/pages/mypost";
 import "./app.css";
-import Axios from "axios"
+
 
 // import Mypost from "./user/pages/mypost";
 
@@ -26,9 +26,9 @@ const App = () => {
         <Route path="/" exact>
           <Home />
         </Route>
-        {/* <Route path="/post/mypost" exact>
+        <Route path="/post/mypost" exact>
           <Mypost />
-        </Route> */}
+        </Route>
         <Route path="/post/history" exact>
           <History />
         </Route>  
