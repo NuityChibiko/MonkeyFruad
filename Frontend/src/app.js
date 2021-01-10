@@ -24,38 +24,37 @@ import usercontext from "./user/context/usercontext"
 const App = () => {
   const userRef = useRef(firestore.collection("User")).current;
   const [user,setUser] = useState(null);
-  const [isLogin,setisLogin] = useState(false)
 
-useEffect(()=>{
-  const authUnsubscribe = auth.onAuthStateChanged((firebaseUser)=>{
-    if(firebaseUser){
-      userRef.doc(firebaseUser.uid).onSnapshot((doc)=>{
-        if(doc.data()){
-          const userData = {
-            uid:doc.data().uid,
-            email:doc.data().email,
-            firstname:doc.data().firstname,
-            surname:doc.data().surname,
-            country:doc.data().country,
-            province:doc.data().province,
-            role:doc.data().role,
-            sex:doc.data().sex
-          };
-          setUser(userData);
-          setisLogin(true)
-        }
-    })
-    }else{
-      setUser(null);
-    }
-});return () =>{
+  useEffect(()=>{
+    const authUnsubscribe = auth.onAuthStateChanged((firebaseUser)=>{
+      if(firebaseUser){
+        userRef.doc(firebaseUser.uid).onSnapshot((doc)=>{
+          if(doc.data()){
+            const userData = {
+              uid:doc.data().uid,
+              email:doc.data().email,
+              firstname:doc.data().firstname,
+              surname:doc.data().surname,
+              country:doc.data().country,
+              province:doc.data().province,
+              role:doc.data().role,
+              sex:doc.data().sex
+            };
+            setUser(userData);
+
+          }
+      })
+      }else{
+        setUser(null);
+      }
+  });return () =>{
 authUnsubscribe();
-};
-},[userRef]);
+  };
+  },[]);
 
 return (
   <Router>
-    <usercontext.Provider value={ {user,setUser},{isLogin,setisLogin}}>
+    <usercontext.Provider value={ {user,setUser}}>
     <Switch>
       <Route path="/" exact>
         <Home />

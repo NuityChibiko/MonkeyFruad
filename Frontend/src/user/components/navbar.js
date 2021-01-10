@@ -17,7 +17,7 @@ const Usernvabar = () => {
       console.log(err)
     })
   }
-  console.log(user)
+ 
   return (
     <div className="Navbar">
         <Navbar variant="dark" expand="lg">
@@ -43,7 +43,7 @@ const Usernvabar = () => {
               <FormControl type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" className="mr-sm-2" />
               <Button className="button"><i class="material-icons">search</i></Button>
             </Form>
-          {user ?  (<button onClick={logout}>logout</button>) : (
+          { user ?  (<button onClick={logout}>logout</button>) : (
               <Nav.Link className="link" href="/login">เข้าสู่ระบบ</Nav.Link>
             )}
             

@@ -92,7 +92,22 @@ router.post("/login", function (req, res) {
       res.status(400).json({ error: err });
     });
 });
-
+router.post("/session",(req,res)=>{
+  try{
+    const {
+      result
+      } = req.body;
+    const userRef = firestore.collection("User").doc(result.uid);
+    userRef.get().then((doc)=>{
+      if(doc.exists){
+res.json({data:doc.data()})
+      }
+     
+    })
+  }catch{(err)=>{
+console.log(err)
+  }}
+})
 router.get("/:id", function (req, res) {
   const userID = req.params.id;
   res.json({ success: true });
