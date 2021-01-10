@@ -4,6 +4,7 @@ const express = require("express"),
 router = express.Router();
 const {firestore} = require("../models/index")
 const admin = require("firebase-admin");
+
 // import * as firebase from 'firebase';
 const { v4: uuidv4 } = require('uuid');
 
@@ -78,4 +79,11 @@ router.post("/delete/:uid",(req, res) => {
 // router.post("/comment/:id", function (req, res) {
 //     res.json({ success: true });
 //   });
+
+
+const userRef = firestore.collection("User")
+
+
+
+
 module.exports = router;

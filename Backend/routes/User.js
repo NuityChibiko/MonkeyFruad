@@ -94,22 +94,52 @@ router.post("/login", function (req, res) {
 });
 
 
-router.post("/session",(req,res)=>{
-  try{
-    const {
-      result
-      } = req.body;
-    const userRef = firestore.collection("User").doc(result.uid);
-    userRef.get().then((doc)=>{
-      if(doc.exists){
-res.json({data:doc.data()})
-      }
+// router.post("/session",async (req,res)=>{
+//   try{
+//     const {result} = req.body;
      
+//       res.json({
+//         id : result.uid
+//       })
+// //     const userRef = firestore.collection("User").doc(result.uid)
+// //     console.log("yea")
+// //     userRef.get().then(doc =>{
+     
+// //  if(doc.exists){
+ 
+// //   res.json({mypost : "ok"})
+// //  }
+// //     })
+
+//   }catch{(err)=>{
+// console.log(err)
+//   }}
+// })
+router.get("/session",async (req,res)=>{
+  try{
+    // const{lol} = req.body;
+    
+    const showdata = await firestore.collection("Post").onSnapshot((querySnapshot) =>{
+ 
+      let item = []
+      querySnapshot.forEach((doc) =>{
+        
+        item.push(doc.data())
+    
+      })
+      res.json({
+        item
+      })
     })
+
+
   }catch{(err)=>{
 console.log(err)
   }}
 })
+
+
+
 router.get("/:id", function (req, res) {
   const userID = req.params.id;
   res.json({ success: true });
