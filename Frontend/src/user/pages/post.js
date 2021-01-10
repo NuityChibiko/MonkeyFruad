@@ -13,7 +13,9 @@ const Post = () => {
   const [data,Setdata] = useState()
   const [show,Setshow] = useState()
   const history = useHistory()
+  
   const ok = async () =>{
+    
     const showdata = await firestore.collection("Post").onSnapshot((querySnapshot) =>{
      
       let item = []
@@ -61,5 +63,8 @@ const deleted = async(uid) =>{
     </div>
   );
 };
+
+
+
 
 export default Post;

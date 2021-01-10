@@ -25,7 +25,7 @@ import usercontext from "./user/context/usercontext"
 // ที่รวม Routh ต่างๆ
 const App = () => {
   const userRef = useRef(firestore.collection("User")).current;
-  const [user,setUser] = useState(null);
+  const [user,setUser] = useState();
 
   useEffect(()=>{
     const authUnsubscribe = auth.onAuthStateChanged((firebaseUser)=>{
@@ -42,17 +42,20 @@ const App = () => {
               role:doc.data().role,
               sex:doc.data().sex
             };
-            setUser(userData);
 
+            setUser(userData);
+          
           }
       })
       }else{
         setUser(null);
       }
+     
   });return () =>{
 authUnsubscribe();
   };
   },[]);
+  // console.log(user)
 
 return (
   <Router>
