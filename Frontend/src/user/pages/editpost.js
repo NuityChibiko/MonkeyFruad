@@ -6,7 +6,7 @@ const Editpost = () => {
   return (
     <div>
       <Navbar />
-      <h1>แก้ไขโพสต์</h1>
+      <h1 className="h1-editpost">แก้ไขโพสต์</h1>
       <Formpost />
     </div>
   );

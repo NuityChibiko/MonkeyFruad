@@ -6,7 +6,7 @@
     margin-bottom: 100px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
+    padding-top: 50px;
     padding-bottom: 50px;
     padding-left: 40px;
     padding-right: 40px;
@@ -15,108 +15,35 @@
     box-shadow: 10px 20px 50px rgba(0,0,0,.2);
 }
 
-.form-left{ 
-    margin-right: 10px;
-}
-
-span{ 
-    color: red;
-}
-
-.linkrule,.linkrule:hover{ 
-    display: inline-block;
-    color: red;
-    margin-left: 20px;
-}
-
-.checkbox{ 
-    display: inline;
-}
-
-.buttonpost{
-    width: 100%;
-    font-size: 20px;
-    background-color: #b30101;
-    border: none;
-    border-radius: 0.5rem;
-}
-
-.buttonpost:hover{
-    width: 100%;
-    font-size: 20px;
-    background-color: #8B0000;
-    border: none;
-    border-radius: 0.5rem;
-}
-
-.buttonpost:active{
-    width: 100%;
-    font-size: 20px;
-    background-color: #8B0000;
-    border: none;
-    border-radius: 0.5rem;
-}
-
-.profile-bad-img {
+.profile-badformpost-img {
     text-align: center;
     padding-bottom: 20px;
-}
+} 
 
-.profile-bad-img img .img-circle{
-    width: 120px;
+.profile-badformpost-img img.img-circle {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center; 
     border-radius: 50%;
 }
 
-.rank-label-container {
-    margin-top: -19px;
-    text-align: center;
-}
-
-/* .label.label-default.rank-label {
-    background-color: white;
-    padding: 5px 10px 5px 10px;
-    border-radius: 50%;
-} */
-
-.upload{
+.uploadinputprofile{
     margin-top: 10px;
 }
 
-.container-img-holder .imgpreview {
-    width: 100px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-}
-
-.imgpreview {
-    overflow: hidden;
-  }
-  
-.imgpreview img{
-    transition: all 0.3s ease 0s;
-    width: 100%;
-  }
-  
- .imgpreview:hover {
-    transform: scale(2.5);
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  /* .img-wrapper{
-    overflow:hidden;
-  }
-  img.hover-zoom:hover {
-    transform: scale(1.25);
-  } */
-
-.uplodeprofile{ 
+.uploadiconprofile{ 
     width: 20px;
 }
 
 #FileInput{ 
     cursor: pointer;  
     display: none;
+}
+
+.rank-label-container {
+    margin-top: -19px;
+    text-align: center;
 }
 
 .fileinput{ 
@@ -126,87 +53,88 @@ span{
     background-color: white;
 }
 
-/* @media (min-width: 1024px){
-    .container{
-        width: 80%;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    .formsize label{
-        font-size: 20px;
-    }
-} 
+.formpost-left{ 
+    margin-right: 15px;
+}
 
-@media (min-width: 768px){
-    .container{
-        width: 80%;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    .formsize label{
-        font-size: 20px;
-    }
-} 
+.spanformpost { 
+    color: red;
+}
 
-@media (min-width: 425px){
-    .container{
-        width: 80%;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    .formsize label{
-        font-size: 20px;
-    }
-} 
+.linkrule1{
+    margin-top: 10px;
+}
 
-@media (min-width: 375px){
-    .container{
-        width: 80%;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    .formsize label{
-        font-size: 20px;
-    }
-} 
+.linkrule2{ 
+    display: inline;
+}
 
-@media (min-width: 320px){
-    .container{
-        width: 80%;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    .formsize label{
-        font-size: 20px;
-    }
-}  */
+.linkrule3, .linkrule3:hover{ 
+    display: inline-block;
+    color: red;
+    margin-left: 2px;
+    margin-bottom: 10px;
+}
+
+.uploadsformpostuploadslip{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.container-img-holder-imgpreview .imgpreview {
+    width: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.imgpreview {
+    overflow: hidden;
+    background-color: white;
+}
+  
+.imgpreview img{
+    transition: all 0.3s ease 0s;
+    width: 100%;
+}
+  
+.imgpreview:hover {
+    transform: scale(2.5);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.buttonformpost{
+    width: 100%;
+    font-size: 20px;
+    background-color: #b30101;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    padding: 0.5rem;
+    margin-top: 10px;
+}
+
+.buttonformpost:hover{
+    width: 100%;
+    font-size: 20px;
+    background-color: #8B0000;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    padding: 0.5rem;
+    margin-top: 10px;
+}
+
+.buttonformpost:active{
+    width: 100%;
+    font-size: 20px;
+    background-color: #8B0000;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-top: 10px;
+}

@@ -1,4 +1,4 @@
-h1 { 
+.h1-mypost { 
     margin-top: 50px;
     text-align: center;
     font-size: 30px;
@@ -11,11 +11,11 @@ h1 {
     background-color: white;
     border-radius: 10px;
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: -20px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 40px;
+    padding-bottom: 60px;
     padding-left: 20px;
     padding-right: 20px;
     font-family: 'Kanit', sans-serif;
@@ -23,41 +23,33 @@ h1 {
     box-shadow: 10px 20px 50px rgba(0,0,0,.2);
 }
 
-.profile-img img.img-circle {
+.mypost-profile-img img.img-circle {
     width: 50px;
     border-radius: 50%;
 }
 
-.name{
+.mypost-name{
     margin-left: 60px;
     margin-top: -55px;
 }
 
-.date{
+.mypost-date{
     margin-left: 60px;
     margin-top: -25px;
     color: grey;
     font-size: 18px
 }
 
-.time{
+.mypost-time{
     margin-left: 5px;
     color: grey;
 }
 
-
-.profile-bad-img {
-    text-align: center;
-    margin-top: 50px;
-    padding-bottom: 20px;
+.mypostbuttonshare, .mypostbuttonshare:hover{
+    color: grey;
 }
 
-.profile-bad-img img.img-circle {
-    width: 120px;
-    border-radius: 50%;
-}
-
-.buttonshared{
+.mypostbuttonshared{
     margin-top: -65px;
     width: 30px;
     background: #ffffff;
@@ -75,27 +67,22 @@ h1 {
     margin-right: 40px;
 }
 
-.buttonshared:hover {
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+.mypostbuttonshared:hover {
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 
-.buttonshared .buttonshare {
-  color: grey;
-}
-
-
-.img-setting {
+.mypostimg-setting {
     width: 30px;
 }
 
-.menu-containersetting {
+.menu-containermypostsetting {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
   
-  .buttonsetting {
+.mypostbuttonsetting {
     margin-top: -33px;
     width: 30px;
     background: #ffffff;
@@ -110,13 +97,13 @@ h1 {
     vertical-align: middle;
     transition: box-shadow 0.4s ease;
     margin-left: auto; /* Strictly for positioning */
-  }
+}
   
-  .buttonsetting:hover {
+.mypostbuttonsetting:hover {
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-  }
+}
   
-  .menusetting {
+.mypostmenusetting {
     background: #ffffff;
     border-radius: 7px;
     position: absolute;
@@ -129,32 +116,32 @@ h1 {
     visibility: hidden;
     transform: translateY(-20px);
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-  }
+ }
   
-  .menusetting.active {
+.mypostmenusetting.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-  }
+}
   
-  .menusetting ul {
+.mypostmenusetting .ul-mypostmenusetting {
     list-style: none;
     padding: 0;
     margin: 0;
-  }
+}
   
-  .menusetting li {
+.mypostmenusetting .li-mypostmenusetting {
     border-bottom: 1px solid #dddddd;
-  }
+}
   
-  .menusetting li a {
+.mypostmenusetting .li-mypostmenusetting .a-mypostmenusetting {
     text-decoration: none;
     color: #333333;
     padding: 15px 20px;
     display: block;
-  }
+}
   
-  .container-mypost3 {
+.container-mypost3 {
     width: 80%;
     margin-top: -10px;
     margin-bottom: 50px;
@@ -168,16 +155,110 @@ h1 {
     font-size: 20px;
 }
 
-.img-holder-bad {
+.mypostprofile-bad-img {
+  text-align: center;
+  margin-top: 50px;
+  padding-bottom: 20px;
+}
+
+.mypostprofile-bad-img img.img-circle {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  object-position: center; 
+  border-radius: 50%;
+}
+
+.mypost-left { 
+    margin-right: 15px;
+}
+
+.spanmypost { 
+    color: red;
+}
+
+.img-bad{
+    transition: all 0.3s ease 0s;
+    width: 100px;
+    overflow: hidden;
+    margin-left: 10px;
+    background-color: white;
+    margin-right: 10px;
+}
+
+.img-bad:hover{
+    transform: scale(2.5);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.container-mypost4{
+    width: 70%;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    padding-left: 100px;
+    padding-right: 20px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
+}
+
+.mypost-comment-img1 img.img-circle1,
+.mypost-comment-img2 img.img-circle2,
+.mypost-comment-img3 img.img-circle3 {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.mypost-comment-name1,
+.mypost-comment-name2,
+.mypost-comment-name3 {
+  margin-left: 60px;
+  margin-top: -55px;
+}
+
+.mypost-comment-name1 .mypost-comment-time1,
+.mypost-comment-name2 .mypost-comment-time2,
+.mypost-comment-name3 .mypost-comment-time3 {
+  margin-left: 5px;
+  margin-top: -55px;
+  font-size: 14px;
+  color: grey;
+}
+
+.mypost-comment-comments1,
+.mypost-comment-comments2,
+.mypost-comment-comments3 {
+  margin-left: 60px;
+  margin-top: -25px;
+  margin-bottom: 30px;
+  font-size: 18px
+}
+
+.mypostbuttonsends, .mypostbuttonsends:hover{
+  color: grey;
+}
+
+.mypostbuttonsend{
+  width: 30px;
+  background: #ffffff;
+  border-radius: 50px;
+  cursor: pointer;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 5px;
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); */
+  border: none;
+  vertical-align: middle;
+  transition: box-shadow 0.4s ease;
 }
 
-.img-holder-bad .img-bad{
-  width: 100px;
-  margin-left: 20px;
-}
-
-.img-holder-bad .img-bad:hover{
-  transform: scale(2.5);
+.mypostbuttonsend:hover {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
