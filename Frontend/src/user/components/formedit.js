@@ -135,7 +135,7 @@ const Formedit = () => {
                 ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
 
-              {show ? <Form.Control type="text" placeholder="" value={surname} onChange={(event)=>{setName(event.target.value)}} required /> : null }
+              {show ? <Form.Control type="text" placeholder="" value={name} onChange={(event)=>{setName(event.target.value)}} required /> : null }
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />} */}
               </Form.Group>
 
