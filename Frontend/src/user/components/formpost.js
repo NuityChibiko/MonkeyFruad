@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import { Form, Col, Button, Image, roundedCircle } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
+import usercontext from "../context/usercontext"
+import Axios from "axios"
 const Formpost = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
@@ -19,7 +21,7 @@ const Formpost = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState();
- 
+  let { user , setUser} = useContext(usercontext)
   const ImageHoverZoom = ({ imagePreviewUrl }) => {
     
   }
@@ -55,7 +57,18 @@ const Formpost = () => {
       };
     }
   };
-  
+
+  const handlesubmit = async (e) =>{
+    try{
+      e.preventDefault()
+      let useruid = user.uid
+      let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid}
+      let data = await Axios.post("http://localhost:7000/post/create",sentdata)
+      
+    }catch(err){
+      console.log(err)
+    }
+  }
   return (
     <div className="container-formpost">
       <div className="container-formpost1">
