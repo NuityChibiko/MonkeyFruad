@@ -41,7 +41,6 @@ const App = () => {
               sex:doc.data().sex
             };
             setUser(userData);
-
           }
       })
       }else{

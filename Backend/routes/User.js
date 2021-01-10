@@ -14,12 +14,8 @@ router.post("/signup", async (req, res) => {
       province,
       country,
       email,
-      password,
-      repass,
+      password
     } = req.body;
-    if (repass !== password) {
-      return res.json({ msg: "password and repass not match" });
-    } else {
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((result) => {
@@ -41,8 +37,7 @@ router.post("/signup", async (req, res) => {
         })
         .catch((err) => {
           res.status(400).json({ error: err });
-        });
-    }
+        }); 
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
