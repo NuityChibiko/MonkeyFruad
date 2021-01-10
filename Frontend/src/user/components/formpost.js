@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { Form, Col, Button } from "react-bootstrap";
+import React, { useState ,useContext} from "react";
+import { Form, Col, Button, Image, roundedCircle } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
+import usercontext from "../context/usercontext"
 import Axios from "axios"
 const Formpost = () => {
 
@@ -19,7 +21,7 @@ const Formpost = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState();
- 
+  let { user , setUser} = useContext(usercontext)
   const ImageHoverZoom = ({ imagePreviewUrl }) => {
     
   }
@@ -56,32 +58,33 @@ const Formpost = () => {
     }
   };
 
-
-const handlesubmit = async (e) =>{
-  try{
-    e.preventDefault()
-    let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
-    let data = await Axios.post("http://localhost:7000/post/create",sentdata)
-  }catch(err){
-    console.log(err)
+  const handlesubmit = async (e) =>{
+    try{
+      e.preventDefault()
+      let useruid = user.uid
+      let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid}
+      let data = await Axios.post("http://localhost:7000/post/create",sentdata)
+      
+    }catch(err){
+      console.log(err)
+    }
   }
-}
   return (
     <div className="container-formpost">
       <div className="container-formpost1">
-        <div className="profile-bad-img">
+        <div className="profile-badformpost-img">
           <img className="img-circle" src={imagesProfile} />
           <div className="rank-label-container">
             <span className="label label-default rank-label">
-              <div className="ImageUpload">
+              <div className="formpost-ImageUpload">
                 <label htmlFor="FileInput">
                   <div className="fileinput">
-                    <img className="uplodeprofile" src="/img/edit.png" />
+                    <img className="uploadiconprofile" src="/img/edit.png" />
                   </div>
                 </label>
-                <div className="buttoninput">
+                <div className="buttoninputprofile">
                   <input
-                    className="upload"
+                    className="uploadinputprofile"
                     id="FileInput"
                     type="file"
                     onChange={ProfileChange}
@@ -92,15 +95,15 @@ const handlesubmit = async (e) =>{
             </span>
           </div>
         </div>
-        <Form className="formsize" onSubmit={handlesubmit}>
+        <Form className="formsize-formpost" onSubmit={handlesubmit}>
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left col-lg-6 col-12"
+              className="formpost-left col-lg-6 col-12"
               controlId="formGridName"
             >
               <Form.Label>
-                ชื่อ (ผู้โกง)<span>*</span>
+                ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="name" placeholder="" onChange={(event)=>{
                 setName(event.target.value)
@@ -109,7 +112,7 @@ const handlesubmit = async (e) =>{
 
             <Form.Group as={Col} controlId="formGridLastname">
               <Form.Label>
-                นามสกุล (ผู้โกง)<span>*</span>
+                นามสกุล (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="lastname" placeholder="" required onChange={(event)=>{
                 setSurname(event.target.value)
@@ -120,11 +123,11 @@ const handlesubmit = async (e) =>{
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left col-lg-6 col-12"
+              className="formpost-left col-lg-6 col-12"
               controlId="formGridId"
             >
               <Form.Label>
-                เลขบัตรประชาชน (ผู้โกง)<span>*</span>
+                เลขบัตรประชาชน (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="id" placeholder="" required onChange={(event)=>{
                 setId(event.target.value)
@@ -133,7 +136,7 @@ const handlesubmit = async (e) =>{
 
             <Form.Group as={Col} controlId="formGridAccountnumber">
               <Form.Label>
-                เลขที่บัญชี (ผู้โกง)<span>*</span>
+                เลขที่บัญชี (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="accountnumber" placeholder="" required onChange={(event)=>{
                 setAccountnumber(event.target.value)
@@ -144,11 +147,11 @@ const handlesubmit = async (e) =>{
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left col-lg-6 col-12"
+              className="formpost-left col-lg-6 col-12"
               controlId="formGridNameproduct"
             >
               <Form.Label>
-                ชื่อสินค้า<span>*</span>
+                ชื่อสินค้า<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="nameproduct" placeholder="" required  onChange={(event)=>{
                 setNameproduct(event.target.value)
@@ -157,7 +160,7 @@ const handlesubmit = async (e) =>{
 
             <Form.Group as={Col} controlId="formGridCategory">
               <Form.Label>
-                หมวดหมู่สินค้า<span>*</span>
+                หมวดหมู่สินค้า<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
                 setProductcategory(event.target.value)
@@ -172,11 +175,11 @@ const handlesubmit = async (e) =>{
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left col-lg-6 col-12"
+              className="formpost-left col-lg-6 col-12"
               controlId="formGridPrice"
             >
               <Form.Label>
-                จำนวนเงิน (บาท)<span>*</span>
+                จำนวนเงิน (บาท)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="nameproduct" placeholder="" required onChange={(event)=>{
                 setMoney(event.target.value)
@@ -185,7 +188,7 @@ const handlesubmit = async (e) =>{
 
             <Form.Group as={Col} controlId="formGridCategory">
               <Form.Label>
-                ธนาคาร<span>*</span>
+                ธนาคาร<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
                 setBank(event.target.value)
@@ -212,11 +215,11 @@ const handlesubmit = async (e) =>{
           <Form.Row>
             <Form.Group
               as={Col}
-              className="left col-lg-6 col-12"
+              className="formpost-left col-lg-6 col-12"
               controlId="formGridDate"
             >
               <Form.Label>
-                วันที่โดนโกง<span>*</span>
+                วันที่โดนโกง<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="datetime-local" placeholder="" required  onChange={(event)=>{
                 setDatetime(event.target.value)
@@ -225,7 +228,7 @@ const handlesubmit = async (e) =>{
 
             <Form.Group as={Col} controlId="formGridSocial">
               <Form.Label>
-                ช่องทางที่โดนโกง<span>*</span>
+                ช่องทางที่โดนโกง<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
                 setSocial(event.target.value)
@@ -248,19 +251,19 @@ const handlesubmit = async (e) =>{
           </Form.Group>
 
           <Form.File.Label>
-            <span>
+            <span className="spanformpost">
               **กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
               (แชท)
             </span>
           </Form.File.Label>
 
           <input
-            className="upload"
+            className="uploadsformpostuploadslip"
             type="file"
             onChange={FileUpload}
             multiple
           />
-          <div className="container-img-holder">
+          <div className="container-img-holder-imgpreview">
             {imagesFile.map((imagePreviewUrl) => {
               return (
                 <img
@@ -276,18 +279,15 @@ const handlesubmit = async (e) =>{
             })}
           </div>
 
-          <Form.Row>
-            <Form.Group id="formGridCheckbox">
-              <Form.Check className="checkbox" type="checkbox" required />
-              <a className="linkrule" href="about.html">
-                ยอมรับข้อตกลง
-              </a>
-            </Form.Group>
+          <Form.Row className="linkrule1">
+            <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
           </Form.Row>
-
-          <Button className="buttonpost" type="submit" href="/post/mypost">
+          <Button className="buttonpost" variant="success" type="submit">
             โพสต์
           </Button>
+          {/* <a className="buttonformpost" type="submit" href="/post/mypost">
+            โพสต์
+          </a> */}
         </Form>
       </div>
     </div>
@@ -295,4 +295,3 @@ const handlesubmit = async (e) =>{
 };
 
 export default Formpost;
-

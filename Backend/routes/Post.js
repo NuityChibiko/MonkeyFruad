@@ -3,6 +3,8 @@ const express = require("express"),
 (multer = require("multer")), 
 router = express.Router();
 const {firestore} = require("../models/index")
+const admin = require("firebase-admin");
+// import * as firebase from 'firebase';
 const { v4: uuidv4 } = require('uuid');
 
 // router.get("/", function (req, res) {
@@ -10,56 +12,64 @@ const { v4: uuidv4 } = require('uuid');
 // });
 
 router.post("/create", async (req, res) => {
- const {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
+ const {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
   try{
-    const id = uuidv4()
-    const create = await firestore.collection("Post").doc(id).set({imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid:id})
+    const uid = uuidv4()
+ 
+    const create = await firestore.collection("Post").doc(uid).set({imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid})
     
+    return res.json({ success: true });
   }catch(err){
     console.log(err)
   }
-  res.json({ success: true });
+  
 });
-router.post("/edit/:id", async (req, res) => {
+router.post("/edit/:uid",async (req, res) => {
+  let uid = req.params.uid
   const {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
   try{
-    const update = await firestore.collection("Post").doc().update({imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other})
+    const update =await firestore.collection("Post").doc(uid).update({imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other})
     
   }catch(err){
     console.log(err)
   }
-  res.json({ success: true });
-});
-// router.get("/search", function (req, res) {
-//   res.json({ success: true });
-// });
-router.get("/showpost", async (req, res) => {
-  try{
-    let item = []
-    const showpost = await firestore.collection("Post").onSnapshot(ok =>{
-     
-      ok.forEach(doc =>{
-        item.push(doc.data())
-      })
-      return res.json({
-        item
-      })
-    })
-    
-  
-  }catch(err){
-    res.status(500).json({msg : err})
-  }
-  
   
 });
 
-router.post("/delete/:id", async (req, res) => {
+// router.get("/search", function (req, res) {
+//   res.json({ success: true });
+// });
+
+router.get("/edit/:uid",async (req, res) => {
+  let uid = req.params.uid
+
   try{
-    let getid = req.params.id
+    const showdata = await firestore.collection("Post").where("uid", "==", uid).get()
+    showdata.forEach(doc =>{
+      let item = []
+      console.log(item)
+      item.push(doc.data())
+      res.json({
+        item
+      })
+    })
+  
+  }catch(err){
+    console.log(err)
+  }
+
+});
+
+
+
+
+
+router.post("/delete/:uid",(req, res) => {
+  try{
+    let getid = req.params.uid
     console.log(getid)
-    const postdelete = await firestore.collection("Post").doc(getid).delete()
-    res.json({ success: true });
+    const postdelete = firestore.collection("Post").doc(getid).delete()
+    res.json({ success: "Delete" });
   }catch(err){
     res.status(500).json({msg : err})
   }
