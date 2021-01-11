@@ -17,14 +17,18 @@ h1 {
     border-radius: 20px;
 }
 
-.LoginForm {
+.LoginForm-login {
     width: 100%;
     max-width: 376px;
     padding: 15px;
     margin: 0 auto;
 }
 
-.LoginInputForm .InputName {
+.LoginInputForm-login {
+    margin-top: -1rem;
+}
+
+.LoginInputForm-login .InputName {
     font-size: 16px;
     color: grey;
 }
@@ -41,77 +45,78 @@ h1 {
     font-size: 16px;
 }
 
-.LoginButton {
+.LoginButton-login {
     background-color: #be2020;
     border: 1px solid #be2020;
     border-radius: 1.5rem;
     padding: 6px;
+    margin-top: 1rem;
 }
 
-.LoginButton:hover {
+.LoginButton-login:hover {
     background-color: #9b1b1b;
     border: 1px solid #9b1b1b;
 }
 
-.LoginButton p {
+.LoginButton-login p {
     color: white;
     font-size: 18px;
 }
 
-.Signup a {
+.Signup-login a {
     color: #212529;
     font-size: 18px;
 }
 
-.Signup a:hover {
+.Signup-login a:hover {
     color: #9b1b1b;
     font-size: 18px;
 }
 
-.Signup hr {
+.Signup-login hr {
     margin-top: 2rem;
     color:black;
 }
 
-.LoginFacebook {
+.LoginFacebook-login {
     background-color: #3b5999;
     border: 1px solid #3b5999;
     border-radius: 10px;
     padding: 6px;
 }
 
-.LoginFacebook:hover {
+.LoginFacebook-login:hover {
     background-color: #30477a;
     border: 1px solid #30477a;
 }
 
-.LoginGoogle {
+.LoginGoogle-login {
     background-color: #CB4023;
     border: 1px solid #CB4023;
     border-radius: 10px;
     padding: 6px;
 }
 
-.LoginGoogle:hover {
+.LoginGoogle-login:hover {
     background-color: #a5331d;
     border: 1px solid #a5331d;
 }
 
-.LoginFacebook p, .LoginGoogle {
+.LoginFacebook-login p, .LoginGoogle-login {
     color: white;
     font-size: 18px;
 }
 
-.LoginFacebook svg, .LoginFacebook p, .LoginGoogle svg, .LoginGoogle p{
+.LoginFacebook-login svg, .LoginFacebook-login p, .LoginGoogle-login svg, .LoginGoogle-login p{
     display: inline-block;
 }
 
-.LoginFacebook svg, .LoginGoogle svg {
+.LoginFacebook-login svg, .LoginGoogle-login svg {
     vertical-align: middle;
     margin: 0 .5rem 4px 0;
 }
 
-.LogoLogin  {
+.LogoLogin-login  {
     width: 150px;
     height: 150px;
     margin: 0 auto;
@@ -123,57 +128,67 @@ h1 {
 }
 
 @media (min-width: 768px) {
-    .label-form-title {
+    .label-form-title-signup {
         width: 35%;
     
     }
-    .BirthDate {
+    .BirthDate-signup {
         margin-bottom: -1rem;
         margin-top: 1rem;
     }
-    .Phone {
+    .Phone-signup {
         margin-bottom: -1rem;
         margin-top: 2rem;
     }
-    .Email {
+    .Email-signup {
         margin-top: -1rem;
     }
 }
 
 @media (max-width: 767.98px) {
-    .label-form-title {
+    .label-form-title-signup {
         width: 100%;
         display: block;
         margin: .7rem auto;
     }
-    .BirthDate {
+    .BirthDate-signup {
         margin-bottom: 1rem;
     }
-    .Phone {
+    .Phone-signup {
         margin-bottom: -1rem;
+    }
+    .container-login {
+        margin: 40px auto;
+        padding: 30px 40px;
+        font-family: 'Kanit', sans-serif;
+        background-color: white;
+        width: 100%;
+        height: auto;
+        box-shadow: 10px 20px 50px rgba(0,0,0,.2);
+        border-radius: 20px;
     }
 }
 
-.label-form-title {
+.label-form-title-signup {
     font-size: inherit;
     display: inline-block;
     color: inherit;
 }
 
 @media (min-width: 768px){
-    .form-inside {
+    .form-inside-signup {
         width: 65%;
     }
 }
 
 @media (max-width: 767.98px) {
-    .form-inside {
+    .form-inside-signup {
         width: 100%;
         display: block;
     }
 }
 
-.form-inside {
+.form-inside-signup {
     font-size: inherit;
     display: inline-block;
     color: inherit;

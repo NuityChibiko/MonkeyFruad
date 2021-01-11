@@ -5,8 +5,10 @@ import "./signup.css";
 import { MDBInput } from 'mdbreact';
 import { Form } from "react-bootstrap";
 import axios from "axios";
+import { Alert } from "bootstrap";
+
 const Signup = () => {
-  let history = useHistory();
+let history = useHistory();
 const [firstname,setFirstname] = useState("")
 const [surname,setSurname] = useState("")
 const [sex,setSex] = useState("")
@@ -42,37 +44,36 @@ const [checkpass , setCheckpass] = useState(false)
     else
     setSex(e.target.value)
   }
+  
   return (
     <div>
       <Navbar />
       <div className="container-login">
-        <form  className='LoginForm'>
+        <form  className='LoginForm-login'>
         
-          <img src="/img/logoLogin.png" className="LogoLogin" />
+          <img src="/img/logoLogin.png" className="LogoLogin-login" />
 
           <p className="h2 text-center mb-4 font-weight-bold">สมัครสมาชิก</p>
-
-          {checkpass ? (<h1>password and repass not matchw</h1>) : false}
           
-          <div className="Email">
+          <div className="Email-signup">
               <MDBInput onChange={(e)=>{
                  setEmail(e.target.value)
               }}  className="" label="Email" group type="email" validate />
             </div>
             
-            <div className="Email">
+            <div className="Email-signup">
               <MDBInput onChange={(e)=>{
                  setPassword(e.target.value)
               }} className="" label="Password" group type="password" validate />
             </div>
 
-            <div className="Email">
+            <div className="Email-signup">
               <MDBInput onChange={(e)=>{
                 setRepass(e.target.value)
               }} className="" label="Confirm Password" group type="password" validate />
             </div>
 
-          <div className="LoginInputForm">
+          <div className="LoginInputForm-login">
             <MDBInput onChange={(e=>{
                 setFirstname(e.target.value)
             })} className="mb-1" label="ชื่อจริง" group type="text" validate />
@@ -81,8 +82,8 @@ const [checkpass , setCheckpass] = useState(false)
             })}  className="mb-1" label="นามสกุล" group type="text" validate />
 
             <div className="my-2 Gender">
-              <label className="label-form-title">เพศ</label>
-              <div className="form-inside">
+              <label className="label-form-title-signup">เพศ</label>
+              <div className="form-inside-signup">
                 <div className="profile-data d-inline mr-2">
                   <input onChange={selectSex} name="gender" type="radio" id="male" value="male" className="mr-1" />
                   <label htmlFor="male">
@@ -90,7 +91,7 @@ const [checkpass , setCheckpass] = useState(false)
                   </label>
                 </div>
                 <div className="profile-data d-inline">
-                  <input onChange={selectSex} name="gender" type="radio" id="female" value="female" classNa-กรุณาเลือกจังหวัดdi6-me="m-1" />
+                  <input onChange={selectSex} name="gender" type="radio" id="female" value="female" className="m-1" />
                   <label htmlFor="female">
                     หญิง
                   </label>
@@ -98,24 +99,24 @@ const [checkpass , setCheckpass] = useState(false)
               </div>
             </div>
 
-            <div className="BirthDate">
-              <label for="gender" className="label-form-title">วันเกิด</label>
-              <div className="form-inside">
+            <div className="BirthDate-signup">
+              <label for="gender" className="label-form-title-signup">วันเกิด</label>
+              <div className="form-inside-signup">
                   <input onChange={(e)=>{
                     setDate(e.target.value)
                   }} className="Date" type="date" id="party-time" name="birth_day" required />                  
               </div>
             </div>
 
-            <div className="Phone">
+            <div className="Phone-signup">
               <MDBInput onChange={(e)=>{
                     setPhone(e.target.value)
                   }}  label="เบอร์โทรศัพท์" group type="text" validate />                  
             </div>
 
             <div className="Province">
-              <label for="province" className="label-form-title">จังหวัด</label>
-              <div className="form-inside ">
+              <label for="province" className="label-form-title-signup">จังหวัด</label>
+              <div className="form-inside-signup ">
                 <Form.Group controlId="exampleForm.ControlSelect1">
                   <Form.Control  as="select" onChange={(e)=>{
                     setProvince(e.target.value)
@@ -204,8 +205,8 @@ const [checkpass , setCheckpass] = useState(false)
             </div>
 
             <div className="Province">
-              <label for="province" className="label-form-title">เขต</label>
-              <div className="form-inside ">
+              <label for="province" className="label-form-title-signup">เขต</label>
+              <div className="form-inside-signup ">
                 <Form.Group controlId="exampleForm.ControlSelect1">
                   <Form.Control as="select" onChange={(e)=>{
                     setCountry(e.target.value)
@@ -293,25 +294,26 @@ const [checkpass , setCheckpass] = useState(false)
               </div>
             </div>
             
-            <button onClick={SignupSubmit} className="btn-block LoginButton">
+          <button onClick={SignupSubmit} className="btn-block LoginButton-login">
             <p className="mx-auto my-1">สมัครสมาชิก</p>
           </button>
 
-          <div className="Signup text-center pt-3" >
+          <div className="Signup-login text-center pt-3" >
             <span></span><a href="/login">เข้าสู่ระบบ</a>
             <hr></hr>
           </div>
 
-          <button className="btn-block LoginFacebook">
+          <button className="btn-block LoginFacebook-login">
             <svg  className="FacebookIcon" xmlns="http://www.w3.org/2000/svg" width="26px" height="26px" viewBox="0 0 90 90"><g><path d="M90,15.001C90,7.119,82.884,0,75,0H15C7.116,0,0,7.119,0,15.001v59.998   C0,82.881,7.116,90,15.001,90H45V56H34V41h11v-5.844C45,25.077,52.568,16,61.875,16H74v15H61.875C60.548,31,59,32.611,59,35.024V41   h15v15H59v34h16c7.884,0,15-7.119,15-15.001V15.001z" fill="#FFFFFF" ></path></g></svg>
             <p className="mx-auto my-1">เข้าสู่ระบบด้วย Facebook</p>
           </button>
-          </div>
 
-          <button className="btn-block LoginGoogle">
+          <button className="btn-block LoginGoogle-login">
             <svg  className="GoogleIcon" xmlns="http://www.w3.org/2000/svg" width="26px" height="26px" fill="#FFFFFF" viewBox="0 0 50 50"><g><path d="M 25.996094 48 C 13.3125 48 2.992188 37.683594 2.992188 25 C 2.992188 12.316406 13.3125 2 25.996094 2 C 31.742188 2 37.242188 4.128906 41.488281 7.996094 L 42.261719 8.703125 L 34.675781 16.289063 L 33.972656 15.6875 C 31.746094 13.78125 28.914063 12.730469 25.996094 12.730469 C 19.230469 12.730469 13.722656 18.234375 13.722656 25 C 13.722656 31.765625 19.230469 37.269531 25.996094 37.269531 C 30.875 37.269531 34.730469 34.777344 36.546875 30.53125 L 24.996094 30.53125 L 24.996094 20.175781 L 47.546875 20.207031 L 47.714844 21 C 48.890625 26.582031 47.949219 34.792969 43.183594 40.667969 C 39.238281 45.53125 33.457031 48 25.996094 48 Z "></path></g></svg>
             <p className="mx-auto my-1">เข้าสู่ระบบด้วย Google</p>
           </button>
+
+        </div>
 
         </form>
       </div>
