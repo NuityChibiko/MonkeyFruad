@@ -20,7 +20,7 @@ const Formpost = () => {
   const [bank, setBank] = useState();
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
-  const [other, setOther] = useState();
+  const [other, setOther] = useState("");
   let { user , setUser} = useContext(usercontext)
   const ImageHoverZoom = ({ imagePreviewUrl }) => {
     

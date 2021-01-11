@@ -118,6 +118,7 @@ router.post("/login", function (req, res) {
       res.status(400).json({ error: err });
     });
 });
+
 router.post("/session",(req,res)=>{
   try{
     const {
@@ -141,6 +142,30 @@ router.post("/session",(req,res)=>{
 console.log(err)
   }}
 })
+
+// router.post("/session",(req,res)=>{
+//   try{
+//     const {
+//       result
+//       } = req.body;
+      
+//     const userRef = firestore.collection("Post").where("useruid" , "==" ,result.uid).onSnapshot((doc)=>{
+//      let item = []
+//      doc.forEach(doc2 =>{
+//       item.push(doc2.data())
+//      })
+//         res.json({
+//           item
+//         })
+//      })
+    
+
+
+//   }catch{(err)=>{
+// console.log(err)
+//   }}
+// })
+
 
 
 
