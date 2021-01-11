@@ -89,8 +89,8 @@ const ok =async () =>{
                             @Nuitychibiko
                         </div><br/>
                         <div className="mypost-date">
-                            13/11/2563 
-                            <span className="mypost-time">23:38 </span>
+                            {ok.date}
+                            {/* <span className="mypost-time">23:38 </span> */}
                         </div>
                 </div>
 
