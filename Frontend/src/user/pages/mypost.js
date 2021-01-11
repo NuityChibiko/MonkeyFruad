@@ -1,4 +1,5 @@
 import React, { useEffect, useState,useContext } from "react";
+import {Link} from "react-router-dom"
 import { Dropdown, DropdownButton}  from 'react-bootstrap';
 import { Form, Col, FormControl, Button } from "react-bootstrap";
 import {
@@ -37,18 +38,16 @@ const Mypost = () => {
     }
    
 
-   
+    const deleted = async(uid) =>{
+        const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
+        console.log(postdelete.data)
+        const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
+        console.log(ok.data.item)
+        Setmypost(ok.data.item) 
+      }
+       
   
-// const ok = () =>{
-    
-//     Axios.post("http://localhost:7000/user/session", {result:user}).then((result)=>{
-//           console.log(result.data.item)
-//           Setmypost(result.data.item)
-//         }).catch((err)=>{
-//           console.log(err)
-//         })
-        
-//   }
+
   
   
 const ok =async () =>{
@@ -56,14 +55,20 @@ const ok =async () =>{
         const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
         console.log(ok.data.item)
         Setmypost(ok.data.item)
-      
     }catch(err){
         console.log("error")
     }
 }
+
+
+
+
+
+
   
   useEffect(() => {
   ok()
+ 
   }, [user])    
   
 
@@ -108,10 +113,12 @@ const ok =async () =>{
                             className={`mypostmenusetting ${isActive ? "active" : "inactive"}`}>
                             <ul className="ul-mypostmenusetting">
                                 <li className="li-mypostmenusetting">
-                                    <a className="a-mypostmenusetting" href="/post/edit">แก้ไขโพสต์</a>
+                                <a className="a-mypostmenusetting"><Link to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
+                                  
                                 </li>
                                 <li className="li-mypostmenusetting">
-                                    <a className="a-mypostmenusetting" href="#">ลบโพสต์</a>
+                                <a className="a-mypostmenusetting" onClick={() =>  deleted(ok.uid)}> ลบโพสต์ </a> 
+                                
                                 </li>
                             </ul>
                         </div>
