@@ -92,6 +92,7 @@ const Formedit = () => {
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
+     
       let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
       let data = await Axios.post(`http://localhost:7000/post/edit/${uid}`,sentdata)
     }catch(err){
