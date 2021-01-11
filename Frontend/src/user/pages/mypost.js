@@ -39,18 +39,6 @@ const Mypost = () => {
 
    
   
-// const ok = () =>{
-    
-//     Axios.post("http://localhost:7000/user/session", {result:user}).then((result)=>{
-//           console.log(result.data.item)
-//           Setmypost(result.data.item)
-//         }).catch((err)=>{
-//           console.log(err)
-//         })
-        
-//   }
-  
-  
 const ok =async () =>{
     try{
         const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
