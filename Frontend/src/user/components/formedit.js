@@ -10,7 +10,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 import Axios from "axios"
-const Formeditpost = () => {
+const Formedit = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
   const [show, Setshow] = useState();
@@ -26,9 +26,9 @@ const Formeditpost = () => {
   const [bank, setBank] = useState();
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
-  const [other, setOther] = useState();
+  const [other, setOther] = useState("");
 
-console.log(show)
+
 
   const { uid } = useParams()
   // ฟังก์ชันเปลี่ยนรูปโปร
@@ -63,21 +63,31 @@ console.log(show)
     }
   };
 
-  const ok =  () =>{
-    const showdata =  firestore.collection("Post").where("uid", "==", uid).onSnapshot((querySnapshot) =>{
-       let item = []
-       querySnapshot.forEach((doc) =>{
-         item.push(doc.data())
+  const ok = async () =>{
+  
+    const hello = await Axios.get(`http://localhost:7000/post/edit/${uid}`)
+    
+    let gethistory = hello.data.item
+ 
+    Setshow(gethistory)
+    setName(gethistory[0].name)
+    setSurname(gethistory[0].surname)
+    setId(gethistory[0].id)
+    setAccountnumber(gethistory[0].accountnumber)
+    setNameproduct(gethistory[0].nameproduct)
+    setProductcategory(gethistory[0].productcategory)
+    setMoney(gethistory[0].money)
+    setBank(gethistory[0].bank)
+    setDatetime(gethistory[0].datetime)
+    setSocial(gethistory[0].social)
+    setOther(gethistory[0].other)
+  }
 
-       })
-       Setshow(item)
-     })
-  
-   }
-  
+
   useEffect(() => {
     ok()
 }, [])
+
 
   const handlesubmit = async (e) =>{
     try{
@@ -114,7 +124,7 @@ console.log(show)
             </span>
           </div>
         </div>
-        <Form className="formsize-formpost">
+        <Form className="formsize-formpost" onSubmit={handlesubmit}>
           <Form.Row>
             <Form.Group
               as={Col}
@@ -125,7 +135,7 @@ console.log(show)
                 ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
 
-              {show ? <Form.Control type="text" placeholder="" defaultValue={show[0].surname} onChange={(event)=>{setName(event.target.value)}} required /> : null }
+              {show ? <Form.Control type="text" placeholder="" value={name} onChange={(event)=>{setName(event.target.value)}} required /> : null }
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />} */}
               </Form.Group>
 
@@ -133,7 +143,7 @@ console.log(show)
               <Form.Label>
                 นามสกุล (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" defaultValue={show[0].surname} onChange={(event)=>{setSurname(event.target.value)}} required /> : null}
+              {show ? <Form.Control type="name" placeholder="" value={surname} onChange={(event)=>{setSurname(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setSurname(event.target.value)}} required />} */}
             </Form.Group>
           </Form.Row>
@@ -147,7 +157,7 @@ console.log(show)
               <Form.Label>
                 เลขบัตรประชาชน (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" defaultValue={show[0].id} onChange={(event)=>{setId(event.target.value)}} required /> : null}
+              {show ? <Form.Control type="name" placeholder="" value={id} onChange={(event)=>{setId(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setId(event.target.value)}} required />} */}
             </Form.Group>
 
@@ -155,7 +165,7 @@ console.log(show)
               <Form.Label>
                 เลขที่บัญชี (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" defaultValue={show[0].accountnumber} onChange={(event)=>{setAccountnumber(event.target.value)}} required /> : null}
+              {show ? <Form.Control type="name" placeholder="" value={accountnumber} onChange={(event)=>{setAccountnumber(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setAccountnumber(event.target.value)}} required />} */}
             </Form.Group>
           </Form.Row>
@@ -169,7 +179,7 @@ console.log(show)
               <Form.Label>
                 ชื่อสินค้า<span className="spanformpost">*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" defaultValue={show[0].nameproduct} onChange={(event)=>{setNameproduct(event.target.value)}} required /> : null}
+              {show ? <Form.Control type="name" placeholder="" value={nameproduct} onChange={(event)=>{setNameproduct(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setNameproduct(event.target.value)}} required />} */}
             </Form.Group>
 
@@ -177,7 +187,7 @@ console.log(show)
               <Form.Label>
                 หมวดหมู่สินค้า<span className="spanformpost">*</span>
               </Form.Label>
-              {show ? <Form.Control as="select"    required   defaultValue={show[0].productcategory} onChange={(event)=>{
+              {show ? <Form.Control as="select"    required   value={productcategory} onChange={(event)=>{
                 //value={show[0].productcategory}
                 setProductcategory(event.target.value)
               }}>
@@ -204,7 +214,7 @@ console.log(show)
               <Form.Label>
                 จำนวนเงิน (บาท)<span className="spanformpost">*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" defaultValue={show[0].money} onChange={(event)=>{setMoney(event.target.value)}} required /> : null}
+              {show ? <Form.Control type="name" placeholder="" value={money} onChange={(event)=>{setMoney(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setMoney(event.target.value)}} required />} */}
             </Form.Group>
 
@@ -212,7 +222,7 @@ console.log(show)
               <Form.Label>
                 ธนาคาร<span className="spanformpost">*</span>
               </Form.Label>
-              {show ? <Form.Control as="select"   defaultValue={show[0].bank} required  onChange={(event)=>{
+              {show ? <Form.Control as="select"   value={bank} required  onChange={(event)=>{
              
              setBank(event.target.value)
            }}>
@@ -264,7 +274,7 @@ console.log(show)
               <Form.Label>
                 วันที่โดนโกง<span className="spanformpost">*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" defaultValue={show[0].datetime} onChange={(event)=>{setDatetime(event.target.value)}} required /> : null }
+              {show ? <Form.Control type="name" placeholder="" value={datetime} onChange={(event)=>{setDatetime(event.target.value)}} required /> : null }
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setDatetime(event.target.value)}} required />} */}
             </Form.Group>
 
@@ -272,7 +282,7 @@ console.log(show)
               <Form.Label>
                 ช่องทางที่โดนโกง<span className="spanformpost">*</span>
               </Form.Label>
-              {show ? <Form.Control as="select"   defaultValue={show[0].social} required  onChange={(event)=>{
+              {show ? <Form.Control as="select"   value={social} required  onChange={(event)=>{
               
               setSocial(event.target.value)
             }}>
@@ -299,7 +309,7 @@ console.log(show)
 
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>รายละเอียดเพิ่มเติม</Form.Label>
-            {show ? <Form.Control type="name" placeholder="" defaultValue={show[0].other} onChange={(event)=>{setOther(event.target.value)}} required /> : null}
+            {show ? <Form.Control type="name" placeholder="" value={other} onChange={(event)=>{setOther(event.target.value)}} required /> : null}
             {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setOther(event.target.value)}} required />} */}
           </Form.Group>         
 
@@ -336,13 +346,16 @@ console.log(show)
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
           </Form.Row>
 
-          <a className="buttonformpost" type="submit" href="/post/mypost">
+          <Button className="buttonpost" variant="success" type="submit">
             โพสต์
-          </a>
+          </Button>
+          {/* <a className="buttonformpost" type="submit" href="/post/mypost">
+            โพสต์
+          </a> */}
         </Form>
       </div>
     </div>
   );
 };
 
-export default Formeditpost;
+export default Formedit;
