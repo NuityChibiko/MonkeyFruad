@@ -42,8 +42,16 @@ const Login = () => {
 
   const facebookLogin = async (e) => {
     e.preventDefault();
-    const userCredential = await auth.signInWithPopup(facebookProvider);
-    console.log(userCredential.user);
+    const result = await auth.signInWithPopup(facebookProvider);
+    console.log("as")
+    axios.post("http://localhost:7000/user/facebooksignup", { result: result })
+      .then((result) => {
+        console.log(result.data);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div>

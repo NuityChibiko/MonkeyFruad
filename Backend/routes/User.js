@@ -73,6 +73,37 @@ router.post("/googlesignup", function (req, res) {
  }
 });
 
+router.post("/facebooksignup", function (req, res) {
+  try{
+   const {
+   result
+   } = req.body;
+   if (result) {
+    
+     const userRef = firestore.collection("User").doc(result.user.uid);
+     userRef.get().then((doc)=>{
+       if(!doc.data()){
+       userRef.set({
+         uid: result.user.uid,
+         email: result.user.email,
+         displayName : result.user.displayName,
+         photoURL : result.user.photoURL,
+         created: new Date().valueOf(),
+         role: "user",
+       });
+       return res.json({ msg: "facebook signup success" });
+     } else {
+       res.status(200).json({msg:"มีผู้ใช้งานนี้อยู่แล้ว"})
+     }
+     })
+   }
+  }
+  catch{(err)=>{
+   res.status(400).json({ error: err });
+  }
+  }
+ });
+
 router.post("/remember", function (req, res) {
   res.json({ success: true });
 });
