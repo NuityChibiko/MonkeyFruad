@@ -14,12 +14,8 @@ router.post("/signup", async (req, res) => {
       province,
       country,
       email,
-      password,
-      repass,
+      password
     } = req.body;
-    if (repass !== password) {
-      return res.json({ msg: "password and repass not match" });
-    } else {
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((result) => {
@@ -41,8 +37,7 @@ router.post("/signup", async (req, res) => {
         })
         .catch((err) => {
           res.status(400).json({ error: err });
-        });
-    }
+        }); 
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -78,6 +73,37 @@ router.post("/googlesignup", function (req, res) {
  }
 });
 
+router.post("/facebooksignup", function (req, res) {
+  try{
+   const {
+   result
+   } = req.body;
+   if (result) {
+    
+     const userRef = firestore.collection("User").doc(result.user.uid);
+     userRef.get().then((doc)=>{
+       if(!doc.data()){
+       userRef.set({
+         uid: result.user.uid,
+         email: result.user.email,
+         displayName : result.user.displayName,
+         photoURL : result.user.photoURL,
+         created: new Date().valueOf(),
+         role: "user",
+       });
+       return res.json({ msg: "facebook signup success" });
+     } else {
+       res.status(200).json({msg:"มีผู้ใช้งานนี้อยู่แล้ว"})
+     }
+     })
+   }
+  }
+  catch{(err)=>{
+   res.status(400).json({ error: err });
+  }
+  }
+ });
+
 router.post("/remember", function (req, res) {
   res.json({ success: true });
 });
@@ -92,6 +118,31 @@ router.post("/login", function (req, res) {
       res.status(400).json({ error: err });
     });
 });
+router.post("/session",(req,res)=>{
+  try{
+    const {
+      result
+      } = req.body;
+      
+    const userRef = firestore.collection("Post").where("useruid" , "==" ,result.uid)
+    userRef.get().then((doc)=>{
+     let item = []
+     doc.forEach(doc2 =>{
+      item.push(doc2.data())
+     })
+        res.json({
+          item
+        })
+     })
+    
+
+
+  }catch{(err)=>{
+console.log(err)
+  }}
+})
+
+
 
 router.get("/:id", function (req, res) {
   const userID = req.params.id;
