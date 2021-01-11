@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/navbar";
-// import Chatbot from "../components/chatbot";
+import Chatbot from "../components/chatbot";
 import "./prevent.css";
 import {Image} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -43,7 +43,7 @@ const Prevent = () => {
             <p className="text-content-prevent">ขายสินค้าถูกกว่าท้องตลาดเกินไป</p>
           </div>
         </div>
-       {/* <Chatbot/> */}
+       <Chatbot/>
       </div>
       
 
