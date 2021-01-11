@@ -1,8 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { Dropdown, DropdownButton}  from 'react-bootstrap';
 import { Form, Col, FormControl, Button } from "react-bootstrap";
+import {
+    auth,
+    googleProvider,
+    facebookProvider,
+    firestore
+  } from "../Frontfirebase";
+  import Axios from "axios"
 import Navbar from "../components/navbar";
 import "./mypost.css";
+import usercontext from "../context/usercontext"
 const Mypost = () => {
     const [isActive, setIsActive] = useState(false);
     const onClick = () => setIsActive(!isActive);
@@ -20,16 +28,54 @@ const Mypost = () => {
     const [datetime, setDatetime] = useState();
     const [social, setSocial] = useState();
     const [other, setOther] = useState();
+    const [mypost,   Setmypost] = useState();
+    const [data,   Setdata] = useState();
+    let { user , setUser} = useContext(usercontext)
 
     const ImageHoverZoom = ({ imagePreviewUrl }) => {
-    
+     
     }
-    
+   
 
+   
+  
+// const ok = () =>{
+    
+//     Axios.post("http://localhost:7000/user/session", {result:user}).then((result)=>{
+//           console.log(result.data.item)
+//           Setmypost(result.data.item)
+//         }).catch((err)=>{
+//           console.log(err)
+//         })
+        
+//   }
+  
+  
+const ok =async () =>{
+    try{
+        const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
+        console.log(ok.data.item)
+        Setmypost(ok.data.item)
+      
+    }catch(err){
+        console.log("error")
+    }
+}
+  
+  useEffect(() => {
+  ok()
+  }, [user])    
+  
+
+  
   return (
     <div className="allpage">
       <Navbar />
-      <h1 className="h1-mypost">โพสต์ของฉัน</h1>
+        <h1 className="h1-mypost">โพสต์ของฉัน</h1>
+      {mypost ? mypost.map(ok =>{
+          return (
+              <div>
+                       
         <div className="container-mypost">
             <div className="cotainer-mypost2">
                 <div className="mypost-profile-img">
@@ -84,13 +130,13 @@ const Mypost = () => {
                                 controlId="formGridName"
                                 >
                                 <Form.Label>
-                                    ชื่อ (ผู้โกง) <span className="spanmypost">xxxxxxxx</span>
+                                    ชื่อ (ผู้โกง) <span className="spanmypost">{ok.name}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridLastname">
                                 <Form.Label>
-                                    นามสกุล (ผู้โกง) <span className="spanmypost">xxxxxxxx</span>
+                                    นามสกุล (ผู้โกง) <span className="spanmypost">{ok.surname}</span>
                                 </Form.Label>
                             </Form.Group>
                         </Form.Row>
@@ -102,13 +148,13 @@ const Mypost = () => {
                                 controlId="formGridId"
                                 >
                                 <Form.Label>
-                                    เลขบัตรประชาชน (ผู้โกง) <span className="spanmypost">xxxxxxxx</span>
+                                    เลขบัตรประชาชน (ผู้โกง) <span className="spanmypost">{ok.id}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridAccountnumber">
                                 <Form.Label>
-                                    เลขที่บัญชี (ผู้โกง) <span className="spanmypost">xxxxxxxx</span>
+                                    เลขที่บัญชี (ผู้โกง) <span className="spanmypost">{ok.accountnumber}</span>
                                 </Form.Label>
                             </Form.Group>
                         </Form.Row>
@@ -120,13 +166,13 @@ const Mypost = () => {
                                 controlId="formGridNameproduct"
                                 >
                                 <Form.Label>
-                                    ชื่อสินค้า <span className="spanmypost">xxxxxxxx</span>
+                                    ชื่อสินค้า <span className="spanmypost">{ok.nameproduct}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridCategory">
                                 <Form.Label>
-                                    หมวดหมู่สินค้า <span className="spanmypost">xxxxxxxx</span>
+                                    หมวดหมู่สินค้า <span className="spanmypost">{ok.productcategory}</span>
                                 </Form.Label>
                             </Form.Group>
                         </Form.Row>
@@ -138,13 +184,13 @@ const Mypost = () => {
                                 controlId="formGridPrice"
                                 >
                                 <Form.Label>
-                                    จำนวนเงิน (บาท) <span className="spanmypost">xxxxxxxx</span>
+                                    จำนวนเงิน (บาท) <span className="spanmypost">{ok.money}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridCategory">
                                 <Form.Label>
-                                    ธนาคาร <span className="spanmypost">xxxxxxxx</span>
+                                    ธนาคาร <span className="spanmypost">{ok.bank}</span>
                                 </Form.Label>
                             </Form.Group>
                         </Form.Row>
@@ -156,20 +202,20 @@ const Mypost = () => {
                                 controlId="formGridDate"
                                 >
                                 <Form.Label>
-                                    วันที่โดนโกง <span className="spanmypost">xxxxxxxx</span>
+                                    วันที่โดนโกง <span className="spanmypost">{ok.datetime}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridSocial">
                                 <Form.Label>
-                                    ช่องทางที่โดนโกง <span className="spanmypost">xxxxxxxx</span>
+                                    ช่องทางที่โดนโกง <span className="spanmypost">{ok.social}</span>
                                 </Form.Label>
                             </Form.Group>
                         </Form.Row>
 
                         <Form.Group controlId="exampleForm.ControlTextarea1">
                             <Form.Label>
-                                รายละเอียดเพิ่มเติม <span className="spanmypost">xxxxxxxx</span>
+                                รายละเอียดเพิ่มเติม <span className="spanmypost">{ok.other}</span>
                             </Form.Label>
                         </Form.Group>
                         <div className="img-holder-badslip">
@@ -244,6 +290,10 @@ const Mypost = () => {
                 </div>
             </div>
         </div>
+              </div>
+          )
+      }) : null}
+    
     </div>
   );
 };

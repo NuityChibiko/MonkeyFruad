@@ -123,13 +123,18 @@ router.post("/session",(req,res)=>{
     const {
       result
       } = req.body;
-      console.log(result)
-    const userRef = firestore.collection("User").doc(result.uid);
+      
+    const userRef = firestore.collection("Post").where("useruid" , "==" ,result.uid)
     userRef.get().then((doc)=>{
-      if(doc.exists){
-res.json({data:doc.data()})
-      }
-    })
+     let item = []
+     doc.forEach(doc2 =>{
+      item.push(doc2.data())
+     })
+        res.json({
+          item
+        })
+     })
+    
 
 
   }catch{(err)=>{

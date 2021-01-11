@@ -25,7 +25,7 @@ import usercontext from "./user/context/usercontext"
 // ที่รวม Routh ต่างๆ
 const App = () => {
   const userRef = useRef(firestore.collection("User")).current;
-  const [user,setUser] = useState(null);
+  const [user,setUser] = useState();
 
   useEffect(()=>{
     const authUnsubscribe = auth.onAuthStateChanged((firebaseUser)=>{
@@ -48,11 +48,12 @@ const App = () => {
       }else{
         setUser(null);
       }
+     
   });return () =>{
 authUnsubscribe();
   };
   },[]);
-console.log(user)
+// console.log(user)
 return (
   <Router>
     <usercontext.Provider value={ {user,setUser}}>
