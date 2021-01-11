@@ -51,6 +51,10 @@
 
 .image-palo{
     width: 90%;
+    padding: 10px 0px 10px 0px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .text-palo{
@@ -71,10 +75,36 @@
 }
 
 .card-body-chatbot{
-    background-color: white;
+    background-color:white;
 }
 
 /*responsive*/
+@media only screen and (max-width: 1920px) {
+    .foot{
+        width: 270px;
+    }
+    .text-palo{
+        font-size: 16px;
+        margin-top: -70px;
+        margin-left: 36px;
+    }
+    .text-card-header{
+        margin-left: 75px;
+    }
+    .fas{
+        font-size: 19px;
+        margin-top: 7px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .text-palo{
+        font-size: 16px;
+        margin-top: -70px;
+        margin-left: 35px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .foot{
         width: 250px;
@@ -89,7 +119,6 @@
     }
     .fas{
         font-size: 18px;
-        margin-top: 7px;
     }
 }
 

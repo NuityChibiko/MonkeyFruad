@@ -8,39 +8,39 @@ const Prevent = () => {
   return (
     <div>
       <Navbar />
-      <h1>รู้ไว้ไม่โดนโกง</h1>
+      <div className="h1-prevent">รู้ไว้ไม่โดนโกง</div>
       <div className="container-prevent">
-          <div className="a1 a1-left">
-            <img src="/img/prevent1.png" className="image1" />
-            <p className="text-content">ซื้อสินค้าออนไลน์แล้ว<br className="br"/>ไม่ได้รับสินค้าตามกำหนด</p>
+          <div className="a1-prevent a1-left-prevent">
+            <img src="/img/prevent1.png" className="image1-prevent" />
+            <p className="text-content-prevent">ซื้อสินค้าออนไลน์แล้ว<br className="br-prevent"/>ไม่ได้รับสินค้าตามกำหนด</p>
           </div>
-          <div className="a1 a1-right">
-            <img src="/img/prevent2.png" className="image1" />
-            <p className="text-content">ล่อลวงให้โอนเงินค่าสินค้าล่วงหน้า<br className="br"/>โดยไม่มีหลักฐานที่น่าเชื่อถือเพียงพอ</p>
+          <div className="a1-prevent a1-right-prevent">
+            <img src="/img/prevent2.png" className="image1-prevent" />
+            <p className="text-content-prevent">ล่อลวงให้โอนเงินค่าสินค้าล่วงหน้า<br className="br-prevent"/>โดยไม่มีหลักฐานที่น่าเชื่อถือเพียงพอ</p>
           </div>
-          <div className="a1">
-            <img src="/img/prevent3.png" className="image1" />
-            <p className="text-content">เมื่อโอนเงินแล้วผู้ขายจะหายตัวไป<br className="br"/>ปิดช่องทางการติดต่อทุกทาง<p className="text-none textwhite">a<br/></p></p>
+          <div className="a1-prevent">
+            <img src="/img/prevent3.png" className="image1-prevent" />
+            <p className="text-content-prevent">เมื่อโอนเงินแล้วผู้ขายจะหายตัวไป<br className="br-prevent"/>ปิดช่องทางการติดต่อทุกทาง<p className="text-none-prevent textwhite-prevent">a<br/></p></p>
           </div>
-          <div className="b1 b1-left">
-            <img src="/img/prevent6.png" className="image1" />
-            <p className="text-content">ปลอม SMS จากธนาคารเพื่อ<br className="br"/>หลอกโอนเงิน หรือหลอกว่าให้<br className="br"/>โอนเงินคืน เพราะโอนเงินเกิน</p>
+          <div className="b1-prevent b1-left-prevent">
+            <img src="/img/prevent6.png" className="image1-prevent" />
+            <p className="text-content-prevent">ปลอม SMS จากธนาคารเพื่อ<br className="br-prevent"/>หลอกโอนเงิน หรือหลอกว่าให้<br className="br-prevent"/>โอนเงินคืน เพราะโอนเงินเกิน</p>
           </div>
-          <div className="b1 b1-right">
-            <img src="/img/prevent7.png" className="image1" />
-            <p className="text-content">อ้างว่า เว็บซื้อขายสินค้า เป็นคนกลาง<br className="br"/>ในการซื้อขายสินค้า ให้เหยื่อติดต่อ<br className="br"/>รับเงินจากคืนเว็บไซต์เอง</p>
+          <div className="b1-prevent b1-right-prevent">
+            <img src="/img/prevent7.png" className="image1-prevent" />
+            <p className="text-content-prevent">อ้างว่า เว็บซื้อขายสินค้า เป็นคนกลาง<br className="br-prevent"/>ในการซื้อขายสินค้า ให้เหยื่อติดต่อ<br className="br-prevent"/>รับเงินจากคืนเว็บไซต์เอง</p>
           </div>
-          <div className="a1">
-            <img src="/img/prevent4.png" className="image1" />
-            <p className="text-content">เปลี่ยนชื่อและเบอร์โทรฯ <br className="text-none2"/> ไม่ซ้ำกัน<p className="text-none textwhite"><br/>a<br/><br className="text-none3"/></p></p>
+          <div className="a1-prevent">
+            <img src="/img/prevent4.png" className="image1-prevent" />
+            <p className="text-content-prevent">เปลี่ยนชื่อและเบอร์โทรฯ <br className="text-none2-prevent"/> ไม่ซ้ำกัน<p className="text-none textwhite-prevent"><br/>a<br/><br className="text-none3-prevent"/></p></p>
           </div>
-          <div className="a1">
-            <img src="/img/prevent5.png" className="image1" />
-            <p className="text-content">นัดเจอเพื่อรับของก่อนแล้วโอนทีหลัง</p>
+          <div className="a1-prevent">
+            <img src="/img/prevent5.png" className="image1-prevent" />
+            <p className="text-content-prevent">นัดเจอเพื่อรับของก่อนแล้วโอนทีหลัง</p>
           </div>
-          <div className="a1">
-            <img src="/img/prevent8.png" className="image1" />
-            <p className="text-content">ขายสินค้าถูกกว่าท้องตลาดเกินไป</p>
+          <div className="a1-prevent">
+            <img src="/img/prevent8.png" className="image1-prevent" />
+            <p className="text-content-prevent">ขายสินค้าถูกกว่าท้องตลาดเกินไป</p>
           </div>
         </div>
        <Chatbot/>
