@@ -93,7 +93,7 @@ return (
       <Route path="/contractus" exact>
         <Contractus />
       </Route>
-      <Route path="/mypost" exact>
+      <Route path="/mypost/:uid" exact>
         <Mypost />
       </Route>
       <Route path="/post" exact>

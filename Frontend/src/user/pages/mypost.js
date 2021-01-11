@@ -1,5 +1,5 @@
-import React, { useEffect, useState,useContext } from "react";
-import {Link} from "react-router-dom"
+import React, { useEffect, useState,useContext  } from "react";
+import {Link ,useParams} from "react-router-dom"
 import { Dropdown, DropdownButton}  from 'react-bootstrap';
 import { Form, Col, FormControl, Button } from "react-bootstrap";
 import {
@@ -32,6 +32,8 @@ const Mypost = () => {
     const [mypost,   Setmypost] = useState();
     const [data,   Setdata] = useState();
     let { user , setUser} = useContext(usercontext)
+ 
+    let { uid } = useParams()
 
     const ImageHoverZoom = ({ imagePreviewUrl }) => {
      
@@ -50,9 +52,10 @@ const Mypost = () => {
 
   
   
-const ok =async () =>{
+const ok = async () =>{
     try{
-        const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
+        const ok = await Axios.get(`http://localhost:7000/post/mypost/${uid}`)
+        
         console.log(ok.data.item)
         Setmypost(ok.data.item)
     }catch(err){
@@ -60,16 +63,10 @@ const ok =async () =>{
     }
 }
 
-
-
-
-
-
-  
   useEffect(() => {
   ok()
  
-  }, [user])    
+  }, [])    
   
 
   
