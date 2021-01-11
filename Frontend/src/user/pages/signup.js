@@ -26,10 +26,6 @@ const [bottonfalse,setButtonfalse] = useState()  //
       setCheckpass(false)
       setButtonfalse("red") // 
     }
-    if (repass !== password) {
-      setCheckpass(false)
-      setButtonfalse("red") // 
-    }
    else{
    const getSignup =  axios.post("http://localhost:7000/user/signup", { firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
     province:province,country:country,email:email,password:password,repass:repass
