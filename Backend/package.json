@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "start" : "node app.js",
   "dependencies": {
     "@firebase/firestore": "^2.1.1",
     "axios": "^0.21.1",
