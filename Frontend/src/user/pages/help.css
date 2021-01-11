@@ -361,6 +361,10 @@
         margin-top: -5px;
         margin-bottom: -24px;
     }
+    .show-help{
+        display: block;
+        margin-bottom: 0px;
+    }
 }
 
 @media only screen and (max-width: 414px) {
