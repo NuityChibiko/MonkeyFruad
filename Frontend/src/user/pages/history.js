@@ -341,7 +341,7 @@ const History = () => {
               </Form.Row>
             </Form>
             <div className="historyother">
-              <a className="historyother1">ดูเพิ่มเติม</a>
+              <a href="/mypost" className="historyother1">ดูเพิ่มเติม</a>
             </div>
           </div>
         </div>
