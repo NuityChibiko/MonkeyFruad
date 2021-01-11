@@ -42,13 +42,7 @@ const App = () => {
               role:doc.data().role,
               sex:doc.data().sex
             };
-<<<<<<< HEAD
-
             setUser(userData);
-          
-=======
-            setUser(userData);
->>>>>>> 18bd055641c531081f823baa1d81433a47ff1d9c
           }
       })
       }else{
@@ -59,12 +53,7 @@ const App = () => {
 authUnsubscribe();
   };
   },[]);
-<<<<<<< HEAD
-  // console.log(user)
-
-=======
-console.log(user)
->>>>>>> 18bd055641c531081f823baa1d81433a47ff1d9c
+// console.log(user)
 return (
   <Router>
     <usercontext.Provider value={ {user,setUser}}>

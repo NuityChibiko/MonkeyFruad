@@ -7,9 +7,9 @@ import {
     facebookProvider,
     firestore
   } from "../Frontfirebase";
+  import Axios from "axios"
 import Navbar from "../components/navbar";
 import "./mypost.css";
-import Axios from "axios"
 import usercontext from "../context/usercontext"
 const Mypost = () => {
     const [isActive, setIsActive] = useState(false);
@@ -29,64 +29,45 @@ const Mypost = () => {
     const [social, setSocial] = useState();
     const [other, setOther] = useState();
     const [mypost,   Setmypost] = useState();
-    const [new2,   Setnew2] = useState();
+    const [data,   Setdata] = useState();
     let { user , setUser} = useContext(usercontext)
 
     const ImageHoverZoom = ({ imagePreviewUrl }) => {
      
     }
-    console.log(user)
+   
 
    
-    // const ok =async () =>{
-   
-    //    {
-    //     let ok = await Axios.post(`http://localhost:7000/user/session`)
-    //     let mydata = ok.data.id
-        
-    //     console.log(mydata)
-    //     }
-        
-    //     const showdata =await firestore.collection("Post").where("useruid" , "==" , mydata).onSnapshot((querySnapshot) =>{
-        
-    //     let item = []
-    //     querySnapshot.forEach((doc) =>{
-          
-    //       item.push(doc.data())
-    //       console.log(item)
-    //     })
-    //     Setmypost(item)
-    //   })
+  
+// const ok = () =>{
     
-    // }
-
-
-    const ok =async () =>{
-    
-        let ok = await Axios.get(`http://localhost:7000/user/session`)
+//     Axios.post("http://localhost:7000/user/session", {result:user}).then((result)=>{
+//           console.log(result.data.item)
+//           Setmypost(result.data.item)
+//         }).catch((err)=>{
+//           console.log(err)
+//         })
+        
+//   }
+  
+  
+const ok =async () =>{
+    try{
+        const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
         console.log(ok.data.item)
         Setmypost(ok.data.item)
-        
-    //     const showdata =await firestore.collection("Post").onSnapshot((querySnapshot) =>{
-        
-    //     let item = []
-    //     querySnapshot.forEach((doc) =>{
-          
-    //       item.push(doc.data())
-    //       console.log(item)
-    //     })
-    //     Setmypost(item)
-    //   })
-    
+      
+    }catch(err){
+        console.log("error")
     }
-
-
-    useEffect(() => {
-      ok()
-  }, [])
+}
   
-    
+  useEffect(() => {
+  ok()
+  }, [user])    
+  
 
+  
   return (
     <div className="allpage">
       <Navbar />
