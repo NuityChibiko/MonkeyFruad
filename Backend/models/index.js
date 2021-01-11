@@ -10,9 +10,11 @@ const firebaseConfig = {
   messagingSenderId: "726555330449",
   appId: "1:726555330449:web:ac01442745fea036233c30",
 };
+
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 const googleProvider = new firebase.auth.GoogleAuthProvider();

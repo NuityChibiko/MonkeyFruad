@@ -15,8 +15,6 @@ import Rank from "./user/pages/ranking";
 import Editpost from "./user/pages/editpost";
 import History from "./user/pages/history";
 import Mypost from "./user/pages/mypost";
-
-
 import "./app.css";
 import Axios from "axios"
 import usercontext from "./user/context/usercontext"
