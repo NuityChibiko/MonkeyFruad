@@ -19,8 +19,8 @@ app.use("/", indexRoutes);
 app.use("/user", userRoutes);
 app.use("/post", postRoutes);
 app.use("/admin", adminRoutes);
-const port = process.env.port || 7000;
+const PORT = process.env.PORT || 7000;
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log("server start on port 7000");
 });
