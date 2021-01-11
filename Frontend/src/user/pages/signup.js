@@ -5,8 +5,9 @@ import "./signup.css";
 import { MDBInput } from 'mdbreact';
 import { Form } from "react-bootstrap";
 import axios from "axios";
+
 const Signup = () => {
-  let history = useHistory();
+let history = useHistory();
 const [firstname,setFirstname] = useState("")
 const [surname,setSurname] = useState("")
 const [sex,setSex] = useState("")
@@ -17,7 +18,7 @@ const [country,setCountry] = useState("")
 const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
 const [repass,setRepass] = useState("")
-const [checkpass , setCheckpass] = useState(true)
+const [checkpass , setCheckpass] = useState(false)
 const [bottonfalse,setButtonfalse] = useState()  // 
   const SignupSubmit = (e) =>{
     e.preventDefault();
@@ -44,6 +45,7 @@ const [bottonfalse,setButtonfalse] = useState()  //
     else
     setSex(e.target.value)
   }
+  
   return (
     <div>
       <Navbar />

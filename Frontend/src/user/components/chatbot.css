@@ -14,7 +14,7 @@
 
 .card-chatbot{
     background-color:romato;
-    width: 100%;  
+    width: 100%;
     box-shadow: 10px 20px 50px rgba(0,0,0,.2);
 }
 
@@ -50,7 +50,11 @@
 }
 
 .image-palo{
-    width: 100%;
+    width: 90%;
+    padding: 10px 0px 10px 0px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .text-palo{
@@ -58,7 +62,7 @@
     position: absolute;
     margin-top: -70px;
     float: center;
-    margin-left: 13px;
+    margin-left: 20px;
 }
 
 .fas{
@@ -70,26 +74,51 @@
     margin-top: 5px;
 }
 
-.card-body{
-    background-color: white;
+.card-body-chatbot{
+    background-color:white;
 }
 
 /*responsive*/
+@media only screen and (max-width: 1920px) {
+    .foot{
+        width: 270px;
+    }
+    .text-palo{
+        font-size: 16px;
+        margin-top: -70px;
+        margin-left: 36px;
+    }
+    .text-card-header{
+        margin-left: 75px;
+    }
+    .fas{
+        font-size: 19px;
+        margin-top: 7px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .text-palo{
+        font-size: 16px;
+        margin-top: -70px;
+        margin-left: 35px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .foot{
         width: 250px;
     }
     .text-palo{
         font-size: 16px;
-        margin-top: -60px;
-        margin-left: 5px;
+        margin-top: -70px;
+        margin-left: 25px;
     }
     .text-card-header{
         margin-left: 60px;
     }
     .fas{
         font-size: 18px;
-        margin-top: 7px;
     }
 }
 
@@ -101,13 +130,19 @@
         padding-top: 7px;
         padding-bottom: 7px;
     }
+
     .text-card-header{
         margin-left: 45px;
+        font-size: 18px;
     }
+
     .text-palo{
         font-size: 13px;
-        margin-top: -45px;
-        margin-left: 0px;
+        margin-top: -55px;
+        margin-left: 17px;
+    }
+    .fas{
+        font-size: 16px;
     }
 }
 
@@ -123,7 +158,8 @@
     }
     .text-palo{
         font-size: 11px;
-        margin-top: -40px;
+        margin-left: 15px;
+        margin-top: -55px;
     }
 }
 
@@ -140,6 +176,6 @@
     }
     .text-palo{
         font-size: 10px;
-        margin-top: -35px;
+        margin-top: -45px;
     }
 }
