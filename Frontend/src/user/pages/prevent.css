@@ -1,4 +1,4 @@
-h1 { 
+.h1-prevent { 
     margin-top: 50px;
     text-align: center;
     font-size: 30px;
@@ -6,7 +6,7 @@ h1 {
     color: #8B0000;
 }
 
-.image1{
+.image1-prevent{
     margin-right: auto;
     margin-left: auto;
     display: block;
@@ -32,40 +32,43 @@ h1 {
     font-family: 'Kanit', sans-serif;
     font-size: 20px;
 }
-.text-content{
+.text-content-prevent{
     font-size: 20px;
     text-align: center;
     margin-bottom: 80px;
     margin-top: 20px;
 }
-.a1{
+.a1-prevent{
     width: 33%;
     float: left;
 }
-.b1{
+.b1-prevent{
     width: 34%;
     float: left;
 }
 
-.b1-left{
+.b1-left-prevent{
     margin-left: 180px;
 }
 
-.b1-right{
+.b1-right-prevent{
     margin-right: 180px;
 }
 
-.text-none , .text-none2 ,.text-none3{
+.text-none-prevent , .text-none2-prevent ,.text-none3-prevent{
     display: none;
+}
+.textwhite-prevent{
+    color: white;
 }
 
 
 /*Responsive*/ 
  @media only screen and (max-width: 1920px) {
-    .b1-left{
+    .b1-left-prevent{
         margin-left: 150px;
     }
-    .b1-right{
+    .b1-right-prevent{
         margin-right: 150px ;
     }
 
@@ -75,41 +78,41 @@ h1 {
     .container-prevent {
         width: 87%;
     }
-    .b1-left{
+    .b1-left-prevent{
         margin-left: 125px;
     }
-    .b1-right{
+    .b1-right-prevent{
         margin-right: 125px ;
     }
-    .br{
+    .br-prevent{
         display: none;
     }
-    .text-content{
+    .text-content-prevent{
         margin-left: 20px;
         margin-right: 20px;
     }
-    .text-none{
+    .text-none-prevent{
         display: block;
     }
 }
 
 @media only screen and (max-width: 768px) {
-    .a1{
+    .a1-prevent{
         width: 50%;
     }
-    .b1{
+    .b1-prevent{
         width: 50%;
     }
-    .b1-left{
+    .b1-left-prevent{
         margin-left: 0px;
     }
-    .b1-right{
+    .b1-right-prevent{
         margin-right: 0px ;
     }
-    .image1{
+    .image1-prevent{
         width: 170px;
     }
-    .text-content{
+    .text-content-prevent{
         font-size: 17px;
     }
 }
@@ -118,37 +121,37 @@ h1 {
     .container-prevent {
         width: 100%;
     }
-    .image1{
+    .image1-prevent{
         width: 130px;
     }
-    .text-content{
+    .text-content-prevent{
         font-size: 12px;
         margin-left: 20px;
         margin-right: 20px;
     }
-    .a1{
+    .a1-prevent{
         width: 50%;
     }
-    .b1{
+    .b1-prevent{
         width: 50%;
     }
-    h1{
+    h1-prevent{
         font-size: 15px;
         color: blueviolet;
     }
-    .br{
+    .br-prevent{
         display: none;
     }
-    .text-none2{
+    .text-none2-prevent{
         display: block;
     }
 }
 
 @media only screen and (max-width: 375px) {
-    .image1{
+    .image1-prevent{
         width: 120px;
     }
-    .text-content{
+    .text-content-prevent{
         font-size: 11px;
         margin-left: 15px;
         margin-right: 15px;
@@ -156,18 +159,18 @@ h1 {
 }
 
 @media only screen and (max-width: 320px) {
-    .image1{
+    .image1-prevent{
         width: 100px;
     }
-    .text-content{
+    .text-content-prevent{
         font-size: 11px;
         margin-left: 10px;
         margin-right: 10px;
     }
-    .text-none2{
+    .text-none2-prevent{
         display: none;
     }
-    .text-none3{
+    .text-none3-prevent{
         display: block;
     }
 }
