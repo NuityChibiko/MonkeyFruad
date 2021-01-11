@@ -14,12 +14,8 @@ router.post("/signup", async (req, res) => {
       province,
       country,
       email,
-      password,
-      repass,
+      password
     } = req.body;
-    if (repass !== password) {
-      return res.json({ msg: "password and repass not match" });
-    } else {
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((result) => {
@@ -41,8 +37,7 @@ router.post("/signup", async (req, res) => {
         })
         .catch((err) => {
           res.status(400).json({ error: err });
-        });
-    }
+        }); 
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -92,44 +87,17 @@ router.post("/login", function (req, res) {
       res.status(400).json({ error: err });
     });
 });
-
-
-// router.post("/session",async (req,res)=>{
-//   try{
-//     const {result} = req.body;
-     
-//       res.json({
-//         id : result.uid
-//       })
-// //     const userRef = firestore.collection("User").doc(result.uid)
-// //     console.log("yea")
-// //     userRef.get().then(doc =>{
-     
-// //  if(doc.exists){
- 
-// //   res.json({mypost : "ok"})
-// //  }
-// //     })
-
-//   }catch{(err)=>{
-// console.log(err)
-//   }}
-// })
-router.get("/session",async (req,res)=>{
+router.post("/session",(req,res)=>{
   try{
-    // const{lol} = req.body;
-    
-    const showdata = await firestore.collection("Post").onSnapshot((querySnapshot) =>{
- 
-      let item = []
-      querySnapshot.forEach((doc) =>{
-        
-        item.push(doc.data())
-    
-      })
-      res.json({
-        item
-      })
+    const {
+      result
+      } = req.body;
+      console.log(result)
+    const userRef = firestore.collection("User").doc(result.uid);
+    userRef.get().then((doc)=>{
+      if(doc.exists){
+res.json({data:doc.data()})
+      }
     })
 
 

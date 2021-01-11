@@ -17,22 +17,24 @@ const [country,setCountry] = useState("")
 const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
 const [repass,setRepass] = useState("")
-const [checkpass , setCheckpass] = useState(false)
-
+const [checkpass , setCheckpass] = useState(true)
+const [bottonfalse,setButtonfalse] = useState()  // 
   const SignupSubmit = (e) =>{
     e.preventDefault();
     console.log("submit")
+    if (repass !== password) {
+      setCheckpass(false)
+      setButtonfalse("red") // 
+    }
+   else{
    const getSignup =  axios.post("http://localhost:7000/user/signup", { firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
     province:province,country:country,email:email,password:password,repass:repass
   }).then((result)=>{
     console.log(result.data)
-    if(result.data.msg == "password and repass not match"){
-    setCheckpass(true)
-    }
     history.push('/')
   }).catch((err)=>{
     console.log(err)
-  })
+  })}
   }
   const selectSex = (e) =>{
     if(e.target.value === "male")
@@ -52,31 +54,31 @@ const [checkpass , setCheckpass] = useState(false)
 
           <p className="h2 text-center mb-4 font-weight-bold">สมัครสมาชิก</p>
 
-          {checkpass ? (<h1>password and repass not matchw</h1>) : false}
+         
           
           <div className="Email">
-              <MDBInput onChange={(e)=>{
+              <MDBInput required onChange={(e)=>{
                  setEmail(e.target.value)
               }}  className="" label="Email" group type="email" validate />
             </div>
             
             <div className="Email">
-              <MDBInput onChange={(e)=>{
+              <MDBInput required onChange={(e)=>{
                  setPassword(e.target.value)
               }} className="" label="Password" group type="password" validate />
             </div>
 
             <div className="Email">
-              <MDBInput onChange={(e)=>{
+              <MDBInput required onChange={(e)=>{
                 setRepass(e.target.value)
-              }} className="" label="Confirm Password" group type="password" validate />
+              }}  style={{ borderBottomColor : bottonfalse }} className="" label="Confirm Password" group type="password" validate />
             </div>
-
+            {checkpass ? "" :  (<h1>password and repass not match</h1>)}
           <div className="LoginInputForm">
-            <MDBInput onChange={(e=>{
+            <MDBInput required onChange={(e=>{
                 setFirstname(e.target.value)
             })} className="mb-1" label="ชื่อจริง" group type="text" validate />
-            <MDBInput onChange={(e=>{
+            <MDBInput required onChange={(e=>{
                 setSurname(e.target.value)
             })}  className="mb-1" label="นามสกุล" group type="text" validate />
 
@@ -84,13 +86,13 @@ const [checkpass , setCheckpass] = useState(false)
               <label className="label-form-title">เพศ</label>
               <div className="form-inside">
                 <div className="profile-data d-inline mr-2">
-                  <input onChange={selectSex} name="gender" type="radio" id="male" value="male" className="mr-1" />
+                  <input required onChange={selectSex} name="gender" type="radio" id="male" value="male" className="mr-1" />
                   <label htmlFor="male">
                     ชาย
                   </label>
                 </div>
                 <div className="profile-data d-inline">
-                  <input onChange={selectSex} name="gender" type="radio" id="female" value="female" classNa-กรุณาเลือกจังหวัดdi6-me="m-1" />
+                  <input required onChange={selectSex} name="gender" type="radio" id="female" value="female" classNa-กรุณาเลือกจังหวัดdi6-me="m-1" />
                   <label htmlFor="female">
                     หญิง
                   </label>
@@ -101,14 +103,14 @@ const [checkpass , setCheckpass] = useState(false)
             <div className="BirthDate">
               <label for="gender" className="label-form-title">วันเกิด</label>
               <div className="form-inside">
-                  <input onChange={(e)=>{
+                  <input required onChange={(e)=>{
                     setDate(e.target.value)
                   }} className="Date" type="date" id="party-time" name="birth_day" required />                  
               </div>
             </div>
 
             <div className="Phone">
-              <MDBInput onChange={(e)=>{
+              <MDBInput required onChange={(e)=>{
                     setPhone(e.target.value)
                   }}  label="เบอร์โทรศัพท์" group type="text" validate />                  
             </div>
@@ -117,7 +119,7 @@ const [checkpass , setCheckpass] = useState(false)
               <label for="province" className="label-form-title">จังหวัด</label>
               <div className="form-inside ">
                 <Form.Group controlId="exampleForm.ControlSelect1">
-                  <Form.Control  as="select" onChange={(e)=>{
+                  <Form.Control required as="select" onChange={(e)=>{
                     setProvince(e.target.value)
                   }}>
                   <option value="" selected>กรุณาเลือกจังหวัด</option>
@@ -207,7 +209,7 @@ const [checkpass , setCheckpass] = useState(false)
               <label for="province" className="label-form-title">เขต</label>
               <div className="form-inside ">
                 <Form.Group controlId="exampleForm.ControlSelect1">
-                  <Form.Control as="select" onChange={(e)=>{
+                  <Form.Control required as="select" onChange={(e)=>{
                     setCountry(e.target.value)
                   }}>
                   <option value="" selected>กรุณาเลือกเขต</option>
