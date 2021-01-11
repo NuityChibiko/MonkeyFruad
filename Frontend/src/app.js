@@ -50,7 +50,7 @@ const App = () => {
 authUnsubscribe();
   };
   },[]);
-
+console.log(user)
 return (
   <Router>
     <usercontext.Provider value={ {user,setUser}}>

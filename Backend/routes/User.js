@@ -92,12 +92,12 @@ router.post("/session",(req,res)=>{
     const {
       result
       } = req.body;
+      console.log(result)
     const userRef = firestore.collection("User").doc(result.uid);
     userRef.get().then((doc)=>{
       if(doc.exists){
 res.json({data:doc.data()})
       }
-     
     })
   }catch{(err)=>{
 console.log(err)
