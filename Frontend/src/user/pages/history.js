@@ -151,21 +151,10 @@ ok()
               </Form.Row>
             </Form>
             <div className="historyother">
-<<<<<<< HEAD
-              <a href="/mypost" className="historyother1">ดูเพิ่มเติม</a>
-            </div>
-          </div>
-        </div>
-=======
               <Link className="historyother1" to={`/mypost/${ok.uid}`}>ดูเพิ่มเติม</Link>
             </div>
           </div>
         </div>
-
-       
-       
-      
->>>>>>> 5ed5fb4ef8f430417402daf2e8eba74707fcd876
       </div>
           </div>
         )
