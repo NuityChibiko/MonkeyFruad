@@ -180,7 +180,6 @@
         width: 260px;
         margin-left: 10px;
         margin-right: 10px;
-        background-color: red;
         padding: 5px;
     }
     .card-help2{
@@ -392,7 +391,6 @@
     }
     .card-help2-right{
         margin-left: -200px;
-        background-color: tomato;
     }
     .title-help{
         font-size: 17px;
