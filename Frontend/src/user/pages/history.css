@@ -140,6 +140,13 @@
     display: block;
 }
 
+.historymenusetting .li-historymenusetting .a-historymenusetting:hover {
+    text-decoration: none;
+    color: #333333;
+    padding: 15px 20px;
+    display: block;
+}
+
 .spanhistory{
     color: red;
 }
