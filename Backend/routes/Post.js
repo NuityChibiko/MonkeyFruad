@@ -82,6 +82,28 @@ router.post("/delete/:uid",(req, res) => {
   }
   
 });
+
+
+
+router.get("/mypost/:uid",async(req, res) => {
+  try{
+    console.log("ok")
+    let getid = req.params.uid
+  
+    const postdelete =await firestore.collection("Post").where("uid" , "==" , getid).get()
+    
+    postdelete.forEach(doc =>{
+      let item = []
+      item.push(doc.data())
+      res.json({
+        item
+      })
+    })
+  }catch(err){
+    res.status(500).json({msg : err})
+  }
+  
+});
 // router.post("/comment/:id", function (req, res) {
 //     res.json({ success: true });
 //   });
