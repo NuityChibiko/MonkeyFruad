@@ -8,7 +8,33 @@ import usercontext from "../context/usercontext"
 const Usernvabar = () => {
   let { user , setUser} = useContext(usercontext)
   let { isLogin,setisLogin} = useContext(usercontext)
-
+  const [usersignup,setUsersignup] = useState(null)
+  const userRef = useRef(firestore.collection("User")).current;
+  const [propsdata,setPropsdata] = useState(null)
+// useEffect(()=>{
+//       const  usersignup = (()=>{
+//         userRef.doc(props.uid).onSnapshot((doc)=>{
+//           if(doc.data()){
+//             const userData = {
+//               uid:doc.data().uid,
+//               email:doc.data().email,
+//               firstname:doc.data().firstname,
+//               surname:doc.data().surname,
+//               country:doc.data().country,
+//               province:doc.data().province,
+//               role:doc.data().role,
+//               sex:doc.data().sex
+//             };
+//             setUsersignup(userData);
+//           }else{
+//             setUsersignup(null);
+//           }
+//       }) 
+//       }); return () =>{
+//         usersignup()
+//   };
+//   },[]);
+//   setPropsdata(props)
   const logout = () =>{
     auth.signOut().then(()=>{
       setUser(null)
@@ -17,7 +43,6 @@ const Usernvabar = () => {
       console.log(err)
     })
   }
- 
   return (
     <div className="Navbar">
         <Navbar variant="dark" expand="lg">

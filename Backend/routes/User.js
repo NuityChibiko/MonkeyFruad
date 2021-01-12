@@ -32,7 +32,7 @@ router.post("/signup", async (req, res) => {
               country: country,
               role: "user",
             });
-            return res.json({ msg: "signup success" });
+            return res.json({ user: result });
           }
         })
         .catch((err) => {
