@@ -2,6 +2,7 @@ import React, {  useState } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./signup.css";
+import Chatbot from "../components/chatbot";
 // import { MDBInput } from 'mdbreact';
 // import { Form } from "react-bootstrap";
 import styled from 'styled-components';
@@ -95,7 +96,7 @@ const Signup = () => {
       &&:hover{
         background-color: #872589 !important;
       }
-`
+    `
 
   const styles = {
       row: {
@@ -116,13 +117,13 @@ const Signup = () => {
       }
   }
 
-    object schema สำหรับทำ validation
+    //object schema สำหรับทำ validation
   const RegisterSchema = Yup.object().shape(
       {
         name: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
-            .required('This field is required.'),
+            .min(2, 'สั้นเกินไป')
+            .max(50, 'ยาวเกินไป')
+            .required('จำเป็นต้องกรอกช่องนี้'),
         email: Yup.string()
             .email('Invalid email')
             .required('This field is required.'),
@@ -480,6 +481,7 @@ const Signup = () => {
 
         </form>
       </div>
+      <Chatbot/>
     </div>
   );
 };

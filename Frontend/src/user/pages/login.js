@@ -2,6 +2,7 @@ import React, { useState} from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./login.css";
+import Chatbot from "../components/chatbot";
 // import { MDBInput } from 'mdbreact';
 // import { Form } from "react-bootstrap";
 import styled from 'styled-components';
@@ -148,6 +149,7 @@ const Login = () => {
           </button>
         </form>
       </div>
+      <Chatbot/>
     </div>
   );
 };
