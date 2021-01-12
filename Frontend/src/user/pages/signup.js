@@ -5,7 +5,11 @@ import "./signup.css";
 import { MDBInput } from 'mdbreact';
 import { Form } from "react-bootstrap";
 import axios from "axios";
-
+import {
+  auth,
+  googleProvider,
+  facebookProvider,
+} from "../Frontfirebase";
 const Signup = () => {
 let history = useHistory();
 const [firstname,setFirstname] = useState("")
@@ -28,10 +32,17 @@ const [bottonfalse,setButtonfalse] = useState()  //
       setButtonfalse("red") // 
     }
    else{
-   const getSignup =  axios.post("http://localhost:7000/user/signup", { firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
+    axios.post("http://localhost:7000/user/signup", { firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
     province:province,country:country,email:email,password:password,repass:repass
   }).then((result)=>{
-    console.log(result.data)
+    auth.signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(result);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     history.push('/')
   }).catch((err)=>{
     console.log(err)
