@@ -13,6 +13,7 @@
     "firebase": "^8.2.1",
     "firebase-tools": "^9.1.2",
     "formik": "^2.2.6",
+    "jshint": "^2.12.0",
     "material-kit-react": "^1.9.0",
     "mdbreact": "^5.0.1",
     "mdreact": "^0.1.5",
@@ -31,11 +32,8 @@
     "styled-components": "^5.2.1",
     "uuid": "^8.3.2",
     "web-vitals": "^0.2.4",
-<<<<<<< HEAD
+    "yarn": "^1.22.10",
     "yup": "^0.32.8"
-=======
-    "yarn": "^1.22.10"
->>>>>>> 44a94cc2be013aa2588a74a97475c54f979c63e7
   },
   "scripts": {
     "start": "react-scripts start",

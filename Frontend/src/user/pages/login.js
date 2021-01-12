@@ -3,11 +3,10 @@ import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./login.css";
 import Chatbot from "../components/chatbot";
-// import { MDBInput } from 'mdbreact';
-// import { Form } from "react-bootstrap";
-import styled from 'styled-components';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { Form } from "react-bootstrap";
+// import styled from 'styled-components';
+// import { Formik, Form, Field, ErrorMessage } from 'formik';
+// import * as Yup from 'yup';
 import {
   auth,
   googleProvider,
