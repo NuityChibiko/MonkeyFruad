@@ -2,7 +2,11 @@ import React, { useState} from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./login.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import { MDBInput } from 'mdbreact';
+// import { Form } from "react-bootstrap";
+import styled from 'styled-components';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import {
   auth,
   googleProvider,
