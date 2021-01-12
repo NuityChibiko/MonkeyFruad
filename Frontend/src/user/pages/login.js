@@ -45,14 +45,14 @@ const Login = () => {
     e.preventDefault();
     const result = await auth.signInWithPopup(facebookProvider);
     console.log(result)
-    // axios.post("http://localhost:7000/user/facebooksignup", { result: result })
-    //   .then((result) => {
-    //     console.log(result.data);
-    //     history.push("/");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axios.post("http://localhost:7000/user/facebooksignup", { result: result })
+      .then((result) => {
+        console.log(result.data);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div>
