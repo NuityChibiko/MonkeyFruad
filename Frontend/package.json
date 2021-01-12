@@ -9,7 +9,9 @@
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
+    "build": "^0.1.4",
     "firebase": "^8.2.1",
+    "firebase-tools": "^9.1.2",
     "formik": "^2.2.6",
     "material-kit-react": "^1.9.0",
     "mdbreact": "^5.0.1",
@@ -29,7 +31,11 @@
     "styled-components": "^5.2.1",
     "uuid": "^8.3.2",
     "web-vitals": "^0.2.4",
+<<<<<<< HEAD
     "yup": "^0.32.8"
+=======
+    "yarn": "^1.22.10"
+>>>>>>> 44a94cc2be013aa2588a74a97475c54f979c63e7
   },
   "scripts": {
     "start": "react-scripts start",

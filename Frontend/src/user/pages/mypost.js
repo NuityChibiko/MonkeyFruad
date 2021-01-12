@@ -1,4 +1,5 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState,useContext  } from "react";
+import {Link ,useParams} from "react-router-dom"
 import { Dropdown, DropdownButton}  from 'react-bootstrap';
 import { Form, Col, FormControl, Button } from "react-bootstrap";
 import {
@@ -31,28 +32,41 @@ const Mypost = () => {
     const [mypost,   Setmypost] = useState();
     const [data,   Setdata] = useState();
     let { user , setUser} = useContext(usercontext)
+ 
+    let { uid } = useParams()
 
     const ImageHoverZoom = ({ imagePreviewUrl }) => {
      
     }
    
 
-   
-  
-const ok =async () =>{
-    try{
+    const deleted = async(uid) =>{
+        const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
+        console.log(postdelete.data)
         const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
         console.log(ok.data.item)
+        Setmypost(ok.data.item) 
+      }
+       
+  
+
+  
+  
+const ok = async () =>{
+    try{
+        const ok = await Axios.get(`http://localhost:7000/post/mypost/${uid}`)
+        
+        console.log(ok.data.item)
         Setmypost(ok.data.item)
-      
     }catch(err){
         console.log("error")
     }
 }
-  
+
   useEffect(() => {
   ok()
-  }, [user])    
+ 
+  }, [])    
   
 
   
@@ -72,8 +86,8 @@ const ok =async () =>{
                             @Nuitychibiko
                         </div><br/>
                         <div className="mypost-date">
-                            13/11/2563 
-                            <span className="mypost-time">23:38 </span>
+                            {ok.date}
+                            {/* <span className="mypost-time">23:38 </span> */}
                         </div>
                 </div>
 
@@ -96,10 +110,12 @@ const ok =async () =>{
                             className={`mypostmenusetting ${isActive ? "active" : "inactive"}`}>
                             <ul className="ul-mypostmenusetting">
                                 <li className="li-mypostmenusetting">
-                                    <a className="a-mypostmenusetting" href="/post/edit">แก้ไขโพสต์</a>
+                                <a className="a-mypostmenusetting"><Link to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
+                                  
                                 </li>
                                 <li className="li-mypostmenusetting">
-                                    <a className="a-mypostmenusetting" href="#">ลบโพสต์</a>
+                                <a className="a-mypostmenusetting" onClick={() =>  deleted(ok.uid)}> ลบโพสต์ </a> 
+                                
                                 </li>
                             </ul>
                         </div>
@@ -285,165 +301,4 @@ const ok =async () =>{
     </div>
   );
 };
-
-//   return (
-//     <div className="allpage">
-//       <Navbar />
-//       <h1>โพสต์ของฉัน</h1>
-//         <div className="container-mypost">
-//             <div className="cotainer-mypost2">
-//                 <div className="profile-img">
-//                     <img className="img-circle" src="/img/profile.png" />
-//                         <div className="name">
-//                             @Nuitychibiko
-//                         </div><br/>
-//                         <div className="date">
-//                             13/11/2563 
-//                             <span className="time">23:38 </span>
-//                         </div>
-//                 </div>
-
-//                 <div className="buttonshared">
-//                     <a className="buttonshare"
-//                         href="/post/edit">
-//                         <i class="fas fa-share"></i>
-//                     </a>
-//                 </div>
-
-//                 <div className="container-setiing">
-//                     <div className="menu-containersetting">
-//                         <div onClick={onClick} className="buttonsetting">
-//                             <img className="img-setting"
-//                                 src="/setting.png"
-//                                 alt="User avatar">
-//                             </img>
-//                         </div>
-//                         <div
-//                             className={`menusetting ${isActive ? "active" : "inactive"}`}>
-//                             <ul>
-//                                 <li>
-//                                     <a href="/post/edit">แก้ไขโพสต์</a>
-//                                 </li>
-//                                 <li>
-//                                     <a href="#">ลบโพสต์</a>
-//                                 </li>
-//                             </ul>
-//                         </div>
-//                     </div>
-//                 </div>
-
-//                 <div className="container-mypost3">
-//                     <div className="profile-bad-img">
-//                         <img className="img-circle" src="/img/profile.png" />
-//                     </div>
-//                     <Form className="formsize">
-//                         <Form.Row>
-//                             <Form.Group
-//                                 as={Col}
-//                                 className="left col-lg-6 col-12"
-//                                 controlId="formGridName"
-//                                 >
-//                                 <Form.Label>
-//                                     ชื่อ (ผู้โกง) <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-
-//                             <Form.Group as={Col} controlId="formGridLastname">
-//                                 <Form.Label>
-//                                     นามสกุล (ผู้โกง) <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-//                         </Form.Row>
-
-//                         <Form.Row>
-//                             <Form.Group
-//                                 as={Col}
-//                                 className="left col-lg-6 col-12"
-//                                 controlId="formGridId"
-//                                 >
-//                                 <Form.Label>
-//                                     เลขบัตรประชาชน (ผู้โกง) <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-
-//                             <Form.Group as={Col} controlId="formGridAccountnumber">
-//                                 <Form.Label>
-//                                     เลขที่บัญชี (ผู้โกง) <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-//                         </Form.Row>
-
-//                         <Form.Row>
-//                             <Form.Group
-//                                 as={Col}
-//                                 className="left col-lg-6 col-12"
-//                                 controlId="formGridNameproduct"
-//                                 >
-//                                 <Form.Label>
-//                                     ชื่อสินค้า <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-
-//                             <Form.Group as={Col} controlId="formGridCategory">
-//                                 <Form.Label>
-//                                     หมวดหมู่สินค้า <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-//                         </Form.Row>
-
-//                         <Form.Row>
-//                             <Form.Group
-//                                 as={Col}
-//                                 className="left col-lg-6 col-12"
-//                                 controlId="formGridPrice"
-//                                 >
-//                                 <Form.Label>
-//                                     จำนวนเงิน (บาท) <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-
-//                             <Form.Group as={Col} controlId="formGridCategory">
-//                                 <Form.Label>
-//                                     ธนาคาร <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-//                         </Form.Row>
-
-//                         <Form.Row>
-//                             <Form.Group
-//                                 as={Col}
-//                                 className="left col-lg-6 col-12"
-//                                 controlId="formGridDate"
-//                                 >
-//                                 <Form.Label>
-//                                     วันที่โดนโกง <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-
-//                             <Form.Group as={Col} controlId="formGridSocial">
-//                                 <Form.Label>
-//                                     ช่องทางที่โดนโกง <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-//                         </Form.Row>
-
-//                         <Form.Group controlId="exampleForm.ControlTextarea1">
-//                             <Form.Label>
-//                                 รายละเอียดเพิ่มเติม <span>xxxxxxxx</span>
-//                             </Form.Label>
-//                         </Form.Group>
-//                         <div className="img-holder-bad">
-//                             <img className="img-bad"src="/img//nui.jpg" />
-//                             <img className="img-bad"src="/img//nui.jpg" />
-//                             <img className="img-bad"src="/img//nui.jpg" />
-//                         </div>
-//                     </Form>
-//                 </div>
-//             </div>
-//         </div>
-//     </div>
-//   );
-// };
-
-// export default Mypost;
 export default Mypost;

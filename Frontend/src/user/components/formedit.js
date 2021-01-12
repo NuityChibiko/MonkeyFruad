@@ -92,6 +92,7 @@ const Formedit = () => {
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
+     
       let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
       let data = await Axios.post(`http://localhost:7000/post/edit/${uid}`,sentdata)
     }catch(err){
@@ -309,7 +310,7 @@ const Formedit = () => {
 
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>รายละเอียดเพิ่มเติม</Form.Label>
-            {show ? <Form.Control type="name" placeholder="" value={other} onChange={(event)=>{setOther(event.target.value)}} required /> : null}
+            {show ? <Form.Control type="name" placeholder="" value={other} onChange={(event)=>{setOther(event.target.value)}}  /> : null}
             {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setOther(event.target.value)}} required />} */}
           </Form.Group>         
 
@@ -346,9 +347,9 @@ const Formedit = () => {
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
           </Form.Row>
 
-          <Button className="buttonpost" variant="success" type="submit">
+          <button className="buttonpost" type="submit">
             โพสต์
-          </Button>
+          </button>
           {/* <a className="buttonformpost" type="submit" href="/post/mypost">
             โพสต์
           </a> */}

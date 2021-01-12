@@ -18,7 +18,7 @@ const Chatbot = () => {
             </div>
             {
                 state
-                ?<div className="card-body text-center">
+                ?<div className="card-body-chatbot">
                     <div><img src="/img/palo.jpg" className="image-palo"/>
                     <p className="text-palo">เพิ่มเพื่อนน้องพะโล้<br/>เพื่อการค้นหาที่ไวขึ้น</p></div>
                 </div>
