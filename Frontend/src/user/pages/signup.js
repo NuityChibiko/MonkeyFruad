@@ -62,13 +62,9 @@ const [bottonfalse,setButtonfalse] = useState()  //
       <Navbar />
       <div className="container-login">
         <form  className='LoginForm'>
-        
           <img src="/img/logoLogin.png" className="LogoLogin" />
-
           <p className="h2 text-center mb-4 font-weight-bold">สมัครสมาชิก</p>
 
-         
-          
           <div className="Email">
               <MDBInput required onChange={(e)=>{
                  setEmail(e.target.value)
