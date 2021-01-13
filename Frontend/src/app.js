@@ -10,6 +10,7 @@ import Post from "./user/pages/post";
 import Forgetpass from "./user/pages/forgetpass";
 import Signup from "./user/pages/signup";
 import Prevent from "./user/pages/prevent";
+// import Help from "./user/pages/help";
 import Helpnew from "./user/pages/helpnew";
 import Rank from "./user/pages/ranking";
 import Editpost from "./user/pages/editpost";
@@ -87,6 +88,9 @@ return (
       <Route path="/prevent" exact>
         <Prevent />
       </Route>
+      {/* <Route path="/help" exact>
+        <Help />
+      </Route> */}
       <Route path="/helpnew" exact>
         <Helpnew />
       </Route>
