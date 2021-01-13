@@ -127,7 +127,7 @@ const Formpost = () => {
               </div>
             </span>
           </div>
-        </div>
+        </div> 
         <Form className="formsize-formpost" onSubmit={handlesubmit}>
           <Form.Row>
             <Form.Group
