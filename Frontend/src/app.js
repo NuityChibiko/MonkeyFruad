@@ -47,6 +47,7 @@ const App = () => {
       }else{
         setUser(null);
       }
+      console.log(user)
      
   });return () =>{
 authUnsubscribe();

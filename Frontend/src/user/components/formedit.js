@@ -10,6 +10,8 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 import Axios from "axios"
+// import image from "D:/PROJECT ALL/MonkeyFruad/Frontend/src/uploads/logo192.png"
+
 
 const Formedit = () => {
 
@@ -29,7 +31,7 @@ const Formedit = () => {
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
   // const [files, setfiles] = useState();
-
+   
 
 // console.log(files)
   const { uid } = useParams()
@@ -327,12 +329,24 @@ const Formedit = () => {
               (แชท)
             </span>
           </Form.File.Label>
-
+            {/* {ok ? ok.files.map(res => {
+              return ( <div>
+                <input
+                className="uploadsformpostuploadslip"
+                type="file"
+                onChange={FileUpload}
+                multiple
+                value={res.filename}
+              />
+              </div>
+            )
+            }) : null} */}
           <input
             className="uploadsformpostuploadslip"
             type="file"
             onChange={FileUpload}
             multiple
+            
       
           />
           <div className="container-img-holder-imgpreview">
@@ -349,11 +363,18 @@ const Formedit = () => {
                 />
               );
             }) :  null}
-     
-          </div>
 
-  
-         {/* <img src={"../../uploads/eiei-1610470704952.jpg"}  />  */}
+        
+          </div>
+            
+          {ok ? ok.files.map(res => {
+              return ( <div>
+                 <img src={`/uploads/${res.filename}`}  /> 
+              </div>
+            )
+            }) : null} 
+     
+     
           <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
           </Form.Row>
@@ -361,9 +382,7 @@ const Formedit = () => {
           <Button className="buttonpost" variant="success" type="submit">
             โพสต์
           </Button>
-          {/* <a className="buttonformpost" type="submit" href="/post/mypost">
-            โพสต์
-          </a> */}
+        
         </Form>
       </div>
     </div>

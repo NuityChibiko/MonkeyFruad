@@ -6,6 +6,7 @@ import "./formpost.css";
 import usercontext from "../context/usercontext"
 import Axios from "axios"
 import _ from "lodash"
+// import image from "../../uploads/logo192.png"
 
 
 
@@ -313,6 +314,7 @@ const Formpost = () => {
             
            
           </div>
+          
       
 
           <Form.Row className="linkrule1">
@@ -321,9 +323,7 @@ const Formpost = () => {
           <Button className="buttonpost" variant="success" type="submit" onClick={handlesubmit}>
             โพสต์
           </Button>
-          {/* <a className="buttonformpost" type="submit" href="/post/mypost">
-            โพสต์
-          </a> */}
+       
         </Form>
       </div>
     </div>
