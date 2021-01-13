@@ -1,5 +1,5 @@
 import React, { useState ,useContext} from "react";
-import { Form, Col, Button, Image, roundedCircle } from "react-bootstrap";
+import { Form, Col, Image, roundedCircle } from "react-bootstrap";
 import {storage} from "../Frontfirebase"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
@@ -311,18 +311,15 @@ const Formpost = () => {
               );
             })}
 
-            
-           
           </div>
-          
-      
 
-           <Form.Row className="linkrule1">
+           {/* <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
-          </Form.Row>
-          <Button className="buttonpost" variant="success" type="submit" >
+          </Form.Row> */}
+
+          <button className="buttonformpost" variant="success" type="submit" >
             โพสต์
-          </Button>
+          </button>
        
         </Form>
       </div>

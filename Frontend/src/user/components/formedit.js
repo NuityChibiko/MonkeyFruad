@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component } from "react";
-import { Form, Col, FormControl, Button } from "react-bootstrap";
+import { Form, Col, FormControl } from "react-bootstrap";
 import {useParams } from "react-router-dom"
 import {
   auth,
@@ -349,7 +349,7 @@ const Formedit = () => {
             
       
           />
-          <div className="container-img-holder-imgpreview">
+          <div className="container-img-holder-imgpreviewedit">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (
                 <img
@@ -372,16 +372,13 @@ const Formedit = () => {
         
           </div>
             
-       
-     
-     
-          <Form.Row className="linkrule1">
+          {/* <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
-          </Form.Row>
+          </Form.Row> */}
 
-          <Button className="buttonpost" variant="success" type="submit">
+          <button className="buttonformedit" variant="success" type="submit">
             โพสต์
-          </Button>
+          </button>
         
         </Form>
       </div>
