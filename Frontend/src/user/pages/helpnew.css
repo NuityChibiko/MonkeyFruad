@@ -34,7 +34,7 @@
 }
 
 .card-helpnew{
-    width: 270px;
+    width: 260px;
     box-shadow: 10px 20px 50px rgba(0,0,0,.2);
     display: block;
     margin-left: auto;
@@ -79,7 +79,7 @@
 
 .card-helpnew2 {
     background-color: white;
-    width: 370px;
+    width: 330px;
     border-radius: 10px;
     box-shadow: 10px 20px 50px rgba(0,0,0,.2);
     margin-bottom: 100px;
