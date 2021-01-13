@@ -85,7 +85,7 @@ const Formedit = () => {
     setDatetime(gethistory[0].datetime)
     setSocial(gethistory[0].social)
     setOther(gethistory[0].other)
-    // setfiles(gethistory[0].files[0].path)
+
   }
 
 
