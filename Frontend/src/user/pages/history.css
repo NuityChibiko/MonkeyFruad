@@ -8,7 +8,7 @@
 
 .h2-history2 { 
     margin-top: 50px;
-    margin-left: 250px;
+    margin-left: 60px;
     font-size: 25px;
     font-family: 'Kanit', sans-serif;
     color: #8B0000;
@@ -132,12 +132,20 @@
 .historymenusetting .li-historymenusetting {
     border-bottom: 1px solid #dddddd;
 }
-  
+
 .historymenusetting .li-historymenusetting .a-historymenusetting {
     text-decoration: none;
-    color: #333333;
+    color: black;
     padding: 15px 20px;
     display: block;
+}
+  
+.historymenusetting .li-historymenusetting .a-historymenusetting .a-historymenusetting1{
+    color: #333333;
+}
+
+.historymenusetting .li-historymenusetting .a-historymenusetting .a-historymenusetting1:hover {
+    color: #333333;
 }
 
 .spanhistory{
