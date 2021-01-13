@@ -131,9 +131,8 @@ h1 {
         margin-bottom: -1rem;
         margin-top: 1rem;
     }
-    .Phone {
-        margin-bottom: -1rem;
-        margin-top: 2rem;
+    .phone {
+        margin-bottom: -3rem;
     }
     .Email {
         margin-top: -1rem;
@@ -149,8 +148,8 @@ h1 {
     .BirthDate {
         margin-bottom: 1rem;
     }
-    .Phone {
-        margin-bottom: -1rem;
+    .phone {
+        margin-bottom: 1rem;
     }
     .container-login {
         margin: 0 auto;
@@ -182,3 +181,4 @@ h1 {
     display: inline-block;
     color: inherit;
 }
+
