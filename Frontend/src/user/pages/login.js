@@ -92,6 +92,7 @@ const Login = () => {
     }
 );
 console.log(emailis_inVaild)
+
   return (
     <div>
       <Navbar />
@@ -99,7 +100,7 @@ console.log(emailis_inVaild)
         <form className="LoginForm">
           <img src="/img/logoLogin.png" className="LogoLogin" />
           <p className="h2 text-center mb-2 font-weight-bold">เข้าสู่ระบบ</p>
-          {emailis_inVaild ? <div>Email นี้ไม่มีอยู่ในระบบ</div>}
+          {emailis_inVaild ? <div className="alert-login">อีเมลนี้ไม่มีอยู่ในระบบ</div> : <p></p>}
           <div className="LoginInputForm">
           <Formik
                   initialValues={{

@@ -123,3 +123,12 @@ h1 {
         width: 100%;
     }
 }
+
+.alert-login {
+    margin-top: 1rem;
+    color: #d17581;
+    border: 1px solid #D08690;
+    background-color: #F2DEDE;
+    padding: .7rem;
+    border-radius: .4rem;
+}
