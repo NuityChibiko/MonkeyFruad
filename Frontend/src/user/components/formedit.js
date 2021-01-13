@@ -10,6 +10,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 import Axios from "axios"
+
 const Formedit = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
@@ -27,9 +28,10 @@ const Formedit = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
+  // const [files, setfiles] = useState();
 
 
-
+// console.log(files)
   const { uid } = useParams()
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
@@ -81,6 +83,7 @@ const Formedit = () => {
     setDatetime(gethistory[0].datetime)
     setSocial(gethistory[0].social)
     setOther(gethistory[0].other)
+    // setfiles(gethistory[0].files[0].path)
   }
 
 
@@ -100,7 +103,11 @@ const Formedit = () => {
     }
   }
   return (
-    <div className="container-formpost">
+    <div>
+      {show ? show.map(ok=>{
+        return (
+          <div>
+      <div className="container-formpost">
       <div className="container-formpost1">
         <div className="profile-badformpost-img">
           <img className="img-circle" src={imagesProfile} />
@@ -326,9 +333,10 @@ const Formedit = () => {
             type="file"
             onChange={FileUpload}
             multiple
+      
           />
           <div className="container-img-holder-imgpreview">
-            {imagesFile.map((imagePreviewUrl) => {
+            {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (
                 <img
                   key={imagePreviewUrl}
@@ -340,9 +348,12 @@ const Formedit = () => {
                   onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
                 />
               );
-            })}
+            }) :  null}
+     
           </div>
 
+  
+         {/* <img src={"../../uploads/eiei-1610470704952.jpg"}  />  */}
           <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
           </Form.Row>
@@ -355,6 +366,12 @@ const Formedit = () => {
           </a> */}
         </Form>
       </div>
+    </div>
+          </div>
+        )
+      }) : null}
+   
+    
     </div>
   );
 };
