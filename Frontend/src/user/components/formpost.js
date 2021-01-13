@@ -279,14 +279,14 @@ const Formpost = () => {
             })}
           </div>
 
-          <Form.Row className="linkrule1">
+          {/* <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
-          </Form.Row>
-          {/* <div className="buttonformpost1"> */}
+          </Form.Row> */}
+
             <button className="buttonformpost" type="submit" href="/mypost">
-            โพสต์
+              โพสต์
             </button>
-          {/* </div>   */}
+
         </Form>
       </div>
     </div>

@@ -94,7 +94,7 @@ const ok = async () =>{
                 <div className="mypostbuttonshared">
                     <a className="mypostbuttonshare"
                         href="/post/edit">
-                        <i class="fas fa-share"></i>
+                        <i class="fa fa-share"></i>
                     </a>
                 </div>
 
@@ -110,7 +110,7 @@ const ok = async () =>{
                             className={`mypostmenusetting ${isActive ? "active" : "inactive"}`}>
                             <ul className="ul-mypostmenusetting">
                                 <li className="li-mypostmenusetting">
-                                <a className="a-mypostmenusetting"><Link to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
+                                <a className="a-mypostmenusetting"><Link className="a-mypostmenusetting1" to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
                                   
                                 </li>
                                 <li className="li-mypostmenusetting">
@@ -286,7 +286,7 @@ const ok = async () =>{
                         <div className="mypostbuttonsend">
                             <a className="mypostbuttonsends"
                                 href="">
-                                <i class="fas fa-paper-plane"></i>
+                                <i class="fa fa-paper-plane"></i>
                             </a>  
                         </div>
                         </Form.Group>

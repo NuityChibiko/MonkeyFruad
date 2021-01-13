@@ -45,7 +45,11 @@
     color: grey;
 }
 
-.mypostbuttonshare, .mypostbuttonshare:hover{
+.mypostbuttonshared, .mypostbuttonshare {
+    color: grey;
+}
+
+.mypostbuttonshared, .mypostbuttonshare:hover{
     color: grey;
 }
 
@@ -133,12 +137,20 @@
 .mypostmenusetting .li-mypostmenusetting {
     border-bottom: 1px solid #dddddd;
 }
-  
+ 
 .mypostmenusetting .li-mypostmenusetting .a-mypostmenusetting {
     text-decoration: none;
-    color: #333333;
+    color: black;
     padding: 15px 20px;
     display: block;
+}
+
+.mypostmenusetting .li-mypostmenusetting .a-mypostmenusetting .a-mypostmenusetting1 {
+    color: black;
+}
+
+.mypostmenusetting .li-mypostmenusetting .a-mypostmenusetting .a-mypostmenusetting1:hover {
+    color: black;
 }
   
 .container-mypost3 {

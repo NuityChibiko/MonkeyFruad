@@ -39,12 +39,12 @@ ok()
     <div>
       <Navbar />
       <h1 className="h1-history">ประวัติการโพสต์</h1>
-      {mypost ? <h2 className="h2-history2">ทั้งหมด {mypost.length} โพสต์</h2> : null}
       {mypost ? mypost.map(ok =>{
         return (
           <div>
            
       <div className="container-history1">
+      {mypost ? <h2 className="h2-history2">ทั้งหมด {mypost.length} โพสต์</h2> : null}
         <div className="container-history2">
           <div className="container-historysetiing">
             <div className="menu-containerhistorysetting">
@@ -58,10 +58,10 @@ ok()
                   className={`historymenusetting ${isActive ? "active" : "inactive"}`}>
                   <ul className="ul-historymenusetting">
                       <li className="li-historymenusetting">
-                      <a className="a-mypostmenusetting"><Link to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
+                      <a className="a-historymenusetting"><Link className="a-historymenusetting1" to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
                       </li>
                       <li className="li-historymenusetting">
-                      <a className="a-mypostmenusetting" onClick={() =>  deleted(ok.uid)}> ลบโพสต์ </a> 
+                      <a className="a-historymenusetting" onClick={() =>  deleted(ok.uid)}> ลบโพสต์ </a> 
                       </li>
                   </ul>
                 </div>
