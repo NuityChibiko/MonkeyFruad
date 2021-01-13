@@ -1,0 +1,208 @@
+.h1-helpnew{ 
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Kanit', sans-serif;
+    color: #8B0000;
+}
+
+.h1-helpnew2{ 
+    margin-top: 150px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Kanit', sans-serif;
+    color: #8B0000;
+}
+
+
+.container-helpnew{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 460px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.container-helpnew2{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 760px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.card-helpnew{
+    width: 270px;
+    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    background-color: white;
+}
+
+.title-helpnew{
+    font-size: 20px;
+}
+
+.titlered-helpnew{
+    color: red;
+    font-size: 18px;
+}
+.image-helpnew1{
+    padding:  15px 30px 0px 30px;
+}
+.cardtext-helpnew{
+    font-size: 15px;
+    color: rgb(107, 107, 107);
+}
+.textwhite-helpnew{
+    color: white;
+}
+.column-helpnew{
+    width: 25%;
+    display: block;
+    float: left;
+}
+.show-helpnew2{
+    display: block;
+    margin-bottom: -8px;
+}
+
+.column-helpnew2 {
+    width: 33.33%;
+    display: block;
+    float: left;
+}
+
+.card-helpnew2 {
+    background-color: white;
+    width: 370px;
+    border-radius: 10px;
+    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
+    margin-bottom: 100px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 30px;
+}
+
+.image-helpnew2{
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.showtext-helpnew{
+    display: none;
+}
+
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+}
+
+@media only screen and (max-width: 1024px) {
+    .container-helpnew{
+        width: 65%;
+        height: 900px;
+    }
+    .column-helpnew,.column-helpnew2{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container-helpnew{
+        width: 80%;
+        height: 900px;
+    }
+    .container-helpnew2{
+        width: 85%;
+        height: 900px;
+    }
+    .column-helpnew,.column-helpnew2{
+        width: 50%;
+    }
+    .newrow-helpnew{
+        margin: 100px;
+    }
+    .card-helpnew2 {
+        width: 310px;
+    }
+    .textnone-helpnew{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .container-helpnew{
+        width: 70%;
+        height: 1800px;
+    }
+    .container-helpnew2{
+        width: 85%;
+        height: 900px;
+    }
+    .column-helpnew,.column-helpnew2{
+        width: 100%;
+    }
+    .h1-helpnew{
+        font-size: 25px;
+    }
+    .h1-helpnew2{ 
+        margin-top: 100px;
+        font-size: 25px;
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .h1-helpnew2{ 
+        margin-top: 100px;
+        font-size: 25px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .container-helpnew{
+        width: 80%;
+        height: 1700px;
+    }
+    .container-helpnew2{
+        width: 85%;
+        height: 2300px;
+    }
+    .card-helpnew{
+        width: 250px;
+    }
+    .card-helpnew2 {
+        width: 250px;
+    }
+    .cardtext-helpnew{
+        font-size: 14px;
+    }
+    .h1-helpnew2{ 
+        margin-top: 100px;
+        font-size: 25px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .text-helpnew{
+        font-size: 14px;
+    }
+    .textnone2-helpnew{
+        display: none;
+    }
+    .showtext-helpnew{
+        display: inline;
+    }
+}
