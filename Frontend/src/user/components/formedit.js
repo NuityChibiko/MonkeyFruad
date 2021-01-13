@@ -10,11 +10,14 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formedit.css";
 import Axios from "axios"
+// import image from "D:/PROJECT ALL/MonkeyFruad/Frontend/src/uploads/logo192.png"
+
+
 const Formedit = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
   const [show, Setshow] = useState();
-  const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
+  const [imagesFile, setImagesFile] = useState(); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
   const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
@@ -27,9 +30,10 @@ const Formedit = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
+  // const [files, setfiles] = useState();
+   
 
-
-
+// console.log(files)
   const { uid } = useParams()
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
@@ -81,6 +85,7 @@ const Formedit = () => {
     setDatetime(gethistory[0].datetime)
     setSocial(gethistory[0].social)
     setOther(gethistory[0].other)
+    // setfiles(gethistory[0].files[0].path)
   }
 
 
@@ -100,9 +105,13 @@ const Formedit = () => {
     }
   }
   return (
-    <div className="container-formedit">
-      <div className="container-formedit1">
-        <div className="profile-badformedit-img">
+    <div>
+      {show ? show.map(ok=>{
+        return (
+          <div>
+      <div className="container-formpost">
+      <div className="container-formpost1">
+        <div className="profile-badformpost-img">
           <img className="img-circle" src={imagesProfile} />
           <div className="rank-label-container-edit">
             <span className="label label-default rank-label">
@@ -320,15 +329,28 @@ const Formedit = () => {
               (แชท)
             </span>
           </Form.File.Label>
-
+            {/* {ok ? ok.files.map(res => {
+              return ( <div>
+                <input
+                className="uploadsformpostuploadslip"
+                type="file"
+                onChange={FileUpload}
+                multiple
+                value={res.filename}
+              />
+              </div>
+            )
+            }) : null} */}
           <input
             className="uploadsformedituploadslip"
             type="file"
             onChange={FileUpload}
             multiple
+            
+      
           />
-          <div className="container-img-holder-imgpreviewedit">
-            {imagesFile.map((imagePreviewUrl) => {
+          <div className="container-img-holder-imgpreview">
+            {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (
                 <img
                   key={imagePreviewUrl}
@@ -340,19 +362,35 @@ const Formedit = () => {
                   onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
                 />
               );
-            })}
+            }) :     ok ? ok.files.map(res => {
+              return ( <div>
+                 <img src={`/uploads/${res.filename}`}  /> 
+              </div>
+            )
+            }) : null }
+
+        
           </div>
+            
+       
+     
+     
+          <Form.Row className="linkrule1">
+            <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
+          </Form.Row>
 
-          {/* <Form.Row className="linkruleedit1">
-            <Form.Check aria-label="option 1" className="linkruleedit2"/><a className="linkruleedit3" href="about.html">ยอมรับข้อตกลง</a>
-          </Form.Row> */}
-
-          <button className="buttonformedit" type="submit">
+          <Button className="buttonpost" variant="success" type="submit">
             โพสต์
-          </button>
-
+          </Button>
+        
         </Form>
       </div>
+    </div>
+          </div>
+        )
+      }) : null}
+   
+    
     </div>
   );
 };
