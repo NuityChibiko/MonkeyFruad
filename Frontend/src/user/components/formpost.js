@@ -128,7 +128,7 @@ const Formpost = () => {
             </span>
           </div>
         </div>
-        <Form className="formsize-formpost" >
+        <Form className="formsize-formpost" onSubmit={handlesubmit}>
           <Form.Row>
             <Form.Group
               as={Col}
@@ -320,7 +320,7 @@ const Formpost = () => {
           <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
           </Form.Row>
-          <Button className="buttonpost" variant="success" type="submit" onClick={handlesubmit}>
+          <Button className="buttonpost" variant="success" type="submit" >
             โพสต์
           </Button>
        

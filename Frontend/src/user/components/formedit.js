@@ -17,7 +17,7 @@ const Formedit = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
   const [show, Setshow] = useState();
-  const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
+  const [imagesFile, setImagesFile] = useState(); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
   const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
@@ -362,17 +362,17 @@ const Formedit = () => {
                   onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
                 />
               );
-            }) :  null}
-
-        
-          </div>
-            
-          {ok ? ok.files.map(res => {
+            }) :     ok ? ok.files.map(res => {
               return ( <div>
                  <img src={`/uploads/${res.filename}`}  /> 
               </div>
             )
-            }) : null} 
+            }) : null }
+
+        
+          </div>
+            
+       
      
      
           <Form.Row className="linkrule1">
