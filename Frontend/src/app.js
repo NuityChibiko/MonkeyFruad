@@ -10,11 +10,13 @@ import Post from "./user/pages/post";
 import Forgetpass from "./user/pages/forgetpass";
 import Signup from "./user/pages/signup";
 import Prevent from "./user/pages/prevent";
-import Help from "./user/pages/help";
+// import Help from "./user/pages/help";
+import Helpnew from "./user/pages/helpnew";
 import Rank from "./user/pages/ranking";
 import Editpost from "./user/pages/editpost";
 import History from "./user/pages/history";
 import Mypost from "./user/pages/mypost";
+import Linkruleshow from "./user/pages/linkruleshow";
 import "./app.css";
 import Axios from "axios"
 import usercontext from "./user/context/usercontext"
@@ -46,6 +48,7 @@ const App = () => {
       }else{
         setUser(null);
       }
+      console.log(user)
      
   });return () =>{
 authUnsubscribe();
@@ -86,8 +89,11 @@ return (
       <Route path="/prevent" exact>
         <Prevent />
       </Route>
-      <Route path="/help" exact>
+      {/* <Route path="/help" exact>
         <Help />
+      </Route> */}
+      <Route path="/helpnew" exact>
+        <Helpnew />
       </Route>
       <Route path="/contractus" exact>
         <Contractus />
@@ -97,6 +103,9 @@ return (
       </Route>
       <Route path="/post" exact>
         <Post />
+      </Route>
+      <Route path="/linkruleshow" exact>
+        <Linkruleshow />
       </Route>
      
      

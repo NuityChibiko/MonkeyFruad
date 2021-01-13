@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component } from "react";
-import { Form, Col, FormControl, Button } from "react-bootstrap";
+import { Form, Col, FormControl } from "react-bootstrap";
 import {useParams } from "react-router-dom"
 import {
   auth,
@@ -8,13 +8,16 @@ import {
   firestore
 } from "../Frontfirebase";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./formpost.css";
+import "./formedit.css";
 import Axios from "axios"
+// import image from "D:/PROJECT ALL/MonkeyFruad/Frontend/src/uploads/logo192.png"
+
+
 const Formedit = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
   const [show, Setshow] = useState();
-  const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
+  const [imagesFile, setImagesFile] = useState(); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
   const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
@@ -27,9 +30,10 @@ const Formedit = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
+  // const [files, setfiles] = useState();
+   
 
-
-
+// console.log(files)
   const { uid } = useParams()
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
@@ -81,6 +85,7 @@ const Formedit = () => {
     setDatetime(gethistory[0].datetime)
     setSocial(gethistory[0].social)
     setOther(gethistory[0].other)
+
   }
 
 
@@ -100,21 +105,25 @@ const Formedit = () => {
     }
   }
   return (
-    <div className="container-formpost">
+    <div>
+      {show ? show.map(ok=>{
+        return (
+          <div>
+      <div className="container-formpost">
       <div className="container-formpost1">
         <div className="profile-badformpost-img">
           <img className="img-circle" src={imagesProfile} />
-          <div className="rank-label-container">
+          <div className="rank-label-container-edit">
             <span className="label label-default rank-label">
-              <div className="formpost-ImageUpload">
+              <div className="formedit-ImageUpload">
                 <label htmlFor="FileInput">
-                  <div className="fileinput">
-                    <img className="uploadiconprofile" src="/img/edit.png" />
+                  <div className="fileinputedit">
+                    <img className="uploadiconprofileedit" src="/img/edit.png" />
                   </div>
                 </label>
-                <div className="buttoninputprofile">
+                <div className="buttoninputeditprofile">
                   <input
-                    className="uploadinputprofile"
+                    className="uploadinputeditprofile"
                     id="FileInput"
                     type="file"
                     onChange={ProfileChange}
@@ -125,15 +134,15 @@ const Formedit = () => {
             </span>
           </div>
         </div>
-        <Form className="formsize-formpost" onSubmit={handlesubmit}>
+        <Form className="formsize-formedit" onSubmit={handlesubmit}>
           <Form.Row>
             <Form.Group
               as={Col}
-              className="formpost-left col-lg-6 col-12"
+              className="formedit-left col-lg-6 col-12"
               controlId="formGridName"
             >
               <Form.Label>
-                ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
+                ชื่อ (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
 
               {show ? <Form.Control type="text" placeholder="" value={name} onChange={(event)=>{setName(event.target.value)}} required /> : null }
@@ -142,7 +151,7 @@ const Formedit = () => {
 
             <Form.Group as={Col} controlId="formGridLastname">
               <Form.Label>
-                นามสกุล (ผู้โกง)<span className="spanformpost">*</span>
+                นามสกุล (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="name" placeholder="" value={surname} onChange={(event)=>{setSurname(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setSurname(event.target.value)}} required />} */}
@@ -152,11 +161,11 @@ const Formedit = () => {
           <Form.Row>
             <Form.Group
               as={Col}
-              className="formpost-left col-lg-6 col-12"
+              className="formedit-left col-lg-6 col-12"
               controlId="formGridId"
             >
               <Form.Label>
-                เลขบัตรประชาชน (ผู้โกง)<span className="spanformpost">*</span>
+                เลขบัตรประชาชน (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="name" placeholder="" value={id} onChange={(event)=>{setId(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setId(event.target.value)}} required />} */}
@@ -164,7 +173,7 @@ const Formedit = () => {
 
             <Form.Group as={Col} controlId="formGridAccountnumber">
               <Form.Label>
-                เลขที่บัญชี (ผู้โกง)<span className="spanformpost">*</span>
+                เลขที่บัญชี (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="name" placeholder="" value={accountnumber} onChange={(event)=>{setAccountnumber(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setAccountnumber(event.target.value)}} required />} */}
@@ -174,11 +183,11 @@ const Formedit = () => {
           <Form.Row>
             <Form.Group
               as={Col}
-              className="formpost-left col-lg-6 col-12"
+              className="formedit-left col-lg-6 col-12"
               controlId="formGridNameproduct"
             >
               <Form.Label>
-                ชื่อสินค้า<span className="spanformpost">*</span>
+                ชื่อสินค้า<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="name" placeholder="" value={nameproduct} onChange={(event)=>{setNameproduct(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setNameproduct(event.target.value)}} required />} */}
@@ -186,7 +195,7 @@ const Formedit = () => {
 
             <Form.Group as={Col} controlId="formGridCategory">
               <Form.Label>
-                หมวดหมู่สินค้า<span className="spanformpost">*</span>
+                หมวดหมู่สินค้า<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control as="select"    required   value={productcategory} onChange={(event)=>{
                 //value={show[0].productcategory}
@@ -209,11 +218,11 @@ const Formedit = () => {
           <Form.Row>
             <Form.Group
               as={Col}
-              className="formpost-left col-lg-6 col-12"
+              className="formedit-left col-lg-6 col-12"
               controlId="formGridPrice"
             >
               <Form.Label>
-                จำนวนเงิน (บาท)<span className="spanformpost">*</span>
+                จำนวนเงิน (บาท)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="name" placeholder="" value={money} onChange={(event)=>{setMoney(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setMoney(event.target.value)}} required />} */}
@@ -221,7 +230,7 @@ const Formedit = () => {
 
             <Form.Group as={Col} controlId="formGridCategory">
               <Form.Label>
-                ธนาคาร<span className="spanformpost">*</span>
+                ธนาคาร<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control as="select"   value={bank} required  onChange={(event)=>{
              
@@ -269,11 +278,11 @@ const Formedit = () => {
           <Form.Row>
             <Form.Group
               as={Col}
-              className="formpost-left col-lg-6 col-12"
+              className="formedit-left col-lg-6 col-12"
               controlId="formGridDate"
             >
               <Form.Label>
-                วันที่โดนโกง<span className="spanformpost">*</span>
+                วันที่โดนโกง<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="name" placeholder="" value={datetime} onChange={(event)=>{setDatetime(event.target.value)}} required /> : null }
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setDatetime(event.target.value)}} required />} */}
@@ -281,7 +290,7 @@ const Formedit = () => {
 
             <Form.Group as={Col} controlId="formGridSocial">
               <Form.Label>
-                ช่องทางที่โดนโกง<span className="spanformpost">*</span>
+                ช่องทางที่โดนโกง<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control as="select"   value={social} required  onChange={(event)=>{
               
@@ -315,24 +324,37 @@ const Formedit = () => {
           </Form.Group>         
 
           <Form.File.Label>
-            <span className="spanformpost">
+            <span className="spanformedit">
               **กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
               (แชท)
             </span>
           </Form.File.Label>
-
+            {/* {ok ? ok.files.map(res => {
+              return ( <div>
+                <input
+                className="uploadsformpostuploadslip"
+                type="file"
+                onChange={FileUpload}
+                multiple
+                value={res.filename}
+              />
+              </div>
+            )
+            }) : null} */}
           <input
-            className="uploadsformpostuploadslip"
+            className="uploadsformedituploadslip"
             type="file"
             onChange={FileUpload}
             multiple
+            
+      
           />
-          <div className="container-img-holder-imgpreview">
-            {imagesFile.map((imagePreviewUrl) => {
+          <div className="container-img-holder-imgpreviewedit">
+            {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (
                 <img
                   key={imagePreviewUrl}
-                  className="imgpreview"
+                  className="imgpreviewedit"
                   alt="previewImg"
                   src={imagePreviewUrl}
                   style={{ overflow: "hidden" }}
@@ -340,21 +362,32 @@ const Formedit = () => {
                   onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
                 />
               );
-            })}
+            }) :     ok ? ok.files.map(res => {
+              return ( <div>
+                 <img src={`/uploads/${res.filename}`}  /> 
+              </div>
+            )
+            }) : null }
+
+        
           </div>
-
-          <Form.Row className="linkrule1">
+            
+          {/* <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
-          </Form.Row>
+          </Form.Row> */}
 
-          <button className="buttonpost" type="submit">
+          <button className="buttonformedit" variant="success" type="submit">
             โพสต์
           </button>
-          {/* <a className="buttonformpost" type="submit" href="/post/mypost">
-            โพสต์
-          </a> */}
+        
         </Form>
       </div>
+    </div>
+          </div>
+        )
+      }) : null}
+   
+    
     </div>
   );
 };

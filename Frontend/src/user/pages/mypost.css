@@ -10,8 +10,8 @@
     width: 70%;
     background-color: white;
     border-radius: 10px;
-    margin-top: 50px;
-    margin-bottom: -20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 40px;
@@ -45,7 +45,11 @@
     color: grey;
 }
 
-.mypostbuttonshare, .mypostbuttonshare:hover{
+.mypostbuttonshared, .mypostbuttonshare {
+    color: grey;
+}
+
+.mypostbuttonshared, .mypostbuttonshare:hover{
     color: grey;
 }
 
@@ -133,12 +137,20 @@
 .mypostmenusetting .li-mypostmenusetting {
     border-bottom: 1px solid #dddddd;
 }
-  
+ 
 .mypostmenusetting .li-mypostmenusetting .a-mypostmenusetting {
     text-decoration: none;
-    color: #333333;
+    color: black;
     padding: 15px 20px;
     display: block;
+}
+
+.mypostmenusetting .li-mypostmenusetting .a-mypostmenusetting .a-mypostmenusetting1 {
+    color: black;
+}
+
+.mypostmenusetting .li-mypostmenusetting .a-mypostmenusetting .a-mypostmenusetting1:hover {
+    color: black;
 }
   
 .container-mypost3 {
@@ -149,8 +161,8 @@
     margin-right: auto;
     padding-top: 20px;
     padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: -10px;
+    /* padding-left: 10px;
+    padding-right: 10px; */
     font-family: 'Kanit', sans-serif;
     font-size: 20px;
 }
@@ -195,14 +207,14 @@
     width: 70%;
     background-color: white;
     border-radius: 10px;
-    margin-top: 50px;
-    margin-bottom: 100px;
+    margin-top: -10px;
+    margin-bottom: 40px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 60px;
     padding-bottom: 30px;
-    padding-left: 100px;
-    padding-right: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
     font-family: 'Kanit', sans-serif;
     font-size: 20px;
     box-shadow: 10px 20px 50px rgba(0,0,0,.2);

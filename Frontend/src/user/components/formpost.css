@@ -2,8 +2,8 @@
     width: 70%;
     background-color: white;
     border-radius: 10px;
-    margin-top: 50px;
-    margin-bottom: 100px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     margin-left: auto;
     margin-right: auto;
     padding-top: 50px;
@@ -61,7 +61,7 @@
     color: red;
 }
 
-.linkrule1{
+/* .linkrule1{
     margin-top: 10px;
 }
 
@@ -74,7 +74,7 @@
     color: red;
     margin-left: 2px;
     margin-bottom: 10px;
-}
+} */
 
 .uploadsformpostuploadslip{
     margin-top: 10px;
@@ -138,8 +138,3 @@
     padding: 0.5rem;
     margin-top: 10px;
 }
-/* 
-.buttonformpost{
-    position: relative;
-    display: flex;
-} */
