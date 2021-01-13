@@ -1,5 +1,5 @@
 import React, { useState ,useContext} from "react";
-import { Form, Col, Button, Image, roundedCircle } from "react-bootstrap";
+import { Form, Col, Image, roundedCircle } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 import usercontext from "../context/usercontext"
@@ -282,12 +282,11 @@ const Formpost = () => {
           <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
           </Form.Row>
-          <Button className="buttonpost" variant="success" type="submit">
+          {/* <div className="buttonformpost1"> */}
+            <button className="buttonformpost" type="submit" href="/mypost">
             โพสต์
-          </Button>
-          {/* <a className="buttonformpost" type="submit" href="/post/mypost">
-            โพสต์
-          </a> */}
+            </button>
+          {/* </div>   */}
         </Form>
       </div>
     </div>

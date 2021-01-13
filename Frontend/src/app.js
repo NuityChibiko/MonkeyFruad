@@ -20,7 +20,6 @@ import "./app.css";
 import Axios from "axios"
 import usercontext from "./user/context/usercontext"
 
-// import Mypost from "./user/pages/mypost";
 
 // ที่รวม Routh ต่างๆ
 const App = () => {
@@ -53,7 +52,7 @@ const App = () => {
 authUnsubscribe();
   };
   },[]);
-// console.log(user)
+console.log(user)
 return (
   <Router>
     <usercontext.Provider value={ {user,setUser}}>

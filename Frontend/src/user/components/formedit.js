@@ -347,9 +347,9 @@ const Formedit = () => {
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
           </Form.Row>
 
-          <Button className="buttonpost" variant="success" type="submit">
+          <button className="buttonpost" type="submit">
             โพสต์
-          </Button>
+          </button>
           {/* <a className="buttonformpost" type="submit" href="/post/mypost">
             โพสต์
           </a> */}
