@@ -105,7 +105,6 @@ const Formedit = () => {
     }
   }
   return (
-<<<<<<< HEAD
     <div>
       {show ? show.map(ok=>{
         return (
@@ -113,11 +112,6 @@ const Formedit = () => {
       <div className="container-formpost">
       <div className="container-formpost1">
         <div className="profile-badformpost-img">
-=======
-    <div className="container-formedit">
-      <div className="container-formedit1">
-        <div className="profile-badformedit-img">
->>>>>>> 0764c12dd8ff6ba7fb6ae73342b3d90ac6fda46a
           <img className="img-circle" src={imagesProfile} />
           <div className="rank-label-container-edit">
             <span className="label label-default rank-label">
@@ -355,13 +349,8 @@ const Formedit = () => {
             
       
           />
-<<<<<<< HEAD
           <div className="container-img-holder-imgpreview">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
-=======
-          <div className="container-img-holder-imgpreviewedit">
-            {imagesFile.map((imagePreviewUrl) => {
->>>>>>> 0764c12dd8ff6ba7fb6ae73342b3d90ac6fda46a
               return (
                 <img
                   key={imagePreviewUrl}
@@ -380,7 +369,6 @@ const Formedit = () => {
             )
             }) : null }
 
-<<<<<<< HEAD
         
           </div>
             
@@ -395,16 +383,6 @@ const Formedit = () => {
             โพสต์
           </Button>
         
-=======
-          {/* <Form.Row className="linkruleedit1">
-            <Form.Check aria-label="option 1" className="linkruleedit2"/><a className="linkruleedit3" href="about.html">ยอมรับข้อตกลง</a>
-          </Form.Row> */}
-
-          <button className="buttonformedit" type="submit">
-            โพสต์
-          </button>
-
->>>>>>> 0764c12dd8ff6ba7fb6ae73342b3d90ac6fda46a
         </Form>
       </div>
     </div>

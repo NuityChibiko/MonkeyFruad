@@ -1,10 +1,6 @@
 import React, { useState ,useContext} from "react";
-<<<<<<< HEAD
 import { Form, Col, Button, Image, roundedCircle } from "react-bootstrap";
 import {storage} from "../Frontfirebase"
-=======
-import { Form, Col, Image, roundedCircle } from "react-bootstrap";
->>>>>>> 0764c12dd8ff6ba7fb6ae73342b3d90ac6fda46a
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 import usercontext from "../context/usercontext"
@@ -321,22 +317,13 @@ const Formpost = () => {
           
       
 
-          {/* <Form.Row className="linkrule1">
+           <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
-<<<<<<< HEAD
           </Form.Row>
           <Button className="buttonpost" variant="success" type="submit" >
             โพสต์
           </Button>
        
-=======
-          </Form.Row> */}
-
-            <button className="buttonformpost" type="submit" href="/mypost">
-              โพสต์
-            </button>
-
->>>>>>> 0764c12dd8ff6ba7fb6ae73342b3d90ac6fda46a
         </Form>
       </div>
     </div>
