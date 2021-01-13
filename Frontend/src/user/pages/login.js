@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import styled from 'styled-components';
+import { Formik, Form, Field, ErrorMessage, FastField } from 'formik'
+import * as Yup from 'yup'
 import {
   auth,
   googleProvider,
@@ -14,16 +17,17 @@ const Login = () => {
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailis_inVaild, setEmailis_inVaild] = useState(false);
 
   const LoginSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
  auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(result);
         history.push("/");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setEmailis_inVaild(true)
       });
   };
 
@@ -54,40 +58,91 @@ const Login = () => {
         console.log(err);
       });
   };
+
+  const styles = {
+    row: {
+        marginTop: '8rem'
+    },
+    txt1: {
+        fontFamily: 'Roboto',
+        fontSize: '2.2rem',
+        color: '#fff',
+        marginBottom: '1rem',
+        fontWeight: '700',
+        textAlign: 'center'
+    },
+    txt2: {
+        fontFamily: 'Roboto',
+        fontSize: '1rem',
+        color: '#fff'
+    }
+}
+
+  const RegisterSchema = Yup.object().shape(
+    {
+      email: Yup.string()
+          .email('รูปแบบของอีเมลไม่ถูกต้อง')
+          .required('จำเป็นต้องกรอกช่องนี้'),
+      password: Yup.string()
+          .min(6, 'กรุณากรอกตัวอักษรอย่างน้อย 6 ตัว')
+          .max(20, 'ยาวเกินไป')
+          .required('จำเป็นต้องกรอกช่องนี้')
+    }
+);
+console.log(emailis_inVaild)
   return (
     <div>
       <Navbar />
       <div className="container-login">
         <form className="LoginForm">
           <img src="/img/logoLogin.png" className="LogoLogin" />
-
           <p className="h2 text-center mb-4 font-weight-bold">เข้าสู่ระบบ</p>
-
+          {emailis_inVaild ? <h1>Email นี้ไม่มีอยู่ในระบบ</h1> : <p></p>}
           <div className="LoginInputForm">
-            <MDBInput
-              className="InputEmail"
-              label="Email"
-              icon="user"
-              group
-              type="email"
-              validate
-              error="wrong"
-              success="right"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
-            <MDBInput
-              className="InputPassword"
-              label="Password"
-              icon="unlock-alt"
-              group
-              type="password"
-              validate
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
+          <Formik
+                  initialValues={{
+                      email: '',
+                      password: ''
+                  }}
+                  validationSchema={RegisterSchema}
+                  onSubmit={values => {
+                      // same shape as initial values
+                      console.log(values);
+                  }}
+              >
+                  {({ errors, touched}) => (
+                      <Form>
+                          <div className="form-group mb-1">
+                              <label htmlFor="email" style={styles.txt2}>Email</label>
+                              <Field
+                                  name="email"
+                                  type="email"
+                                  className={`form-control ${touched.email ? errors.email ? 'is-invalid' : 'is-valid' : ''}`}
+                                  id="email"
+                                  placeholder="Enter Email"
+                                  onKeyUp={(e)=>{
+                                    setEmail(e.target.value)
+                                  }}
+                              />
+                              <ErrorMessage component="div" name="email" className="invalid-feedback" />
+                          </div>
+                          <div className="form-group mb-1">
+                              <label htmlFor="password" style={styles.txt2}>Password</label>
+                              <Field
+                                  name="password"
+                                  type="password"
+                                  className={`form-control ${touched.password ? errors.password ? 'is-invalid' : 'is-valid' : ''}`}
+                                  id="password"
+                                  placeholder="Enter Password"
+                                  onKeyUp={(e)=>{
+                                    setPassword(e.target.value)
+                                  }}
+                              />
+                              <ErrorMessage component="div" name="password" className="invalid-feedback" />
+                          </div>
+                          </Form>
+                  )}
+              </Formik>
           </div>
 
           <div className="message">
