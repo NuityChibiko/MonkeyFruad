@@ -16,7 +16,8 @@ const Formpost = () => {
   
   const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
   const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
-  const [files, Setfiles] = useState();
+  const [files, Setfiles] = useState("");
+  const [photo, Setphoto] = useState("");
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [id, setId] = useState();
@@ -33,13 +34,14 @@ const Formpost = () => {
     
   }
 
-  
 
+  console.log(photo)
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
   
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
+    Setphoto(files[0])
     let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
     reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
     reader.onloadend = () => {
@@ -79,6 +81,7 @@ const Formpost = () => {
       _.forEach(files , file =>{
         formdata.append("eiei" , file)
       })
+      formdata.append("photo" , photo)
       formdata.append("imagesProfile" , imagesProfile)
       formdata.append("name" , name)
       formdata.append("surname" , surname)

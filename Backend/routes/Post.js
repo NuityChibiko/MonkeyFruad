@@ -30,16 +30,37 @@ let upload = multer({
 //   res.json({ success: true });
 // });
 
-router.post("/create", upload.array("eiei"), async(req, res) => {
- const {imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
+router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]) ,async(req, res) => { 
+ const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
   try{
-   
-    let files = req.files
-  
     const uid = uuidv4()
-    const date = moment().format('MM/DD/YYYY, h:mm:ss ')
+    const date = moment().format('MM/DD/YYYY, h:mm:ss')
 
-    const create = await firestore.collection("Post").doc(uid).set({imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,files})
+   
+    let file = req.files.photo
+    let files = req.files.eiei
+    console.log(file)
+    console.log(files)
+    if(req.files.photo == undefined && req.files.eiei == undefined){
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date})
+    }
+    else if(req.files.photo == undefined){
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,files})
+    }
+    else if(req.files.eiei == undefined){
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file})
+    }
+    else{
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file,files})
+    }
+  
+   
+    
+
+     
+  
+    
+    
     
    res.json({ success: true });
   }catch(err){
@@ -47,13 +68,16 @@ router.post("/create", upload.array("eiei"), async(req, res) => {
   }
   
 });
-router.post("/edit/:uid",async (req, res) => {
+router.post("/edit/:uid", upload.array("eiei"),async (req, res) => {
   let uid = req.params.uid
   const date = moment().format('MM/DD/YYYY, h:mm:ss ')
-  const {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
+  const {imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
   try{
-    const update =await firestore.collection("Post").doc(uid).update({imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date})
-    
+    let files = req.files
+    const update =await firestore.collection("Post").doc(uid).update({imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date})
+    if(req.files){
+      const update =await firestore.collection("Post").doc(uid).update({imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,files})
+    }
   }catch(err){
     console.log(err)
   }
@@ -66,7 +90,6 @@ router.post("/edit/:uid",async (req, res) => {
 
 router.get("/edit/:uid",async (req, res) => {
   let uid = req.params.uid
-
   try{
     
 
