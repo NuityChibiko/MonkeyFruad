@@ -70,8 +70,12 @@ const Login = () => {
         <form className="LoginForm">
           <img src="/img/logoLogin.png" className="LogoLogin" />
           <p className="h2 text-center mb-2 font-weight-bold">เข้าสู่ระบบ</p>
+<<<<<<< HEAD
           {emailis_inVaild ? <div className="alert-login">อีเมลนี้ไม่มีอยู่ในระบบ</div> : <p></p>}
        
+=======
+          {emailis_inVaild ? <div className="alert-login"> <span>อีเมลนี้ไม่มีอยู่ในระบบ</span></div> : <p></p>}
+>>>>>>> 6b5799ae4662b528c94d897afa457dc7ba7085b3
           <div className="LoginInputForm">
             <MDBInput
               className="InputEmail"
