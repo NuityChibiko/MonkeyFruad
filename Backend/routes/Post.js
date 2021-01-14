@@ -13,8 +13,9 @@ const path = require("path");
 
 let storage = multer.diskStorage({
   destination: (req,file,cb) =>{
-    // cb(null, path.join(__dirname, 'uploads'))
-    cb(null, "D:/PROJECT ALL/MonkeyFruad/Frontend/public/uploads/")
+    cb(null, path.join(__dirname, '../../Frontend/public/uploads'))
+    // cb(null, "D:/PROJECT ALL/MonkeyFruad/Frontend/public/uploads/")
+    
   },
   filename : (req,file,cb) =>{
     cb(null , file.fieldname + "-" + Date.now() + path.extname(file.originalname))
@@ -31,28 +32,34 @@ let upload = multer({
 // });
 
 router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]) ,async(req, res) => { 
- const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
+
   try{
+    const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
     const uid = uuidv4()
     const date = moment().format('MM/DD/YYYY, h:mm:ss')
-
-   
     let file = req.files.photo 
     let files = req.files.eiei 
     console.log(file)
     console.log(files)
-    if(file == undefined && files == undefined){
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date})
+    if(!files){
+      return res.status(400).json({msg : "กรุณาใส่ไฟลล์หลักฐาน"})
     }
-    if(file == undefined){
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,files})
+
+    else if(file && files ){
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file,files})
     }
-     if(files == undefined){
+    else if(file){
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file})
     }
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file,files})
+    else if(files){
+       console.log("ok")
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,files})
+    }else{
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date})
+    }
+    
       
-   res.json({ success: "สร้างโพสสำเร็จ" });
+  return res.json({ success: "สร้างโพสสำเร็จ" });
   }catch(err){
     console.log(err)
   }
@@ -61,23 +68,25 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
 router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]),async (req, res) => {
   let uid = req.params.uid
   const date = moment().format('MM/DD/YYYY, h:mm:ss ')
-  const {imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
+  const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
   try{
     let file = req.files.photo
     let files = req.files.eiei
     console.log(file)
     console.log(files)
-    if(files){
-      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,files})
-    }
-    if(file){
-      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,file})
-    }
     if(file && files){
       const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,file,files})
     }
+    else if(file){
+      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,file})
+    }
+    else if(files){
+      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,files})
+    }
+   else{
     const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date})
-    res.json({
+   } 
+   return res.json({
       success : "แก้ไขสำเร็จ"
     })
   }catch(err){
@@ -99,7 +108,7 @@ router.get("/edit/:uid",async (req, res) => {
       let item = []
       console.log(item)
       item.push(doc.data())
-      res.json({
+      return  res.json({
         item
       })
     })
@@ -119,9 +128,9 @@ router.post("/delete/:uid",(req, res) => {
     let getid = req.params.uid
     console.log(getid)
     const postdelete = firestore.collection("Post").doc(getid).delete()
-    res.json({ success: "Delete" });
+    return  res.json({ success: "Delete" });
   }catch(err){
-    res.status(500).json({msg : err})
+    return  res.status(500).json({msg : err})
   }
   
 });
@@ -138,12 +147,12 @@ router.get("/mypost/:uid",async(req, res) => {
     postdelete.forEach(doc =>{
       let item = []
       item.push(doc.data())
-      res.json({
+      return res.json({
         item
       })
     })
   }catch(err){
-    res.status(500).json({msg : err})
+   return res.status(500).json({msg : err})
   }
   
 });

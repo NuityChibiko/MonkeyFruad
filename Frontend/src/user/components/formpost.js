@@ -31,6 +31,7 @@ const Formpost = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
+  const [error, Seterror] = useState();
   // let { user , setUser} = useContext(usercontext)
   const ImageHoverZoom = ({ imagePreviewUrl }) => {
     
@@ -58,6 +59,7 @@ const Formpost = () => {
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
+    Seterror()
 
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
@@ -87,7 +89,6 @@ let history = useHistory()
         formdata.append("eiei" , file)
       })
       formdata.append("photo" , photo)
-      formdata.append("imagesProfile" , imagesProfile)
       formdata.append("name" , name)
       formdata.append("surname" , surname)
       formdata.append("id" , id)
@@ -100,13 +101,14 @@ let history = useHistory()
       formdata.append("social" , social)
       formdata.append("other" , other)
       formdata.append("useruid" , useruid)
-   
+      
       let data = await Axios.post("http://localhost:7000/post/create", formdata ) 
-      console.log(data.data.success)
-        history.push("/post/history")
+      console.log("ok")
+        // history.push("/post/history")
      
     }catch(err){
-      console.log(err)
+      err && Seterror(err.response.data.msg)
+    
     }
   }
   return (
@@ -296,13 +298,14 @@ let history = useHistory()
               (แชท)
             </span>
           </Form.File.Label>
-
+                
           <input
             className="uploadsformpostuploadslip"
             type="file"
             onChange={FileUpload}
             multiple
           />
+          <h1>{error}</h1>
           <div className="container-img-holder-imgpreview">
             {imagesFile.map((imagePreviewUrl) => {
               return (

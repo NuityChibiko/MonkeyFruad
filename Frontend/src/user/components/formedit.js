@@ -54,9 +54,8 @@ const Formedit = () => {
 
 // ฟังก์ชันอัพโหลดไฟล์ 
   const FileUpload = (event) => { 
-    
-    setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
+    setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
 
@@ -126,7 +125,7 @@ const Formedit = () => {
       // let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
       let data = await Axios.post(`http://localhost:7000/post/edit/${uid}`,formdata)
       history.push(`/mypost/${uid}`)
-      console.log(data.data)
+      
     }catch(err){
       console.log("ok")
     }
@@ -356,18 +355,7 @@ const Formedit = () => {
               (แชท)
             </span>
           </Form.File.Label>
-            {/* {ok ? ok.files.map(res => {
-              return ( <div>
-                <input
-                className="uploadsformpostuploadslip"
-                type="file"
-                onChange={FileUpload}
-                multiple
-                value={res.filename}
-              />
-              </div>
-            )
-            }) : null} */}
+           
           <input
             className="uploadsformedituploadslip"
             type="file"
