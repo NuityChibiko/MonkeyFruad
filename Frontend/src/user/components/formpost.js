@@ -37,7 +37,7 @@ const Formpost = () => {
   }
 
 
-  console.log(photo)
+
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
   
@@ -54,9 +54,8 @@ const Formpost = () => {
 
 // ฟังก์ชันอัพโหลดไฟล์ 
   const FileUpload = (event) => { 
-   
-    setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
+    setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
 
@@ -81,7 +80,7 @@ let history = useHistory()
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
-      if(user){
+      
         let formdata = new FormData()
       let useruid = user.uid
       _.forEach(files , file =>{
@@ -103,13 +102,9 @@ let history = useHistory()
       formdata.append("useruid" , useruid)
    
       let data = await Axios.post("http://localhost:7000/post/create", formdata ) 
+      console.log(data.data.success)
         history.push("/post/history")
      
-      }else{
-        console.log("error")
-      }
-      
-      
     }catch(err){
       console.log(err)
     }

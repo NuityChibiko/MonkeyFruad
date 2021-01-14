@@ -41,18 +41,17 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
     let files = req.files.eiei 
     console.log(file)
     console.log(files)
-    if(req.files.photo == undefined && req.files.eiei == undefined){
+    if(file == undefined && files == undefined){
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date})
     }
-    else if(req.files.photo == undefined){
+    if(file == undefined){
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,files})
     }
-    else if(req.files.eiei == undefined){
+     if(files == undefined){
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file})
     }
-    else{
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file,files})
-    }
+      
    res.json({ success: "สร้างโพสสำเร็จ" });
   }catch(err){
     console.log(err)
