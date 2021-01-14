@@ -251,12 +251,12 @@ const Signup = () => {
                               <ErrorMessage component="div" name="lastname" className="invalid-feedback" />
                           </div>
 
-                          <div className="form-group mb-0 gender">
+                          <div className="form-group mb-0 gender" style={{color: "#6C757D"}}>
                             <label className="label-form-title">เพศ</label>
                               <div className="form-inside">
                                 <div className="profile-data d-inline mr-2">
                                   <input required onChange={selectSex} name="gender" type="radio" id="male" value="male" className="mr-1" />
-                                  <label htmlFor="male">
+                                  <label htmlFor="male" >
                                     ชาย
                                   </label>
                                 </div>
@@ -284,10 +284,10 @@ const Signup = () => {
                               <ErrorMessage component="div" name="name" className="invalid-feedback" />
                           </div>
 
-                          <div className="Province mb-5">
+                          <div className="Province mb-5" style={{color: "#6C757D"}}>
                             <label for="province" className="label-form-title">จังหวัด</label>
-                            <div className="form-inside ">
-                            <Field  as="select" name="color" onChange={(e)=>{
+                            <div className="form-inside">
+                            <Field  as="select" name="color" className="province-select" onChange={(e)=>{
                                     setProvince(e.target.value)
                                   }} >
                                 <option value="" selected>กรุณาเลือกจังหวัด</option>
