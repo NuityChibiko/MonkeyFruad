@@ -1,34 +1,26 @@
-import React, { useEffect, useState ,useContext} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Navbar from "../components/navbar";
-import usercontext from "../context/usercontext"
+import usercontext from "../context/usercontext";
 import axios from "axios";
-import {
-  auth,
-  googleProvider,
-  facebookProvider,
-} from "../Frontfirebase";
+import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 const Home = () => {
-  const [data , setData ]= useState()
+  const [data, setData] = useState();
   var user = auth.currentUser;
-const ok = () =>{
-
-  if (user) {
-   console.log(user.email)
-  } else {
-    console.log("error")
-  }
-}
-
-useEffect(() => {
-ok()
-}, [user])
+  const test = () => {
+    if (user) {
+      console.log("all user data", user);
+      console.log("uid user", user.uid);
+    } else {
+      console.log("error");
+    }
+  };
 
   return (
     <div>
       <Navbar />
-
       <h1>Home</h1>
       {/* <a onClick={submit}>enter</a> */}
+      <button onClick={test}>test user data</button>
     </div>
   );
 };

@@ -33,14 +33,7 @@ const App = () => {
         userRef.doc(firebaseUser.uid).onSnapshot((doc)=>{
           if(doc.data()){
             const userData = {
-              uid:doc.data().uid,
-              email:doc.data().email,
-              firstname:doc.data().firstname,
-              surname:doc.data().surname,
-              country:doc.data().country,
-              province:doc.data().province,
-              role:doc.data().role,
-              sex:doc.data().sex
+              uid:doc.data().uid
             };
             setUser(userData);
           }
@@ -48,13 +41,11 @@ const App = () => {
       }else{
         setUser(null);
       }
-      console.log(user)
-     
   });return () =>{
 authUnsubscribe();
   };
   },[]);
-console.log(user)
+
 return (
   <Router>
     <usercontext.Provider value={ {user,setUser}}>
@@ -107,8 +98,6 @@ return (
       <Route path="/linkruleshow" exact>
         <Linkruleshow />
       </Route>
-     
-     
     </Switch>
     </usercontext.Provider>
   </Router>
