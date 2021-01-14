@@ -105,18 +105,25 @@ const Signup = () => {
         name: Yup.string()
             .min(2, 'สั้นเกินไป')
             .max(50, 'ยาวเกินไป')
-            .required('จำเป็นต้องกรอกช่องนี้'),
+            .required('จำเป็นต้องกรอกช่องนี้')
+            .test('', 'กรุณาใส่ตัวอักษรเท่านั้น', (value) => {
+              return !/^[0-9]+$/.test(value);
+          }),
         lastname: Yup.string()
             .min(2, 'สั้นเกินไป')
             .max(50, 'ยาวเกินไป')
-            .required('จำเป็นต้องกรอกช่องนี้'),
+            .required('จำเป็นต้องกรอกช่องนี้')
+            .test('', 'กรุณาใส่ตัวอักษรเท่านั้น', (value) => {
+              return !/^[0-9]+$/.test(value);
+          }),
         username: Yup.string()
             .min(2, 'สั้นเกินไป')
             .max(50, 'ยาวเกินไป')
             .required('จำเป็นต้องกรอกช่องนี้'),
-        phone: Yup.string()
-            .max(10, 'ยาวเกินไป')
-            .required('จำเป็นต้องกรอกช่องนี้'),
+        phone: Yup.number()
+            .max(10000000000, 'ยาวเกินไป')
+            .required('จำเป็นต้องกรอกช่องนี้')
+            .typeError('กรุณาใส่ตัวเลขเท่านั้น'),
         email: Yup.string()
             .email('รูปแบบอีเมลไม่ถูกต้อง')
             .required('จำเป็นต้องกรอกช่องนี้'),
@@ -142,7 +149,7 @@ const Signup = () => {
         <form  className='LoginForm'>
           <img src="/img/logoLogin.png" className="LogoLogin" />
           <p className="h2 text-center mb-2 font-weight-bold">สมัครสมาชิก</p>
-            {emailis_inVaild ? <div className="alert-login">อีเมลนี้มีอยู่ในระบบแล้ว</div> : <p></p>}
+            {emailis_inVaild ? <div className="alert-signup"> <span>อีเมลนี้มีอยู่ในระบบแล้ว</span></div> : <p></p>}
           <div className="col-md-12">
               <Formik
                   initialValues={{
@@ -281,7 +288,7 @@ const Signup = () => {
                                     setPhone(e.target.value)
                                   }}
                               />
-                              <ErrorMessage component="div" name="name" className="invalid-feedback" />
+                              <ErrorMessage component="div" name="phone" className="invalid-feedback" />
                           </div>
 
                           <div className="Province mb-5">

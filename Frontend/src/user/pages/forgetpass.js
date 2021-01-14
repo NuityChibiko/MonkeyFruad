@@ -75,7 +75,7 @@ const Forgetpass = () => {
           <p className="text-left my-0 instruction-forgetpass">
             Enter the email associated with your account and we'll send you an email with instructions to reset your password.
           </p>
-          {sendEmail ? <div className="alert-forgetpass">ได้ส่งคำขอไปยัง Email ดังกล่าวแล้ว</div> : ""}
+          {sendEmail ? <div className="alert-forgetpass"><span>ได้ส่งคำขอไปยัง Email ดังกล่าวแล้ว</span></div> : ""}
           <div className="LoginInputForm">
           <Formik
                   initialValues={{
