@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Component } from "react";
 import { Form, Col, FormControl } from "react-bootstrap";
-import {useParams } from "react-router-dom"
+import {useParams , useHistory } from "react-router-dom"
 import {
   auth,
   googleProvider,
@@ -72,6 +72,9 @@ const Formedit = () => {
     }
   };
 
+  let history = useHistory()
+
+
   const ok = async () =>{
   
     const hello = await Axios.get(`http://localhost:7000/post/edit/${uid}`)
@@ -119,10 +122,13 @@ const Formedit = () => {
       formdata.append("datetime" , datetime)
       formdata.append("social" , social)
       formdata.append("other" , other)
+      
       // let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
       let data = await Axios.post(`http://localhost:7000/post/edit/${uid}`,formdata)
+      history.push(`/mypost/${uid}`)
+      console.log(data.data)
     }catch(err){
-      console.log(err)
+      console.log("ok")
     }
   }
   return (

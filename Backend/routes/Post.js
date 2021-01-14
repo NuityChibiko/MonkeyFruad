@@ -53,16 +53,7 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
     else{
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file,files})
     }
-  
-   
-    
-
-     
-  
-    
-    
-    
-   res.json({ success: true });
+   res.json({ success: "สร้างโพสสำเร็จ" });
   }catch(err){
     console.log(err)
   }
@@ -87,7 +78,9 @@ router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "e
       const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,file,files})
     }
     const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date})
-
+    res.json({
+      success : "แก้ไขสำเร็จ"
+    })
   }catch(err){
     console.log(err)
   }

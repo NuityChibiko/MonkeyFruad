@@ -49,12 +49,13 @@ ok()
     <div>
       <Navbar />
       <h1 className="h1-history">ประวัติการโพสต์</h1>
+      {mypost ? <h2 className="h2-history2">ทั้งหมด {mypost.length} โพสต์</h2> : null}
       {mypost ? mypost.map(ok =>{
         return (
           <div>
            
       <div className="container-history1">
-      {mypost ? <h2 className="h2-history2">ทั้งหมด {mypost.length} โพสต์</h2> : null}
+      
         <div className="container-history2">
           <div className="container-historysetiing">
             <div className="menu-containerhistorysetting">

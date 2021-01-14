@@ -1,5 +1,6 @@
 import React, { useState ,useContext , useEffect} from "react";
 import { Form, Col, Image, roundedCircle } from "react-bootstrap";
+import {useHistory} from "react-router-dom";
 import {storage} from "../Frontfirebase"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
@@ -73,21 +74,14 @@ const Formpost = () => {
   };
 
 
-//   const ok = async () =>{
-//     let user = auth.currentUser;
-//   }
 
-
-//   useEffect(() => {
-//     ok()
-// }, [])
 let user = auth.currentUser;
+let history = useHistory()
  
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
       if(user){
-        console.log(user)
         let formdata = new FormData()
       let useruid = user.uid
       _.forEach(files , file =>{
@@ -109,6 +103,7 @@ let user = auth.currentUser;
       formdata.append("useruid" , useruid)
    
       let data = await Axios.post("http://localhost:7000/post/create", formdata ) 
+        history.push("/post/history")
      
       }else{
         console.log("error")
