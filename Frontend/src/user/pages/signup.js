@@ -142,7 +142,7 @@ const Signup = () => {
         <form  className='LoginForm'>
           <img src="/img/logoLogin.png" className="LogoLogin" />
           <p className="h2 text-center mb-2 font-weight-bold">สมัครสมาชิก</p>
-            {emailis_inVaild ? <div className="alert-login">อีเมลนี้มีอยู่ในระบบแล้ว</div> : <p></p>}
+            {emailis_inVaild ? <div className="alert-signup"> <span>อีเมลนี้มีอยู่ในระบบแล้ว</span></div> : <p></p>}
           <div className="col-md-12">
               <Formik
                   initialValues={{

@@ -126,14 +126,13 @@ h1 {
 
 .alert-forgetpass {
     margin-top: 1rem;
-    color: #d17581;
-    border: 1px solid #D08690;
-    background-color: #F2DEDE;
-    padding: .7rem;
+    color: #a7d49a;
+    border: 1px solid #a7d49a;
+    background-color: #DEF0D8;
+    padding: .3rem;
     border-radius: .4rem;
 }
 
-.instruction-forgetpass {
-    color: #6C757D;
-    font-size: 16px;
+.alert-forgetpass  span {
+    font-size: 1rem;
 }
