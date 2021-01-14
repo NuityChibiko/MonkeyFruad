@@ -70,9 +70,9 @@ const Rule = () => {
                 <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">โปรดกดปุ่มยืนยันนี้ ก่อนกดยอมรับข้อตกลง</a>
             </Form.Row>
 
-            <button className="buttonrule" variant="success" type="submit" >
+            <a href="/post/create" className="buttonrule" variant="success" type="submit" >
                 ยอมรับข้อตกลง
-            </button>
+            </a>
       </div>
     </div>
   );

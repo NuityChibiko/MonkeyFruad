@@ -28,7 +28,7 @@ const Usernvabar = () => {
             <NavDropdown title="โพสต์" id="basic-nav-dropdown">
               <NavDropdown.Item href="/post">โพสต์ทั้งหมด</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/post/create">สร้างโพสต์</NavDropdown.Item>
+              <NavDropdown.Item href="/linkruleshow">สร้างโพสต์</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/ranking">จัดอันดับคนโกง</Nav.Link>
             <NavDropdown title="ช่วยเหลือ" id="basic-nav-dropdown">
