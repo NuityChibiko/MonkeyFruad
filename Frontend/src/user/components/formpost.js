@@ -1,4 +1,4 @@
-import React, { useState ,useContext} from "react";
+import React, { useState ,useContext , useEffect} from "react";
 import { Form, Col, Image, roundedCircle } from "react-bootstrap";
 import {storage} from "../Frontfirebase"
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,7 +6,8 @@ import "./formpost.css";
 import usercontext from "../context/usercontext"
 import Axios from "axios"
 import _ from "lodash"
-// import image from "../../uploads/logo192.png"
+import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
+
 
 
 
@@ -29,7 +30,7 @@ const Formpost = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
-  let { user , setUser} = useContext(usercontext)
+  // let { user , setUser} = useContext(usercontext)
   const ImageHoverZoom = ({ imagePreviewUrl }) => {
     
   }
@@ -71,12 +72,23 @@ const Formpost = () => {
      
   };
 
-  
-  
+
+//   const ok = async () =>{
+//     let user = auth.currentUser;
+//   }
+
+
+//   useEffect(() => {
+//     ok()
+// }, [])
+let user = auth.currentUser;
+ 
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
-      let formdata = new FormData()
+      if(user){
+        console.log(user)
+        let formdata = new FormData()
       let useruid = user.uid
       _.forEach(files , file =>{
         formdata.append("eiei" , file)
@@ -95,11 +107,13 @@ const Formpost = () => {
       formdata.append("social" , social)
       formdata.append("other" , other)
       formdata.append("useruid" , useruid)
-      
-      
-      // let sentdata = {imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid}
+   
       let data = await Axios.post("http://localhost:7000/post/create", formdata ) 
-      // let eiei = await Axios.post("http://localhost:7000/post/upload", formdata ) 
+     
+      }else{
+        console.log("error")
+      }
+      
       
     }catch(err){
       console.log(err)

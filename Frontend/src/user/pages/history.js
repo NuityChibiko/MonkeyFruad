@@ -5,27 +5,37 @@ import Navbar from "../components/navbar";
 import "./history.css";
 import usercontext from "../context/usercontext"
 import Axios from "axios"
+import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 const History = () => {
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
   const [mypost,   Setmypost] = useState();
-  let { user , setUser} = useContext(usercontext)
+  // let { user , setUser} = useContext(usercontext)
 
+  let user = auth.currentUser;
 
-  const deleted = async(uid) =>{
-    const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
-    console.log(postdelete.data)
-    const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
-    console.log(ok.data.item)
-    Setmypost(ok.data.item) 
-  }
-   
+    const deleted = async(uid) =>{
+      if(user){
+      const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
+      console.log(postdelete.data)
+      const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
+      console.log(ok.data.item)
+      Setmypost(ok.data.item) 
+    }
+    }
+     
+
+ 
     
 const ok =async () =>{
   try{
-      const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
-      console.log(ok.data.item)
-      Setmypost(ok.data.item)
+      
+      if(user){
+        const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
+        console.log(ok.data.item)
+        Setmypost(ok.data.item)
+      }
+  
   }catch(err){
       console.log("error")
   }

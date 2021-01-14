@@ -21,6 +21,7 @@ const Formedit = () => {
   const [imagesFile, setImagesFile] = useState(); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
   const [imagesProfile, setImagesProfile] = useState(); //สร้าง State เพื่อเก็บรูปโปรไฟล์
   const [files, Setfiles] = useState();
+  const [photo, Setphoto] = useState();
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [id, setId] = useState();
@@ -42,6 +43,7 @@ const Formedit = () => {
   
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
+    Setphoto(files[0])
     let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
     reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
     reader.onload = (event) => {
@@ -75,6 +77,7 @@ const Formedit = () => {
     const hello = await Axios.get(`http://localhost:7000/post/edit/${uid}`)
     
     let gethistory = hello.data.item
+    console.log(show)
  
     Setshow(gethistory)
     setName(gethistory[0].name)
@@ -104,7 +107,7 @@ const Formedit = () => {
       _.forEach(files , file => {
         formdata.append("eiei" ,file)
       })
-      formdata.append("imagesProfile" , imagesProfile)
+      formdata.append("photo" , photo)
       formdata.append("name" , name)
       formdata.append("surname" , surname)
       formdata.append("id" , id)
@@ -380,12 +383,13 @@ const Formedit = () => {
                   onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
                 />
               );
-            }) :     ok ? ok.files.map(res => {
+            }) :    ok.files ? ok.files.map(res => { 
               return ( <div>
-                 <img src={`/uploads/${res.filename}`}  /> 
-              </div>
-            )
-            }) : null }
+                <img src={`/uploads/${res.filename}`}  /> 
+             </div>
+           )
+           }) : null }
+             
 
         
           </div>

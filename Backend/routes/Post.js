@@ -37,8 +37,8 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
     const date = moment().format('MM/DD/YYYY, h:mm:ss')
 
    
-    let file = req.files.photo
-    let files = req.files.eiei
+    let file = req.files.photo 
+    let files = req.files.eiei 
     console.log(file)
     console.log(files)
     if(req.files.photo == undefined && req.files.eiei == undefined){
@@ -68,16 +68,26 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
   }
   
 });
-router.post("/edit/:uid", upload.array("eiei"),async (req, res) => {
+router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]),async (req, res) => {
   let uid = req.params.uid
   const date = moment().format('MM/DD/YYYY, h:mm:ss ')
   const {imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
   try{
-    let files = req.files
-    const update =await firestore.collection("Post").doc(uid).update({imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date})
-    if(req.files){
-      const update =await firestore.collection("Post").doc(uid).update({imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,files})
+    let file = req.files.photo
+    let files = req.files.eiei
+    console.log(file)
+    console.log(files)
+    if(files){
+      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,files})
     }
+    if(file){
+      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,file})
+    }
+    if(file && files){
+      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,file,files})
+    }
+    const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date})
+
   }catch(err){
     console.log(err)
   }
@@ -92,7 +102,6 @@ router.get("/edit/:uid",async (req, res) => {
   let uid = req.params.uid
   try{
     
-
     const showdata = await firestore.collection("Post").where("uid", "==", uid).get()
     showdata.forEach(doc =>{
       let item = []
