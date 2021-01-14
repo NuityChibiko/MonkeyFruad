@@ -167,12 +167,34 @@ h1 {
     .form-inside {
         width: 65%;
     }
+    .province-select {
+        color: inherit;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
 }
 
 @media (max-width: 767.98px) {
     .form-inside {
         width: 100%;
         display: block;
+    }
+    .province-select {
+        display: block;
+        color: inherit;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
 }
 
@@ -182,12 +204,15 @@ h1 {
     color: inherit;
 }
 
-
-.alert-login {
+.alert-signup {
     margin-top: 1rem;
-    color: #d17581;
-    border: 1px solid #D08690;
-    background-color: #F2DEDE;
-    padding: .7rem;
+    color: #be2020;
+    border: 1px solid #be2020;
+    background-color: #f8a9a977;
+    padding: .3rem;
     border-radius: .4rem;
+}
+
+.alert-signup span {
+    font-size: 1rem;
 }
