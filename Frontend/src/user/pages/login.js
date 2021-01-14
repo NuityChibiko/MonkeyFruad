@@ -91,8 +91,6 @@ const Login = () => {
           .required('จำเป็นต้องกรอกช่องนี้')
     }
 );
-console.log(emailis_inVaild)
-
   return (
     <div>
       <Navbar />

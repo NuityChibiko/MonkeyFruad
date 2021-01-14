@@ -18,51 +18,19 @@ import axios from "axios";
 
 
 const Forgetpass = () => {
-
-  let history = useHistory();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailis_inVaild, setEmailis_inVaild] = useState(false);
 
-  const LoginSubmit = (e) => {
+  const ForgetEmailSubmit = (e) => {
     e.preventDefault()
- auth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        console.log(result);
-        history.push("/");
-      })
-      .catch(() => {
-        setEmailis_inVaild(true)
-      });
+    auth.sendPasswordResetEmail(email).then(function(result) {
+      console.log(result)
+    }).catch(function(error) {
+      console.log(error)
+    });
   };
 
-  const googleLogin = async (e) => {
-    e.preventDefault();
-    const result = await auth.signInWithPopup(googleProvider);
-    console.log(result)
-    axios.post("http://localhost:7000/user/googlesignup", { result: result })
-      .then((result) => {
-        console.log(result.data);
-        history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  
 
-  const facebookLogin = async (e) => {
-    e.preventDefault();
-    const result = await auth.signInWithPopup(facebookProvider);
-    console.log(result)
-    axios.post("http://localhost:7000/user/facebooksignup", { result: result })
-      .then((result) => {
-        console.log(result.data);
-        history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const styles = {
     row: {
@@ -94,7 +62,7 @@ const Forgetpass = () => {
           .required('จำเป็นต้องกรอกช่องนี้')
     }
 );
-console.log(emailis_inVaild)
+
 
 
   return (
@@ -104,7 +72,6 @@ console.log(emailis_inVaild)
         <form className="LoginForm">
           <img src="/img/logoLogin.png" className="LogoLogin" />
           <p className="h2 text-center mb-4 font-weight-bold">Reset password</p>
-          {emailis_inVaild ? <div className="alert-login">อีเมลนี้ไม่มีอยู่ในระบบ</div> : <p></p>}
           <p className="text-left my-0 instruction-forgetpass">
             Enter the email associated with your account and we'll send you an email with instructions to reset your password.
           </p>
@@ -141,7 +108,7 @@ console.log(emailis_inVaild)
               </Formik>
           </div>
 
-          <button onClick={LoginSubmit} className="btn-block LoginButton">
+          <button onClick={ForgetEmailSubmit} className="btn-block LoginButton">
             <p className="mx-auto my-1">Send Instructions</p>
           </button>
 

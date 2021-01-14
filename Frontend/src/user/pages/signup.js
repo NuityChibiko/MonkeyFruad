@@ -14,29 +14,24 @@ import {
 } from "../Frontfirebase";
 const Signup = () => {
   let history = useHistory();
+  const [username,setUsername] = useState("")
   const [firstname,setFirstname] = useState("")
   const [surname,setSurname] = useState("")
   const [sex,setSex] = useState("")
   const [date,setDate] = useState()
   const [phone,setPhone] = useState("")
   const [province,setProvince] = useState("")
-  const [country,setCountry] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-  const [repass,setRepass] = useState("")
-  const [checkpass , setCheckpass] = useState(false)
-  const [bottonfalse,setButtonfalse] = useState()  // 
+  const [emailis_inVaild, setEmailis_inVaild] = useState(false);
+
   const SignupSubmit = (e) =>{
     e.preventDefault();
     console.log("submit")
-    if (repass !== password) {
-      setCheckpass(false)
-      setButtonfalse("red") // 
-    }
-   else{
-    axios.post("http://localhost:7000/user/signup", { firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
-    province:province,country:country,email:email,password:password,repass:repass
+    axios.post("http://localhost:7000/user/signup", { username:username,firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
+    province:province,email:email,password:password
   }).then((result)=>{
+    console.log("signup success",result)
     auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(result);
@@ -47,8 +42,8 @@ const Signup = () => {
       });
     history.push('/')
   }).catch((err)=>{
-    console.log(err)
-  })}
+     setEmailis_inVaild(true)
+  })
   }
   const googleLogin = async (e) => {
     e.preventDefault();
@@ -139,7 +134,7 @@ const Signup = () => {
             })
       }
   );
-  
+  console.log("this province",province)
   return (
     <div>
       <Navbar />
@@ -147,7 +142,7 @@ const Signup = () => {
         <form  className='LoginForm'>
           <img src="/img/logoLogin.png" className="LogoLogin" />
           <p className="h2 text-center mb-2 font-weight-bold">สมัครสมาชิก</p>
-
+            {emailis_inVaild ? <div className="alert-login">อีเมลนี้มีอยู่ในระบบแล้ว</div> : <p></p>}
           <div className="col-md-12">
               <Formik
                   initialValues={{
@@ -166,7 +161,7 @@ const Signup = () => {
                   }}
               >
                   {({ errors, touched }) => (
-                      <Form>
+                      <Form >
                           <div className="form-group mb-1">
 
                               <label htmlFor="name" style={styles.txt2}>Username</label>
@@ -176,6 +171,9 @@ const Signup = () => {
                                   className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="username"
                                   placeholder="Username"
+                                  onKeyUp={(e)=>{
+                                    setUsername(e.target.value)
+                                  }}
                               />
                               <ErrorMessage component="div" name="name" className="invalid-feedback" />
                           </div>
@@ -188,6 +186,9 @@ const Signup = () => {
                                   className={`form-control ${touched.email ? errors.email ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="email"
                                   placeholder="Email"
+                                  onKeyUp={(e)=>{
+                                    setEmail(e.target.value)
+                                  }}
                               />
                               <ErrorMessage component="div" name="email" className="invalid-feedback" />
                           </div>
@@ -200,6 +201,9 @@ const Signup = () => {
                                   className={`form-control ${touched.password ? errors.password ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="password"
                                   placeholder="Password"
+                                  onKeyUp={(e)=>{
+                                    setPassword(e.target.value)
+                                  }}
                               />
                               <ErrorMessage component="div" name="password" className="invalid-feedback" />
                           </div>
@@ -212,6 +216,7 @@ const Signup = () => {
                                   className={`form-control ${touched.confirmPassword ? errors.confirmPassword ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="confirmPassword"
                                   placeholder="Confirm Password"
+                                  
                               />
                               <ErrorMessage component="div" name="confirmPassword" className="invalid-feedback" />
                           </div>
@@ -224,6 +229,9 @@ const Signup = () => {
                                   className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="name"
                                   placeholder="ชื่อจริง"
+                                  onKeyUp={(e)=>{
+                                    setFirstname(e.target.value)
+                                  }}
                               />
                               <ErrorMessage component="div" name="name" className="invalid-feedback" />
                           </div>
@@ -236,6 +244,9 @@ const Signup = () => {
                                   className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="lastname"
                                   placeholder="นามสกุล"
+                                  onKeyUp={(e)=>{
+                                    setSurname(e.target.value)
+                                  }}
                               />
                               <ErrorMessage component="div" name="name" className="invalid-feedback" />
                           </div>
@@ -266,6 +277,9 @@ const Signup = () => {
                                   className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="phone"
                                   placeholder="เบอร์โทรศัพท์"
+                                  onKeyUp={(e)=>{
+                                    setPhone(e.target.value)
+                                  }}
                               />
                               <ErrorMessage component="div" name="name" className="invalid-feedback" />
                           </div>
@@ -273,7 +287,9 @@ const Signup = () => {
                           <div className="Province mb-5">
                             <label for="province" className="label-form-title">จังหวัด</label>
                             <div className="form-inside ">
-                            <Field as="select" name="color">
+                            <Field  as="select" name="color" onChange={(e)=>{
+                                    setProvince(e.target.value)
+                                  }} >
                                 <option value="" selected>กรุณาเลือกจังหวัด</option>
                                 <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                 <option value="กระบี่">กระบี่ </option>

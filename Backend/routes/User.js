@@ -10,27 +10,37 @@ router.post("/signup", async (req, res) => {
       firstname,
       surname,
       sex,
-      date,
       province,
-      country,
       email,
-      password
+      password,
+      username,
+      phone
     } = req.body;
+    console.log(firstname,
+      surname,
+      sex,
+      province,
+      email,
+      password,
+      username,
+      phone)
       auth
         .createUserWithEmailAndPassword(email, password)
         .then((result) => {
+          console.log(result)
           if (result) {
             const userRef = firestore.collection("User").doc(result.user.uid);
             userRef.set({
               uid: result.user.uid,
+              username:username,
               email: result.user.email,
               firstname: firstname,
               surname: surname,
               sex: sex,
-              date: date,
+              phone : phone,
               province: province,
-              country: country,
               role: "user",
+              type:"On web"
             });
             return res.json({ msg: "signup success" });
           }
@@ -59,6 +69,7 @@ router.post("/googlesignup", function (req, res) {
         photoURL : result.user.photoURL,
         created: new Date().valueOf(),
         role: "user",
+        type:"Google"
       });
       return res.json({ msg: "google signup success" });
     } else {
@@ -90,6 +101,7 @@ router.post("/facebooksignup", function (req, res) {
          photoURL : result.user.photoURL,
          created: new Date().valueOf(),
          role: "user",
+         type:"Facebook"
        });
        return res.json({ msg: "facebook signup success" });
      } else {
