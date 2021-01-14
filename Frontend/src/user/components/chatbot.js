@@ -8,13 +8,12 @@ const Chatbot = () => {
     const toggleHandler = () => {
         const newData = !state;
         setState(newData);
-        console.log(state)
     } 
   return (
     <div className="foot">
         <div className="card-chatbot">
             <div className="card-chatbot-header text-left" onClick={toggleHandler}><span className="text-card-header">
-                Add Friend</span><span><i class="fas fa-minus"></i></span>
+                Add Friend</span><span><i className="fas fa-minus"></i></span>
             </div>
             {
                 state

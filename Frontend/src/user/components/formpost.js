@@ -1,15 +1,25 @@
-import React, { useState ,useContext} from "react";
+import React, { useState ,useContext , useEffect} from "react";
 import { Form, Col, Image, roundedCircle } from "react-bootstrap";
+import {useHistory} from "react-router-dom";
+import {storage} from "../Frontfirebase"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
 import usercontext from "../context/usercontext"
 import Axios from "axios"
+import _ from "lodash"
+import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
+
+
+
+
 const Formpost = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
   
   const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
   const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
+  const [files, Setfiles] = useState("");
+  const [photo, Setphoto] = useState("");
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [id, setId] = useState();
@@ -21,20 +31,23 @@ const Formpost = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
-  let { user , setUser} = useContext(usercontext)
+  // let { user , setUser} = useContext(usercontext)
   const ImageHoverZoom = ({ imagePreviewUrl }) => {
     
   }
 
+
+  console.log(photo)
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
   
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
+    Setphoto(files[0])
     let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
     reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
-    reader.onload = (event) => {
-      setImagesProfile(event.target.result); // ใส่ข้อมูลเข้าไปยัง state ผาน setImagesProfile
+    reader.onloadend = () => {
+      setImagesProfile(reader.result); // ใส่ข้อมูลเข้าไปยัง state ผาน setImagesProfile
     };
 
   };
@@ -45,25 +58,57 @@ const Formpost = () => {
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
+    Setfiles(files)
 
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
       let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
       reader.readAsDataURL(files[i]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
-      reader.onload = (event) => {
+      reader.onloadend = () => {
         // ใส่ข้อมูลเข้าไปยัง state ผาน  setimagesPreviewUrls
-        setImagesFile((prevState) => [...prevState, event.target.result]);
+        setImagesFile((prevState) => [...prevState, reader.result]);
         //  PrevState เป็น Parameter ในการเรียก State ก่อนหน้ามาแล้วรวม Array กับ fileที่อัพโหลดเข้ามา
       };
     }
+     
   };
 
+
+
+let user = auth.currentUser;
+let history = useHistory()
+ 
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
+      if(user){
+        let formdata = new FormData()
       let useruid = user.uid
-      let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid}
-      let data = await Axios.post("http://localhost:7000/post/create",sentdata)
+      _.forEach(files , file =>{
+        formdata.append("eiei" , file)
+      })
+      formdata.append("photo" , photo)
+      formdata.append("imagesProfile" , imagesProfile)
+      formdata.append("name" , name)
+      formdata.append("surname" , surname)
+      formdata.append("id" , id)
+      formdata.append("accountnumber" , accountnumber)
+      formdata.append("nameproduct" , nameproduct)
+      formdata.append("productcategory" , productcategory)
+      formdata.append("money" , money)
+      formdata.append("bank" , bank)
+      formdata.append("datetime" , datetime)
+      formdata.append("social" , social)
+      formdata.append("other" , other)
+      formdata.append("useruid" , useruid)
+   
+      let data = await Axios.post("http://localhost:7000/post/create", formdata ) 
+        history.push("/post/history")
+     
+      }else{
+        console.log("error")
+      }
+      
       
     }catch(err){
       console.log(err)
@@ -94,7 +139,7 @@ const Formpost = () => {
               </div>
             </span>
           </div>
-        </div>
+        </div> 
         <Form className="formsize-formpost" onSubmit={handlesubmit}>
           <Form.Row>
             <Form.Group
@@ -277,16 +322,17 @@ const Formpost = () => {
                 />
               );
             })}
+
           </div>
 
-          <Form.Row className="linkrule1">
+           {/* <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
-          </Form.Row>
-          {/* <div className="buttonformpost1"> */}
-            <button className="buttonformpost" type="submit" href="/mypost">
+          </Form.Row> */}
+
+          <button className="buttonformpost" variant="success" type="submit" >
             โพสต์
-            </button>
-          {/* </div>   */}
+          </button>
+       
         </Form>
       </div>
     </div>

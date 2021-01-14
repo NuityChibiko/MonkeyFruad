@@ -131,9 +131,8 @@ h1 {
         margin-bottom: -1rem;
         margin-top: 1rem;
     }
-    .Phone {
-        margin-bottom: -1rem;
-        margin-top: 2rem;
+    .phone {
+        margin-bottom: -3rem;
     }
     .Email {
         margin-top: -1rem;
@@ -149,8 +148,12 @@ h1 {
     .BirthDate {
         margin-bottom: 1rem;
     }
-    .Phone {
-        margin-bottom: -1rem;
+    .phone {
+        margin-bottom: 1rem;
+    }
+    .container-login {
+        margin: 0 auto;
+        width: 100%;
     }
 }
 
@@ -177,4 +180,14 @@ h1 {
     font-size: inherit;
     display: inline-block;
     color: inherit;
+}
+
+
+.alert-login {
+    margin-top: 1rem;
+    color: #d17581;
+    border: 1px solid #D08690;
+    background-color: #F2DEDE;
+    padding: .7rem;
+    border-radius: .4rem;
 }

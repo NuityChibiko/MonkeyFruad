@@ -14,29 +14,24 @@ import {
 } from "../Frontfirebase";
 const Signup = () => {
   let history = useHistory();
+  const [username,setUsername] = useState("")
   const [firstname,setFirstname] = useState("")
   const [surname,setSurname] = useState("")
   const [sex,setSex] = useState("")
   const [date,setDate] = useState()
   const [phone,setPhone] = useState("")
   const [province,setProvince] = useState("")
-  const [country,setCountry] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-  const [repass,setRepass] = useState("")
-  const [checkpass , setCheckpass] = useState(false)
-  const [bottonfalse,setButtonfalse] = useState()  // 
+  const [emailis_inVaild, setEmailis_inVaild] = useState(false);
+
   const SignupSubmit = (e) =>{
     e.preventDefault();
     console.log("submit")
-    if (repass !== password) {
-      setCheckpass(false)
-      setButtonfalse("red") // 
-    }
-   else{
-    axios.post("http://localhost:7000/user/signup", { firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
-    province:province,country:country,email:email,password:password,repass:repass
+    axios.post("http://localhost:7000/user/signup", { username:username,firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
+    province:province,email:email,password:password
   }).then((result)=>{
+    console.log("signup success",result)
     auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(result);
@@ -47,8 +42,8 @@ const Signup = () => {
       });
     history.push('/')
   }).catch((err)=>{
-    console.log(err)
-  })}
+     setEmailis_inVaild(true)
+  })
   }
   const googleLogin = async (e) => {
     e.preventDefault();
@@ -123,7 +118,7 @@ const Signup = () => {
             .max(10, 'ยาวเกินไป')
             .required('จำเป็นต้องกรอกช่องนี้'),
         email: Yup.string()
-            .email('รูปแบบของอีเมลไม่ถูกต้อง')
+            .email('รูปแบบอีเมลไม่ถูกต้อง')
             .required('จำเป็นต้องกรอกช่องนี้'),
         password: Yup.string()
             .min(6, 'กรุณากรอกตัวอักษรอย่างน้อย 6 ตัว')
@@ -139,15 +134,15 @@ const Signup = () => {
             })
       }
   );
-  
+  console.log("this province",province)
   return (
     <div>
       <Navbar />
       <div className="container-login">
         <form  className='LoginForm'>
           <img src="/img/logoLogin.png" className="LogoLogin" />
-          <p className="h2 text-center mb-4 font-weight-bold">สมัครสมาชิก</p>
-
+          <p className="h2 text-center mb-2 font-weight-bold">สมัครสมาชิก</p>
+            {emailis_inVaild ? <div className="alert-login">อีเมลนี้มีอยู่ในระบบแล้ว</div> : <p></p>}
           <div className="col-md-12">
               <Formik
                   initialValues={{
@@ -166,18 +161,23 @@ const Signup = () => {
                   }}
               >
                   {({ errors, touched }) => (
-                      <Form>
+                      <Form >
                           <div className="form-group mb-1">
+
                               <label htmlFor="name" style={styles.txt2}>Username</label>
                               <Field
                                   name="username"
                                   type="text"
-                                  className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
+                                  className={`form-control ${touched.username ? errors.username ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="username"
-                                  placeholder="Enter Username"
+                                  placeholder="Username"
+                                  onKeyUp={(e)=>{
+                                    setUsername(e.target.value)
+                                  }}
                               />
-                              <ErrorMessage component="div" name="name" className="invalid-feedback" />
+                              <ErrorMessage component="div" name="username" className="invalid-feedback" />
                           </div>
+
                           <div className="form-group mb-1">
                               <label htmlFor="email" style={styles.txt2}>Email</label>
                               <Field
@@ -185,10 +185,14 @@ const Signup = () => {
                                   type="email"
                                   className={`form-control ${touched.email ? errors.email ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="email"
-                                  placeholder="Enter Email"
+                                  placeholder="Email"
+                                  onKeyUp={(e)=>{
+                                    setEmail(e.target.value)
+                                  }}
                               />
                               <ErrorMessage component="div" name="email" className="invalid-feedback" />
                           </div>
+
                           <div className="form-group mb-1">
                               <label htmlFor="password" style={styles.txt2}>Password</label>
                               <Field 
@@ -196,10 +200,14 @@ const Signup = () => {
                                   type="password"
                                   className={`form-control ${touched.password ? errors.password ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="password"
-                                  placeholder="Enter Password"
+                                  placeholder="Password"
+                                  onKeyUp={(e)=>{
+                                    setPassword(e.target.value)
+                                  }}
                               />
                               <ErrorMessage component="div" name="password" className="invalid-feedback" />
                           </div>
+
                           <div className="form-group mb-1">
                               <label htmlFor="confirmPassword" style={styles.txt2}>Confirm Password</label>
                               <Field
@@ -207,10 +215,12 @@ const Signup = () => {
                                   type="password"
                                   className={`form-control ${touched.confirmPassword ? errors.confirmPassword ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="confirmPassword"
-                                  placeholder="Enter Confirm Password"
+                                  placeholder="Confirm Password"
+                                  
                               />
                               <ErrorMessage component="div" name="confirmPassword" className="invalid-feedback" />
                           </div>
+
                           <div className="form-group mb-1">
                               <label htmlFor="name" style={styles.txt2}>ชื่อจริง</label>
                               <Field
@@ -218,22 +228,30 @@ const Signup = () => {
                                   type="text"
                                   className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="name"
-                                  placeholder="Enter Name"
+                                  placeholder="ชื่อจริง"
+                                  onKeyUp={(e)=>{
+                                    setFirstname(e.target.value)
+                                  }}
                               />
                               <ErrorMessage component="div" name="name" className="invalid-feedback" />
                           </div>
-                          <div className="form-group mb-1">
+
+                          <div className="form-group mb-4">
                               <label htmlFor="lastname" style={styles.txt2}>นามสกุลจริง</label>
                               <Field
                                   name="lastname"
                                   type="text"
-                                  className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
+                                  className={`form-control ${touched.lastname ? errors.lastname ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="lastname"
-                                  placeholder="Enter Lastname"
+                                  placeholder="นามสกุล"
+                                  onKeyUp={(e)=>{
+                                    setSurname(e.target.value)
+                                  }}
                               />
-                              <ErrorMessage component="div" name="name" className="invalid-feedback" />
+                              <ErrorMessage component="div" name="lastname" className="invalid-feedback" />
                           </div>
-                          <div className="form-group mb-1">
+
+                          <div className="form-group mb-0 gender">
                             <label className="label-form-title">เพศ</label>
                               <div className="form-inside">
                                 <div className="profile-data d-inline mr-2">
@@ -250,102 +268,109 @@ const Signup = () => {
                                 </div>
                               </div>
                           </div>
-                          <div className="form-group mb-1">
+
+                          <div className="form-group mb-4 ">
                               <label htmlFor="phone" style={styles.txt2}>เบอร์โทรศัพท์</label>
                               <Field
                                   name="phone"
                                   type="tel"
-                                  className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
+                                  className={`form-control ${touched.phone ? errors.phone ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="phone"
-                                  placeholder="Enter Phone"
+                                  placeholder="เบอร์โทรศัพท์"
+                                  onKeyUp={(e)=>{
+                                    setPhone(e.target.value)
+                                  }}
                               />
                               <ErrorMessage component="div" name="name" className="invalid-feedback" />
                           </div>
-                          <div className="Province">
-              <label for="province" className="label-form-title">จังหวัด</label>
-              <div className="form-inside ">
-              <Field as="select" name="color">
-                  <option value="" selected>กรุณาเลือกจังหวัด</option>
-                  <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
-                  <option value="กระบี่">กระบี่ </option>
-                  <option value="กาญจนบุรี">กาญจนบุรี </option>
-                  <option value="กาฬสินธุ์">กาฬสินธุ์ </option>
-                  <option value="กำแพงเพชร">กำแพงเพชร </option>
-                  <option value="ขอนแก่น">ขอนแก่น</option>
-                  <option value="จันทบุรี">จันทบุรี</option>
-                  <option value="ฉะเชิงเทรา">ฉะเชิงเทรา </option>
-                  <option value="ชัยนาท">ชัยนาท </option>
-                  <option value="ชัยภูมิ">ชัยภูมิ </option>
-                  <option value="ชุมพร">ชุมพร </option>
-                  <option value="ชลบุรี">ชลบุรี </option>
-                  <option value="เชียงใหม่">เชียงใหม่ </option>
-                  <option value="เชียงราย">เชียงราย </option>
-                  <option value="ตรัง">ตรัง </option>
-                  <option value="ตราด">ตราด </option>
-                  <option value="ตาก">ตาก </option>
-                  <option value="นครนายก">นครนายก </option>
-                  <option value="นครปฐม">นครปฐม </option>
-                  <option value="นครพนม">นครพนม </option>
-                  <option value="นครราชสีมา">นครราชสีมา </option>
-                  <option value="นครศรีธรรมราช">นครศรีธรรมราช </option>
-                  <option value="นครสวรรค์">นครสวรรค์ </option>
-                  <option value="นราธิวาส">นราธิวาส </option>
-                  <option value="น่าน">น่าน </option>
-                  <option value="นนทบุรี">นนทบุรี </option>
-                  <option value="บึงกาฬ">บึงกาฬ</option>
-                  <option value="บุรีรัมย์">บุรีรัมย์</option>
-                  <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์ </option>
-                  <option value="ปทุมธานี">ปทุมธานี </option>
-                  <option value="ปราจีนบุรี">ปราจีนบุรี </option>
-                  <option value="ปัตตานี">ปัตตานี </option>
-                  <option value="พะเยา">พะเยา </option>
-                  <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา </option>
-                  <option value="พังงา">พังงา </option>
-                  <option value="พิจิตร">พิจิตร </option>
-                  <option value="พิษณุโลก">พิษณุโลก </option>
-                  <option value="เพชรบุรี">เพชรบุรี </option>
-                  <option value="เพชรบูรณ์">เพชรบูรณ์ </option>
-                  <option value="แพร่">แพร่ </option>
-                  <option value="พัทลุง">พัทลุง </option>
-                  <option value="ภูเก็ต">ภูเก็ต </option>
-                  <option value="มหาสารคาม">มหาสารคาม </option>
-                  <option value="มุกดาหาร">มุกดาหาร </option>
-                  <option value="แม่ฮ่องสอน">แม่ฮ่องสอน </option>
-                  <option value="ยโสธร">ยโสธร </option>
-                  <option value="ยะลา">ยะลา </option>
-                  <option value="ร้อยเอ็ด">ร้อยเอ็ด </option>
-                  <option value="ระนอง">ระนอง </option>
-                  <option value="ระยอง">ระยอง </option>
-                  <option value="ราชบุรี">ราชบุรี</option>
-                  <option value="ลพบุรี">ลพบุรี </option>
-                  <option value="ลำปาง">ลำปาง </option>
-                  <option value="ลำพูน">ลำพูน </option>
-                  <option value="เลย">เลย </option>
-                  <option value="ศรีสะเกษ">ศรีสะเกษ</option>
-                  <option value="สกลนคร">สกลนคร</option>
-                  <option value="สงขลา">สงขลา </option>
-                  <option value="สมุทรสาคร">สมุทรสาคร </option>
-                  <option value="สมุทรปราการ">สมุทรปราการ </option>
-                  <option value="สมุทรสงคราม">สมุทรสงคราม </option>
-                  <option value="สระแก้ว">สระแก้ว </option>
-                  <option value="สระบุรี">สระบุรี </option>
-                  <option value="สิงห์บุรี">สิงห์บุรี </option>
-                  <option value="สุโขทัย">สุโขทัย </option>
-                  <option value="สุพรรณบุรี">สุพรรณบุรี </option>
-                  <option value="สุราษฎร์ธานี">สุราษฎร์ธานี </option>
-                  <option value="สุรินทร์">สุรินทร์ </option>
-                  <option value="สตูล">สตูล </option>
-                  <option value="หนองคาย">หนองคาย </option>
-                  <option value="หนองบัวลำภู">หนองบัวลำภู </option>
-                  <option value="อำนาจเจริญ">อำนาจเจริญ </option>
-                  <option value="อุดรธานี">อุดรธานี </option>
-                  <option value="อุตรดิตถ์">อุตรดิตถ์ </option>
-                  <option value="อุทัยธานี">อุทัยธานี </option>
-                  <option value="อุบลราชธานี">อุบลราชธานี</option>
-                  <option value="อ่างทอง">อ่างทอง </option>
-                  </Field>
-              </div>
-            </div>
+
+                          <div className="Province mb-5">
+                            <label for="province" className="label-form-title">จังหวัด</label>
+                            <div className="form-inside ">
+                            <Field  as="select" name="color" onChange={(e)=>{
+                                    setProvince(e.target.value)
+                                  }} >
+                                <option value="" selected>กรุณาเลือกจังหวัด</option>
+                                <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                <option value="กระบี่">กระบี่ </option>
+                                <option value="กาญจนบุรี">กาญจนบุรี </option>
+                                <option value="กาฬสินธุ์">กาฬสินธุ์ </option>
+                                <option value="กำแพงเพชร">กำแพงเพชร </option>
+                                <option value="ขอนแก่น">ขอนแก่น</option>
+                                <option value="จันทบุรี">จันทบุรี</option>
+                                <option value="ฉะเชิงเทรา">ฉะเชิงเทรา </option>
+                                <option value="ชัยนาท">ชัยนาท </option>
+                                <option value="ชัยภูมิ">ชัยภูมิ </option>
+                                <option value="ชุมพร">ชุมพร </option>
+                                <option value="ชลบุรี">ชลบุรี </option>
+                                <option value="เชียงใหม่">เชียงใหม่ </option>
+                                <option value="เชียงราย">เชียงราย </option>
+                                <option value="ตรัง">ตรัง </option>
+                                <option value="ตราด">ตราด </option>
+                                <option value="ตาก">ตาก </option>
+                                <option value="นครนายก">นครนายก </option>
+                                <option value="นครปฐม">นครปฐม </option>
+                                <option value="นครพนม">นครพนม </option>
+                                <option value="นครราชสีมา">นครราชสีมา </option>
+                                <option value="นครศรีธรรมราช">นครศรีธรรมราช </option>
+                                <option value="นครสวรรค์">นครสวรรค์ </option>
+                                <option value="นราธิวาส">นราธิวาส </option>
+                                <option value="น่าน">น่าน </option>
+                                <option value="นนทบุรี">นนทบุรี </option>
+                                <option value="บึงกาฬ">บึงกาฬ</option>
+                                <option value="บุรีรัมย์">บุรีรัมย์</option>
+                                <option value="ประจวบคีรีขันธ์">ประจวบคีรีขันธ์ </option>
+                                <option value="ปทุมธานี">ปทุมธานี </option>
+                                <option value="ปราจีนบุรี">ปราจีนบุรี </option>
+                                <option value="ปัตตานี">ปัตตานี </option>
+                                <option value="พะเยา">พะเยา </option>
+                                <option value="พระนครศรีอยุธยา">พระนครศรีอยุธยา </option>
+                                <option value="พังงา">พังงา </option>
+                                <option value="พิจิตร">พิจิตร </option>
+                                <option value="พิษณุโลก">พิษณุโลก </option>
+                                <option value="เพชรบุรี">เพชรบุรี </option>
+                                <option value="เพชรบูรณ์">เพชรบูรณ์ </option>
+                                <option value="แพร่">แพร่ </option>
+                                <option value="พัทลุง">พัทลุง </option>
+                                <option value="ภูเก็ต">ภูเก็ต </option>
+                                <option value="มหาสารคาม">มหาสารคาม </option>
+                                <option value="มุกดาหาร">มุกดาหาร </option>
+                                <option value="แม่ฮ่องสอน">แม่ฮ่องสอน </option>
+                                <option value="ยโสธร">ยโสธร </option>
+                                <option value="ยะลา">ยะลา </option>
+                                <option value="ร้อยเอ็ด">ร้อยเอ็ด </option>
+                                <option value="ระนอง">ระนอง </option>
+                                <option value="ระยอง">ระยอง </option>
+                                <option value="ราชบุรี">ราชบุรี</option>
+                                <option value="ลพบุรี">ลพบุรี </option>
+                                <option value="ลำปาง">ลำปาง </option>
+                                <option value="ลำพูน">ลำพูน </option>
+                                <option value="เลย">เลย </option>
+                                <option value="ศรีสะเกษ">ศรีสะเกษ</option>
+                                <option value="สกลนคร">สกลนคร</option>
+                                <option value="สงขลา">สงขลา </option>
+                                <option value="สมุทรสาคร">สมุทรสาคร </option>
+                                <option value="สมุทรปราการ">สมุทรปราการ </option>
+                                <option value="สมุทรสงคราม">สมุทรสงคราม </option>
+                                <option value="สระแก้ว">สระแก้ว </option>
+                                <option value="สระบุรี">สระบุรี </option>
+                                <option value="สิงห์บุรี">สิงห์บุรี </option>
+                                <option value="สุโขทัย">สุโขทัย </option>
+                                <option value="สุพรรณบุรี">สุพรรณบุรี </option>
+                                <option value="สุราษฎร์ธานี">สุราษฎร์ธานี </option>
+                                <option value="สุรินทร์">สุรินทร์ </option>
+                                <option value="สตูล">สตูล </option>
+                                <option value="หนองคาย">หนองคาย </option>
+                                <option value="หนองบัวลำภู">หนองบัวลำภู </option>
+                                <option value="อำนาจเจริญ">อำนาจเจริญ </option>
+                                <option value="อุดรธานี">อุดรธานี </option>
+                                <option value="อุตรดิตถ์">อุตรดิตถ์ </option>
+                                <option value="อุทัยธานี">อุทัยธานี </option>
+                                <option value="อุบลราชธานี">อุบลราชธานี</option>
+                                <option value="อ่างทอง">อ่างทอง </option>
+                                </Field>
+                            </div>
+                          </div>
                       </Form>
                   )}
               </Formik>

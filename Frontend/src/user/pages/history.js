@@ -5,27 +5,37 @@ import Navbar from "../components/navbar";
 import "./history.css";
 import usercontext from "../context/usercontext"
 import Axios from "axios"
+import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 const History = () => {
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
   const [mypost,   Setmypost] = useState();
-  let { user , setUser} = useContext(usercontext)
+  // let { user , setUser} = useContext(usercontext)
 
+  let user = auth.currentUser;
 
-  const deleted = async(uid) =>{
-    const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
-    console.log(postdelete.data)
-    const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
-    console.log(ok.data.item)
-    Setmypost(ok.data.item) 
-  }
-   
+    const deleted = async(uid) =>{
+      if(user){
+      const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
+      console.log(postdelete.data)
+      const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
+      console.log(ok.data.item)
+      Setmypost(ok.data.item) 
+    }
+    }
+     
+
+ 
     
 const ok =async () =>{
   try{
-      const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
-      console.log(ok.data.item)
-      Setmypost(ok.data.item)
+      
+      if(user){
+        const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
+        console.log(ok.data.item)
+        Setmypost(ok.data.item)
+      }
+  
   }catch(err){
       console.log("error")
   }
@@ -45,6 +55,7 @@ ok()
           <div>
            
       <div className="container-history1">
+      
         <div className="container-history2">
           <div className="container-historysetiing">
             <div className="menu-containerhistorysetting">
@@ -58,10 +69,10 @@ ok()
                   className={`historymenusetting ${isActive ? "active" : "inactive"}`}>
                   <ul className="ul-historymenusetting">
                       <li className="li-historymenusetting">
-                      <a className="a-mypostmenusetting"><Link to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
+                      <a className="a-historymenusetting"><Link className="a-historymenusetting1" to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
                       </li>
                       <li className="li-historymenusetting">
-                      <a className="a-mypostmenusetting" onClick={() =>  deleted(ok.uid)}> ลบโพสต์ </a> 
+                      <a className="a-historymenusetting" onClick={() =>  deleted(ok.uid)}> ลบโพสต์ </a> 
                       </li>
                   </ul>
                 </div>

@@ -31,21 +31,24 @@ const Mypost = () => {
     const [other, setOther] = useState();
     const [mypost,   Setmypost] = useState();
     const [data,   Setdata] = useState();
-    let { user , setUser} = useContext(usercontext)
+    // let { user , setUser} = useContext(usercontext)
  
     let { uid } = useParams()
 
     const ImageHoverZoom = ({ imagePreviewUrl }) => {
      
     }
-   
+
+    let user = auth.currentUser;   
 
     const deleted = async(uid) =>{
-        const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
-        console.log(postdelete.data)
-        const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
-        console.log(ok.data.item)
-        Setmypost(ok.data.item) 
+        if(user){
+            const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
+            console.log(postdelete.data)
+            const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
+            console.log(ok.data.item)
+            Setmypost(ok.data.item) 
+        }
       }
        
   
@@ -76,14 +79,13 @@ const ok = async () =>{
         <h1 className="h1-mypost">โพสต์ของฉัน</h1>
       {mypost ? mypost.map(ok =>{
           return (
-              <div>
-                       
+              <div> 
         <div className="container-mypost">
             <div className="cotainer-mypost2">
                 <div className="mypost-profile-img">
                     <img className="img-circle" src="/img/profile.png" />
                         <div className="mypost-name">
-                            @Nuitychibiko
+                            {user.firstname} {user.surname}
                         </div><br/>
                         <div className="mypost-date">
                             {ok.date}
@@ -94,7 +96,7 @@ const ok = async () =>{
                 <div className="mypostbuttonshared">
                     <a className="mypostbuttonshare"
                         href="/post/edit">
-                        <i class="fas fa-share"></i>
+                        <i class="fa fa-share"></i>
                     </a>
                 </div>
 
@@ -110,7 +112,7 @@ const ok = async () =>{
                             className={`mypostmenusetting ${isActive ? "active" : "inactive"}`}>
                             <ul className="ul-mypostmenusetting">
                                 <li className="li-mypostmenusetting">
-                                <a className="a-mypostmenusetting"><Link to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
+                                <a className="a-mypostmenusetting"><Link className="a-mypostmenusetting1" to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
                                   
                                 </li>
                                 <li className="li-mypostmenusetting">
@@ -286,7 +288,7 @@ const ok = async () =>{
                         <div className="mypostbuttonsend">
                             <a className="mypostbuttonsends"
                                 href="">
-                                <i class="fas fa-paper-plane"></i>
+                                <i className="fa fa-paper-plane"></i>
                             </a>  
                         </div>
                         </Form.Group>
