@@ -168,14 +168,14 @@ const Signup = () => {
                               <Field
                                   name="username"
                                   type="text"
-                                  className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
+                                  className={`form-control ${touched.username ? errors.username ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="username"
                                   placeholder="Username"
                                   onKeyUp={(e)=>{
                                     setUsername(e.target.value)
                                   }}
                               />
-                              <ErrorMessage component="div" name="name" className="invalid-feedback" />
+                              <ErrorMessage component="div" name="username" className="invalid-feedback" />
                           </div>
 
                           <div className="form-group mb-1">
@@ -241,14 +241,14 @@ const Signup = () => {
                               <Field
                                   name="lastname"
                                   type="text"
-                                  className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
+                                  className={`form-control ${touched.lastname ? errors.lastname ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="lastname"
                                   placeholder="นามสกุล"
                                   onKeyUp={(e)=>{
                                     setSurname(e.target.value)
                                   }}
                               />
-                              <ErrorMessage component="div" name="name" className="invalid-feedback" />
+                              <ErrorMessage component="div" name="lastname" className="invalid-feedback" />
                           </div>
 
                           <div className="form-group mb-0 gender">
@@ -274,7 +274,7 @@ const Signup = () => {
                               <Field
                                   name="phone"
                                   type="tel"
-                                  className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : ''}`}
+                                  className={`form-control ${touched.phone ? errors.phone ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="phone"
                                   placeholder="เบอร์โทรศัพท์"
                                   onKeyUp={(e)=>{

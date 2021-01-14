@@ -19,11 +19,11 @@ import axios from "axios";
 
 const Forgetpass = () => {
   const [email, setEmail] = useState("");
-
+  const [sendEmail,setSendemail] = useState(false)
   const ForgetEmailSubmit = (e) => {
     e.preventDefault()
     auth.sendPasswordResetEmail(email).then(function(result) {
-      console.log(result)
+      setSendemail(true)
     }).catch(function(error) {
       console.log(error)
     });
@@ -75,6 +75,7 @@ const Forgetpass = () => {
           <p className="text-left my-0 instruction-forgetpass">
             Enter the email associated with your account and we'll send you an email with instructions to reset your password.
           </p>
+          {sendEmail ? <div className="alert-forgetpass">ได้ส่งคำขอไปยัง Email ดังกล่าวแล้ว</div> : ""}
           <div className="LoginInputForm">
           <Formik
                   initialValues={{
