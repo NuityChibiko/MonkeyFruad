@@ -114,9 +114,10 @@ const Signup = () => {
             .min(2, 'สั้นเกินไป')
             .max(50, 'ยาวเกินไป')
             .required('จำเป็นต้องกรอกช่องนี้'),
-        phone: Yup.string()
-            .max(10, 'ยาวเกินไป')
-            .required('จำเป็นต้องกรอกช่องนี้'),
+        phone: Yup.number()
+            .max(10000000000, 'ยาวเกินไป')
+            .required('จำเป็นต้องกรอกช่องนี้')
+            .typeError('กรุณาใส่ตัวเลขเท่านั้น'),
         email: Yup.string()
             .email('รูปแบบอีเมลไม่ถูกต้อง')
             .required('จำเป็นต้องกรอกช่องนี้'),
@@ -281,7 +282,7 @@ const Signup = () => {
                                     setPhone(e.target.value)
                                   }}
                               />
-                              <ErrorMessage component="div" name="name" className="invalid-feedback" />
+                              <ErrorMessage component="div" name="phone" className="invalid-feedback" />
                           </div>
 
                           <div className="Province mb-5">
