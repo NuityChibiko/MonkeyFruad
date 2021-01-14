@@ -1,5 +1,5 @@
 import React, { useState ,useContext} from "react";
-import { Form, Col, Button, Image, roundedCircle } from "react-bootstrap";
+import { Form, Col, Image, roundedCircle } from "react-bootstrap";
 import {storage} from "../Frontfirebase"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formpost.css";
@@ -16,7 +16,8 @@ const Formpost = () => {
   
   const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
   const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
-  const [files, Setfiles] = useState();
+  const [files, Setfiles] = useState("");
+  const [photo, Setphoto] = useState("");
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [id, setId] = useState();
@@ -33,13 +34,14 @@ const Formpost = () => {
     
   }
 
-  
 
+  console.log(photo)
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
   
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
+    Setphoto(files[0])
     let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
     reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
     reader.onloadend = () => {
@@ -79,6 +81,7 @@ const Formpost = () => {
       _.forEach(files , file =>{
         formdata.append("eiei" , file)
       })
+      formdata.append("photo" , photo)
       formdata.append("imagesProfile" , imagesProfile)
       formdata.append("name" , name)
       formdata.append("surname" , surname)
@@ -127,7 +130,7 @@ const Formpost = () => {
               </div>
             </span>
           </div>
-        </div>
+        </div> 
         <Form className="formsize-formpost" onSubmit={handlesubmit}>
           <Form.Row>
             <Form.Group
@@ -311,18 +314,15 @@ const Formpost = () => {
               );
             })}
 
-            
-           
           </div>
-          
-      
 
-           <Form.Row className="linkrule1">
+           {/* <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
-          </Form.Row>
-          <Button className="buttonpost" variant="success" type="submit" >
+          </Form.Row> */}
+
+          <button className="buttonformpost" variant="success" type="submit" >
             โพสต์
-          </Button>
+          </button>
        
         </Form>
       </div>

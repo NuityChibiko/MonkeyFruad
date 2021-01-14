@@ -2,6 +2,8 @@ import React, { useState} from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./login.css";
+import Chatbot from "../components/chatbot";
+// import { Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styled from 'styled-components';
 import { Formik, Form, Field, ErrorMessage, FastField } from 'formik'
@@ -11,7 +13,7 @@ import {
   googleProvider,
   facebookProvider,
 } from "../Frontfirebase";
-import { MDBInput } from "mdbreact";
+// import { MDBInput } from "mdbreact";
 import axios from "axios";
 const Login = () => {
   let history = useHistory();
@@ -81,7 +83,7 @@ const Login = () => {
   const RegisterSchema = Yup.object().shape(
     {
       email: Yup.string()
-          .email('รูปแบบของอีเมลไม่ถูกต้อง')
+          .email('รูปแบบอีเมลไม่ถูกต้อง')
           .required('จำเป็นต้องกรอกช่องนี้'),
       password: Yup.string()
           .min(6, 'กรุณากรอกตัวอักษรอย่างน้อย 6 ตัว')
@@ -90,14 +92,15 @@ const Login = () => {
     }
 );
 console.log(emailis_inVaild)
+
   return (
     <div>
       <Navbar />
       <div className="container-login">
         <form className="LoginForm">
           <img src="/img/logoLogin.png" className="LogoLogin" />
-          <p className="h2 text-center mb-4 font-weight-bold">เข้าสู่ระบบ</p>
-          {emailis_inVaild ? <h1>Email นี้ไม่มีอยู่ในระบบ</h1> : <p></p>}
+          <p className="h2 text-center mb-2 font-weight-bold">เข้าสู่ระบบ</p>
+          {emailis_inVaild ? <div className="alert-login">อีเมลนี้ไม่มีอยู่ในระบบ</div> : <p></p>}
           <div className="LoginInputForm">
           <Formik
                   initialValues={{
@@ -112,28 +115,28 @@ console.log(emailis_inVaild)
               >
                   {({ errors, touched}) => (
                       <Form>
-                          <div className="form-group mb-1">
+                          <div className="form-group mb-0">
                               <label htmlFor="email" style={styles.txt2}>Email</label>
                               <Field
                                   name="email"
                                   type="email"
                                   className={`form-control ${touched.email ? errors.email ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="email"
-                                  placeholder="Enter Email"
+                                  placeholder="Email"
                                   onKeyUp={(e)=>{
                                     setEmail(e.target.value)
                                   }}
                               />
                               <ErrorMessage component="div" name="email" className="invalid-feedback" />
                           </div>
-                          <div className="form-group mb-1">
+                          <div className="form-group mb-4">
                               <label htmlFor="password" style={styles.txt2}>Password</label>
                               <Field
                                   name="password"
                                   type="password"
                                   className={`form-control ${touched.password ? errors.password ? 'is-invalid' : 'is-valid' : ''}`}
                                   id="password"
-                                  placeholder="Enter Password"
+                                  placeholder="Password"
                                   onKeyUp={(e)=>{
                                     setPassword(e.target.value)
                                   }}
@@ -147,7 +150,7 @@ console.log(emailis_inVaild)
 
           <div className="message">
             <div className="RememberCheckbox">
-              <input type="checkbox" /> Remember me
+              <input type="checkbox" /> จดจำฉันไว้ในระบบ
             </div>
             <div className="ForgotPassword">
               <a href="./forgetpass">ลืมรหัสผ่าน?</a>
@@ -199,6 +202,7 @@ console.log(emailis_inVaild)
           </button>
         </form>
       </div>
+      <Chatbot/>
     </div>
   );
 };

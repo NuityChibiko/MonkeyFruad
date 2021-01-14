@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component } from "react";
-import { Form, Col, FormControl, Button } from "react-bootstrap";
+import { Form, Col, FormControl } from "react-bootstrap";
 import {useParams } from "react-router-dom"
 import {
   auth,
@@ -10,6 +10,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./formedit.css";
 import Axios from "axios"
+import _ from "lodash"
 // import image from "D:/PROJECT ALL/MonkeyFruad/Frontend/src/uploads/logo192.png"
 
 
@@ -18,7 +19,8 @@ const Formedit = () => {
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
   const [show, Setshow] = useState();
   const [imagesFile, setImagesFile] = useState(); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
-  const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
+  const [imagesProfile, setImagesProfile] = useState(); //สร้าง State เพื่อเก็บรูปโปรไฟล์
+  const [files, Setfiles] = useState();
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [id, setId] = useState();
@@ -50,10 +52,11 @@ const Formedit = () => {
 
 // ฟังก์ชันอัพโหลดไฟล์ 
   const FileUpload = (event) => { 
-   
+    
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
+    Setfiles(files)
 
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
@@ -97,9 +100,24 @@ const Formedit = () => {
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
-     
-      let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
-      let data = await Axios.post(`http://localhost:7000/post/edit/${uid}`,sentdata)
+      let formdata = new FormData()
+      _.forEach(files , file => {
+        formdata.append("eiei" ,file)
+      })
+      formdata.append("imagesProfile" , imagesProfile)
+      formdata.append("name" , name)
+      formdata.append("surname" , surname)
+      formdata.append("id" , id)
+      formdata.append("accountnumber" , accountnumber)
+      formdata.append("nameproduct" , nameproduct)
+      formdata.append("productcategory" , productcategory)
+      formdata.append("money" , money)
+      formdata.append("bank" , bank)
+      formdata.append("datetime" , datetime)
+      formdata.append("social" , social)
+      formdata.append("other" , other)
+      // let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
+      let data = await Axios.post(`http://localhost:7000/post/edit/${uid}`,formdata)
     }catch(err){
       console.log(err)
     }
@@ -112,7 +130,7 @@ const Formedit = () => {
       <div className="container-formpost">
       <div className="container-formpost1">
         <div className="profile-badformpost-img">
-          <img className="img-circle" src={imagesProfile} />
+          {imagesProfile ? <img className="img-circle" src={imagesProfile} /> : ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`} /> : <img className="img-circle" src={"/img/profile.png"} />}
           <div className="rank-label-container-edit">
             <span className="label label-default rank-label">
               <div className="formedit-ImageUpload">
@@ -127,7 +145,7 @@ const Formedit = () => {
                     id="FileInput"
                     type="file"
                     onChange={ProfileChange}
-                    multiple
+                  
                   />
                 </div>
               </div>
@@ -349,7 +367,7 @@ const Formedit = () => {
             
       
           />
-          <div className="container-img-holder-imgpreview">
+          <div className="container-img-holder-imgpreviewedit">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (
                 <img
@@ -372,16 +390,13 @@ const Formedit = () => {
         
           </div>
             
-       
-     
-     
-          <Form.Row className="linkrule1">
+          {/* <Form.Row className="linkrule1">
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
-          </Form.Row>
+          </Form.Row> */}
 
-          <Button className="buttonpost" variant="success" type="submit">
+          <button className="buttonformedit" variant="success" type="submit">
             โพสต์
-          </Button>
+          </button>
         
         </Form>
       </div>
