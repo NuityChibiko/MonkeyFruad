@@ -76,8 +76,7 @@ const ok = async () =>{
         <h1 className="h1-mypost">โพสต์ของฉัน</h1>
       {mypost ? mypost.map(ok =>{
           return (
-              <div>
-                       
+              <div> 
         <div className="container-mypost">
             <div className="cotainer-mypost2">
                 <div className="mypost-profile-img">
@@ -286,7 +285,7 @@ const ok = async () =>{
                         <div className="mypostbuttonsend">
                             <a className="mypostbuttonsends"
                                 href="">
-                                <i class="fa fa-paper-plane"></i>
+                                <i className="fa fa-paper-plane"></i>
                             </a>  
                         </div>
                         </Form.Group>
