@@ -31,21 +31,24 @@ const Mypost = () => {
     const [other, setOther] = useState();
     const [mypost,   Setmypost] = useState();
     const [data,   Setdata] = useState();
-    let { user , setUser} = useContext(usercontext)
+    // let { user , setUser} = useContext(usercontext)
  
     let { uid } = useParams()
 
     const ImageHoverZoom = ({ imagePreviewUrl }) => {
      
     }
-   
+
+    let user = auth.currentUser;   
 
     const deleted = async(uid) =>{
-        const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
-        console.log(postdelete.data)
-        const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
-        console.log(ok.data.item)
-        Setmypost(ok.data.item) 
+        if(user){
+            const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
+            console.log(postdelete.data)
+            const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
+            console.log(ok.data.item)
+            Setmypost(ok.data.item) 
+        }
       }
        
   
@@ -82,7 +85,7 @@ const ok = async () =>{
                 <div className="mypost-profile-img">
                     <img className="img-circle" src="/img/profile.png" />
                         <div className="mypost-name">
-                            @Nuitychibiko
+                            {user.firstname} {user.surname}
                         </div><br/>
                         <div className="mypost-date">
                             {ok.date}
