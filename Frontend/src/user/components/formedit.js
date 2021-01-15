@@ -153,7 +153,7 @@ const Formedit = () => {
                     id="FileInput"
                     type="file"
                     onChange={ProfileChange}
-                  
+                    accept="image/png, image/jpeg , image/jpg"
                   />
                 </div>
               </div>
@@ -361,7 +361,7 @@ const Formedit = () => {
             type="file"
             onChange={FileUpload}
             multiple
-            
+            accept="image/png, image/jpeg , image/jpg"
       
           />
           <div className="container-img-holder-imgpreviewedit">

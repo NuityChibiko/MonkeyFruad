@@ -103,8 +103,8 @@ let history = useHistory()
       formdata.append("useruid" , useruid)
       
       let data = await Axios.post("http://localhost:7000/post/create", formdata ) 
-      console.log("ok")
-        // history.push("/post/history")
+      // console.log("ok")
+        history.push("/post/history")
      
     }catch(err){
       err && Seterror(err.response.data.msg)
@@ -131,6 +131,7 @@ let history = useHistory()
                     type="file"
                     onChange={ProfileChange}
                     multiple
+                    accept="image/png, image/jpeg , image/jpg"
                   />
                 </div>
               </div>
@@ -304,6 +305,7 @@ let history = useHistory()
             type="file"
             onChange={FileUpload}
             multiple
+            accept="image/png, image/jpeg , image/jpg"
           />
           <h1>{error}</h1>
           <div className="container-img-holder-imgpreview">

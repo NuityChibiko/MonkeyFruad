@@ -31,7 +31,7 @@ const Mypost = () => {
     const [other, setOther] = useState();
     const [mypost,   Setmypost] = useState();
     const [data,   Setdata] = useState();
-    // let { user , setUser} = useContext(usercontext)
+    let { user , setUser} = useContext(usercontext)
  
     let { uid } = useParams()
 
@@ -39,28 +39,27 @@ const Mypost = () => {
      
     }
 
-    let user = auth.currentUser;   
+    let user2 = auth.currentUser;   
+
 
     const deleted = async(uid) =>{
-        if(user){
+        if(user2){
             const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
             console.log(postdelete.data)
-            const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
+            const ok = await Axios.post("http://localhost:7000/user/session", {result:user2})
             console.log(ok.data.item)
             Setmypost(ok.data.item) 
         }
       }
        
-  
-
-  
-  
+     
 const ok = async () =>{
     try{
+       
         const ok = await Axios.get(`http://localhost:7000/post/mypost/${uid}`)
         
-        console.log(ok.data.item)
         Setmypost(ok.data.item)
+        Setdata(user)
     }catch(err){
         console.log("error")
     }
@@ -69,9 +68,9 @@ const ok = async () =>{
   useEffect(() => {
   ok()
  
-  }, [])    
+  }, [user])    
   
-
+  console.log(data)
   
   return (
     <div className="allpage">
@@ -83,9 +82,9 @@ const ok = async () =>{
         <div className="container-mypost">
             <div className="cotainer-mypost2">
                 <div className="mypost-profile-img">
-                    <img className="img-circle" src="/img/profile.png" />
+                {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> }
                         <div className="mypost-name">
-                            {user.firstname} {user.surname}
+                            {data && data.username}
                         </div><br/>
                         <div className="mypost-date">
                             {ok.date}
@@ -126,7 +125,7 @@ const ok = async () =>{
 
                 <div className="container-mypost3">
                     <div className="mypostprofile-bad-img">
-                        <img className="img-circle" src="/img/profile.png" />
+                        {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> }
                     </div>
                     <Form className="formsize-mypost">
                         <Form.Row>
@@ -225,30 +224,19 @@ const ok = async () =>{
                             </Form.Label>
                         </Form.Group>
                         <div className="img-holder-badslip">
-                        <img
-                            className="img-bad"
-                            alt=""
-                            src="/img/nui.jpg"
-                            style={{ overflow: "hidden" }}
-                            onMouseOver={(e) => (e.currentTarget.style = { transform: "scale(1.25)", overflow: "hidden" })}
-                            onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
-                        />
-                        <img
-                            className="img-bad"
-                            alt=""
-                            src="/img/nui.jpg"
-                            style={{ overflow: "hidden" }}
-                            onMouseOver={(e) => (e.currentTarget.style = { transform: "scale(1.25)", overflow: "hidden" })}
-                            onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
-                        />
-                        <img
-                            className="img-bad"
-                            alt=""
-                            src="/img/nui.jpg"
-                            style={{ overflow: "hidden" }}
-                            onMouseOver={(e) => (e.currentTarget.style = { transform: "scale(1.25)", overflow: "hidden" })}
-                            onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
-                        />
+                            {ok ? ok.files.map(res=>{
+ return (<img
+  className="img-bad"
+  alt=""
+  src={`/uploads/${res.filename}`}
+  
+  style={{ overflow: "hidden" }}
+  onMouseOver={(e) => (e.currentTarget.style = { transform: "scale(1.25)", overflow: "hidden" })}
+  onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
+/>)
+
+                            }) : null}
+                      
                         </div>
                     </Form>
                 </div>
