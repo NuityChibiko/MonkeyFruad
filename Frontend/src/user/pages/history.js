@@ -18,6 +18,7 @@ const History = () => {
       if(user){
       const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
       console.log(postdelete.data)
+
       const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
       console.log(ok.data.item)
       Setmypost(ok.data.item) 
@@ -30,11 +31,11 @@ const History = () => {
 const ok =async () =>{
   try{
       
-      if(user){
+      
         const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
         console.log(ok.data.item)
         Setmypost(ok.data.item)
-      }
+      
   
   }catch(err){
       console.log("error")

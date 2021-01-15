@@ -31,13 +31,14 @@ const Formpost = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
+  const [error, Seterror] = useState();
   // let { user , setUser} = useContext(usercontext)
   const ImageHoverZoom = ({ imagePreviewUrl }) => {
     
   }
 
 
-  console.log(photo)
+
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
   
@@ -54,11 +55,11 @@ const Formpost = () => {
 
 // ฟังก์ชันอัพโหลดไฟล์ 
   const FileUpload = (event) => { 
-   
-    setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
+    setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
+    Seterror()
 
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
@@ -81,14 +82,13 @@ let history = useHistory()
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
-      if(user){
+      
         let formdata = new FormData()
       let useruid = user.uid
       _.forEach(files , file =>{
         formdata.append("eiei" , file)
       })
       formdata.append("photo" , photo)
-      formdata.append("imagesProfile" , imagesProfile)
       formdata.append("name" , name)
       formdata.append("surname" , surname)
       formdata.append("id" , id)
@@ -101,17 +101,14 @@ let history = useHistory()
       formdata.append("social" , social)
       formdata.append("other" , other)
       formdata.append("useruid" , useruid)
-   
+      
       let data = await Axios.post("http://localhost:7000/post/create", formdata ) 
+      // console.log("ok")
         history.push("/post/history")
      
-      }else{
-        console.log("error")
-      }
-      
-      
     }catch(err){
-      console.log(err)
+      err && Seterror(err.response.data.msg)
+    
     }
   }
   return (
@@ -134,6 +131,7 @@ let history = useHistory()
                     type="file"
                     onChange={ProfileChange}
                     multiple
+                    accept="image/png, image/jpeg , image/jpg"
                   />
                 </div>
               </div>
@@ -301,13 +299,15 @@ let history = useHistory()
               (แชท)
             </span>
           </Form.File.Label>
-
+                
           <input
             className="uploadsformpostuploadslip"
             type="file"
             onChange={FileUpload}
             multiple
+            accept="image/png, image/jpeg , image/jpg"
           />
+          <h1>{error}</h1>
           <div className="container-img-holder-imgpreview">
             {imagesFile.map((imagePreviewUrl) => {
               return (

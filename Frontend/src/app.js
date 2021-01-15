@@ -33,7 +33,11 @@ const App = () => {
         userRef.doc(firebaseUser.uid).onSnapshot((doc)=>{
           if(doc.data()){
             const userData = {
-              uid:doc.data().uid
+              uid:doc.data().uid,
+              firstname:doc.data().firstname,
+              surname:doc.data().surname,
+              username:doc.data().username
+              
             };
             setUser(userData);
           }
@@ -41,11 +45,13 @@ const App = () => {
       }else{
         setUser(null);
       }
-  });return () =>{
+
+  })
+  ;return () =>{
 authUnsubscribe();
   };
   },[]);
-
+ 
 return (
   <Router>
     <usercontext.Provider value={ {user,setUser}}>

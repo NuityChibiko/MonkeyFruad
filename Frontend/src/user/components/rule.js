@@ -1,11 +1,17 @@
 import React, { useState ,useContext} from "react";
+import  {useHistory} from "react-router-dom";
 import { Form, Col, Image, roundedCircle } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./rule.css";
 const Rule = () => {
+    const history = useHistory()
+    const handle = () =>{   
+        history.push("/post/create")
+    }
   return (
     <div className="container-linkrule1">
         <div className="container-linkrule2">
+            <form onSubmit={handle}>
             <h5 className="h3-linkrule">
                 ข้อกำหนดและเงื่อนไขการใช้งาน
             </h5>
@@ -67,12 +73,13 @@ const Rule = () => {
             
             
             <Form.Row className="linkrule1">
-                <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">โปรดกดปุ่มยืนยันนี้ ก่อนกดยอมรับข้อตกลง</a>
+                <Form.Check aria-label="option 1" className="linkrule2" required/><a className="linkrule3" href="about.html" >โปรดกดปุ่มยืนยันนี้ ก่อนกดยอมรับข้อตกลง</a>
             </Form.Row>
 
-            <a href="/post/create" className="buttonrule" variant="success" type="submit" >
+            <button className="buttonrule" variant="success" type="submit" >
                 ยอมรับข้อตกลง
-            </a>
+            </button>
+            </form>
       </div>
     </div>
   );
