@@ -148,7 +148,7 @@ let history = useHistory()
               <Form.Label>
                 ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="name" placeholder="" onChange={(event)=>{
+              <Form.Control type="name" pattern="[a-z,ก-ฮ]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
                 setName(event.target.value)
               }} required />
             </Form.Group>
@@ -157,7 +157,7 @@ let history = useHistory()
               <Form.Label>
                 นามสกุล (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="lastname" placeholder="" required onChange={(event)=>{
+              <Form.Control type="lastname" pattern="[a-z,ก-ฮ]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
                 setSurname(event.target.value)
               }} />
             </Form.Group>
@@ -170,9 +170,9 @@ let history = useHistory()
               controlId="formGridId"
             >
               <Form.Label>
-                เลขบัตรประชาชน (ผู้โกง)<span className="spanformpost">*</span>
+                เลขบัตรประชาชน (ผู้โกง)
               </Form.Label>
-              <Form.Control type="id" placeholder="" required onChange={(event)=>{
+              <Form.Control type="id" placeholder="" pattern="[0-9]{1,}" maxlength="13" title="กรอกตัวเลขเท่านั้น"  onChange={(event)=>{
                 setId(event.target.value)
               }} />
             </Form.Group>
@@ -181,7 +181,7 @@ let history = useHistory()
               <Form.Label>
                 เลขที่บัญชี (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="accountnumber" placeholder="" required onChange={(event)=>{
+              <Form.Control type="accountnumber" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
                 setAccountnumber(event.target.value)
               }} />
             </Form.Group>
@@ -205,12 +205,32 @@ let history = useHistory()
               <Form.Label>
                 หมวดหมู่สินค้า<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
+              <Form.Control as="select"  required onChange={(event)=>{
                 setProductcategory(event.target.value)
               }}>
-                <option>เลือก...</option>
-                <option>แฟชั่น</option>
-                <option>ออนไลน์</option>
+                <option value="" selected disabled hidden>กรุณาเลือก...</option>
+                <option>เสื้อผ้า</option>
+                <option>เครื่องประดับ</option>
+                <option>รองเท้า</option>
+                <option>กระเป๋า</option>
+                <option>มือถือและอุปกรณ์เสริม</option>
+                <option>อาหารและเครื่องดื่ม</option>
+                <option>อาหารเสริมและผลิตภัณฑ์สุขภาพ</option>
+                <option>เครื่องสำอางค์และอุปกรณ์เสริมความงาม</option>
+                <option>คอมพิวเตอร์แล็ปท็อป</option>
+                <option>กล้องและอุปกรณ์ถ่ายภาพ</option>
+                <option>กีฬาและกิจกรรมกลางแจ้ง</option>
+                <option>สื่อบันเทิงภายในบ้าน</option>
+                <option>เกมส์และฮ๊อบบี้</option>
+                <option>ยานยนต์</option>
+                <option>ตั๋วและบัตรกำนัน</option>
+                <option>เครื่องใช้ไฟฟ้า</option>
+                <option>เฟอร์นิเจอร์และของตกแต่งบ้าน</option>
+                <option>สัตว์เลี้ยง</option>
+                <option>เครื่องเขียน</option>
+                <option>หนังสือ</option>
+                <option>เครื่องดนตรี</option>
+                <option>อื่นๆ</option>
               </Form.Control>
             </Form.Group>
           </Form.Row>
@@ -224,7 +244,7 @@ let history = useHistory()
               <Form.Label>
                 จำนวนเงิน (บาท)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="nameproduct" placeholder="" required onChange={(event)=>{
+              <Form.Control type="nameproduct" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
                 setMoney(event.target.value)
               }}/>
             </Form.Group>
@@ -233,10 +253,8 @@ let history = useHistory()
               <Form.Label>
                 ธนาคาร<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
-                setBank(event.target.value)
-              }}>
-                <option>เลือก...</option>
+              <Form.Control as="select"  required onChange={(event)=>{setBank(event.target.value)}}>
+                <option value="" selected disabled hidden>กรุณาเลือก...</option>
                 <option>ธนาคารกรุงเทพ</option>
                 <option>ธนาคารกรุงไทย</option>
                 <option>ธนาคารกรุงศรีอยุธยา</option>
@@ -273,18 +291,25 @@ let history = useHistory()
               <Form.Label>
                 ช่องทางที่โดนโกง<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control as="select" defaultValue="Choose..." required onChange={(event)=>{
-                setSocial(event.target.value)
-              }}>
-                <option>เลือก...</option>
+              <Form.Control as="select" required onChange={(event)=>{setSocial(event.target.value)}}>
+              <option value="" selected disabled hidden>กรุณาเลือก...</option>
                 <option>Facebook</option>
                 <option>Instagram</option>
                 <option>Twitter</option>
                 <option>Line</option>
                 <option>Website</option>
+              {/* <select  required onChange={(event)=>{setSocial(event.target.value)}}>
+          <option value="" selected disabled hidden>กรุณาเลือก...</option>
+                <option>Facebook</option>
+                <option>Instagram</option>
+                <option>Twitter</option>
+                <option>Line</option>
+                <option>Website</option>
+          </select> */}
               </Form.Control>
             </Form.Group>
           </Form.Row>
+         
 
           <Form.Group controlId="exampleForm.ControlTextarea1">
             <Form.Label>รายละเอียดเพิ่มเติม</Form.Label>
@@ -306,8 +331,9 @@ let history = useHistory()
             onChange={FileUpload}
             multiple
             accept="image/png, image/jpeg , image/jpg"
+            
           />
-          <h1>{error}</h1>
+          <h1>{error}</h1> 
           <div className="container-img-holder-imgpreview">
             {imagesFile.map((imagePreviewUrl) => {
               return (

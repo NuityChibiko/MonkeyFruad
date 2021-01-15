@@ -378,9 +378,8 @@ const Formedit = () => {
                 />
               );
             }) :    ok.files ? ok.files.map(res => { 
-              return ( <div>
-                <img src={`/uploads/${res.filename}`}  /> 
-             </div>
+              return ( 
+                <img className="imgpreviewedit" src={`/uploads/${res.filename}`}  /> 
            )
            }) : null }
              

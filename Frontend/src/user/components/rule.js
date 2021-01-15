@@ -4,14 +4,19 @@ import { Form, Col, Image, roundedCircle } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./rule.css";
 const Rule = () => {
-    const history = useHistory()
-    const handle = () =>{   
-        history.push("/post/create")
+    // const history = useHistory()
+    // const handle = () =>{   
+    //     history.push("/post/create")
+    // }
+    const [state,setState] = useState(false)
+    const toggleHandler = () => {
+        const newData = !state;
+        setState(newData);
     }
   return (
     <div className="container-linkrule1">
         <div className="container-linkrule2">
-            <form onSubmit={handle}>
+            <form >
             <h5 className="h3-linkrule">
                 ข้อกำหนดและเงื่อนไขการใช้งาน
             </h5>
@@ -72,13 +77,19 @@ const Rule = () => {
                 </p>
             
             
-            <Form.Row className="linkrule1">
-                <Form.Check aria-label="option 1" className="linkrule2" required/><a className="linkrule3" href="about.html" >โปรดกดปุ่มยืนยันนี้ ก่อนกดยอมรับข้อตกลง</a>
-            </Form.Row>
-
-            <button className="buttonrule" variant="success" type="submit" >
-                ยอมรับข้อตกลง
-            </button>
+                <Form.Group controlId="formBasicCheckbox">
+                    <Form.Check className="linkrule1" type="checkbox" onClick={toggleHandler} label="โปรดกดปุ่มยืนยันนี้ ก่อนกดยอมรับข้อตกลง" />
+                </Form.Group>
+                {
+                    state
+                    ?<a href="/post/create" className="buttonrule" type="button">
+                        ยอมรับข้อตกลง
+                    </a>
+                    :
+                    <a className="buttonrule1" type="button">
+                        ยอมรับข้อตกลง
+                    </a>
+                }
             </form>
       </div>
     </div>
