@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./chatbot.css";
 const Chatbot = () => {
-    const [state,setState] = useState(true)
+    const [state,setState] = useState(false)
     const toggleHandler = () => {
         const newData = !state;
         setState(newData);

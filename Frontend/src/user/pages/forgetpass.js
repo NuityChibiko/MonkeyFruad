@@ -68,11 +68,11 @@ const Forgetpass = () => {
   return (
     <div>
       <Navbar />
-      <div className="container-login">
+      <div className="container-forget">
         <form className="LoginForm">
-          <img src="/img/logoLogin.png" className="LogoLogin" />
-          <p className="h2 text-center mb-4 font-weight-bold">Reset password</p>
-          <p className="text-left my-0 instruction-forgetpass">
+          <img src="/img/logoLogin.png" className="Logo-forget" />
+          <p className="h2 text-center mb-4 font-weight-bold text1-forget">Reset password</p>
+          <p className="text-left my-0 instruction-forgetpass text2-forget">
             Enter the email associated with your account and we'll send you an email with instructions to reset your password.
           </p>
           {sendEmail ? <div className="alert-forgetpass"><span>ได้ส่งคำขอไปยัง Email ดังกล่าวแล้ว</span></div> : ""}

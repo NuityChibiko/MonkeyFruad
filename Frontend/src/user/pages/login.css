@@ -110,18 +110,11 @@ h1 {
     margin: 0 .5rem 4px 0;
 }
 
-.LogoLogin  {
+.Logo-login  {
     width: 150px;
     height: 150px;
     margin: 0 auto;
     display: block;
-}
-
-@media (max-width: 767.98px) {
-    .container-login {
-        margin: 0 auto;
-        width: 100%;
-    }
 }
 
 .alert-login {
@@ -135,4 +128,47 @@ h1 {
 
 .alert-login span{
     font-size: 1rem;
+}
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .container-login {
+        margin-top: 220px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container-login {
+        margin-top: 100px;
+    }
+    
+}
+
+@media only screen and (max-width: 414px) {
+
+}
+
+@media only screen and (max-width: 375px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+    .LoginFacebook p, .LoginGoogle{
+        font-size: 15px;
+    }
+    .container-login {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .Logo-login{
+        width: 125px;
+        height: 125px;
+    }
+    .text1-login{
+        font-size: 30px !important;
+    }
 }
