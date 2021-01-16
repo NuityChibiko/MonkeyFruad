@@ -32,23 +32,13 @@
     font-size: 17px;
 }
 
-.linkrule1{
+.linkrule1 {
     margin-top: 10px;
     font-size: 18px;
-}
-
-.linkrule2{ 
-    display: inline;
-}
-
-.linkrule3, .linkrule3:hover{ 
-    display: inline-block;
     color: red;
-    margin-left: 2px;
-    margin-bottom: 10px;
 }
 
-.buttonrule{
+.buttonrule {
     width: 100%;
     font-size: 20px;
     background-color: #b30101;
@@ -56,12 +46,13 @@
     border-radius: 0.5rem;
     font-size: 20px;
     text-align: center;
-    color: white;
+    color: white !important;
     padding: 0.5rem;
     margin-top: 10px;
+        border: 2px solid #8B0000;
 }
 
-.buttonrule:hover{
+.buttonrule:hover {
     width: 100%;
     font-size: 20px;
     background-color: #8B0000;
@@ -72,9 +63,10 @@
     color: white;
     padding: 0.5rem;
     margin-top: 10px;
+    border: 2px solid #8B0000;
 }
 
-.buttonrule:active{
+.buttonrule:active {
     width: 100%;
     font-size: 20px;
     background-color: #8B0000;
@@ -82,4 +74,19 @@
     border-radius: 0.5rem;
     padding: 0.5rem;
     margin-top: 10px;
+    border: 2px solid #8B0000;
+}
+
+.buttonrule1 {
+    width: 100%;
+    font-size: 20px;
+    background-color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 20px;
+    text-align: center;
+    color:  #8B0000 !important;
+    padding: 0.5rem;
+    margin-top: 10px;
+    border: 2px solid #8B0000;
 }
