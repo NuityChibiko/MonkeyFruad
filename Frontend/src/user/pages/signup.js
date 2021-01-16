@@ -145,10 +145,10 @@ const Signup = () => {
   return (
     <div>
       <Navbar />
-      <div className="container-login">
+      <div className="container-signup">
         <form  className='LoginForm'>
-          <img src="/img/logoLogin.png" className="LogoLogin" />
-          <p className="h2 text-center mb-2 font-weight-bold">สมัครสมาชิก</p>
+          <img src="/img/logoLogin.png" className="Logo-signup" />
+          <p className="h2 text-center mb-2 font-weight-bold text1-signup">สมัครสมาชิก</p>
             {emailis_inVaild ? <div className="alert-signup"> <span>อีเมลนี้มีอยู่ในระบบแล้ว</span></div> : <p></p>}
           <div className="col-md-12">
               <Formik

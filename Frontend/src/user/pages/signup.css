@@ -6,7 +6,7 @@ h1 {
     color: #8B0000;
 }
 
-.container-login {
+.container-signup {
     margin: 40px auto;
     padding: 30px 40px;
     font-family: 'Kanit', sans-serif;
@@ -111,7 +111,7 @@ h1 {
     margin: 0 .5rem 4px 0;
 }
 
-.LogoLogin  {
+.Logo-signup  {
     width: 150px;
     height: 150px;
     margin: 0 auto;
@@ -215,4 +215,46 @@ h1 {
 
 .alert-signup span {
     font-size: 1rem;
+}
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+@media only screen and (max-width: 768px) {
+    .container-signup {
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+
+}
+
+@media only screen and (max-width: 375px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+    .LoginFacebook p, .LoginGoogle{
+        font-size: 15px;
+    }
+    .container-signup {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .Logo-signup{
+        width: 125px;
+        height: 125px;
+    }
+    .text1-signup{
+        font-size: 30px !important;
+    }
+
 }
