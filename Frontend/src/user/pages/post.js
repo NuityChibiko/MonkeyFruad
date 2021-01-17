@@ -46,7 +46,7 @@ const deleted = async(uid) =>{
   return (
     <div>
       <Navbar />
-      <h1> Post</h1>
+      {/* <h1> Post</h1>
       {show ? show .map(ok =>{
         return (
         <div>
@@ -59,7 +59,7 @@ const deleted = async(uid) =>{
         <button onClick={() =>  deleted(ok.uid)}> x </button> 
         </div>
       )
-      }) : null}
+      }) : null} */}
     </div>
   );
 };
