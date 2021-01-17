@@ -8,7 +8,9 @@ import Axios from "axios"
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 const History = () => {
   const [isActive, setIsActive] = useState(false);
-  const onClick = () => setIsActive(!isActive);
+  const onClick = () => {
+    setIsActive(!isActive);
+  }
   const [mypost,   Setmypost] = useState();
   // let { user , setUser} = useContext(usercontext)
 
@@ -51,12 +53,11 @@ ok()
       <Navbar />
       <h1 className="h1-history">ประวัติการโพสต์</h1>
       <div className="container-history5">{mypost ? <h2 className="h2-history2">ทั้งหมด {mypost.length} โพสต์</h2> : null}</div>
-      {mypost ? mypost.map(ok =>{
+      {mypost ? mypost.map((ok,index) =>{
         return (
           <div>
            
-      <div className="container-history1">
-      
+      <div className="container-history1" key={index}>
         <div className="container-history2">
           <div className="container-historysetiing">
             <div className="menu-containerhistorysetting">

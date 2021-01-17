@@ -148,7 +148,7 @@ let history = useHistory()
               <Form.Label>
                 ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="name" pattern="[a-z,ก-ฮ]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
+              <Form.Control type="text" id="name" pattern="[a-z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
                 setName(event.target.value)
               }} required />
             </Form.Group>
@@ -157,7 +157,7 @@ let history = useHistory()
               <Form.Label>
                 นามสกุล (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="lastname" pattern="[a-z,ก-ฮ]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
+              <Form.Control type="text" id="lastname" pattern="[a-z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
                 setSurname(event.target.value)
               }} />
             </Form.Group>
@@ -172,7 +172,7 @@ let history = useHistory()
               <Form.Label>
                 เลขบัตรประชาชน (ผู้โกง)
               </Form.Label>
-              <Form.Control type="id" placeholder="" pattern="[0-9]{1,}" maxlength="13" title="กรอกตัวเลขเท่านั้น"  onChange={(event)=>{
+              <Form.Control type="text" id="numberid" pattern="[0-9]{1,}" minlength="2" maxlength="13" title="กรอกตัวเลขเท่านั้น" onChange={(event)=>{
                 setId(event.target.value)
               }} />
             </Form.Group>
@@ -181,7 +181,7 @@ let history = useHistory()
               <Form.Label>
                 เลขที่บัญชี (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="accountnumber" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
+              <Form.Control type="text" id="accountnumber" pattern="[0-9]{1,}" minlength="2" maxlength="10" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
                 setAccountnumber(event.target.value)
               }} />
             </Form.Group>
@@ -244,7 +244,7 @@ let history = useHistory()
               <Form.Label>
                 จำนวนเงิน (บาท)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="nameproduct" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
+              <Form.Control type="text" id="nameproduct" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
                 setMoney(event.target.value)
               }}/>
             </Form.Group>
@@ -325,6 +325,7 @@ let history = useHistory()
             </span>
           </Form.File.Label>
                 
+          <br></br>
           <input
             className="uploadsformpostuploadslip"
             type="file"
@@ -333,7 +334,7 @@ let history = useHistory()
             accept="image/png, image/jpeg , image/jpg"
             
           />
-          <h1>{error}</h1> 
+          <h1 className="h1-formpostfileerror">{error}</h1> 
           <div className="container-img-holder-imgpreview">
             {imagesFile.map((imagePreviewUrl) => {
               return (
