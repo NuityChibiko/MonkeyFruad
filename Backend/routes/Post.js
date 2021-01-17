@@ -55,7 +55,7 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
     console.log(file)
     console.log(files)
     if(!files){
-      return res.status(400).json({msg : "กรุณาใส่ไฟลล์หลักฐาน"})
+      return res.status(400).json({msg : "** กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง **"})
     }
 
     else if(file && files ){
