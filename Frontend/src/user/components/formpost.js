@@ -9,9 +9,6 @@ import Axios from "axios"
 import _ from "lodash"
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 
-
-
-
 const Formpost = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
@@ -74,18 +71,14 @@ const Formpost = () => {
      
   };
 
-
-
 let user = auth.currentUser;
 let history = useHistory()
  
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
-      
-        let formdata = new FormData()
-      let useruid = user.uid
-      _.forEach(files , file =>{
+      let formdata = new FormData()
+      let useruid = user.uid_.forEach(files , file =>{
         formdata.append("eiei" , file)
       })
       formdata.append("photo" , photo)
@@ -105,7 +98,6 @@ let history = useHistory()
       let data = await Axios.post("http://localhost:7000/post/create", formdata ) 
       // console.log("ok")
         history.push("/post/history")
-     
     }catch(err){
       err && Seterror(err.response.data.msg)
     
