@@ -1,5 +1,3 @@
-
-
 /* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
@@ -30,7 +28,7 @@
   display: block;
 }
 
-.Navbar {
+.navbar {
   background-color: #8B0000;
   color: white;
   font-family: 'Kanit', sans-serif;
