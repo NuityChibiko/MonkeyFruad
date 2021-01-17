@@ -68,8 +68,8 @@ const Login = () => {
       <Navbar />
       <div className="container-login">
         <form className="LoginForm">
-          <img src="/img/logoLogin.png" className="LogoLogin" />
-          <p className="h2 text-center mb-2 font-weight-bold">เข้าสู่ระบบ</p>
+          <img src="/img/logoLogin.png" className="Logo-login" />
+          <p className="h2 text-center mb-2 font-weight-bold text1-login">เข้าสู่ระบบ</p>
           {emailis_inVaild ? <div className="alert-login"> <span>อีเมลหรือรหัสผ่านไม่ถูกต้อง</span></div> : <p></p>}
           <div className="LoginInputForm">
             <MDBInput
