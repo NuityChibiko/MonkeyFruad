@@ -8,7 +8,7 @@ import usercontext from "../context/usercontext"
 import Axios from "axios"
 import _ from "lodash"
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
-
+import Chatbot from "../components/chatbot";
 
 
 
@@ -362,6 +362,7 @@ let history = useHistory()
        
         </Form>
       </div>
+      <Chatbot/>
     </div>
   );
 };

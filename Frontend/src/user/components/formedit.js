@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./formedit.css";
 import Axios from "axios"
 import _ from "lodash"
+import Chatbot from "../components/chatbot";
 // import image from "D:/PROJECT ALL/MonkeyFruad/Frontend/src/uploads/logo192.png"
 
 
@@ -420,7 +421,7 @@ const Formedit = () => {
         )
       }) : null}
    
-    
+    <Chatbot/>
     </div>
   );
 };

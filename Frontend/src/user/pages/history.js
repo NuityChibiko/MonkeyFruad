@@ -6,6 +6,8 @@ import "./history.css";
 import usercontext from "../context/usercontext"
 import Axios from "axios"
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
+import Chatbot from "../components/chatbot";
+
 const History = () => {
   const [isActive, setIsActive] = useState(false);
   const onClick = () => {
@@ -172,7 +174,8 @@ ok()
           </div>
         )
       }) : null}
-      
+    
+    <Chatbot/>
     </div>
   );
 };
