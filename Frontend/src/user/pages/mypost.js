@@ -1,5 +1,5 @@
 import React, { useEffect, useState,useContext  } from "react";
-import {Link ,useParams} from "react-router-dom"
+import {Link ,useParams , useHistory} from "react-router-dom"
 import { Dropdown, DropdownButton}  from 'react-bootstrap';
 import { Form, Col, FormControl, Button } from "react-bootstrap";
 import {
@@ -34,6 +34,7 @@ const Mypost = () => {
     let { user , setUser} = useContext(usercontext)
  
     let { uid } = useParams()
+    const history = useHistory()
 
     const ImageHoverZoom = ({ imagePreviewUrl }) => {
      
@@ -49,8 +50,9 @@ const Mypost = () => {
             const ok = await Axios.post("http://localhost:7000/user/session", {result:user2})
             console.log(ok.data.item)
             Setmypost(ok.data.item) 
+            history.push("/post/history")
         }
-      }
+      }     
        
      
 const ok = async () =>{
@@ -82,7 +84,8 @@ const ok = async () =>{
         <div className="container-mypost">
             <div className="cotainer-mypost2">
                 <div className="mypost-profile-img">
-                {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> }
+                {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
+                <img className="img-circle" src="/img/profile.png" /> 
                         <div className="mypost-name">
                             {data && data.username}
                         </div><br/>
