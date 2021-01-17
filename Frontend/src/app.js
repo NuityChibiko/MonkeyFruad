@@ -1,6 +1,6 @@
 // import package and file
-import React, {useEffect,useRef,useState,useContext, createContext} from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, {useEffect,useRef,useState,useContext, createContext,useMemo} from "react";
+import { BrowserRouter as Router, Route, Switch ,Redirect} from "react-router-dom";
 import { firestore, auth} from "./user/Frontfirebase";
 import Home from "./user/pages/index";
 import Contractus from "./user/pages/contractus";
@@ -26,9 +26,8 @@ import usercontext from "./user/context/usercontext"
 const App = () => {
   const userRef = useRef(firestore.collection("User")).current;
   const [user,setUser] = useState();
-
-  useEffect(()=>{
-    const authUnsubscribe = auth.onAuthStateChanged((firebaseUser)=>{
+  useMemo(()=>{
+     auth.onAuthStateChanged((firebaseUser)=>{
       if(firebaseUser){
         userRef.doc(firebaseUser.uid).onSnapshot((doc)=>{
           if(doc.data()){
@@ -37,7 +36,6 @@ const App = () => {
               firstname:doc.data().firstname,
               surname:doc.data().surname,
               username:doc.data().username
-              
             };
             setUser(userData);
           }
@@ -45,13 +43,8 @@ const App = () => {
       }else{
         setUser(null);
       }
-
-  })
-  ;return () =>{
-authUnsubscribe();
-  };
-  },[]);
- 
+  })},[userRef]);
+  console.log(user)
 return (
   <Router>
     <usercontext.Provider value={ {user,setUser}}>

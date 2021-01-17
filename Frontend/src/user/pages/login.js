@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState,useParams,useEffect} from "react";
+import { useHistory , useLocation } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./login.css";
 import Chatbot from "../components/chatbot";
@@ -15,11 +15,14 @@ import {
 } from "../Frontfirebase";
 import { MDBInput } from "mdbreact";
 import axios from "axios";
+
 const Login = () => {
+  const location = useLocation();
   let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailis_inVaild, setEmailis_inVaild] = useState(false);
+  const [isLogin,setIslogin] = useState(null)
 
   const LoginSubmit = (e) => {
     e.preventDefault()
@@ -60,8 +63,17 @@ const Login = () => {
         console.log(err);
       });
   };
-
-
+//  const Islogin = () =>{
+//    if(location.state !== undefined) {
+//      return true
+//     }
+//     else {
+//       return false
+//     }
+//  }
+//  useEffect(()=>{
+//   Islogin()
+//  },[])
 
   return (
     <div>
@@ -71,6 +83,7 @@ const Login = () => {
           <img src="/img/logoLogin.png" className="Logo-login" />
           <p className="h2 text-center mb-2 font-weight-bold text1-login">เข้าสู่ระบบ</p>
           {emailis_inVaild ? <div className="alert-login"> <span>อีเมลหรือรหัสผ่านไม่ถูกต้อง</span></div> : <p></p>}
+          {/* {Islogin() ? <div className="alert-login"> <span>กรุณาทำการ Login ก่อนโพสต์</span></div>:""} */}
           <div className="LoginInputForm">
             <MDBInput
               className="InputEmail"

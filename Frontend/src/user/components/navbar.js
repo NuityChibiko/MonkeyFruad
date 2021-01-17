@@ -11,13 +11,12 @@ const Usernvabar = () => {
 
   const logout = () =>{
     auth.signOut().then(()=>{
-      setUser(null)
       console.log("Signout")
     }).catch((err)=>{
       console.log(err)
     })
   }
- 
+
   return (
     <div className="Navbar">
         <Navbar variant="dark" expand="lg">
