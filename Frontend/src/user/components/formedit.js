@@ -14,7 +14,6 @@ import _ from "lodash"
 import Chatbot from "../components/chatbot";
 // import image from "D:/PROJECT ALL/MonkeyFruad/Frontend/src/uploads/logo192.png"
 
-
 const Formedit = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
@@ -386,7 +385,7 @@ const Formedit = () => {
             accept="image/png, image/jpeg , image/jpg"
             
           />
-          <h1>{ok.files.length}</h1>
+          
           <div className="container-img-holder-imgpreviewedit">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (
