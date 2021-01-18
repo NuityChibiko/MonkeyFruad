@@ -60,7 +60,12 @@ const Formpost = () => {
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
+<<<<<<< HEAD
 
+=======
+    Seterror()
+    
+>>>>>>> 80fdaa7217adb6898f180a0cd05db0439a3e7e4d
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
       let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
@@ -75,12 +80,20 @@ const Formpost = () => {
   };
 var user = auth.currentUser
 let history = useHistory()
+
  
+
+
   const handlesubmit = async (e) =>{
+    try{
       e.preventDefault()
       let formdata = new FormData()
       console.log(user.uid)
       let useruid = user.uid
+<<<<<<< HEAD
+=======
+      
+>>>>>>> 80fdaa7217adb6898f180a0cd05db0439a3e7e4d
       _.forEach(files ,file =>{
         formdata.append("eiei" , file)
       })
@@ -99,12 +112,18 @@ let history = useHistory()
       formdata.append("useruid" , useruid)
       
        await Axios.post("http://localhost:7000/post/create", formdata ) 
-      // console.log("ok")
+     
         history.push("/post/history")
+    }catch(err){
+      err && Seterror(err.response.data.msg)
+    }
+    
     
   }
   console.log(user.uid)
   return (
+   
+     
     <div className="container-formpost">
       <div className="container-formpost1">
         <div className="profile-badformpost-img">
@@ -325,8 +344,9 @@ let history = useHistory()
             onChange={FileUpload}
             multiple
             accept="image/png, image/jpeg , image/jpg"
-            
+         
           />
+         
           <h1 className="h1-formpostfileerror">{error}</h1> 
           <div className="container-img-holder-imgpreview">
             {imagesFile.map((imagePreviewUrl) => {
@@ -357,6 +377,7 @@ let history = useHistory()
       </div>
       <Chatbot/>
     </div>
+ 
   );
 };
 
