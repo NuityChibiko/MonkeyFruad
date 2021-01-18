@@ -1,5 +1,5 @@
 import React, { useContext,useEffect,useRef,useState} from "react";
-import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap';
+import { Navbar,Nav,NavDropdown,Form,FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./navbar.css";
 import { firestore, auth} from "../Frontfirebase";
@@ -60,11 +60,11 @@ console.log(user)
            
           </Nav>
           <Form inline>
-              <FormControl type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" className="mr-sm-2" />
-              <Button className="button"><i className="material-icons">search</i></Button>
+              <FormControl type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" className="boxsearch" />
+              <button className="buttonnavbarsearch"><i className="material-icons">search</i></button>
             </Form>
           { user ?  
-              <NavDropdown title={displayname} id="basic-nav-dropdown">
+              <NavDropdown alignRight title={displayname} id="basic-nav-dropdown">
                 <NavDropdown.Item href="/profile">จัดการโปรไฟล์</NavDropdown.Item>
                 <NavDropdown.Item href="/post/history">ประวัติการโพสต์</NavDropdown.Item>
                 <NavDropdown.Divider />
