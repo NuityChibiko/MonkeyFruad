@@ -143,7 +143,7 @@ let history = useHistory()
               className="formpost-left col-lg-6 col-12"
               controlId="formGridName"
             >
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="text" id="name" pattern="[a-z,A-Z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
@@ -152,7 +152,7 @@ let history = useHistory()
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastname">
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 นามสกุล (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="text" id="lastname" pattern="[a-z,A-Z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
@@ -167,7 +167,7 @@ let history = useHistory()
               className="formpost-left col-lg-6 col-12"
               controlId="formGridId"
             >
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 เลขบัตรประชาชน (ผู้โกง)
               </Form.Label>
               <Form.Control type="text" id="numberid" pattern="[0-9]{1,}" minlength="2" maxlength="13" title="กรอกตัวเลขเท่านั้น" onChange={(event)=>{
@@ -176,7 +176,7 @@ let history = useHistory()
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridAccountnumber">
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 เลขที่บัญชี (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="text" id="accountnumber" pattern="[0-9]{1,}" minlength="2" maxlength="10" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
@@ -191,7 +191,7 @@ let history = useHistory()
               className="formpost-left col-lg-6 col-12"
               controlId="formGridNameproduct"
             >
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 ชื่อสินค้า<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="nameproduct" placeholder="" required  onChange={(event)=>{
@@ -200,7 +200,7 @@ let history = useHistory()
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 หมวดหมู่สินค้า<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control as="select"  required onChange={(event)=>{
@@ -239,7 +239,7 @@ let history = useHistory()
               className="formpost-left col-lg-6 col-12"
               controlId="formGridPrice"
             >
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 จำนวนเงิน (บาท)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="text" id="nameproduct" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
@@ -248,7 +248,7 @@ let history = useHistory()
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 ธนาคาร<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control as="select"  required onChange={(event)=>{setBank(event.target.value)}}>
@@ -277,7 +277,7 @@ let history = useHistory()
               className="formpost-left col-lg-6 col-12"
               controlId="formGridDate"
             >
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 วันที่โดนโกง<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="datetime-local" placeholder="" required  onChange={(event)=>{
@@ -286,7 +286,7 @@ let history = useHistory()
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridSocial">
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 ช่องทางที่โดนโกง<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control as="select" required onChange={(event)=>{setSocial(event.target.value)}}>
@@ -310,7 +310,7 @@ let history = useHistory()
          
 
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>รายละเอียดเพิ่มเติม</Form.Label>
+            <Form.Label className="text-formpost">รายละเอียดเพิ่มเติม</Form.Label>
             <Form.Control as="textarea" rows={3} onChange={(event)=>{
                 setOther(event.target.value)
               }} />
