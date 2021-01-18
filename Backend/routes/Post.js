@@ -80,7 +80,7 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
 router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]),async (req, res) => {
   try{
   let uid = req.params.uid
-  const date = moment().format('MM/DD/YYYY, h:mm:ss ')
+  const date = moment().format('MM/DD/YYYY, h:mm:ss')
   const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
     let file = req.files.photo
     let files = req.files.eiei
@@ -153,7 +153,7 @@ router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "e
 // });
 router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]),async (req, res) => {
   let uid = req.params.uid
-  const date = moment().format('MM/DD/YYYY, h:mm:ss ')
+  const date = moment().format('MM/DD/YYYY, h:mm:ss')
   const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
   try{
     let file = req.files.photo
