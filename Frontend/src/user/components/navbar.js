@@ -26,20 +26,21 @@ const Usernvabar = () => {
             <NavDropdown title="โพสต์" id="basic-nav-dropdown">
               <NavDropdown.Item href="/post">โพสต์ทั้งหมด</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/post/create">สร้างโพสต์</NavDropdown.Item>
+              <NavDropdown.Item href="/linkruleshow">สร้างโพสต์</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/ranking">จัดอันดับคนโกง</Nav.Link>
             <NavDropdown title="ช่วยเหลือ" id="basic-nav-dropdown">
               <NavDropdown.Item href="/prevent">รู้ไว้ไม่โดนโกง</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/help">ช่องทางการช่วยเหลือ</NavDropdown.Item>
+              {/* <NavDropdown.Item href="/help">ช่องทางการช่วยเหลือ</NavDropdown.Item> */}
+              <NavDropdown.Item href="/helpnew">ช่องทางการช่วยเหลือ</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/contractus">ติดต่อเรา</Nav.Link>
            
           </Nav>
           <Form inline>
               <FormControl type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" className="mr-sm-2" />
-              <Button className="button"><i class="material-icons">search</i></Button>
+              <Button className="button"><i className="material-icons">search</i></Button>
             </Form>
           { user ?  (<button onClick={logout}>logout</button>) : (
               <Nav.Link className="link" href="/login">เข้าสู่ระบบ</Nav.Link>

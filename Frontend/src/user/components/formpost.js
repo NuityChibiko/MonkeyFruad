@@ -80,7 +80,8 @@ let history = useHistory()
       e.preventDefault()
       let formdata = new FormData()
       console.log(user.uid)
-      let useruid = user.uid_.forEach(files ,file =>{
+      let useruid = user.uid
+      _.forEach(files ,file =>{
         formdata.append("eiei" , file)
       })
       formdata.append("photo" , photo)
@@ -140,7 +141,7 @@ let history = useHistory()
               <Form.Label>
                 ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="text" id="name" pattern="[a-z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
+              <Form.Control type="text" id="name" pattern="[a-z,ก-๛,A-Z]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
                 setName(event.target.value)
               }} required />
             </Form.Group>
@@ -149,7 +150,7 @@ let history = useHistory()
               <Form.Label>
                 นามสกุล (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="text" id="lastname" pattern="[a-z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
+              <Form.Control type="text" id="lastname" pattern="[a-z,ก-๛,A-Z]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
                 setSurname(event.target.value)
               }} />
             </Form.Group>
