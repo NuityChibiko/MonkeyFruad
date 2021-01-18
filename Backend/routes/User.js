@@ -122,7 +122,6 @@ router.post("/remember", function (req, res) {
 
 router.post("/userdata", function (req, res) {
   const { user } = req.body;
-  console.log(user)
    firestore.collection("User").doc(user.uid).get().then((doc)=>{
     if(doc.exists){
       return res.json({data:doc.data()})
