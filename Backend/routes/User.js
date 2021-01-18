@@ -131,13 +131,13 @@ router.post("/login", function (req, res) {
     });
 });
 
-router.post("/session",(req,res)=>{
+router.post("/session",async (req,res)=>{
   try{
     const {
       result
       } = req.body;
       
-    const userRef = firestore.collection("Post").where("useruid" , "==" ,result.uid)
+    const userRef =await firestore.collection("Post").where("useruid" , "==" ,result.uid).orderBy("date", "desc")
     userRef.get().then((doc)=>{
      let item = []
      doc.forEach(doc2 =>{
