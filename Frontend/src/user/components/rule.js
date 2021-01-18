@@ -1,20 +1,33 @@
-import React, { useState ,useContext} from "react";
-import  {useHistory} from "react-router-dom";
+import React, { useState ,useContext , useEffect} from "react";
+import  {useHistory , Redirect } from "react-router-dom";
 import { Form, Col, Image, roundedCircle } from "react-bootstrap";
+import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import Login from "../pages/login"
 import "./rule.css";
 const Rule = () => {
-    // const history = useHistory()
-    // const handle = () =>{   
-    //     history.push("/post/create")
-    // }
+    const [user2 , Setuser2] = useState()
+    const history = useHistory()
+    let user = auth.currentUser;
+    console.log(user2)
+    const ok = async () =>{
+           
+        Setuser2(user)
+      }
+       
+       useEffect(() => {
+         ok()
+       }, [user ])
+       
+    
     const [state,setState] = useState(false)
     const toggleHandler = () => {
         const newData = !state;
         setState(newData);
     }
   return (
-    <div className="container-linkrule1">
+      <div>
+           <div className="container-linkrule1">
         <div className="container-linkrule2">
             <form >
             <h5 className="h3-linkrule">
@@ -92,6 +105,9 @@ const Rule = () => {
                 }
             </form>
       </div>
+    </div> 
+     
+    
     </div>
   );
 };

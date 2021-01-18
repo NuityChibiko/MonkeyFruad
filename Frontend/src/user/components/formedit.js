@@ -227,9 +227,29 @@ const Formedit = () => {
                 //value={show[0].productcategory}
                 setProductcategory(event.target.value)
               }}>
-                <option>เลือก...</option>
-                <option>แฟชั่น</option>
-                <option>ออนไลน์</option>
+               <option value="" selected disabled hidden>กรุณาเลือก...</option>
+                <option>เสื้อผ้า</option>
+                <option>เครื่องประดับ</option>
+                <option>รองเท้า</option>
+                <option>กระเป๋า</option>
+                <option>มือถือและอุปกรณ์เสริม</option>
+                <option>อาหารและเครื่องดื่ม</option>
+                <option>อาหารเสริมและผลิตภัณฑ์สุขภาพ</option>
+                <option>เครื่องสำอางค์และอุปกรณ์เสริมความงาม</option>
+                <option>คอมพิวเตอร์แล็ปท็อป</option>
+                <option>กล้องและอุปกรณ์ถ่ายภาพ</option>
+                <option>กีฬาและกิจกรรมกลางแจ้ง</option>
+                <option>สื่อบันเทิงภายในบ้าน</option>
+                <option>เกมส์และฮ๊อบบี้</option>
+                <option>ยานยนต์</option>
+                <option>ตั๋วและบัตรกำนัน</option>
+                <option>เครื่องใช้ไฟฟ้า</option>
+                <option>เฟอร์นิเจอร์และของตกแต่งบ้าน</option>
+                <option>สัตว์เลี้ยง</option>
+                <option>เครื่องเขียน</option>
+                <option>หนังสือ</option>
+                <option>เครื่องดนตรี</option>
+                <option>อื่นๆ</option>
                 </Form.Control> : null}
               {/* // <Form.Control as="select" defaultValue="Choose..."   required  onChange={(event)=>{ */}
               {/* //   setProductcategory(event.target.value)
@@ -262,7 +282,7 @@ const Formedit = () => {
              
              setBank(event.target.value)
            }}>
-                <option>เลือก...</option>
+            <option value="" selected disabled hidden>กรุณาเลือก...</option>
                 <option>ธนาคารกรุงเทพ</option>
                 <option>ธนาคารกรุงไทย</option>
                 <option>ธนาคารกรุงศรีอยุธยา</option>
@@ -322,7 +342,7 @@ const Formedit = () => {
               
               setSocial(event.target.value)
             }}>
-                <option>เลือก...</option>
+                  <option value="" selected disabled hidden>กรุณาเลือก...</option>
                 <option>Facebook</option>
                 <option>Instagram</option>
                 <option>Twitter</option>
@@ -362,8 +382,9 @@ const Formedit = () => {
             onChange={FileUpload}
             multiple
             accept="image/png, image/jpeg , image/jpg"
-      
+            
           />
+          <h1>{ok.files.length}</h1>
           <div className="container-img-holder-imgpreviewedit">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (

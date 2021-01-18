@@ -32,6 +32,7 @@ const Formpost = () => {
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
   const [error, Seterror] = useState();
+  const [user2, Setuser2] = useState();
   // let { user , setUser} = useContext(usercontext)
   const ImageHoverZoom = ({ imagePreviewUrl }) => {
     
@@ -78,7 +79,10 @@ const Formpost = () => {
 
 let user = auth.currentUser;
 let history = useHistory()
+
  
+
+
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
@@ -111,7 +115,11 @@ let history = useHistory()
     
     }
   }
+
+  
   return (
+   
+     
     <div className="container-formpost">
       <div className="container-formpost1">
         <div className="profile-badformpost-img">
@@ -331,7 +339,7 @@ let history = useHistory()
             onChange={FileUpload}
             multiple
             accept="image/png, image/jpeg , image/jpg"
-            
+         
           />
           <h1>{error}</h1> 
           <div className="container-img-holder-imgpreview">
@@ -362,6 +370,7 @@ let history = useHistory()
         </Form>
       </div>
     </div>
+ 
   );
 };
 
