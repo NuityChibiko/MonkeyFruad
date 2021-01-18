@@ -119,6 +119,22 @@ router.post("/facebooksignup", function (req, res) {
 router.post("/remember", function (req, res) {
   res.json({ success: true });
 });
+
+router.post("/userdata", function (req, res) {
+  const { user } = req.body;
+  console.log(user)
+   firestore.collection("User").doc(user.uid).get().then((doc)=>{
+    if(doc.exists){
+      return res.json({data:doc.data()})
+    }
+    else{
+      console.log("No such document")
+    }
+  }).catch((Error)=>{
+    connsole.log(Error)
+  })
+});
+
 router.post("/login", function (req, res) {
   const { email, password } = req.body;
   const userLogin = auth
@@ -131,13 +147,13 @@ router.post("/login", function (req, res) {
     });
 });
 
-router.post("/session",(req,res)=>{
+router.post("/postapi",async (req,res)=>{
   try{
     const {
       result
       } = req.body;
       
-    const userRef = firestore.collection("Post").where("useruid" , "==" ,result.uid)
+    const userRef =await firestore.collection("Post").where("useruid" , "==" ,result.uid).orderBy("date", "desc")
     userRef.get().then((doc)=>{
      let item = []
      doc.forEach(doc2 =>{
