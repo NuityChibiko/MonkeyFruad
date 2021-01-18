@@ -51,9 +51,8 @@ ok()
       {mypost ? mypost.map((ok,index) =>{
         return (
           <div>
-           
-      <div className="container-history1" key={index}>
-        <div className="container-history2">
+      <div className="container-history1" >
+        <div className="container-history2" key={index}>
           <div className="container-historysetiing">
             <div className="menu-containerhistorysetting">
                 <div onClick={onClick} className="historybuttonsetting">
@@ -164,7 +163,7 @@ ok()
           </div>
         </div>
       </div>
-          </div>
+      </div>
         )
       }) : null}
     
