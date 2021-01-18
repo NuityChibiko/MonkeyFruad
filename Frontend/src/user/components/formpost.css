@@ -186,7 +186,9 @@
 }
 
 @media only screen and (max-width: 375px) {
-
+    .buttonformpost{
+        font-size: 19px;
+    }
 }
 
 @media only screen and (max-width: 320px) {
