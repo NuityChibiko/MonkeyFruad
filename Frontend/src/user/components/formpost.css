@@ -184,7 +184,31 @@
         font-size: 19px;
     }
 }
-
+@media only screen and (min-width: 414px) {
+    .uploadsformpostuploadslip{
+        width: 100%;
+        font-size: 18px;
+    }
+    .container-formpost{
+        width: 100%;
+        box-shadow: 0px 0px 0px rgba(0,0,0,.2);
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }
+    .spanformpost{
+        font-size: 17px;
+    }
+    .text-formpost{
+        font-size: 19px;
+    }
+    .h1-formpostfileerror{
+        font-size: 17px;
+        margin-top: 15px;
+    }
+    .buttonformpost{
+        font-size: 19px;
+    }
+}
 @media only screen and (max-width: 375px) {
 
 }
