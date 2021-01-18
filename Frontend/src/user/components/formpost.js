@@ -60,8 +60,7 @@ const Formpost = () => {
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
-    Seterror()
-
+    
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
       let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
@@ -81,7 +80,7 @@ let history = useHistory()
       e.preventDefault()
       let formdata = new FormData()
       console.log(user.uid)
-      let useruid = user.uid_.forEach(files , file =>{
+      let useruid = user.uid_.forEach(files ,file =>{
         formdata.append("eiei" , file)
       })
       formdata.append("photo" , photo)
