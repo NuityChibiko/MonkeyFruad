@@ -228,10 +228,7 @@ const Formedit = () => {
                 //value={show[0].productcategory}
                 setProductcategory(event.target.value)
               }}>
-<<<<<<< HEAD
-               <option value="" selected disabled hidden>กรุณาเลือก...</option>
-=======
->>>>>>> 81c143531ad0f8f50bc0a3472d746676c73497ef
+                  <option value="" selected disabled hidden>กรุณาเลือก...</option>
                 <option>เสื้อผ้า</option>
                 <option>เครื่องประดับ</option>
                 <option>รองเท้า</option>
@@ -286,10 +283,7 @@ const Formedit = () => {
              
              setBank(event.target.value)
            }}>
-<<<<<<< HEAD
-            <option value="" selected disabled hidden>กรุณาเลือก...</option>
-=======
->>>>>>> 81c143531ad0f8f50bc0a3472d746676c73497ef
+               <option value="" selected disabled hidden>กรุณาเลือก...</option>
                 <option>ธนาคารกรุงเทพ</option>
                 <option>ธนาคารกรุงไทย</option>
                 <option>ธนาคารกรุงศรีอยุธยา</option>
@@ -349,10 +343,7 @@ const Formedit = () => {
               
               setSocial(event.target.value)
             }}>
-<<<<<<< HEAD
-                  <option value="" selected disabled hidden>กรุณาเลือก...</option>
-=======
->>>>>>> 81c143531ad0f8f50bc0a3472d746676c73497ef
+                <option value="" selected disabled hidden>กรุณาเลือก...</option>
                 <option>Facebook</option>
                 <option>Instagram</option>
                 <option>Twitter</option>
