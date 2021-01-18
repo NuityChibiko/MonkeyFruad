@@ -7,23 +7,23 @@ import Chatbot from "../components/chatbot";
 import "./index.css";
 
 const Home = () => {
-  const [data, setData] = useState();
-  // var user = auth.currentUser;
-  let { user , setUser} = useContext(usercontext)
-  const test = () => {
-    if (user) {
-      console.log("all user data", user);
-      console.log("uid user", user.uid);
-    } else {
-      console.log("error");
-    }
-  };
+  // const [data, setData] = useState();
+  // // var user = auth.currentUser;
+  // let { user , setUser} = useContext(usercontext)
+  // const test = () => {
+  //   if (user) {
+  //     console.log("all user data", user);
+  //     console.log("uid user", user.uid);
+  //   } else {
+  //     console.log("error");
+  //   }
+  // };
   return (
     <div>
       <Navbar />
       <h1 className="h1-index">หน้าหลัก</h1>
-      {/* <a onClick={submit}>enter</a> */}
-      <button onClick={test}>test user data</button>
+      {/* <a onClick={submit}>enter</a>
+      <button onClick={test}>test user data</button> */}
       <Chatbot/>
     </div>
   );

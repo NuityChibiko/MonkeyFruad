@@ -47,7 +47,7 @@ const Mypost = () => {
         if(user2){
             const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
             console.log(postdelete.data)
-            const ok = await Axios.post("http://localhost:7000/user/postapi", {result:user2})
+            const ok = await Axios.post("http://localhost:7000/post/postapi", {result:user2})
             console.log(ok.data.item)
             Setmypost(ok.data.item) 
             history.push("/post/history")
