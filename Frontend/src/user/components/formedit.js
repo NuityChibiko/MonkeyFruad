@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./formedit.css";
 import Axios from "axios"
 import _ from "lodash"
+import Chatbot from "../components/chatbot";
 // import image from "D:/PROJECT ALL/MonkeyFruad/Frontend/src/uploads/logo192.png"
 
 
@@ -171,7 +172,7 @@ const Formedit = () => {
                 ชื่อ (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
 
-              {show ? <Form.Control type="text" placeholder="" value={name} onChange={(event)=>{setName(event.target.value)}} required /> : null }
+              {show ? <Form.Control type="text" id="name" pattern="[a-z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" value={name} onChange={(event)=>{setName(event.target.value)}} required /> : null }
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setName(event.target.value)}} required />} */}
               </Form.Group>
 
@@ -179,7 +180,7 @@ const Formedit = () => {
               <Form.Label>
                 นามสกุล (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" value={surname} onChange={(event)=>{setSurname(event.target.value)}} required /> : null}
+              {show ? <Form.Control type="text" id="lastname" pattern="[a-z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" value={surname} onChange={(event)=>{setSurname(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setSurname(event.target.value)}} required />} */}
             </Form.Group>
           </Form.Row>
@@ -193,7 +194,7 @@ const Formedit = () => {
               <Form.Label>
                 เลขบัตรประชาชน (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" value={id} onChange={(event)=>{setId(event.target.value)}} required /> : null}
+              {show ? <Form.Control type="text" id="numberid" pattern="[0-9]{1,}" minlength="2" maxlength="13" title="กรอกตัวเลขเท่านั้น" placeholder="" value={id} onChange={(event)=>{setId(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setId(event.target.value)}} required />} */}
             </Form.Group>
 
@@ -201,7 +202,7 @@ const Formedit = () => {
               <Form.Label>
                 เลขที่บัญชี (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" value={accountnumber} onChange={(event)=>{setAccountnumber(event.target.value)}} required /> : null}
+              {show ? <Form.Control type="text" id="accountnumber" pattern="[0-9]{1,}" minlength="2" maxlength="10" title="กรอกตัวเลขเท่านั้น" placeholder="" value={accountnumber} onChange={(event)=>{setAccountnumber(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setAccountnumber(event.target.value)}} required />} */}
             </Form.Group>
           </Form.Row>
@@ -223,11 +224,14 @@ const Formedit = () => {
               <Form.Label>
                 หมวดหมู่สินค้า<span className="spanformedit">*</span>
               </Form.Label>
-              {show ? <Form.Control as="select"    required   value={productcategory} onChange={(event)=>{
+              {show ? <Form.Control as="select" required value={productcategory} onChange={(event)=>{
                 //value={show[0].productcategory}
                 setProductcategory(event.target.value)
               }}>
+<<<<<<< HEAD
                <option value="" selected disabled hidden>กรุณาเลือก...</option>
+=======
+>>>>>>> 81c143531ad0f8f50bc0a3472d746676c73497ef
                 <option>เสื้อผ้า</option>
                 <option>เครื่องประดับ</option>
                 <option>รองเท้า</option>
@@ -270,7 +274,7 @@ const Formedit = () => {
               <Form.Label>
                 จำนวนเงิน (บาท)<span className="spanformedit">*</span>
               </Form.Label>
-              {show ? <Form.Control type="name" placeholder="" value={money} onChange={(event)=>{setMoney(event.target.value)}} required /> : null}
+              {show ? <Form.Control type="text" id="nameproduct" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" value={money} onChange={(event)=>{setMoney(event.target.value)}} required /> : null}
               {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setMoney(event.target.value)}} required />} */}
             </Form.Group>
 
@@ -282,7 +286,10 @@ const Formedit = () => {
              
              setBank(event.target.value)
            }}>
+<<<<<<< HEAD
             <option value="" selected disabled hidden>กรุณาเลือก...</option>
+=======
+>>>>>>> 81c143531ad0f8f50bc0a3472d746676c73497ef
                 <option>ธนาคารกรุงเทพ</option>
                 <option>ธนาคารกรุงไทย</option>
                 <option>ธนาคารกรุงศรีอยุธยา</option>
@@ -342,7 +349,10 @@ const Formedit = () => {
               
               setSocial(event.target.value)
             }}>
+<<<<<<< HEAD
                   <option value="" selected disabled hidden>กรุณาเลือก...</option>
+=======
+>>>>>>> 81c143531ad0f8f50bc0a3472d746676c73497ef
                 <option>Facebook</option>
                 <option>Instagram</option>
                 <option>Twitter</option>
@@ -376,6 +386,7 @@ const Formedit = () => {
             </span>
           </Form.File.Label>
            
+          <br></br> 
           <input
             className="uploadsformedituploadslip"
             type="file"
@@ -423,7 +434,7 @@ const Formedit = () => {
         )
       }) : null}
    
-    
+    <Chatbot/>
     </div>
   );
 };
