@@ -7,9 +7,8 @@ import usercontext from "../context/usercontext"
 import axios from "axios";
 
 const Usernvabar = () => {
-  var{ user , setUser} = useContext(usercontext)
+  var { user , setUser} = useContext(usercontext)
   const [displayname , setDisplayname] = useState()
-  const [userdata , setUserData] = useState(user)
   const logout = () =>{
     auth.signOut().then(()=>{
       console.log("Signout")
@@ -19,7 +18,7 @@ const Usernvabar = () => {
   }
   const session = () =>{
     console.log("OK")
-    axios.post("http://localhost:7000/user/userdata", { user: userdata })
+    axios.post("http://localhost:7000/user/userdata", { user : user })
     .then((result) => {
       setDisplayname(result.data.data.username)
     })
@@ -36,8 +35,8 @@ const Usernvabar = () => {
       setDisplayname(user.displayName)
     }
   }
-     },[]);
-
+     },[user]);
+console.log(user)
   return (
     <div className="Navbar">
         <Navbar variant="dark" expand="lg">
