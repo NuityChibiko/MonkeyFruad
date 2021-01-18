@@ -11,7 +11,6 @@ import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import Chatbot from "../components/chatbot";
 
 
-
 const Formpost = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
@@ -42,7 +41,7 @@ const Formpost = () => {
 
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
-  
+
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setphoto(files[0])
@@ -53,9 +52,9 @@ const Formpost = () => {
     };
 
   };
-
 // ฟังก์ชันอัพโหลดไฟล์ 
   const FileUpload = (event) => { 
+
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
@@ -72,10 +71,12 @@ const Formpost = () => {
         //  PrevState เป็น Parameter ในการเรียก State ก่อนหน้ามาแล้วรวม Array กับ fileที่อัพโหลดเข้ามา
       };
     }
+
   }
 var user = auth.currentUser
 let history = useHistory()
   const handlesubmit = async (e) =>{
+
     try{
       e.preventDefault()
       let formdata = new FormData()
@@ -104,13 +105,11 @@ let history = useHistory()
     }catch(err){
       err && Seterror(err.response.data.msg)
     }
-    
-    
+  
   }
   console.log(user.uid)
   return (
-   
-     
+  
     <div className="container-formpost">
       <div className="container-formpost1">
         <div className="profile-badformpost-img">
@@ -331,7 +330,6 @@ let history = useHistory()
             onChange={FileUpload}
             multiple
             accept="image/png, image/jpeg , image/jpg"
-         
           />
          
           <h1 className="h1-formpostfileerror">{error}</h1> 

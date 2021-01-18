@@ -37,6 +37,7 @@ const App = () => {
     })
     },[]);
 console.log(user)
+
 return loadingAuth ? '' : (
   <Router>
     <usercontext.Provider value={ {user,setUser}}>
