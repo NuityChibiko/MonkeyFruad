@@ -153,6 +153,29 @@ console.log(err)
   }}
 })
 
+
+router.post("/userid",(req,res)=>{
+  try{
+    const {
+      result
+      } = req.body;
+      
+    const userRef = firestore.collection("User").where("uid" , "==" ,result.uid)
+    userRef.get().then((doc)=>{
+     let item = []
+     doc.forEach(doc2 =>{
+      item.push(doc2.data())
+     })
+        res.json({
+          item
+        })
+     })
+  
+  }catch{(err)=>{
+console.log(err)
+  }}
+})
+
 // router.post("/session",(req,res)=>{
 //   try{
 //     const {

@@ -1,20 +1,51 @@
-import React, { useState ,useContext} from "react";
+import React, { useState ,useContext, useEffect,useMemo, useReducer, useRef} from "react";
 import  {useHistory} from "react-router-dom";
 import { Form, Col, Image, roundedCircle } from "react-bootstrap";
+import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import Login from "../pages/login"
 import "./rule.css";
+import usercontext from "../context/usercontext"
+import axios from "axios";
 const Rule = () => {
     // const history = useHistory()
     // const handle = () =>{   
     //     history.push("/post/create")
     // }
+    
+    let history = useHistory()
     const [state,setState] = useState(false)
+    let { user , setUser} = useContext(usercontext)
     const toggleHandler = () => {
         const newData = !state;
         setState(newData);
     }
+    const loginRedirect = () =>{
+        try{
+                if(user){
+                    console.log(" มี user")
+                } 
+                else if(!user) {
+                    console.log("no user")
+                    history.push({
+                        pathname: '/login',
+                        search: '?login = false',  // query string
+                        state: {  // location state
+                          login: false, 
+                        },
+                      }); 
+                }
+            
+    }catch(err){
+        console.log(err)
+    }
+}
+    useEffect(()=>{
+    loginRedirect()
+    },[])
   return (
-    <div className="container-linkrule1">
+      <div>
+           <div className="container-linkrule1">
         <div className="container-linkrule2">
             <form >
             <h5 className="h3-linkrule">
@@ -92,6 +123,9 @@ const Rule = () => {
                 }
             </form>
       </div>
+    </div> 
+     
+    
     </div>
   );
 };
