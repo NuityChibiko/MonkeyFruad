@@ -331,7 +331,6 @@ let history = useHistory()
             onChange={FileUpload}
             multiple
             accept="image/png, image/jpeg , image/jpg"
-         
           />
          
           <h1 className="h1-formpostfileerror">{error}</h1> 
