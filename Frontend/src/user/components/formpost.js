@@ -29,6 +29,7 @@ const Formpost = () => {
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
   const [error, Seterror] = useState();
+  // var { user , setUser} = useContext(usercontext)
   // let { user , setUser} = useContext(usercontext)
   const ImageHoverZoom = ({ imagePreviewUrl }) => {
     
@@ -70,14 +71,13 @@ const Formpost = () => {
     }
      
   };
-
-let user = auth.currentUser;
+var user = auth.currentUser
 let history = useHistory()
  
   const handlesubmit = async (e) =>{
-    try{
       e.preventDefault()
       let formdata = new FormData()
+      console.log(user.uid)
       let useruid = user.uid_.forEach(files , file =>{
         formdata.append("eiei" , file)
       })
@@ -95,14 +95,12 @@ let history = useHistory()
       formdata.append("other" , other)
       formdata.append("useruid" , useruid)
       
-      let data = await Axios.post("http://localhost:7000/post/create", formdata ) 
+       await Axios.post("http://localhost:7000/post/create", formdata ) 
       // console.log("ok")
         history.push("/post/history")
-    }catch(err){
-      err && Seterror(err.response.data.msg)
     
-    }
   }
+  console.log(user.uid)
   return (
     <div className="container-formpost">
       <div className="container-formpost1">

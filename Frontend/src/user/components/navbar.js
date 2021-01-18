@@ -6,8 +6,7 @@ import { firestore, auth} from "../Frontfirebase";
 import usercontext from "../context/usercontext"
 
 const Usernvabar = () => {
-  let { user , setUser} = useContext(usercontext)
-  let { isLogin,setisLogin} = useContext(usercontext)
+  var{ user , setUser} = useContext(usercontext)
 
   const logout = () =>{
     auth.signOut().then(()=>{

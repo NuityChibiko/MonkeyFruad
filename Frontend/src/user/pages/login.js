@@ -63,17 +63,17 @@ const Login = () => {
         console.log(err);
       });
   };
-//  const Islogin = () =>{
-//    if(location.state !== undefined) {
-//      return true
-//     }
-//     else {
-//       return false
-//     }
-//  }
-//  useEffect(()=>{
-//   Islogin()
-//  },[])
+ const Islogin = () =>{
+   if(location.state !== undefined) {
+     return true
+    }
+    else {
+      return false
+    }
+ }
+ useEffect(()=>{
+  Islogin()
+ },[])
 
   return (
     <div>
@@ -83,7 +83,7 @@ const Login = () => {
           <img src="/img/logoLogin.png" className="Logo-login" />
           <p className="h2 text-center mb-2 font-weight-bold text1-login">เข้าสู่ระบบ</p>
           {emailis_inVaild ? <div className="alert-login"> <span>อีเมลหรือรหัสผ่านไม่ถูกต้อง</span></div> : <p></p>}
-          {/* {Islogin() ? <div className="alert-login"> <span>กรุณาทำการ Login ก่อนโพสต์</span></div>:""} */}
+          {Islogin() ? <div className="alert-login"> <span>กรุณาทำการ Login ก่อนโพสต์</span></div>:""}
           <div className="LoginInputForm">
             <MDBInput
               className="InputEmail"
