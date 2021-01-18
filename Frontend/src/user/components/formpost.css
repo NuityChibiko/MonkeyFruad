@@ -159,8 +159,8 @@
 
 }
 
-@media only screen and (max-width: 414px) {
-    .uploadsformpostuploadslip{
+@media only screen and (max-width: 450px) {
+    .uploadsformedituploadslip{
         width: 100%;
         font-size: 18px;
     }
@@ -184,8 +184,8 @@
         font-size: 19px;
     }
 }
-@media only screen and (min-width: 414px) {
-    .uploadsformpostuploadslip{
+@media only screen and (max-width: 414px) {
+    .uploadsformedituploadslip{
         width: 100%;
         font-size: 18px;
     }
@@ -220,7 +220,7 @@
     .spanformpost{
         font-size: 16px;
     }
-    .uploadsformpostuploadslip{
+    .uploadsformedituploadslip{
         width: 100%;
         font-size: 17px;
     }

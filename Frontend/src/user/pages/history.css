@@ -175,12 +175,29 @@
 }
 
 @media only screen and (max-width: 768px) {
-
+    .container-history1{
+        width: 80%;
+    }
+    .container-history2{
+        width: 100%;
+    }
+    .spanhistory{
+        margin-left: -270px;
+    }
+    .h2-history2{
+        margin-left: 0px;
+    }
 }
 
 @media only screen and (max-width: 414px) {
     .h1-history{
         font-size: 25px;
+    }
+    .h2-history2{
+        font-size: 20px;
+    }
+    .container-history1{
+        width: 95%;
     }
 }
 @media only screen and (min-width: 414px) {
