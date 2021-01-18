@@ -228,6 +228,7 @@ const Formedit = () => {
                 //value={show[0].productcategory}
                 setProductcategory(event.target.value)
               }}>
+                  <option value="" selected disabled hidden>กรุณาเลือก...</option>
                 <option>เสื้อผ้า</option>
                 <option>เครื่องประดับ</option>
                 <option>รองเท้า</option>
@@ -282,6 +283,7 @@ const Formedit = () => {
              
              setBank(event.target.value)
            }}>
+               <option value="" selected disabled hidden>กรุณาเลือก...</option>
                 <option>ธนาคารกรุงเทพ</option>
                 <option>ธนาคารกรุงไทย</option>
                 <option>ธนาคารกรุงศรีอยุธยา</option>
@@ -341,6 +343,7 @@ const Formedit = () => {
               
               setSocial(event.target.value)
             }}>
+                <option value="" selected disabled hidden>กรุณาเลือก...</option>
                 <option>Facebook</option>
                 <option>Instagram</option>
                 <option>Twitter</option>
@@ -381,8 +384,9 @@ const Formedit = () => {
             onChange={FileUpload}
             multiple
             accept="image/png, image/jpeg , image/jpg"
-      
+            
           />
+          <h1>{ok.files.length}</h1>
           <div className="container-img-holder-imgpreviewedit">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (

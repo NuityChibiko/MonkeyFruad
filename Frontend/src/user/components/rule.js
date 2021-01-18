@@ -1,9 +1,10 @@
 import React, { useState ,useContext, useEffect,useMemo, useReducer, useRef} from "react";
 import  {useHistory} from "react-router-dom";
 import { Form, Col, Image, roundedCircle } from "react-bootstrap";
+import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import Login from "../pages/login"
 import "./rule.css";
-import { auth } from "../Frontfirebase";
 import usercontext from "../context/usercontext"
 import axios from "axios";
 const Rule = () => {
@@ -43,7 +44,8 @@ const Rule = () => {
     loginRedirect()
     },[])
   return (
-    <div className="container-linkrule1">
+      <div>
+           <div className="container-linkrule1">
         <div className="container-linkrule2">
             <form >
             <h5 className="h3-linkrule">
@@ -121,6 +123,9 @@ const Rule = () => {
                 }
             </form>
       </div>
+    </div> 
+     
+    
     </div>
   );
 };
