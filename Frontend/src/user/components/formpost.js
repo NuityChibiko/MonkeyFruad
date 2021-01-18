@@ -60,12 +60,8 @@ const Formpost = () => {
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
-<<<<<<< HEAD
-
-=======
     Seterror()
-    
->>>>>>> 80fdaa7217adb6898f180a0cd05db0439a3e7e4d
+  }
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
       let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
@@ -76,24 +72,14 @@ const Formpost = () => {
         //  PrevState เป็น Parameter ในการเรียก State ก่อนหน้ามาแล้วรวม Array กับ fileที่อัพโหลดเข้ามา
       };
     }
-     
-  };
 var user = auth.currentUser
 let history = useHistory()
-
- 
-
-
   const handlesubmit = async (e) =>{
     try{
       e.preventDefault()
       let formdata = new FormData()
       console.log(user.uid)
       let useruid = user.uid
-<<<<<<< HEAD
-=======
-      
->>>>>>> 80fdaa7217adb6898f180a0cd05db0439a3e7e4d
       _.forEach(files ,file =>{
         formdata.append("eiei" , file)
       })
@@ -160,7 +146,7 @@ let history = useHistory()
               <Form.Label>
                 ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="text" id="name" pattern="[a-z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
+              <Form.Control type="text" id="name" pattern="[a-z,A-Z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
                 setName(event.target.value)
               }} required />
             </Form.Group>
@@ -169,7 +155,7 @@ let history = useHistory()
               <Form.Label>
                 นามสกุล (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="text" id="lastname" pattern="[a-z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
+              <Form.Control type="text" id="lastname" pattern="[a-z,A-Z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
                 setSurname(event.target.value)
               }} />
             </Form.Group>
