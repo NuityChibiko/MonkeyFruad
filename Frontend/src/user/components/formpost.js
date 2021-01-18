@@ -8,12 +8,9 @@ import usercontext from "../context/usercontext"
 import Axios from "axios"
 import _ from "lodash"
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
-<<<<<<< HEAD
-=======
 import Chatbot from "../components/chatbot";
 
 
->>>>>>> 81c143531ad0f8f50bc0a3472d746676c73497ef
 
 const Formpost = () => {
 
