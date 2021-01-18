@@ -131,7 +131,7 @@ router.post("/login", function (req, res) {
     });
 });
 
-router.post("/session",async (req,res)=>{
+router.post("/postapi",async (req,res)=>{
   try{
     const {
       result
