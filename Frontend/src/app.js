@@ -1,6 +1,6 @@
 // import package and file
-import React, {useEffect,useRef,useState,useContext, createContext} from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React, {useEffect,useRef,useState,useContext, createContext,useMemo,useCallback} from "react";
+import { BrowserRouter as Router, Route, Switch ,Redirect} from "react-router-dom";
 import { firestore, auth} from "./user/Frontfirebase";
 import Home from "./user/pages/index";
 import Contractus from "./user/pages/contractus";
@@ -24,35 +24,20 @@ import usercontext from "./user/context/usercontext"
 
 // ที่รวม Routh ต่างๆ
 const App = () => {
-  const userRef = useRef(firestore.collection("User")).current;
   const [user,setUser] = useState();
-
+  const [loadingAuth, setLoadingAuth] = useState(true)
   useEffect(()=>{
-    const authUnsubscribe = auth.onAuthStateChanged((firebaseUser)=>{
-      if(firebaseUser){
-        userRef.doc(firebaseUser.uid).onSnapshot((doc)=>{
-          if(doc.data()){
-            const userData = {
-              uid:doc.data().uid,
-              firstname:doc.data().firstname,
-              surname:doc.data().surname,
-              username:doc.data().username
-              
-            };
-            setUser(userData);
-          }
-      })
-      }else{
-        setUser(null);
+   auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user)
+      } else {
+        setUser(null)
       }
-
-  })
-  ;return () =>{
-authUnsubscribe();
-  };
-  },[]);
- 
-return (
+      setLoadingAuth(false)
+    })
+    },[]);
+console.log(user)
+return loadingAuth ? '' : (
   <Router>
     <usercontext.Provider value={ {user,setUser}}>
     <Switch>
@@ -102,7 +87,7 @@ return (
         <Post />
       </Route>
       <Route path="/linkruleshow" exact>
-        <Linkruleshow />
+          <Linkruleshow /> 
       </Route>
     </Switch>
     </usercontext.Provider>

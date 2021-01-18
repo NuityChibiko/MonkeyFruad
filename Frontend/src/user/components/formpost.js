@@ -32,7 +32,11 @@ const Formpost = () => {
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
   const [error, Seterror] = useState();
+<<<<<<< HEAD
   const [user2, Setuser2] = useState();
+=======
+  // var { user , setUser} = useContext(usercontext)
+>>>>>>> 85d6bff5a1abd69ecebfab7b4a7c5547676b6d21
   // let { user , setUser} = useContext(usercontext)
   const ImageHoverZoom = ({ imagePreviewUrl }) => {
     
@@ -60,8 +64,7 @@ const Formpost = () => {
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
-    Seterror()
-
+    
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
       let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
@@ -74,22 +77,17 @@ const Formpost = () => {
     }
      
   };
-
-
-
-let user = auth.currentUser;
+var user = auth.currentUser
 let history = useHistory()
 
  
 
 
   const handlesubmit = async (e) =>{
-    try{
       e.preventDefault()
-      
-        let formdata = new FormData()
-      let useruid = user.uid
-      _.forEach(files , file =>{
+      let formdata = new FormData()
+      console.log(user.uid)
+      let useruid = user.uid_.forEach(files ,file =>{
         formdata.append("eiei" , file)
       })
       formdata.append("photo" , photo)
@@ -106,17 +104,17 @@ let history = useHistory()
       formdata.append("other" , other)
       formdata.append("useruid" , useruid)
       
-      let data = await Axios.post("http://localhost:7000/post/create", formdata ) 
+       await Axios.post("http://localhost:7000/post/create", formdata ) 
       // console.log("ok")
         history.push("/post/history")
-     
-    }catch(err){
-      err && Seterror(err.response.data.msg)
     
-    }
   }
+<<<<<<< HEAD
 
   
+=======
+  console.log(user.uid)
+>>>>>>> 85d6bff5a1abd69ecebfab7b4a7c5547676b6d21
   return (
    
      

@@ -1,30 +1,54 @@
+<<<<<<< HEAD
 import React, { useState ,useContext , useEffect} from "react";
 import  {useHistory , Redirect } from "react-router-dom";
+=======
+import React, { useState ,useContext, useEffect,useMemo, useReducer, useRef} from "react";
+import  {useHistory} from "react-router-dom";
+>>>>>>> 85d6bff5a1abd69ecebfab7b4a7c5547676b6d21
 import { Form, Col, Image, roundedCircle } from "react-bootstrap";
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import Login from "../pages/login"
 import "./rule.css";
+import { auth } from "../Frontfirebase";
+import usercontext from "../context/usercontext"
+import axios from "axios";
 const Rule = () => {
-    const [user2 , Setuser2] = useState()
-    const history = useHistory()
-    let user = auth.currentUser;
-    console.log(user2)
-    const ok = async () =>{
-           
-        Setuser2(user)
-      }
-       
-       useEffect(() => {
-         ok()
-       }, [user ])
-       
+    // const history = useHistory()
+    // const handle = () =>{   
+    //     history.push("/post/create")
+    // }
     
+    let history = useHistory()
     const [state,setState] = useState(false)
+    let { user , setUser} = useContext(usercontext)
     const toggleHandler = () => {
         const newData = !state;
         setState(newData);
     }
+    const loginRedirect = () =>{
+        try{
+                if(user){
+                    console.log(" มี user")
+                } 
+                else if(!user) {
+                    console.log("no user")
+                    history.push({
+                        pathname: '/login',
+                        search: '?login = false',  // query string
+                        state: {  // location state
+                          login: false, 
+                        },
+                      }); 
+                }
+            
+    }catch(err){
+        console.log(err)
+    }
+}
+    useEffect(()=>{
+    loginRedirect()
+    },[])
   return (
       <div>
            <div className="container-linkrule1">
