@@ -61,7 +61,7 @@ const Formpost = () => {
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
     Seterror()
-  }
+  
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
       let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
@@ -72,6 +72,7 @@ const Formpost = () => {
         //  PrevState เป็น Parameter ในการเรียก State ก่อนหน้ามาแล้วรวม Array กับ fileที่อัพโหลดเข้ามา
       };
     }
+  }
 var user = auth.currentUser
 let history = useHistory()
   const handlesubmit = async (e) =>{
@@ -334,6 +335,7 @@ let history = useHistory()
           />
          
           <h1 className="h1-formpostfileerror">{error}</h1> 
+
           <div className="container-img-holder-imgpreview">
             {imagesFile.map((imagePreviewUrl) => {
               return (
