@@ -334,6 +334,7 @@ let history = useHistory()
           />
          
           <h1 className="h1-formpostfileerror">{error}</h1> 
+          
           <div className="container-img-holder-imgpreview">
             {imagesFile.map((imagePreviewUrl) => {
               return (
