@@ -20,6 +20,7 @@ import Linkruleshow from "./user/pages/linkruleshow";
 import "./app.css";
 import Axios from "axios"
 import usercontext from "./user/context/usercontext"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 // ที่รวม Routh ต่างๆ

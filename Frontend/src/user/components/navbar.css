@@ -1,3 +1,41 @@
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@NuityChibiko
+kauhaz /
+MonkeyFruad
+
+1
+1
+
+    0
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+
+    Insights
+
+MonkeyFruad/Frontend/src/user/components/navbar.css
+@NuityChibiko
+NuityChibiko commit
+Latest commit 29311ff 9 days ago
+History
+4 contributors
+@porpraew
+@kauhaz
+@NuityChibiko
+@plunchyy
+69 lines (57 sloc) 1.05 KB
+
+
 /* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
@@ -28,7 +66,7 @@
   display: block;
 }
 
-.navbar {
+.Navbar {
   background-color: #8B0000;
   color: white;
   font-family: 'Kanit', sans-serif;
@@ -58,6 +96,8 @@
 .head {
   font-size: 30px;
 }
+
 body {
   background-color: #F0F2F5;
 }
+
