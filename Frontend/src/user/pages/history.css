@@ -164,3 +164,34 @@
     padding-top: 0px;
     padding-bottom: 0px;
 }
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+@media only screen and (max-width: 768px) {
+
+}
+
+@media only screen and (max-width: 414px) {
+    .h1-history{
+        font-size: 25px;
+    }
+}
+@media only screen and (min-width: 414px) {
+    /* .h1-history{
+        font-size: 25px;
+    } */
+}
+@media only screen and (max-width: 375px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+
+}
