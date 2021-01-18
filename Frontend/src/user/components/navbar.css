@@ -45,21 +45,46 @@
   color: #DCDCDC;
 }
 
-.button {
+.buttonnavbarsearch {
   background-color: #8B0000;
   color: white;
   border: none;
 }
 
-.button:hover {
+.buttonnavbarsearch:hover {
   background-color: #8B0000;
   color: white;
   border: none;
 }
+
 
 .head {
   font-size: 30px;
 }
 body {
   background-color: #F0F2F5;
+}
+
+#basic-nav-dropdown {
+  color: white !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .boxsearch{
+    width: 80%;
+  }
+  .buttonnavbarsearch {
+    width: 15%;
+    display: inline;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .boxsearch{
+    width: 100px;
+  }
+  .buttonnavbarsearch {
+    width: 15%;
+    display: inline;
+  }
 }
