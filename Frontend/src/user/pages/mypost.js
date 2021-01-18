@@ -59,9 +59,9 @@ const ok = async () =>{
     try{
        
         const ok = await Axios.get(`http://localhost:7000/post/mypost/${uid}`)
-        
+        const name = await Axios.post("http://localhost:7000/user/userid", {result:user})
         Setmypost(ok.data.item)
-        Setdata(user)
+        Setdata(name.data.item)
     }catch(err){
         console.log("error")
     }
@@ -87,7 +87,7 @@ const ok = async () =>{
                 {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
                 <img className="img-circle" src="/img/profile.png" /> 
                         <div className="mypost-name">
-                            {data && data.username}
+                            {data ? data[0].username : null}
                         </div><br/>
                         <div className="mypost-date">
                             {ok.date}

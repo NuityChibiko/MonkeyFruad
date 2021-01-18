@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-import React, { useState ,useContext , useEffect} from "react";
-import  {useHistory , Redirect } from "react-router-dom";
-=======
 import React, { useState ,useContext, useEffect,useMemo, useReducer, useRef} from "react";
 import  {useHistory} from "react-router-dom";
->>>>>>> 85d6bff5a1abd69ecebfab7b4a7c5547676b6d21
 import { Form, Col, Image, roundedCircle } from "react-bootstrap";
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import Login from "../pages/login"
 import "./rule.css";
-import { auth } from "../Frontfirebase";
 import usercontext from "../context/usercontext"
 import axios from "axios";
 const Rule = () => {
