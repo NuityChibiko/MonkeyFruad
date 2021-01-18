@@ -80,7 +80,6 @@ let history = useHistory()
     try{
       e.preventDefault()
       let formdata = new FormData()
-      console.log(user.uid)
       let useruid = user.uid
       _.forEach(files ,file =>{
         formdata.append("eiei" , file)
@@ -99,8 +98,8 @@ let history = useHistory()
       formdata.append("other" , other)
       formdata.append("useruid" , useruid)
       
-       await Axios.post("http://localhost:7000/post/create", formdata ) 
-     
+      const a = await Axios.post("http://localhost:7000/post/create", formdata ) 
+        console.log("ok")
         history.push("/post/history")
     }catch(err){
       err && Seterror(err.response.data.msg)
@@ -319,7 +318,12 @@ let history = useHistory()
           <Form.File.Label>
             <span className="spanformpost">
               **กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
-              (แชท)
+              (แชท) 
+         
+            </span>
+            <br></br>
+            <span className="spanformpost">
+              **ต้องเป็นไฟล์รูป PNG และ JPEG เท่านั้น
             </span>
           </Form.File.Label>
                 

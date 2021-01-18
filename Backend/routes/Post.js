@@ -49,7 +49,7 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
   
     const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
     const uid = uuidv4()
-    const date = moment().format('MM/DD/YYYY, h:mm:ss')
+    const date = moment().format('MM/DD/YYYY, h:mm:ss ')
     let file = req.files.photo 
     let files = req.files.eiei 
     console.log(file)
@@ -70,20 +70,18 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
     }else{
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date})
     }
-    
-      
-  return res.json({ success: "สร้างโพสสำเร็จ" });
+      return res.json({ success: "สร้างโพสสำเร็จ" });
   }catch(err){
-    console.log("ok")
+    
     return res.status(500).json({msg : err})
   } 
   
 });
 router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]),async (req, res) => {
+  try{
   let uid = req.params.uid
   const date = moment().format('MM/DD/YYYY, h:mm:ss ')
   const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
-  try{
     let file = req.files.photo
     let files = req.files.eiei
     console.log(file)
