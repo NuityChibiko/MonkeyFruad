@@ -167,7 +167,7 @@ const Formedit = () => {
               className="formedit-left col-lg-6 col-12"
               controlId="formGridName"
             >
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 ชื่อ (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
 
@@ -176,7 +176,7 @@ const Formedit = () => {
               </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastname">
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 นามสกุล (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="text" id="lastname" pattern="[a-z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" value={surname} onChange={(event)=>{setSurname(event.target.value)}} required /> : null}
@@ -190,7 +190,7 @@ const Formedit = () => {
               className="formedit-left col-lg-6 col-12"
               controlId="formGridId"
             >
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 เลขบัตรประชาชน (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="text" id="numberid" pattern="[0-9]{1,}" minlength="2" maxlength="13" title="กรอกตัวเลขเท่านั้น" placeholder="" value={id} onChange={(event)=>{setId(event.target.value)}} required /> : null}
@@ -198,7 +198,7 @@ const Formedit = () => {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridAccountnumber">
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 เลขที่บัญชี (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="text" id="accountnumber" pattern="[0-9]{1,}" minlength="2" maxlength="10" title="กรอกตัวเลขเท่านั้น" placeholder="" value={accountnumber} onChange={(event)=>{setAccountnumber(event.target.value)}} required /> : null}
@@ -212,7 +212,7 @@ const Formedit = () => {
               className="formedit-left col-lg-6 col-12"
               controlId="formGridNameproduct"
             >
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 ชื่อสินค้า<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="name" placeholder="" value={nameproduct} onChange={(event)=>{setNameproduct(event.target.value)}} required /> : null}
@@ -220,7 +220,7 @@ const Formedit = () => {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 หมวดหมู่สินค้า<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control as="select" required value={productcategory} onChange={(event)=>{
@@ -267,7 +267,7 @@ const Formedit = () => {
               className="formedit-left col-lg-6 col-12"
               controlId="formGridPrice"
             >
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 จำนวนเงิน (บาท)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="text" id="nameproduct" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" value={money} onChange={(event)=>{setMoney(event.target.value)}} required /> : null}
@@ -275,7 +275,7 @@ const Formedit = () => {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 ธนาคาร<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control as="select"   value={bank} required  onChange={(event)=>{
@@ -327,7 +327,7 @@ const Formedit = () => {
               className="formedit-left col-lg-6 col-12"
               controlId="formGridDate"
             >
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 วันที่โดนโกง<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="name" placeholder="" value={datetime} onChange={(event)=>{setDatetime(event.target.value)}} required /> : null }
@@ -335,7 +335,7 @@ const Formedit = () => {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridSocial">
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 ช่องทางที่โดนโกง<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control as="select"   value={social} required  onChange={(event)=>{
@@ -364,7 +364,7 @@ const Formedit = () => {
           </Form.Row>
 
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>รายละเอียดเพิ่มเติม</Form.Label>
+            <Form.Label className="text-formedit">รายละเอียดเพิ่มเติม</Form.Label>
             {show ? <Form.Control type="name" placeholder="" value={other} onChange={(event)=>{setOther(event.target.value)}}  /> : null}
             {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setOther(event.target.value)}} required />} */}
           </Form.Group>         
