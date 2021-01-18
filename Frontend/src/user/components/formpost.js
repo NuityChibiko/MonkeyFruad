@@ -322,9 +322,7 @@ let history = useHistory()
          
             </span>
             <br></br>
-            <span className="spanformpost">
-              **ต้องเป็นไฟล์รูป PNG และ JPEG เท่านั้น
-            </span>
+           
           </Form.File.Label>
                 
           <br></br>
