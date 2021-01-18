@@ -8,7 +8,8 @@ import "./index.css";
 
 const Home = () => {
   const [data, setData] = useState();
-  var user = auth.currentUser;
+  // var user = auth.currentUser;
+  let { user , setUser} = useContext(usercontext)
   const test = () => {
     if (user) {
       console.log("all user data", user);
@@ -17,7 +18,6 @@ const Home = () => {
       console.log("error");
     }
   };
-
   return (
     <div>
       <Navbar />
