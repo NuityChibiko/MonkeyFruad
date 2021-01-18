@@ -3,6 +3,9 @@ import Navbar from "../components/navbar";
 import usercontext from "../context/usercontext";
 import axios from "axios";
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
+import Chatbot from "../components/chatbot";
+import "./index.css";
+
 const Home = () => {
   const [data, setData] = useState();
   // var user = auth.currentUser;
@@ -18,9 +21,10 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <h1>Home</h1>
+      <h1 className="h1-index">หน้าหลัก</h1>
       {/* <a onClick={submit}>enter</a> */}
       <button onClick={test}>test user data</button>
+      <Chatbot/>
     </div>
   );
 };

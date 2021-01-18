@@ -90,3 +90,55 @@
     margin-top: 10px;
     border: 2px solid #8B0000;
 }
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .container-linkrule1{
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+}
+
+@media only screen and (max-width: 414px) {
+    .container-linkrule1 {
+        width: 100%;
+        
+    }
+    .container-linkrule2{
+        box-shadow: 0px 0px 0px;
+        margin-top: -20px;
+        padding-left: 40px;
+        padding-right: 40px;
+        margin-bottom: 0px;
+    }
+    .linkrule1{
+        font-size: 17px;
+    }
+    .p-linkrule{
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+    .container-linkrule2{
+        box-shadow: 0px 0px 0px;
+        margin-top: -30px;
+        padding-left: 25px;
+        padding-right: 25px;
+        margin-bottom: 0px;
+    }
+    .p-linkrule{
+        font-size: 15px;
+    }
+}
