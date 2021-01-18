@@ -385,7 +385,6 @@ const Formedit = () => {
             accept="image/png, image/jpeg , image/jpg"
             
           />
-          
           <div className="container-img-holder-imgpreviewedit">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (
