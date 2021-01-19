@@ -22,6 +22,13 @@ import History from "./user/pages/history";
 import Mypost from "./user/pages/mypost";
 import Linkruleshow from "./user/pages/linkruleshow";
 import Profile from "./user/pages/profile";
+
+import HomeAdmin from "./admin/pages/index";
+import ContractusAdmin  from "./admin/pages/contractus";
+import Managepost from "./admin/pages/managepost";
+import Non_verifypost from "./admin/pages/non_verifypost";
+import Verifypost from "./admin/pages/verifypost";
+
 import "./app.css";
 import usercontext from "./user/context/usercontext";
 
@@ -29,9 +36,13 @@ import usercontext from "./user/context/usercontext";
 const App = () => {
   const [user, setUser] = useState();
   const [loadingAuth, setLoadingAuth] = useState(true);
+  const [admin,setAdmin] = useState(false)
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
+        if(user.uid === "Q8YgWOHIlAeCY0TF8jZK21VL7Hb2"){
+          setAdmin(true)
+        }
         setUser(user);
       } else {
         setUser(null);
@@ -43,6 +54,28 @@ const App = () => {
 
   return loadingAuth ? (
     ""
+  ) : (admin ? (
+    <Router>
+    <usercontext.Provider value={{ user, setUser }}>
+      <Switch>
+        <Route path="/" exact>
+          <HomeAdmin />
+        </Route>
+        <Route path="/managepost" exact>
+          <Managepost />
+        </Route>
+        <Route path="/non_verifypost" exact>
+          <Non_verifypost />
+        </Route>
+        <Route path="/verifypost" exact>
+          <Verifypost />
+        </Route>
+        <Route path="/contractus" exact>
+          <ContractusAdmin />
+        </Route>
+      </Switch>
+    </usercontext.Provider>
+  </Router>
   ) : (
     <Router>
       <usercontext.Provider value={{ user, setUser }}>
@@ -108,6 +141,6 @@ const App = () => {
         </Switch>
       </usercontext.Provider>
     </Router>
-  );
+  ) )
 };
 export default App;
