@@ -147,11 +147,7 @@ let history = useHistory()
               <Form.Label>
                 ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-<<<<<<< HEAD
-              <Form.Control type="text" id="name" pattern="[a-z,ก-๛,A-Z]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
-=======
               <Form.Control type="text" id="name" pattern="[a-z,A-Z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
->>>>>>> 22981be6d6f1e2efcb2a6da2699b44c1a3a3e83e
                 setName(event.target.value)
               }} required />
             </Form.Group>
@@ -160,11 +156,7 @@ let history = useHistory()
               <Form.Label>
                 นามสกุล (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
-<<<<<<< HEAD
-              <Form.Control type="text" id="lastname" pattern="[a-z,ก-๛,A-Z]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
-=======
               <Form.Control type="text" id="lastname" pattern="[a-z,A-Z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
->>>>>>> 22981be6d6f1e2efcb2a6da2699b44c1a3a3e83e
                 setSurname(event.target.value)
               }} />
             </Form.Group>
