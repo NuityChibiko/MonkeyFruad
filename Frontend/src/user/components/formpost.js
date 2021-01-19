@@ -99,7 +99,7 @@ let history = useHistory()
       formdata.append("useruid" , useruid)
       
       const a = await Axios.post("http://localhost:7000/post/create", formdata ) 
-      
+      console.log("eiei")
         history.push("/post/history")
     }catch(err){
       err && Seterror(err.response.data.msg)

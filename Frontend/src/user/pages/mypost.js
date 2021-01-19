@@ -10,6 +10,7 @@ import {
 } from "../Frontfirebase";
 import Axios from "axios";
 import Navbar from "../components/navbar";
+
 import "./mypost.css";
 import usercontext from "../context/usercontext";
 const Mypost = () => {
@@ -42,6 +43,7 @@ const Mypost = () => {
 
   const deleted = async (uid) => {
     if (user2) {
+   
       const postdelete = await Axios.post(
         `http://localhost:7000/post/delete/${uid}`
       );
@@ -144,10 +146,10 @@ const Mypost = () => {
 
                     <div className="container-mypost3">
                       <div className="mypostprofile-bad-img">
-                        {ok.file ? (
+                        {ok.resultfileitem ? (
                           <img
                             className="img-circle"
-                            src={`/uploads/${ok.file[0].filename}`}
+                            src={`${ok.resultfileitem.url}`}
                           />
                         ) : (
                           <img className="img-circle" src="/img/profile.png" />
@@ -270,13 +272,13 @@ const Mypost = () => {
                           </Form.Label>
                         </Form.Group>
                         <div className="img-holder-badslip">
-                          {ok
-                            ? ok.files.map((res) => {
+                          {ok.item
+                            ? ok.item.map((res) => {
                                 return (
                                   <img
                                     className="img-bad"
                                     alt=""
-                                    src={`/uploads/${res.filename}`}
+                                    src={`${res.url}`}
                                     style={{ overflow: "hidden" }}
                                     onMouseOver={(e) =>
                                       (e.currentTarget.style = {

@@ -142,7 +142,7 @@ const Formedit = () => {
       <div className="container-formpost">
       <div className="container-formpost1">
         <div className="profile-badformpost-img">
-          {imagesProfile ? <img className="img-circle" src={imagesProfile} /> : ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`} /> : <img className="img-circle" src={"/img/profile.png"} />}
+          {imagesProfile ? <img className="img-circle" src={imagesProfile} /> : ok.resultfileitem ? <img className="img-circle" src={`${ok.resultfileitem.url}`} /> : <img className="img-circle" src={"/img/profile.png"} />}
           <div className="rank-label-container-edit">
             <span className="label label-default rank-label">
               <div className="formedit-ImageUpload">
@@ -409,9 +409,9 @@ const Formedit = () => {
                   onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
                 />
               );
-            }) :    ok.files ? ok.files.map(res => { 
+            }) :    ok.item ? ok.item.map(res => { 
               return ( 
-                <img className="imgpreviewedit" src={`/uploads/${res.filename}`}  /> 
+                <img className="imgpreviewedit" src={`${res.url}`}  /> 
            )
            }) : null }
              

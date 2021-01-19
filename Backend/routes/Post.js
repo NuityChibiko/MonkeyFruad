@@ -6,18 +6,18 @@ const {firestore} = require("../models/index")
 const admin = require("firebase-admin");
 const moment = require("moment")
 const { v4: uuidv4 } = require('uuid');
-const {cloudinary} = require("../utils/cloudinary")
+const cloudinary = require("../utils/cloudinary")
 const multer = require("multer");
 const path = require("path");
 const e = require("express");
 
 
 let storage = multer.diskStorage({
-  destination: (req,file,cb) =>{
-    cb(null, path.join(__dirname, '../../Frontend/public/uploads'))
+  // destination: (req,file,cb) =>{
+  //   cb(null, path.join(__dirname, '../../Frontend/public/uploads'))
    
     
-  },
+  // },
   filename : (req,file,cb) =>{
     cb(null , file.fieldname + "-" + Date.now() + path.extname(file.originalname))
   }
@@ -62,32 +62,53 @@ const uploadFile = (req, res, next) =>{
 
 router.post("/create",uploadFile,async(req, res) => { 
   try{
-  
+    let file = req.files.photo 
+    let files = req.files.eiei 
+
+    
     const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
     const uid = uuidv4()
     const date = moment().format('MM/DD/YYYY, h:mm:ss a')
-    let file = req.files.photo 
-    let files = req.files.eiei 
     // console.log(file)
     // console.log(files)
     if(!files){
       return res.status(400).json({msg : "** กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง **"})
     }
-
     else if(file && files ){
-     
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file,files})
-     
+      const resultfile = await cloudinary.uploader.upload(file[0].path)
+      const {url,public_id} = resultfile
+      const resultfileitem = {url,public_id}
+      let item = []
+      for(const file of files){
+        const {path} = file
+        const resultfiles = await cloudinary.uploader.upload(path )
+        let {url,public_id} = resultfiles
+        item.push({url,public_id})
+      }
+      console.log(item)
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,resultfileitem,item})
     }
     else if(file){
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file})
+      const resultfile = await cloudinary.uploader.upload(file[0].path)
+      const {url,public_id} = resultfile
+      const resultfileitem = {url,public_id}
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,resultfileitem})
     }
     else if(files){
-
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,files})
-    }else{
+      let item = []
+      for(const file of files){
+        const {path} = file
+        const resultfiles = await cloudinary.uploader.upload(path)
+        let {url,public_id} = resultfiles
+        item.push({url,public_id})
+      }
+      console.log(item)
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,item})
+    }
+    else if(!file && !files){
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date})
     }
+      
    
       return res.json({ success: "สร้างโพสสำเร็จ" });
   }catch(err){
@@ -98,30 +119,48 @@ router.post("/create",uploadFile,async(req, res) => {
 });
 router.post("/edit/:uid",uploadFile,async (req, res) => {
   try{
+    let file = req.files.photo
+    let files = req.files.eiei
   let uid = req.params.uid
   const date = moment().format('MM/DD/YYYY, h:mm:ss a')
   const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
-    let file = req.files.photo
-    let files = req.files.eiei
-    console.log(file)
-    console.log(files)
+    // console.log(file)
+    // console.log(files)
     if(file && files){
-      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,file,files})
+      const resultfile = await cloudinary.uploader.upload(file[0].path )
+      let item = []
+      for(const file of files){
+        const {path} = file
+        const resultfiles = await cloudinary.uploader.upload(path)
+        let {url,public_id} = resultfiles
+        item.push({url,public_id})
+      }
+      console.log(item)
+      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,resultfile,item})
     }
     else if(file){
-      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,file})
+      const resultfile = await cloudinary.uploader.upload(file[0].path )
+      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,resultfile})
     }
     else if(files){
-      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,files})
+      let item = []
+      for(const file of files){
+        const {path} = file
+        const resultfiles = await cloudinary.uploader.upload(path)
+        let {url,public_id} = resultfiles
+        item.push({url,public_id})
+      }
+      console.log(item)
+      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,item})
     }
-   else{
+   else if(!file && !files){
     const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date})
    } 
    return res.json({
       success : "แก้ไขสำเร็จ"
     })
   }catch(err){
-    console.log(err)
+   return res.status(500).json({msg : err})
   }
   
 });
@@ -201,11 +240,20 @@ router.get("/edit/:uid",async (req, res) => {
 
 
 
-router.post("/delete/:uid",(req, res) => {
+router.post("/delete/:uid",async(req, res) => {
   try{
     let getid = req.params.uid
-    console.log(getid)
-    const postdelete = firestore.collection("Post").doc(getid).delete()
+  //   const finditem = await firestore.collection("Post").where("uid" , "==" , getid).get()
+  //   let array = []
+  // finditem.forEach(doc =>{
+  //   array.push(doc.data())
+  // })
+  // console.log(array)
+  //  await cloudinary.uploader.destroy(array[0].item.map(res =>{
+  //   res.public_id
+  //  })
+  //  )
+    const postdelete = await firestore.collection("Post").doc(getid).delete()
     return  res.json({ success: "Delete" });
   }catch(err){
     return  res.status(500).json({msg : err})
