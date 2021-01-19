@@ -34,6 +34,7 @@ const Formedit = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
+  const [error, Seterror] = useState();
   // const [files, setfiles] = useState();
    
 
@@ -45,6 +46,7 @@ const Formedit = () => {
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setphoto(files[0])
+    Seterror()
     let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
     reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
     reader.onload = (event) => {
@@ -59,7 +61,7 @@ const Formedit = () => {
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
-
+    Seterror()
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
       let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
@@ -128,7 +130,7 @@ const Formedit = () => {
       history.push(`/mypost/${uid}`)
       
     }catch(err){
-      console.log("ok")
+      err && Seterror(err.response.data.msg)
     }
   }
   return (
@@ -372,8 +374,12 @@ const Formedit = () => {
 
           <Form.File.Label>
             <span className="spanformedit">
-              **กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
+              * กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
               (แชท)
+            </span>
+            <br></br>
+            <span className="spanformpost">
+            **ต้องเป็นไฟล์ png หรือ jpeg เท่านั้น
             </span>
           </Form.File.Label>
            
@@ -386,6 +392,9 @@ const Formedit = () => {
             accept="image/png, image/jpeg , image/jpg"
             
           />
+
+           <h1 className="h1-formpostfileerror">{error}</h1> 
+
           <div className="container-img-holder-imgpreviewedit">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (
