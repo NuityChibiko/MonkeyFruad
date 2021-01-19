@@ -134,16 +134,16 @@ const ok = async () =>{
                         <Form.Row>
                             <Form.Group
                                 as={Col}
-                                className="mypost-left col-lg-6 col-12"
+                                className="mypost-left col-lg-6 col-sm-6 col-12"
                                 controlId="formGridName"
                                 >
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     ชื่อ (ผู้โกง) <span className="spanmypost">{ok.name}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridLastname">
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     นามสกุล (ผู้โกง) <span className="spanmypost">{ok.surname}</span>
                                 </Form.Label>
                             </Form.Group>
@@ -152,16 +152,16 @@ const ok = async () =>{
                         <Form.Row>
                             <Form.Group
                                 as={Col}
-                                className="mypost-left col-lg-6 col-12"
+                                className="mypost-left col-lg-6 col-sm-6 col-12"
                                 controlId="formGridId"
                                 >
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     เลขบัตรประชาชน (ผู้โกง) <span className="spanmypost">{ok.id}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridAccountnumber">
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     เลขที่บัญชี (ผู้โกง) <span className="spanmypost">{ok.accountnumber}</span>
                                 </Form.Label>
                             </Form.Group>
@@ -170,16 +170,16 @@ const ok = async () =>{
                         <Form.Row>
                             <Form.Group
                                 as={Col}
-                                className="mypost-left col-lg-6 col-12"
+                                className="mypost-left col-lg-6 col-sm-6 col-12"
                                 controlId="formGridNameproduct"
                                 >
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     ชื่อสินค้า <span className="spanmypost">{ok.nameproduct}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridCategory">
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     หมวดหมู่สินค้า <span className="spanmypost">{ok.productcategory}</span>
                                 </Form.Label>
                             </Form.Group>
@@ -188,16 +188,16 @@ const ok = async () =>{
                         <Form.Row>
                             <Form.Group
                                 as={Col}
-                                className="mypost-left col-lg-6 col-12"
+                                className="mypost-left col-lg-6 col-sm-6 col-12"
                                 controlId="formGridPrice"
                                 >
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     จำนวนเงิน (บาท) <span className="spanmypost">{ok.money}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridCategory">
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     ธนาคาร <span className="spanmypost">{ok.bank}</span>
                                 </Form.Label>
                             </Form.Group>
@@ -206,23 +206,23 @@ const ok = async () =>{
                         <Form.Row>
                             <Form.Group
                                 as={Col}
-                                className="mypost-leftcol-lg-6 col-12"
+                                className="mypost-left col-lg-6 col-sm-6 col-12"
                                 controlId="formGridDate"
                                 >
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     วันที่โดนโกง <span className="spanmypost">{ok.datetime}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridSocial">
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     ช่องทางที่โดนโกง <span className="spanmypost">{ok.social}</span>
                                 </Form.Label>
                             </Form.Group>
                         </Form.Row>
 
                         <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>
+                            <Form.Label className="text-mypost">
                                 รายละเอียดเพิ่มเติม <span className="spanmypost">{ok.other}</span>
                             </Form.Label>
                         </Form.Group>
@@ -246,6 +246,7 @@ const ok = async () =>{
             </div>
         </div>
         <div className="container-mypost4">
+        <div class="vl"></div>
             <div className="mypost-comment-img1">
                 <img className="img-circle1" src="/img/profile.png" />
                 <div className="mypost-comment-name1">
@@ -271,11 +272,11 @@ const ok = async () =>{
                 </div><br/>
                 <div className="mypost-comment-comments3">
                     <Form.Row>
-                        <Form.Group className="mypost-writecommemt col-lg-6 col-12" controlId="exampleForm.ControlTextarea1">
+                        <Form.Group className="mypost-writecommemt col-lg-6 col-10" controlId="exampleForm.ControlTextarea1">
                             <Form.Control placeholder="เขียนความคิดเห็น..." />
                         </Form.Group>
 
-                        <Form.Group className="mypost-writecommemt col-lg-6 col-12" controlId="exampleForm.ControlTextarea1">
+                        <Form.Group className="mypost-writecommemt col-lg-6 col-1" controlId="exampleForm.ControlTextarea1">
                         <div className="mypostbuttonsend">
                             <a className="mypostbuttonsends"
                                 href="">

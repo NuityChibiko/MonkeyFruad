@@ -143,3 +143,88 @@
     text-align: center;
     margin-bottom: 20px;
 }
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .container-formpost{
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+}
+
+@media only screen and (max-width: 450px) {
+    .uploadsformedituploadslip{
+        width: 100%;
+        font-size: 18px;
+    }
+    .container-formpost{
+        width: 100%;
+        box-shadow: 0px 0px 0px rgba(0,0,0,.2);
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }
+    .spanformpost{
+        font-size: 17px;
+    }
+    .text-formpost{
+        font-size: 19px;
+    }
+    .h1-formpostfileerror{
+        font-size: 17px;
+        margin-top: 15px;
+    }
+    .buttonformpost{
+        font-size: 19px;
+    }
+}
+@media only screen and (max-width: 414px) {
+    .uploadsformedituploadslip{
+        width: 100%;
+        font-size: 18px;
+    }
+    .container-formpost{
+        width: 100%;
+        box-shadow: 0px 0px 0px rgba(0,0,0,.2);
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }
+    .spanformpost{
+        font-size: 17px;
+    }
+    .text-formpost{
+        font-size: 19px;
+    }
+    .h1-formpostfileerror{
+        font-size: 17px;
+        margin-top: 15px;
+    }
+    .buttonformpost{
+        font-size: 19px;
+    }
+}
+@media only screen and (max-width: 375px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+    .text-formpost{
+        font-size: 18px;
+    }
+    .spanformpost{
+        font-size: 16px;
+    }
+    .uploadsformedituploadslip{
+        width: 100%;
+        font-size: 17px;
+    }
+    .buttonformpost{
+        font-size: 18px;
+    }
+}

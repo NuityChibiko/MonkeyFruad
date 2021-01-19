@@ -19,12 +19,16 @@
 
 }
 
+@media only screen and (max-width: 450px) {
+    .h1-linkruleshow{
+        font-size: 25px;
+    }
+}
 @media only screen and (max-width: 414px) {
     .h1-linkruleshow{
         font-size: 25px;
     }
 }
-
 @media only screen and (max-width: 375px) {
 
 }

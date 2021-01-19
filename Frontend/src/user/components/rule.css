@@ -106,6 +106,25 @@
 
 }
 
+@media only screen and (max-width: 450px) {
+    .container-linkrule1 {
+        width: 100%;
+        
+    }
+    .container-linkrule2{
+        box-shadow: 0px 0px 0px;
+        margin-top: -20px;
+        padding-left: 40px;
+        padding-right: 40px;
+        margin-bottom: 0px;
+    }
+    .linkrule1{
+        font-size: 17px;
+    }
+    .p-linkrule{
+        font-size: 16px;
+    }
+}
 @media only screen and (max-width: 414px) {
     .container-linkrule1 {
         width: 100%;
@@ -125,7 +144,6 @@
         font-size: 16px;
     }
 }
-
 @media only screen and (max-width: 375px) {
 
 }
