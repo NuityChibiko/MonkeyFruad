@@ -35,10 +35,6 @@ const Formedit = () => {
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
   const [error, Seterror] = useState();
-<<<<<<< HEAD
-  let { user , setUser} = useContext(usercontext)
-=======
->>>>>>> 16cee39a373c631756ce65910fd6a97a2e2fce1c
   // const [files, setfiles] = useState();
    
 
@@ -66,10 +62,6 @@ const Formedit = () => {
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
     Seterror()
-<<<<<<< HEAD
-
-=======
->>>>>>> 16cee39a373c631756ce65910fd6a97a2e2fce1c
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
       let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
@@ -402,12 +394,8 @@ const Formedit = () => {
             
           />
 
-<<<<<<< HEAD
-          <h1 className="h1-formpostfileerror">{error}</h1> 
-=======
            <h1 className="h1-formpostfileerror">{error}</h1> 
 
->>>>>>> 16cee39a373c631756ce65910fd6a97a2e2fce1c
           <div className="container-img-holder-imgpreviewedit">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (

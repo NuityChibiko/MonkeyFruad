@@ -45,11 +45,7 @@ const Formpost = () => {
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setphoto(files[0])
-<<<<<<< HEAD
-  
-=======
     Seterror()
->>>>>>> 16cee39a373c631756ce65910fd6a97a2e2fce1c
     let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
     reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
     reader.onloadend = () => {
@@ -322,23 +318,12 @@ let history = useHistory()
           <Form.File.Label>
             <span className="spanformpost">
               *กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
-<<<<<<< HEAD
-              (แชท) 
-            
-            </span>
-            <br></br>
-            <span className="spanformpost">
-            **ต้องเป็นไฟล์ png หรือ jpeg เท่านั้น
-            </span>
-           
-=======
               (แชท)
             </span>
             <br></br>
             <span className="spanformpost">
             **ต้องเป็นไฟล์ png หรือ jpeg เท่านั้น
             </span>
->>>>>>> 16cee39a373c631756ce65910fd6a97a2e2fce1c
           </Form.File.Label>
                 
           <br></br>
