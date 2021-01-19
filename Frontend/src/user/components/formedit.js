@@ -34,6 +34,7 @@ const Formedit = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
+  const [error, Seterror] = useState();
   // const [files, setfiles] = useState();
    
 
@@ -45,6 +46,7 @@ const Formedit = () => {
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setphoto(files[0])
+    Seterror()
     let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
     reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
     reader.onload = (event) => {
@@ -59,7 +61,7 @@ const Formedit = () => {
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
-
+    Seterror()
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
       let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
@@ -128,7 +130,7 @@ const Formedit = () => {
       history.push(`/mypost/${uid}`)
       
     }catch(err){
-      console.log("ok")
+      err && Seterror(err.response.data.msg)
     }
   }
   return (
@@ -168,7 +170,7 @@ const Formedit = () => {
               className="formedit-left col-lg-6 col-12"
               controlId="formGridName"
             >
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 ชื่อ (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
 
@@ -177,7 +179,7 @@ const Formedit = () => {
               </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastname">
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 นามสกุล (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="text" id="lastname" pattern="[a-z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" value={surname} onChange={(event)=>{setSurname(event.target.value)}} required /> : null}
@@ -191,7 +193,7 @@ const Formedit = () => {
               className="formedit-left col-lg-6 col-12"
               controlId="formGridId"
             >
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 เลขบัตรประชาชน (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="text" id="numberid" pattern="[0-9]{1,}" minlength="2" maxlength="13" title="กรอกตัวเลขเท่านั้น" placeholder="" value={id} onChange={(event)=>{setId(event.target.value)}} required /> : null}
@@ -199,7 +201,7 @@ const Formedit = () => {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridAccountnumber">
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 เลขที่บัญชี (ผู้โกง)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="text" id="accountnumber" pattern="[0-9]{1,}" minlength="2" maxlength="10" title="กรอกตัวเลขเท่านั้น" placeholder="" value={accountnumber} onChange={(event)=>{setAccountnumber(event.target.value)}} required /> : null}
@@ -213,7 +215,7 @@ const Formedit = () => {
               className="formedit-left col-lg-6 col-12"
               controlId="formGridNameproduct"
             >
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 ชื่อสินค้า<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="name" placeholder="" value={nameproduct} onChange={(event)=>{setNameproduct(event.target.value)}} required /> : null}
@@ -221,7 +223,7 @@ const Formedit = () => {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 หมวดหมู่สินค้า<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control as="select" required value={productcategory} onChange={(event)=>{
@@ -268,7 +270,7 @@ const Formedit = () => {
               className="formedit-left col-lg-6 col-12"
               controlId="formGridPrice"
             >
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 จำนวนเงิน (บาท)<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="text" id="nameproduct" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" value={money} onChange={(event)=>{setMoney(event.target.value)}} required /> : null}
@@ -276,7 +278,7 @@ const Formedit = () => {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 ธนาคาร<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control as="select"   value={bank} required  onChange={(event)=>{
@@ -328,7 +330,7 @@ const Formedit = () => {
               className="formedit-left col-lg-6 col-12"
               controlId="formGridDate"
             >
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 วันที่โดนโกง<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control type="name" placeholder="" value={datetime} onChange={(event)=>{setDatetime(event.target.value)}} required /> : null }
@@ -336,7 +338,7 @@ const Formedit = () => {
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridSocial">
-              <Form.Label>
+              <Form.Label className="text-formedit">
                 ช่องทางที่โดนโกง<span className="spanformedit">*</span>
               </Form.Label>
               {show ? <Form.Control as="select"   value={social} required  onChange={(event)=>{
@@ -365,15 +367,19 @@ const Formedit = () => {
           </Form.Row>
 
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>รายละเอียดเพิ่มเติม</Form.Label>
+            <Form.Label className="text-formedit">รายละเอียดเพิ่มเติม</Form.Label>
             {show ? <Form.Control type="name" placeholder="" value={other} onChange={(event)=>{setOther(event.target.value)}}  /> : null}
             {/* <Form.Control type="name" placeholder=""  onChange={(event)=>{setOther(event.target.value)}} required />} */}
           </Form.Group>         
 
           <Form.File.Label>
             <span className="spanformedit">
-              **กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
+              * กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
               (แชท)
+            </span>
+            <br></br>
+            <span className="spanformpost">
+            **ต้องเป็นไฟล์ png หรือ jpeg เท่านั้น
             </span>
           </Form.File.Label>
            
@@ -386,7 +392,9 @@ const Formedit = () => {
             accept="image/png, image/jpeg , image/jpg"
             
           />
-          <h1>{ok.files.length}</h1>
+
+           <h1 className="h1-formpostfileerror">{error}</h1> 
+
           <div className="container-img-holder-imgpreviewedit">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (

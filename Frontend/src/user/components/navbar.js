@@ -1,13 +1,14 @@
 import React, { useContext,useEffect,useRef,useState} from "react";
-import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap';
+import { Navbar,Nav,NavDropdown,Form,FormControl } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./navbar.css";
 import { firestore, auth} from "../Frontfirebase";
 import usercontext from "../context/usercontext"
+import axios from "axios";
 
 const Usernvabar = () => {
-  var{ user , setUser} = useContext(usercontext)
-
+  var { user , setUser} = useContext(usercontext)
+  const [displayname , setDisplayname] = useState()
   const logout = () =>{
     auth.signOut().then(()=>{
       console.log("Signout")
@@ -15,7 +16,27 @@ const Usernvabar = () => {
       console.log(err)
     })
   }
-
+  const session = () =>{
+    console.log("OK")
+    axios.post("http://localhost:7000/user/userdata", { user : user })
+    .then((result) => {
+      setDisplayname(result.data.data.username)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+  useEffect(()=>{
+    if(user){
+    if(user.displayName === null){
+      session()
+    }
+    else{
+      setDisplayname(user.displayName)
+    }
+  }
+     },[user]);
+console.log(user)
   return (
     <div className="Navbar">
         <Navbar variant="dark" expand="lg">
@@ -39,20 +60,20 @@ const Usernvabar = () => {
            
           </Nav>
           <Form inline>
-              <FormControl type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" className="mr-sm-2" />
-              <Button className="button"><i className="material-icons">search</i></Button>
+              <FormControl type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" className="boxsearch" />
+              <button className="buttonnavbarsearch"><i className="material-icons">search</i></button>
             </Form>
-          { user ?  (
-              <NavDropdown title="Username" id="basic-nav-dropdown">
+          { user ?  
+              <NavDropdown alignRight title={displayname} id="basic-nav-dropdown">
                 <NavDropdown.Item href="/profile">จัดการโปรไฟล์</NavDropdown.Item>
                 <NavDropdown.Item href="/post/history">ประวัติการโพสต์</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/" onClick={logout}>ออกจากระบบ</NavDropdown.Item>
+                <NavDropdown.Item href="/login" onClick={logout}>ออกจากระบบ</NavDropdown.Item>
               </NavDropdown>
           // <button onClick={logout}>logout</button>
-          ) : (
+          : 
               <Nav.Link className="link" href="/login">เข้าสู่ระบบ</Nav.Link>
-            )}
+            }
             
         </Navbar.Collapse>
       </Navbar>

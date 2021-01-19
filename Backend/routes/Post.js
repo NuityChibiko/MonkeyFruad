@@ -35,15 +35,30 @@ let fileFilter = (req, file , cb ) =>{
 
 let upload = multer({
   storage : storage,
-  fileFilter : fileFilter
+  fileFilter : fileFilter,
+  limits: {
+    fileSize: 1 * 1024 * 1024
+}
 })
+
+const uploadFile = (req, res, next) =>{
+  const upload2 = upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ])
+  upload2(req, res, function (err) {
+      if (err instanceof multer.MulterError) {
+        return res.status(400).json({msg : "** ไฟล์รูปต้องมีขนาดไม่เกิน 1 MB **"})
+      } else if (err) {
+        return res.status(400).json({msg : err.message})
+      } 
+      next()
+  })
+}
 
 
 // router.get("/", function (req, res) {
 //   res.json({ success: true });
 // });
 
-router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]) ,async(req, res) => { 
+router.post("/create",uploadFile,async(req, res) => { 
   try{
 
   
@@ -52,8 +67,8 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
     const date = moment().format('MM/DD/YYYY, h:mm:ss')
     let file = req.files.photo 
     let files = req.files.eiei 
-    console.log(file)
-    console.log(files)
+    // console.log(file)
+    // console.log(files)
     if(!files){
       return res.status(400).json({msg : "** กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง **"})
     }
@@ -79,7 +94,7 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
   } 
   
 });
-router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]),async (req, res) => {
+router.post("/edit/:uid",uploadFile,async (req, res) => {
   let uid = req.params.uid
   const date = moment().format('MM/DD/YYYY, h:mm:ss ')
   const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
@@ -245,6 +260,27 @@ router.get("/mypost/:uid",async(req, res) => {
   }
   
 });
+
+router.post("/postapi",async (req,res)=>{
+  try{
+    const {
+      result
+      } = req.body;
+    const userRef =await firestore.collection("Post").where("useruid" , "==" ,result.uid).orderBy("date", "desc")
+    userRef.get().then((doc)=>{
+     let item = []
+     doc.forEach(doc2 =>{
+      item.push(doc2.data())
+     })
+        res.json({
+          item
+        })
+     })
+  
+  }catch{(err)=>{
+console.log(err)
+  }}
+})
 
 // router.post("/upload", upload.array("eiei"), async(req, res) => {
 //   try{

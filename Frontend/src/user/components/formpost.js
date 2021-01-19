@@ -11,7 +11,6 @@ import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import Chatbot from "../components/chatbot";
 
 
-
 const Formpost = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
@@ -42,10 +41,11 @@ const Formpost = () => {
 
   // ฟังก์ชันเปลี่ยนรูปโปร
   const ProfileChange = (event) => {  
-  
+
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setphoto(files[0])
+    Seterror()
     let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
     reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
     reader.onloadend = () => {
@@ -53,9 +53,9 @@ const Formpost = () => {
     };
 
   };
-
 // ฟังก์ชันอัพโหลดไฟล์ 
   const FileUpload = (event) => { 
+
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
@@ -72,14 +72,15 @@ const Formpost = () => {
         //  PrevState เป็น Parameter ในการเรียก State ก่อนหน้ามาแล้วรวม Array กับ fileที่อัพโหลดเข้ามา
       };
     }
+
   }
 var user = auth.currentUser
 let history = useHistory()
   const handlesubmit = async (e) =>{
+
     try{
       e.preventDefault()
       let formdata = new FormData()
-      console.log(user.uid)
       let useruid = user.uid
       _.forEach(files ,file =>{
         formdata.append("eiei" , file)
@@ -104,13 +105,11 @@ let history = useHistory()
     }catch(err){
       err && Seterror(err.response.data.msg)
     }
-    
-    
+  
   }
   console.log(user.uid)
   return (
-   
-     
+  
     <div className="container-formpost">
       <div className="container-formpost1">
         <div className="profile-badformpost-img">
@@ -144,7 +143,7 @@ let history = useHistory()
               className="formpost-left col-lg-6 col-12"
               controlId="formGridName"
             >
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 ชื่อ (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="text" id="name" pattern="[a-z,A-Z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" onChange={(event)=>{
@@ -153,7 +152,7 @@ let history = useHistory()
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastname">
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 นามสกุล (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="text" id="lastname" pattern="[a-z,A-Z,ก-๛]{1,}" title="กรอกตัวหนังสือเท่านั้น" placeholder="" required onChange={(event)=>{
@@ -168,7 +167,7 @@ let history = useHistory()
               className="formpost-left col-lg-6 col-12"
               controlId="formGridId"
             >
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 เลขบัตรประชาชน (ผู้โกง)
               </Form.Label>
               <Form.Control type="text" id="numberid" pattern="[0-9]{1,}" minlength="2" maxlength="13" title="กรอกตัวเลขเท่านั้น" onChange={(event)=>{
@@ -177,7 +176,7 @@ let history = useHistory()
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridAccountnumber">
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 เลขที่บัญชี (ผู้โกง)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="text" id="accountnumber" pattern="[0-9]{1,}" minlength="2" maxlength="10" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
@@ -192,7 +191,7 @@ let history = useHistory()
               className="formpost-left col-lg-6 col-12"
               controlId="formGridNameproduct"
             >
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 ชื่อสินค้า<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="nameproduct" placeholder="" required  onChange={(event)=>{
@@ -201,7 +200,7 @@ let history = useHistory()
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 หมวดหมู่สินค้า<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control as="select"  required onChange={(event)=>{
@@ -240,7 +239,7 @@ let history = useHistory()
               className="formpost-left col-lg-6 col-12"
               controlId="formGridPrice"
             >
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 จำนวนเงิน (บาท)<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="text" id="nameproduct" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
@@ -249,7 +248,7 @@ let history = useHistory()
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridCategory">
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 ธนาคาร<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control as="select"  required onChange={(event)=>{setBank(event.target.value)}}>
@@ -278,7 +277,7 @@ let history = useHistory()
               className="formpost-left col-lg-6 col-12"
               controlId="formGridDate"
             >
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 วันที่โดนโกง<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control type="datetime-local" placeholder="" required  onChange={(event)=>{
@@ -287,7 +286,7 @@ let history = useHistory()
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridSocial">
-              <Form.Label>
+              <Form.Label className="text-formpost">
                 ช่องทางที่โดนโกง<span className="spanformpost">*</span>
               </Form.Label>
               <Form.Control as="select" required onChange={(event)=>{setSocial(event.target.value)}}>
@@ -311,7 +310,7 @@ let history = useHistory()
          
 
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>รายละเอียดเพิ่มเติม</Form.Label>
+            <Form.Label className="text-formpost">รายละเอียดเพิ่มเติม</Form.Label>
             <Form.Control as="textarea" rows={3} onChange={(event)=>{
                 setOther(event.target.value)
               }} />
@@ -319,8 +318,12 @@ let history = useHistory()
 
           <Form.File.Label>
             <span className="spanformpost">
-              **กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
+              *กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง เช่น ภาพถ่ายหน้าจอ
               (แชท)
+            </span>
+            <br></br>
+            <span className="spanformpost">
+            **ต้องเป็นไฟล์ png หรือ jpeg เท่านั้น
             </span>
           </Form.File.Label>
                 
@@ -331,7 +334,6 @@ let history = useHistory()
             onChange={FileUpload}
             multiple
             accept="image/png, image/jpeg , image/jpg"
-         
           />
          
           <h1 className="h1-formpostfileerror">{error}</h1> 
