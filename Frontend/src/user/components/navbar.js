@@ -54,7 +54,7 @@ console.log(user)
               <NavDropdown.Item href="/prevent">รู้ไว้ไม่โดนโกง</NavDropdown.Item>
               <NavDropdown.Divider />
               {/* <NavDropdown.Item href="/help">ช่องทางการช่วยเหลือ</NavDropdown.Item> */}
-              <NavDropdown.Item href="/helpnew">ช่องทางการช่วยเหลือ</NavDropdown.Item>
+              <NavDropdown.Item href="/help">ช่องทางการช่วยเหลือ</NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/contractus">ติดต่อเรา</Nav.Link>
            
