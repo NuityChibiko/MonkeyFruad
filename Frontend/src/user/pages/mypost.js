@@ -1,5 +1,5 @@
 import React, { useEffect, useState,useContext  } from "react";
-import {Link ,useParams} from "react-router-dom"
+import {Link ,useParams , useHistory} from "react-router-dom"
 import { Dropdown, DropdownButton}  from 'react-bootstrap';
 import { Form, Col, FormControl, Button } from "react-bootstrap";
 import {
@@ -34,30 +34,34 @@ const Mypost = () => {
     let { user , setUser} = useContext(usercontext)
  
     let { uid } = useParams()
+    const history = useHistory()
 
     const ImageHoverZoom = ({ imagePreviewUrl }) => {
      
     }
-   
+
+    let user2 = auth.currentUser;   
+
 
     const deleted = async(uid) =>{
-        const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
-        console.log(postdelete.data)
-        const ok = await Axios.post("http://localhost:7000/user/session", {result:user})
-        console.log(ok.data.item)
-        Setmypost(ok.data.item) 
-      }
+        if(user2){
+            const postdelete = await Axios.post(`http://localhost:7000/post/delete/${uid}`)
+            console.log(postdelete.data)
+            const ok = await Axios.post("http://localhost:7000/post/postapi", {result:user2})
+            console.log(ok.data.item)
+            Setmypost(ok.data.item) 
+            history.push("/post/history")
+        }
+      }     
        
-  
-
-  
-  
+     
 const ok = async () =>{
     try{
+       
         const ok = await Axios.get(`http://localhost:7000/post/mypost/${uid}`)
-        
-        console.log(ok.data.item)
+        const name = await Axios.post("http://localhost:7000/user/userid", {result:user})
         Setmypost(ok.data.item)
+        Setdata(name.data.item)
     }catch(err){
         console.log("error")
     }
@@ -66,9 +70,9 @@ const ok = async () =>{
   useEffect(() => {
   ok()
  
-  }, [])    
+  }, [user])    
   
-
+  console.log(data)
   
   return (
     <div className="allpage">
@@ -76,14 +80,14 @@ const ok = async () =>{
         <h1 className="h1-mypost">โพสต์ของฉัน</h1>
       {mypost ? mypost.map(ok =>{
           return (
-              <div>
-                       
+              <div> 
         <div className="container-mypost">
             <div className="cotainer-mypost2">
                 <div className="mypost-profile-img">
-                    <img className="img-circle" src="/img/profile.png" />
+                {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
+                <img className="img-circle" src="/img/profile.png" /> 
                         <div className="mypost-name">
-                            @Nuitychibiko
+                            {data ? data[0].username : null}
                         </div><br/>
                         <div className="mypost-date">
                             {ok.date}
@@ -94,7 +98,7 @@ const ok = async () =>{
                 <div className="mypostbuttonshared">
                     <a className="mypostbuttonshare"
                         href="/post/edit">
-                        <i class="fas fa-share"></i>
+                        <i class="fa fa-share"></i>
                     </a>
                 </div>
 
@@ -110,7 +114,7 @@ const ok = async () =>{
                             className={`mypostmenusetting ${isActive ? "active" : "inactive"}`}>
                             <ul className="ul-mypostmenusetting">
                                 <li className="li-mypostmenusetting">
-                                <a className="a-mypostmenusetting"><Link to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
+                                <a className="a-mypostmenusetting"><Link className="a-mypostmenusetting1" to={`/post/edit/${ok.uid}`}>แก้ไขโพสต์</Link></a>
                                   
                                 </li>
                                 <li className="li-mypostmenusetting">
@@ -124,22 +128,22 @@ const ok = async () =>{
 
                 <div className="container-mypost3">
                     <div className="mypostprofile-bad-img">
-                        <img className="img-circle" src="/img/profile.png" />
+                        {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> }
                     </div>
                     <Form className="formsize-mypost">
                         <Form.Row>
                             <Form.Group
                                 as={Col}
-                                className="mypost-left col-lg-6 col-12"
+                                className="mypost-left col-lg-6 col-sm-6 col-12"
                                 controlId="formGridName"
                                 >
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     ชื่อ (ผู้โกง) <span className="spanmypost">{ok.name}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridLastname">
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     นามสกุล (ผู้โกง) <span className="spanmypost">{ok.surname}</span>
                                 </Form.Label>
                             </Form.Group>
@@ -148,16 +152,16 @@ const ok = async () =>{
                         <Form.Row>
                             <Form.Group
                                 as={Col}
-                                className="mypost-left col-lg-6 col-12"
+                                className="mypost-left col-lg-6 col-sm-6 col-12"
                                 controlId="formGridId"
                                 >
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     เลขบัตรประชาชน (ผู้โกง) <span className="spanmypost">{ok.id}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridAccountnumber">
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     เลขที่บัญชี (ผู้โกง) <span className="spanmypost">{ok.accountnumber}</span>
                                 </Form.Label>
                             </Form.Group>
@@ -166,16 +170,16 @@ const ok = async () =>{
                         <Form.Row>
                             <Form.Group
                                 as={Col}
-                                className="mypost-left col-lg-6 col-12"
+                                className="mypost-left col-lg-6 col-sm-6 col-12"
                                 controlId="formGridNameproduct"
                                 >
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     ชื่อสินค้า <span className="spanmypost">{ok.nameproduct}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridCategory">
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     หมวดหมู่สินค้า <span className="spanmypost">{ok.productcategory}</span>
                                 </Form.Label>
                             </Form.Group>
@@ -184,16 +188,16 @@ const ok = async () =>{
                         <Form.Row>
                             <Form.Group
                                 as={Col}
-                                className="mypost-left col-lg-6 col-12"
+                                className="mypost-left col-lg-6 col-sm-6 col-12"
                                 controlId="formGridPrice"
                                 >
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     จำนวนเงิน (บาท) <span className="spanmypost">{ok.money}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridCategory">
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     ธนาคาร <span className="spanmypost">{ok.bank}</span>
                                 </Form.Label>
                             </Form.Group>
@@ -202,57 +206,47 @@ const ok = async () =>{
                         <Form.Row>
                             <Form.Group
                                 as={Col}
-                                className="mypost-leftcol-lg-6 col-12"
+                                className="mypost-left col-lg-6 col-sm-6 col-12"
                                 controlId="formGridDate"
                                 >
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     วันที่โดนโกง <span className="spanmypost">{ok.datetime}</span>
                                 </Form.Label>
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="formGridSocial">
-                                <Form.Label>
+                                <Form.Label className="text-mypost">
                                     ช่องทางที่โดนโกง <span className="spanmypost">{ok.social}</span>
                                 </Form.Label>
                             </Form.Group>
                         </Form.Row>
 
                         <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>
+                            <Form.Label className="text-mypost">
                                 รายละเอียดเพิ่มเติม <span className="spanmypost">{ok.other}</span>
                             </Form.Label>
                         </Form.Group>
                         <div className="img-holder-badslip">
-                        <img
-                            className="img-bad"
-                            alt=""
-                            src="/img/nui.jpg"
-                            style={{ overflow: "hidden" }}
-                            onMouseOver={(e) => (e.currentTarget.style = { transform: "scale(1.25)", overflow: "hidden" })}
-                            onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
-                        />
-                        <img
-                            className="img-bad"
-                            alt=""
-                            src="/img/nui.jpg"
-                            style={{ overflow: "hidden" }}
-                            onMouseOver={(e) => (e.currentTarget.style = { transform: "scale(1.25)", overflow: "hidden" })}
-                            onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
-                        />
-                        <img
-                            className="img-bad"
-                            alt=""
-                            src="/img/nui.jpg"
-                            style={{ overflow: "hidden" }}
-                            onMouseOver={(e) => (e.currentTarget.style = { transform: "scale(1.25)", overflow: "hidden" })}
-                            onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
-                        />
+                            {ok ? ok.files.map(res=>{
+ return (<img
+  className="img-bad"
+  alt=""
+  src={`/uploads/${res.filename}`}
+  
+  style={{ overflow: "hidden" }}
+  onMouseOver={(e) => (e.currentTarget.style = { transform: "scale(1.25)", overflow: "hidden" })}
+  onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
+/>)
+
+                            }) : null}
+                      
                         </div>
                     </Form>
                 </div>
             </div>
         </div>
         <div className="container-mypost4">
+        <div class="vl"></div>
             <div className="mypost-comment-img1">
                 <img className="img-circle1" src="/img/profile.png" />
                 <div className="mypost-comment-name1">
@@ -278,15 +272,15 @@ const ok = async () =>{
                 </div><br/>
                 <div className="mypost-comment-comments3">
                     <Form.Row>
-                        <Form.Group className="mypost-writecommemt col-lg-6 col-12" controlId="exampleForm.ControlTextarea1">
+                        <Form.Group className="mypost-writecommemt col-lg-6 col-10" controlId="exampleForm.ControlTextarea1">
                             <Form.Control placeholder="เขียนความคิดเห็น..." />
                         </Form.Group>
 
-                        <Form.Group className="mypost-writecommemt col-lg-6 col-12" controlId="exampleForm.ControlTextarea1">
+                        <Form.Group className="mypost-writecommemt col-lg-6 col-1" controlId="exampleForm.ControlTextarea1">
                         <div className="mypostbuttonsend">
                             <a className="mypostbuttonsends"
                                 href="">
-                                <i class="fas fa-paper-plane"></i>
+                                <i className="fa fa-paper-plane"></i>
                             </a>  
                         </div>
                         </Form.Group>
@@ -301,165 +295,4 @@ const ok = async () =>{
     </div>
   );
 };
-
-//   return (
-//     <div className="allpage">
-//       <Navbar />
-//       <h1>โพสต์ของฉัน</h1>
-//         <div className="container-mypost">
-//             <div className="cotainer-mypost2">
-//                 <div className="profile-img">
-//                     <img className="img-circle" src="/img/profile.png" />
-//                         <div className="name">
-//                             @Nuitychibiko
-//                         </div><br/>
-//                         <div className="date">
-//                             13/11/2563 
-//                             <span className="time">23:38 </span>
-//                         </div>
-//                 </div>
-
-//                 <div className="buttonshared">
-//                     <a className="buttonshare"
-//                         href="/post/edit">
-//                         <i class="fas fa-share"></i>
-//                     </a>
-//                 </div>
-
-//                 <div className="container-setiing">
-//                     <div className="menu-containersetting">
-//                         <div onClick={onClick} className="buttonsetting">
-//                             <img className="img-setting"
-//                                 src="/setting.png"
-//                                 alt="User avatar">
-//                             </img>
-//                         </div>
-//                         <div
-//                             className={`menusetting ${isActive ? "active" : "inactive"}`}>
-//                             <ul>
-//                                 <li>
-//                                     <a href="/post/edit">แก้ไขโพสต์</a>
-//                                 </li>
-//                                 <li>
-//                                     <a href="#">ลบโพสต์</a>
-//                                 </li>
-//                             </ul>
-//                         </div>
-//                     </div>
-//                 </div>
-
-//                 <div className="container-mypost3">
-//                     <div className="profile-bad-img">
-//                         <img className="img-circle" src="/img/profile.png" />
-//                     </div>
-//                     <Form className="formsize">
-//                         <Form.Row>
-//                             <Form.Group
-//                                 as={Col}
-//                                 className="left col-lg-6 col-12"
-//                                 controlId="formGridName"
-//                                 >
-//                                 <Form.Label>
-//                                     ชื่อ (ผู้โกง) <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-
-//                             <Form.Group as={Col} controlId="formGridLastname">
-//                                 <Form.Label>
-//                                     นามสกุล (ผู้โกง) <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-//                         </Form.Row>
-
-//                         <Form.Row>
-//                             <Form.Group
-//                                 as={Col}
-//                                 className="left col-lg-6 col-12"
-//                                 controlId="formGridId"
-//                                 >
-//                                 <Form.Label>
-//                                     เลขบัตรประชาชน (ผู้โกง) <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-
-//                             <Form.Group as={Col} controlId="formGridAccountnumber">
-//                                 <Form.Label>
-//                                     เลขที่บัญชี (ผู้โกง) <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-//                         </Form.Row>
-
-//                         <Form.Row>
-//                             <Form.Group
-//                                 as={Col}
-//                                 className="left col-lg-6 col-12"
-//                                 controlId="formGridNameproduct"
-//                                 >
-//                                 <Form.Label>
-//                                     ชื่อสินค้า <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-
-//                             <Form.Group as={Col} controlId="formGridCategory">
-//                                 <Form.Label>
-//                                     หมวดหมู่สินค้า <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-//                         </Form.Row>
-
-//                         <Form.Row>
-//                             <Form.Group
-//                                 as={Col}
-//                                 className="left col-lg-6 col-12"
-//                                 controlId="formGridPrice"
-//                                 >
-//                                 <Form.Label>
-//                                     จำนวนเงิน (บาท) <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-
-//                             <Form.Group as={Col} controlId="formGridCategory">
-//                                 <Form.Label>
-//                                     ธนาคาร <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-//                         </Form.Row>
-
-//                         <Form.Row>
-//                             <Form.Group
-//                                 as={Col}
-//                                 className="left col-lg-6 col-12"
-//                                 controlId="formGridDate"
-//                                 >
-//                                 <Form.Label>
-//                                     วันที่โดนโกง <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-
-//                             <Form.Group as={Col} controlId="formGridSocial">
-//                                 <Form.Label>
-//                                     ช่องทางที่โดนโกง <span>xxxxxxxx</span>
-//                                 </Form.Label>
-//                             </Form.Group>
-//                         </Form.Row>
-
-//                         <Form.Group controlId="exampleForm.ControlTextarea1">
-//                             <Form.Label>
-//                                 รายละเอียดเพิ่มเติม <span>xxxxxxxx</span>
-//                             </Form.Label>
-//                         </Form.Group>
-//                         <div className="img-holder-bad">
-//                             <img className="img-bad"src="/img//nui.jpg" />
-//                             <img className="img-bad"src="/img//nui.jpg" />
-//                             <img className="img-bad"src="/img//nui.jpg" />
-//                         </div>
-//                     </Form>
-//                 </div>
-//             </div>
-//         </div>
-//     </div>
-//   );
-// };
-
-// export default Mypost;
 export default Mypost;
