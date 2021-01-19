@@ -29,13 +29,17 @@ let fileFilter = (req, file , cb ) =>{
    
   }else{
   
-    return cb(new Error('ต้องเป็นไฟลรูปเท่านั้น'));
+    return cb(new Error('** ต้องเป็นไฟล์ png หรือ jpeg เท่านั้น **'));
   }
 }
 
 let upload = multer({
   storage : storage,
-  fileFilter : fileFilter
+  fileFilter : fileFilter,
+  limits: {
+    fileSize:1 * 1024 * 1024
+}
+
 })
 
 
@@ -43,15 +47,27 @@ let upload = multer({
 //   res.json({ success: true });
 // });
 
-router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]) ,async(req, res) => { 
-  try{
+function uploadFile (req, res, next){
+  const upload2 = upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ])
+  upload2(req, res, function (err) {
+      if (err instanceof multer.MulterError) {
+        return res.status(400).json({msg : "** ไฟล์รูปต้องมีขนาดไม่เกิน 1 MB **"})
+      } else if (err) {
+        return res.status(400).json({msg : err.message})
+      } 
+      next()
+  })
+}
 
+router.post("/create",uploadFile,async(req, res) => { 
+  try{
   
     const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
     const uid = uuidv4()
-    const date = moment().format('MM/DD/YYYY, h:mm:ss ')
+    const date = moment().format('MM/DD/YYYY, h:mm:ss a')
     let file = req.files.photo 
     let files = req.files.eiei 
+    
     console.log(file)
     console.log(files)
     if(!files){
@@ -59,7 +75,9 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
     }
 
     else if(file && files ){
+     
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file,files})
+     
     }
     else if(file){
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file})
@@ -70,17 +88,24 @@ router.post("/create", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei
     }else{
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date})
     }
+   
       return res.json({ success: "สร้างโพสสำเร็จ" });
   }catch(err){
-    
+    // console.log(err)
     return res.status(500).json({msg : err})
   } 
   
 });
-router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]),async (req, res) => {
+
+
+
+
+
+
+router.post("/edit/:uid", uploadFile,async (req, res) => {
   try{
   let uid = req.params.uid
-  const date = moment().format('MM/DD/YYYY, h:mm:ss')
+  const date = moment().format('MM/DD/YYYY, h:mm:ss a')
   const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
     let file = req.files.photo
     let files = req.files.eiei
@@ -151,35 +176,6 @@ router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "e
 //   } 
   
 // });
-router.post("/edit/:uid", upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]),async (req, res) => {
-  let uid = req.params.uid
-  const date = moment().format('MM/DD/YYYY, h:mm:ss')
-  const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
-  try{
-    let file = req.files.photo
-    let files = req.files.eiei
-    console.log(file)
-    console.log(files)
-    if(file && files){
-      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,file,files})
-    }
-    else if(file){
-      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,file})
-    }
-    else if(files){
-      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date,files})
-    }
-   else{
-    const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,date})
-   } 
-   return res.json({
-      success : "แก้ไขสำเร็จ"
-    })
-  }catch(err){
-    console.log(err)
-  }
-  
-});
 
 
 // router.get("/search", function (req, res) {

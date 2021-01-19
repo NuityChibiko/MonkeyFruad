@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState, Component , useContext } from "react";
 import { Form, Col, FormControl } from "react-bootstrap";
 import {useParams , useHistory } from "react-router-dom"
 import {
@@ -12,6 +12,7 @@ import "./formedit.css";
 import Axios from "axios"
 import _ from "lodash"
 import Chatbot from "../components/chatbot";
+import usercontext from "../context/usercontext"
 // import image from "D:/PROJECT ALL/MonkeyFruad/Frontend/src/uploads/logo192.png"
 
 const Formedit = () => {
@@ -33,6 +34,8 @@ const Formedit = () => {
   const [datetime, setDatetime] = useState();
   const [social, setSocial] = useState();
   const [other, setOther] = useState("");
+  const [error, Seterror] = useState();
+  let { user , setUser} = useContext(usercontext)
   // const [files, setfiles] = useState();
    
 
@@ -44,6 +47,7 @@ const Formedit = () => {
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setphoto(files[0])
+    Seterror()
     let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
     reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
     reader.onload = (event) => {
@@ -58,6 +62,7 @@ const Formedit = () => {
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setfiles(files)
+    Seterror()
 
     //ทำการวนข้อมูลภายใน Array
     for (var i = 0; i < files.length; i++) {
@@ -103,8 +108,9 @@ const Formedit = () => {
 
 
   const handlesubmit = async (e) =>{
+    e.preventDefault()
     try{
-      e.preventDefault()
+    
       let formdata = new FormData()
       _.forEach(files , file => {
         formdata.append("eiei" ,file)
@@ -125,9 +131,9 @@ const Formedit = () => {
       // let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
       let data = await Axios.post(`http://localhost:7000/post/edit/${uid}`,formdata)
       history.push(`/mypost/${uid}`)
-      
+    
     }catch(err){
-      console.log("ok")
+      err && Seterror(err.response.data.msg)
     }
   }
   return (
@@ -385,6 +391,8 @@ const Formedit = () => {
             accept="image/png, image/jpeg , image/jpg"
             
           />
+
+          <h1 className="h1-formpostfileerror">{error}</h1> 
           <div className="container-img-holder-imgpreviewedit">
             {imagesFile ? imagesFile.map((imagePreviewUrl) => {
               return (
