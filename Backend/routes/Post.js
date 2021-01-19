@@ -37,17 +37,17 @@ let upload = multer({
   storage : storage,
   fileFilter : fileFilter,
   limits: {
+<<<<<<< HEAD
     fileSize:1 * 1024 * 1024
 }
 
+=======
+    fileSize: 1 * 1024 * 1024
+}
+>>>>>>> 16cee39a373c631756ce65910fd6a97a2e2fce1c
 })
 
-
-// router.get("/", function (req, res) {
-//   res.json({ success: true });
-// });
-
-function uploadFile (req, res, next){
+const uploadFile = (req, res, next) =>{
   const upload2 = upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ])
   upload2(req, res, function (err) {
       if (err instanceof multer.MulterError) {
@@ -59,6 +59,28 @@ function uploadFile (req, res, next){
   })
 }
 
+
+// router.get("/", function (req, res) {
+//   res.json({ success: true });
+// });
+
+<<<<<<< HEAD
+function uploadFile (req, res, next){
+  const upload2 = upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ])
+  upload2(req, res, function (err) {
+      if (err instanceof multer.MulterError) {
+        return res.status(400).json({msg : "** ไฟล์รูปต้องมีขนาดไม่เกิน 1 MB **"})
+      } else if (err) {
+        return res.status(400).json({msg : err.message})
+      } 
+      next()
+  })
+}
+=======
+router.post("/create",uploadFile,async(req, res) => { 
+  try{
+>>>>>>> 16cee39a373c631756ce65910fd6a97a2e2fce1c
+
 router.post("/create",uploadFile,async(req, res) => { 
   try{
   
@@ -67,9 +89,14 @@ router.post("/create",uploadFile,async(req, res) => {
     const date = moment().format('MM/DD/YYYY, h:mm:ss a')
     let file = req.files.photo 
     let files = req.files.eiei 
+<<<<<<< HEAD
     
     console.log(file)
     console.log(files)
+=======
+    // console.log(file)
+    // console.log(files)
+>>>>>>> 16cee39a373c631756ce65910fd6a97a2e2fce1c
     if(!files){
       return res.status(400).json({msg : "** กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง **"})
     }
@@ -96,6 +123,7 @@ router.post("/create",uploadFile,async(req, res) => {
   } 
   
 });
+<<<<<<< HEAD
 
 
 
@@ -104,6 +132,9 @@ router.post("/create",uploadFile,async(req, res) => {
 
 router.post("/edit/:uid", uploadFile,async (req, res) => {
   try{
+=======
+router.post("/edit/:uid",uploadFile,async (req, res) => {
+>>>>>>> 16cee39a373c631756ce65910fd6a97a2e2fce1c
   let uid = req.params.uid
   const date = moment().format('MM/DD/YYYY, h:mm:ss a')
   const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
