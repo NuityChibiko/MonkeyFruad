@@ -7,42 +7,6 @@ import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-<<<<<<< HEAD
-import {
-  auth,
-  googleProvider,
-  facebookProvider,
-} from "../Frontfirebase";
-const Signup = () => {
-let history = useHistory();
-const [firstname,setFirstname] = useState("")
-const [surname,setSurname] = useState("")
-const [sex,setSex] = useState("")
-const [date,setDate] = useState()
-const [phone,setPhone] = useState("")
-const [province,setProvince] = useState("")
-const [country,setCountry] = useState("")
-const [email,setEmail] = useState("")
-const [password,setPassword] = useState("")
-const [repass,setRepass] = useState("")
-const [checkpass , setCheckpass] = useState(false)
-const [bottonfalse,setButtonfalse] = useState()  // 
-const [usersignup,setUsersignup] = useState()
-  const SignupSubmit = (e) =>{
-    e.preventDefault();
-    console.log("submit")
-    if (repass !== password) {
-      setCheckpass(false)
-      setButtonfalse("red") // 
-    }
-   else{
-   const getSignup =  axios.post("http://localhost:7000/user/signup", { firstname: firstname, surname: surname, sex: sex,date:date,phone:phone,
-    province:province,country:country,email:email,password:password,repass:repass
-  }).then((result)=>{
-    auth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        console.log(result);
-=======
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 
 const Signup = () => {
@@ -123,34 +87,11 @@ const Signup = () => {
       .post("http://localhost:7000/user/facebooksignup", { result: result })
       .then((result) => {
         console.log(result.data);
->>>>>>> 283444e4f7ed8dba734b25fdb5eeeb4ffdb60b68
         history.push("/");
       })
       .catch((err) => {
         console.log(err);
       });
-<<<<<<< HEAD
-  }).catch((err)=>{
-    console.log(err)
-  })}
-  }
-  const selectSex = (e) =>{
-    if(e.target.value === "male")
-    {
-      setSex(e.target.value)
-    }
-    else
-    setSex(e.target.value)
-  }
-  
-  return (
-    <div>
-      <Navbar usersignup={usersignup} />
-      <div className="container-login">
-        <form  className='LoginForm'>
-        
-          <img src="/img/logoLogin.png" className="LogoLogin" />
-=======
   };
 
   // ฟังกชันการเลือกเพศใน input
@@ -286,7 +227,6 @@ const Signup = () => {
                       className="invalid-feedback"
                     />
                   </div>
->>>>>>> 283444e4f7ed8dba734b25fdb5eeeb4ffdb60b68
 
                   <div className="form-group mb-1">
                     <label htmlFor="email" style={styles.txt2}>
