@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState, Component , useContext } from "react";
 import { Form, Col, FormControl } from "react-bootstrap";
 import {useParams , useHistory } from "react-router-dom"
 import {
@@ -12,8 +12,8 @@ import "./formedit.css";
 import Axios from "axios"
 import _ from "lodash"
 import Chatbot from "../components/chatbot";
+import usercontext from "../context/usercontext"
 // import image from "D:/PROJECT ALL/MonkeyFruad/Frontend/src/uploads/logo192.png"
-
 
 const Formedit = () => {
 
@@ -106,8 +106,9 @@ const Formedit = () => {
 
 
   const handlesubmit = async (e) =>{
+    e.preventDefault()
     try{
-      e.preventDefault()
+    
       let formdata = new FormData()
       _.forEach(files , file => {
         formdata.append("eiei" ,file)
@@ -128,7 +129,7 @@ const Formedit = () => {
       // let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
       let data = await Axios.post(`http://localhost:7000/post/edit/${uid}`,formdata)
       history.push(`/mypost/${uid}`)
-      
+    
     }catch(err){
       err && Seterror(err.response.data.msg)
     }
@@ -141,7 +142,7 @@ const Formedit = () => {
       <div className="container-formpost">
       <div className="container-formpost1">
         <div className="profile-badformpost-img">
-          {imagesProfile ? <img className="img-circle" src={imagesProfile} /> : ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`} /> : <img className="img-circle" src={"/img/profile.png"} />}
+          {imagesProfile ? <img className="img-circle" src={imagesProfile} /> : ok.resultfileitem ? <img className="img-circle" src={`${ok.resultfileitem.url}`} /> : <img className="img-circle" src={"/img/profile.png"} />}
           <div className="rank-label-container-edit">
             <span className="label label-default rank-label">
               <div className="formedit-ImageUpload">
@@ -408,9 +409,9 @@ const Formedit = () => {
                   onMouseOut={(e) => (e.currentTarget.style = { transform: "scale(1)", overflow: "hidden" })}
                 />
               );
-            }) :    ok.files ? ok.files.map(res => { 
+            }) :    ok.item ? ok.item.map(res => { 
               return ( 
-                <img className="imgpreviewedit" src={`/uploads/${res.filename}`}  /> 
+                <img className="imgpreviewedit" src={`${res.url}`}  /> 
            )
            }) : null }
              
