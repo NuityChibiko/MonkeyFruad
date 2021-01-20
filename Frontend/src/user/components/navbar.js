@@ -7,11 +7,43 @@ import usercontext from "../context/usercontext"
 import axios from "axios";
 
 const Usernvabar = () => {
+<<<<<<< HEAD
+  let { user , setUser} = useContext(usercontext)
+  let { isLogin,setisLogin} = useContext(usercontext)
+  const [usersignup,setUsersignup] = useState(null)
+  const userRef = useRef(firestore.collection("User")).current;
+  const [propsdata,setPropsdata] = useState(null)
+// useEffect(()=>{
+//       const  usersignup = (()=>{
+//         userRef.doc(props.uid).onSnapshot((doc)=>{
+//           if(doc.data()){
+//             const userData = {
+//               uid:doc.data().uid,
+//               email:doc.data().email,
+//               firstname:doc.data().firstname,
+//               surname:doc.data().surname,
+//               country:doc.data().country,
+//               province:doc.data().province,
+//               role:doc.data().role,
+//               sex:doc.data().sex
+//             };
+//             setUsersignup(userData);
+//           }else{
+//             setUsersignup(null);
+//           }
+//       }) 
+//       }); return () =>{
+//         usersignup()
+//   };
+//   },[]);
+//   setPropsdata(props)
+=======
   var { user , setUser} = useContext(usercontext)
   const [displayname , setDisplayname] = useState()
   const [role,setRole] = useState()
   const [admin ,setAdmin] = useState(false)
   const [loading, setLoading] = useState(true);
+>>>>>>> 283444e4f7ed8dba734b25fdb5eeeb4ffdb60b68
   const logout = () =>{
     auth.signOut().then(()=>{
       console.log("Signout")
@@ -19,6 +51,10 @@ const Usernvabar = () => {
       console.log(err)
     })
   }
+<<<<<<< HEAD
+  return (
+    <div className="Navbar">
+=======
 
 useMemo(()=>{
     if(user){
@@ -71,6 +107,7 @@ useMemo(()=>{
     : 
     (
        <div className="Navbar">
+>>>>>>> 283444e4f7ed8dba734b25fdb5eeeb4ffdb60b68
         <Navbar variant="dark" expand="lg">
         <Navbar.Brand href="/" className="head">Monkey Fraud</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

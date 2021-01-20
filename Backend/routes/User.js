@@ -42,7 +42,7 @@ router.post("/signup", async (req, res) => {
               role: "user",
               type:"On web"
             });
-            return res.json({ msg: "signup success" });
+            return res.json({ user: result });
           }
         })
         .catch((err) => {
