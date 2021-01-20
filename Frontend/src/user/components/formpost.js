@@ -77,7 +77,6 @@ const Formpost = () => {
 var user = auth.currentUser
 let history = useHistory()
   const handlesubmit = async (e) =>{
-
     try{
       e.preventDefault()
       let formdata = new FormData()
@@ -99,15 +98,15 @@ let history = useHistory()
       formdata.append("other" , other)
       formdata.append("useruid" , useruid)
       
-       await Axios.post("http://localhost:7000/post/create", formdata ) 
-     
+      const a = await Axios.post("http://localhost:7000/post/create", formdata ) 
+      console.log("eiei")
         history.push("/post/history")
     }catch(err){
       err && Seterror(err.response.data.msg)
     }
   
   }
-  console.log(user.uid)
+ 
   return (
   
     <div className="container-formpost">
