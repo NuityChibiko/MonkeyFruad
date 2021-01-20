@@ -6,7 +6,7 @@ h1 {
     color: #8B0000;
 }
 
-.container-login {
+.container-signup {
     margin: 40px auto;
     padding: 30px 40px;
     font-family: 'Kanit', sans-serif;
@@ -111,7 +111,7 @@ h1 {
     margin: 0 .5rem 4px 0;
 }
 
-.LogoLogin  {
+.Logo-signup  {
     width: 150px;
     height: 150px;
     margin: 0 auto;
@@ -131,9 +131,8 @@ h1 {
         margin-bottom: -1rem;
         margin-top: 1rem;
     }
-    .Phone {
-        margin-bottom: -1rem;
-        margin-top: 2rem;
+    .phone {
+        margin-bottom: -3rem;
     }
     .Email {
         margin-top: -1rem;
@@ -149,8 +148,12 @@ h1 {
     .BirthDate {
         margin-bottom: 1rem;
     }
-    .Phone {
-        margin-bottom: -1rem;
+    .phone {
+        margin-bottom: 1rem;
+    }
+    .container-login {
+        margin: 0 auto;
+        width: 100%;
     }
 }
 
@@ -164,6 +167,17 @@ h1 {
     .form-inside {
         width: 65%;
     }
+    .province-select {
+        color: inherit;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
 }
 
 @media (max-width: 767.98px) {
@@ -171,10 +185,76 @@ h1 {
         width: 100%;
         display: block;
     }
+    .province-select {
+        display: block;
+        color: inherit;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
 }
 
 .form-inside {
     font-size: inherit;
     display: inline-block;
     color: inherit;
+}
+
+.alert-signup {
+    margin-top: 1rem;
+    color: #be2020;
+    border: 1px solid #be2020;
+    background-color: #f8a9a977;
+    padding: .3rem;
+    border-radius: .4rem;
+}
+
+.alert-signup span {
+    font-size: 1rem;
+}
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+@media only screen and (max-width: 768px) {
+    .container-signup {
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+
+}
+
+@media only screen and (max-width: 375px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+    .LoginFacebook p, .LoginGoogle{
+        font-size: 15px;
+    }
+    .container-signup {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .Logo-signup{
+        width: 125px;
+        height: 125px;
+    }
+    .text1-signup{
+        font-size: 30px !important;
+    }
+
 }

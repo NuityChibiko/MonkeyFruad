@@ -1,37 +1,47 @@
-import React, { useState} from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useParams, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import Navbar from "../components/navbar";
 import "./login.css";
+import Chatbot from "../components/chatbot";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  auth,
-  googleProvider,
-  facebookProvider,
-} from "../Frontfirebase";
+import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import { MDBInput } from "mdbreact";
 import axios from "axios";
+
 const Login = () => {
+  const location = useLocation();
   let history = useHistory();
+
+  // ที่เก็บ state
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailis_inVaild, setEmailis_inVaild] = useState(false);
+  const [isLogin, setIslogin] = useState(false);
+
+  // ฟังกชันสำหรับ Login ผ่านเว็บ
 
   const LoginSubmit = (e) => {
     e.preventDefault();
- auth.signInWithEmailAndPassword(email, password)
+    auth
+      .signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(result);
         history.push("/");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setEmailis_inVaild(true);
+        setIslogin(false);
       });
   };
+  // ฟังกชันสำหรับ Login ผ่าน Google
 
   const googleLogin = async (e) => {
     e.preventDefault();
     const result = await auth.signInWithPopup(googleProvider);
-    console.log(result)
-    axios.post("http://localhost:7000/user/googlesignup", { result: result })
+    console.log(result);
+    axios
+      .post("http://localhost:7000/user/googlesignup", { result: result })
       .then((result) => {
         console.log(result.data);
         history.push("/");
@@ -40,29 +50,63 @@ const Login = () => {
         console.log(err);
       });
   };
+  // ฟังกชันสำหรับ Login ผ่าน Facebook
 
   const facebookLogin = async (e) => {
     e.preventDefault();
     const result = await auth.signInWithPopup(facebookProvider);
-    console.log(result)
-    // axios.post("http://localhost:7000/user/facebooksignup", { result: result })
-    //   .then((result) => {
-    //     console.log(result.data);
-    //     history.push("/");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    console.log(result);
+    axios
+      .post("http://localhost:7000/user/facebooksignup", { result: result })
+      .then((result) => {
+        console.log(result.data);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+  // ฟังกชันสำหรับโชว์ alert เวลาไปหน้าสร้างโพสแล้วยังไม่ login
+
+  const Islogin = () => {
+    if (location.state !== undefined) {
+      setIslogin(true);
+      setEmailis_inVaild(false);
+    } else {
+      setIslogin(false);
+    }
+  };
+
+  useEffect(() => {
+    Islogin();
+  }, []);
+
   return (
     <div>
       <Navbar />
+      <Chatbot />
       <div className="container-login">
         <form className="LoginForm">
-          <img src="/img/logoLogin.png" className="LogoLogin" />
-
-          <p className="h2 text-center mb-4 font-weight-bold">เข้าสู่ระบบ</p>
-
+          <img src="/img/logoLogin.png" className="Logo-login" />
+          <p className="h2 text-center mb-2 font-weight-bold text1-login">
+            เข้าสู่ระบบ
+          </p>
+          {emailis_inVaild ? (
+            <div className="alert-login">
+              {" "}
+              <span>อีเมลหรือรหัสผ่านไม่ถูกต้อง</span>
+            </div>
+          ) : (
+            ""
+          )}
+          {isLogin ? (
+            <div className="alert-login">
+              {" "}
+              <span>กรุณาทำการ Login ก่อนโพสต์</span>
+            </div>
+          ) : (
+            ""
+          )}
           <div className="LoginInputForm">
             <MDBInput
               className="InputEmail"
@@ -92,7 +136,7 @@ const Login = () => {
 
           <div className="message">
             <div className="RememberCheckbox">
-              <input type="checkbox" /> Remember me
+              <input type="checkbox" /> จดจำฉันไว้ในระบบ
             </div>
             <div className="ForgotPassword">
               <a href="./forgetpass">ลืมรหัสผ่าน?</a>

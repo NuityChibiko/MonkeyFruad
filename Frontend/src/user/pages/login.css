@@ -110,9 +110,76 @@ h1 {
     margin: 0 .5rem 4px 0;
 }
 
-.LogoLogin  {
+.Logo-login  {
     width: 150px;
     height: 150px;
     margin: 0 auto;
     display: block;
+}
+
+.alert-login {
+    margin-top: 1rem;
+    color: #be2020;
+    border: 1px solid #be2020;
+    background-color: #f8a9a977;
+    padding: .3rem;
+    border-radius: .4rem;
+}
+
+.alert-login span{
+    font-size: 1rem;
+}
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .container-login {
+        margin-top: 220px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container-login {
+        margin-top: 100px;
+    }
+    
+}
+
+@media only screen and (max-width: 450px) {
+    .container-login {
+        width: 100%;
+        box-shadow: 0px 0px 0px rgba(0,0,0,.2);
+        border-radius: 0px;
+    }
+}
+@media only screen and (max-width: 414px) {
+    .container-login {
+        width: 100%;
+        box-shadow: 0px 0px 0px rgba(0,0,0,.2);
+        border-radius: 0px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+    .LoginFacebook p, .LoginGoogle{
+        font-size: 15px;
+    }
+    .container-login {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .Logo-login{
+        width: 125px;
+        height: 125px;
+    }
+    .text1-login{
+        font-size: 30px !important;
+    }
 }

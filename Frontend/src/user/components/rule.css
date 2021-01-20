@@ -1,0 +1,162 @@
+.container-linkrule1 {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+.container-linkrule2 {
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    padding-left: 60px;
+    padding-right: 60px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+    box-shadow: 10px 20px 50px rgba(0,0,0,.2);
+}
+
+.h3-linkrule {
+    font-size: 20px;
+}
+
+.p-linkrule {
+    margin-top:  20px;
+    color: gray;
+    font-size: 17px;
+}
+
+.linkrule1 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: red;
+}
+
+.buttonrule {
+    width: 100%;
+    font-size: 20px;
+    background-color: #b30101;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 20px;
+    text-align: center;
+    color: white !important;
+    padding: 0.5rem;
+    margin-top: 10px;
+        border: 2px solid #8B0000;
+}
+
+.buttonrule:hover {
+    width: 100%;
+    font-size: 20px;
+    background-color: #8B0000;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    padding: 0.5rem;
+    margin-top: 10px;
+    border: 2px solid #8B0000;
+}
+
+.buttonrule:active {
+    width: 100%;
+    font-size: 20px;
+    background-color: #8B0000;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-top: 10px;
+    border: 2px solid #8B0000;
+}
+
+.buttonrule1 {
+    width: 100%;
+    font-size: 20px;
+    background-color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 20px;
+    text-align: center;
+    color:  #8B0000 !important;
+    padding: 0.5rem;
+    margin-top: 10px;
+    border: 2px solid #8B0000;
+}
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+    .container-linkrule1{
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+}
+
+@media only screen and (max-width: 450px) {
+    .container-linkrule1 {
+        width: 100%;
+        
+    }
+    .container-linkrule2{
+        box-shadow: 0px 0px 0px;
+        margin-top: -20px;
+        padding-left: 40px;
+        padding-right: 40px;
+        margin-bottom: 0px;
+    }
+    .linkrule1{
+        font-size: 17px;
+    }
+    .p-linkrule{
+        font-size: 16px;
+    }
+}
+@media only screen and (max-width: 414px) {
+    .container-linkrule1 {
+        width: 100%;
+        
+    }
+    .container-linkrule2{
+        box-shadow: 0px 0px 0px;
+        margin-top: -20px;
+        padding-left: 40px;
+        padding-right: 40px;
+        margin-bottom: 0px;
+    }
+    .linkrule1{
+        font-size: 17px;
+    }
+    .p-linkrule{
+        font-size: 16px;
+    }
+}
+@media only screen and (max-width: 375px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+    .container-linkrule2{
+        box-shadow: 0px 0px 0px;
+        margin-top: -30px;
+        padding-left: 25px;
+        padding-right: 25px;
+        margin-bottom: 0px;
+    }
+    .p-linkrule{
+        font-size: 15px;
+    }
+}

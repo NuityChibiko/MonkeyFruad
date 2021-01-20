@@ -1,0 +1,38 @@
+.h1-linkruleshow {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Kanit', sans-serif;
+    color: #8B0000;
+}
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+@media only screen and (max-width: 768px) {
+
+}
+
+@media only screen and (max-width: 450px) {
+    .h1-linkruleshow{
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 414px) {
+    .h1-linkruleshow{
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 375px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+
+}

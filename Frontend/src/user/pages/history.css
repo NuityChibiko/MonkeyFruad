@@ -8,30 +8,28 @@
 
 .h2-history2 { 
     margin-top: 50px;
-    margin-left: 250px;
+    margin-left: 40px;
     font-size: 25px;
     font-family: 'Kanit', sans-serif;
     color: #8B0000;
 }
 
 .container-history1{
-    width: 70%;
+    padding-top: 0px;
+    padding-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 0px;
-    padding-bottom: 20px;
+    width: 70%;
 }
 
 .container-history2{
     background-color: white;
     border-radius: 10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding-top: 60px;
     padding-bottom: 40px;
-    padding-left: 60px;
+    padding-left: 40px;
     padding-right: 20px;
     font-family: 'Kanit', sans-serif;
     font-size: 20px;
@@ -132,12 +130,20 @@
 .historymenusetting .li-historymenusetting {
     border-bottom: 1px solid #dddddd;
 }
-  
+
 .historymenusetting .li-historymenusetting .a-historymenusetting {
     text-decoration: none;
-    color: #333333;
+    color: black;
     padding: 15px 20px;
     display: block;
+}
+  
+.historymenusetting .li-historymenusetting .a-historymenusetting .a-historymenusetting1{
+    color: #333333;
+}
+
+.historymenusetting .li-historymenusetting .a-historymenusetting .a-historymenusetting1:hover {
+    color: #333333;
 }
 
 .spanhistory{
@@ -148,4 +154,59 @@
     color: blue;
     font-size: 15px;
     text-align: right;
+}
+.container-history5{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/*Responsive*/ 
+@media only screen and (max-width: 1920px) {
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+@media only screen and (max-width: 768px) {
+    .container-history1{
+        width: 80%;
+    }
+    .container-history2{
+        width: 100%;
+    }
+    .spanhistory{
+        margin-left: -270px;
+    }
+    .h2-history2{
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .h1-history{
+        font-size: 25px;
+    }
+    .h2-history2{
+        font-size: 20px;
+    }
+    .container-history1{
+        width: 95%;
+    }
+}
+@media only screen and (min-width: 414px) {
+    /* .h1-history{
+        font-size: 25px;
+    } */
+}
+@media only screen and (max-width: 375px) {
+
+}
+
+@media only screen and (max-width: 320px) {
+
 }

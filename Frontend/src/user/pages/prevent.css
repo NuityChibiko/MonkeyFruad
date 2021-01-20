@@ -38,123 +38,146 @@
     margin-bottom: 80px;
     margin-top: 20px;
 }
-.a1-prevent{
-    width: 33%;
+.column-prevent {
+    width: 33.33%;
+    display: block;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.column-prevent2 {
+    width: 33.33%;
+    display: block;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.column-prevent2-1 {
+    width: 16.665%;
+    display: block;
     float: left;
 }
-.b1-prevent{
-    width: 34%;
-    float: left;
+.image1-prevent1{
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    width: 100px;
+
 }
 
-.b1-left-prevent{
-    margin-left: 180px;
-}
-
-.b1-right-prevent{
-    margin-right: 180px;
-}
-
-.text-none-prevent , .text-none2-prevent ,.text-none3-prevent{
-    display: none;
-}
 .textwhite-prevent{
     color: white;
 }
 
+.br-prevent,.show-prevent{
+    display: none;
+}
 
 /*Responsive*/ 
  @media only screen and (max-width: 1920px) {
-    .b1-left-prevent{
-        margin-left: 150px;
-    }
-    .b1-right-prevent{
-        margin-right: 150px ;
-    }
 
 }
 
 @media only screen and (max-width: 1024px) {
-    .container-prevent {
-        width: 87%;
+    .container-prevent{
+        width: 90%;
     }
-    .b1-left-prevent{
-        margin-left: 125px;
-    }
-    .b1-right-prevent{
-        margin-right: 125px ;
+    .column-prevent ,.column-prevent2 {
+        padding-left: 15px;
+        padding-right: 15px;
     }
     .br-prevent{
-        display: none;
-    }
-    .text-content-prevent{
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-    .text-none-prevent{
-        display: block;
+        display: inline;
     }
 }
 
 @media only screen and (max-width: 768px) {
-    .a1-prevent{
-        width: 50%;
-    }
-    .b1-prevent{
-        width: 50%;
-    }
-    .b1-left-prevent{
-        margin-left: 0px;
-    }
-    .b1-right-prevent{
-        margin-right: 0px ;
+    .container-prevent{
+        width: 100%;
     }
     .image1-prevent{
         width: 170px;
     }
-    .text-content-prevent{
-        font-size: 17px;
+    .column-prevent ,.column-prevent2 {
+        padding-left: 17px;
+        padding-right: 17px;
     }
 }
-
-@media only screen and (max-width: 414px) {
-    .container-prevent {
+@media only screen and (max-width: 450px) {
+    .container-prevent{
         width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
     }
     .image1-prevent{
         width: 130px;
     }
+    .column-prevent ,.column-prevent2 {
+        width: 50%;
+        margin-bottom: -15px;
+    }
+    .column-prevent2-1{
+        display: none;
+    }
     .text-content-prevent{
-        font-size: 12px;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-    .a1-prevent{
-        width: 50%;
-    }
-    .b1-prevent{
-        width: 50%;
-    }
-    h1-prevent{
-        font-size: 15px;
-        color: blueviolet;
+        font-size: 16px;
     }
     .br-prevent{
         display: none;
     }
-    .text-none2-prevent{
+    .show-prevent{
         display: block;
+        margin-bottom: 130px;
+        color: white;
+    }
+    .h1-prevent { 
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 414px) {
+    .container-prevent{
+        width: 100%;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .image1-prevent{
+        width: 130px;
+    }
+    .column-prevent ,.column-prevent2 {
+        width: 50%;
+        margin-bottom: -15px;
+    }
+    .column-prevent2-1{
+        display: none;
+    }
+    .text-content-prevent{
+        font-size: 16px;
+    }
+    .br-prevent{
+        display: none;
+    }
+    .show-prevent{
+        display: block;
+        margin-bottom: 130px;
+        color: white;
+    }
+    .h1-prevent { 
+        font-size: 25px;
     }
 }
 
 @media only screen and (max-width: 375px) {
-    .image1-prevent{
-        width: 120px;
+    .container-prevent{
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 30px;
     }
     .text-content-prevent{
-        font-size: 11px;
-        margin-left: 15px;
-        margin-right: 15px;
+        font-size: 15px;
+    }
+    .image1-prevent{
+        width: 120px;
     }
 }
 
@@ -163,14 +186,6 @@
         width: 100px;
     }
     .text-content-prevent{
-        font-size: 11px;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    .text-none2-prevent{
-        display: none;
-    }
-    .text-none3-prevent{
-        display: block;
+        font-size: 14px;
     }
 }
