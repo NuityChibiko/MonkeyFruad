@@ -21,12 +21,6 @@ import Editpost from "./user/pages/editpost";
 import History from "./user/pages/history";
 import Mypost from "./user/pages/mypost";
 import Linkruleshow from "./user/pages/linkruleshow";
-<<<<<<< HEAD
-import "./app.css";
-import Axios from "axios"
-import usercontext from "./user/context/usercontext"
-import 'bootstrap/dist/css/bootstrap.min.css';
-=======
 import Profile from "./user/pages/profile";
 
 import HomeAdmin from "./admin/pages/index";
@@ -34,7 +28,6 @@ import ContractusAdmin  from "./admin/pages/contractus";
 import Managepost from "./admin/pages/managepost";
 import Non_verifypost from "./admin/pages/non_verifypost";
 import Verifypost from "./admin/pages/verifypost";
->>>>>>> a67be94ee10065a8691fb6a6c83b3b0fcdfd4f2c
 
 import "./app.css";
 import usercontext from "./user/context/usercontext";
