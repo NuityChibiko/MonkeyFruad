@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
-import { BrowserRouter as Router } from 'react-router-dom';
-=======
 import React, { useContext, useEffect, useRef, useState, useMemo } from "react";
 import {
   MDBNavbar,
@@ -42,7 +36,6 @@ const NavbarPage = () => {
         console.log(err);
       });
   };
->>>>>>> b8164355389d358d0a4a1df7e6033a8b9b827ea9
 
   useMemo(() => {
     if (user) {
@@ -109,20 +102,6 @@ const NavbarPage = () => {
     </div>
   ) : (
     <Router>
-<<<<<<< HEAD
-      <MDBNavbar color="default-color" dark expand="md">
-        <MDBNavbarBrand>
-          <strong className="white-text">Navbar</strong>
-        </MDBNavbarBrand>
-        <MDBNavbarToggler onClick={this.toggleCollapse} />
-        <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-          <MDBNavbarNav left>
-            <MDBNavItem active>
-              <MDBNavLink to="#!">Home</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="#!">Features</MDBNavLink>
-=======
       <MDBNavbar light expand="md" className="navbarnew">
         <MDBNavbarBrand href="/">
           <img src="/img/logo-mf.png" className="logo-nav" />
@@ -145,7 +124,6 @@ const NavbarPage = () => {
             </MDBNavItem>
             <MDBNavItem>
                 <Nav.Link href="/ranking">จัดอันดับคนโกง</Nav.Link>
->>>>>>> b8164355389d358d0a4a1df7e6033a8b9b827ea9
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="#!">Pricing</MDBNavLink>
@@ -156,26 +134,6 @@ const NavbarPage = () => {
                   <div className="d-none d-md-inline">Dropdown</div>
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
-<<<<<<< HEAD
-                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBNavItem>
-          </MDBNavbarNav>
-          <MDBNavbarNav right>
-            <MDBNavItem>
-              <MDBNavLink className="waves-effect waves-light" to="#!">
-                <MDBIcon fab icon="twitter" />
-              </MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink className="waves-effect waves-light" to="#!">
-                <MDBIcon fab icon="google-plus-g" />
-              </MDBNavLink>
-=======
                   <MDBDropdownItem href="/prevent">
                     รู้ไว้ไม่โดนโกง
                   </MDBDropdownItem>
@@ -199,7 +157,6 @@ const NavbarPage = () => {
                   aria-label="Search"
                 />
               </div>
->>>>>>> b8164355389d358d0a4a1df7e6033a8b9b827ea9
             </MDBNavItem>
             <MDBNavItem>
               {user ? (
