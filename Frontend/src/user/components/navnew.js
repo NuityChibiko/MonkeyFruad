@@ -146,22 +146,25 @@ const NavbarPage = () => {
           </MDBNavbarNav>
           <MDBNavbarNav right>
             <MDBNavItem>
-              <div className="md-form my-0">
+              <div className=" my-0">
                 <input
-                  className="form-control mr-sm-2"
+                  className="box-nav mr-sm-2"
                   type="text"
-                  placeholder="Search"
+                  placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี"
                   aria-label="Search"
                 />
               </div>
             </MDBNavItem>
+            <button type="submit" className="button-nav">ค้นหา</button>
             <MDBNavItem>
               {user ? (
                 <MDBDropdown>
-                  <MDBDropdownToggle nav caret>
-                    <MDBIcon icon="user" />
+                  <MDBDropdownToggle nav caret left>
+                    <span>UserName</span>
                   </MDBDropdownToggle>
-                  <MDBDropdownMenu className="dropdown-default">
+
+
+                  <MDBDropdownMenu className="dropdown-default" right>
                     <MDBDropdownItem href="/profile">
                       จัดการโปรไฟล์
                     </MDBDropdownItem>

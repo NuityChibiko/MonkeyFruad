@@ -12,4 +12,4 @@ const Editprofile = () => {
   );
 };
 
-export default Editprofilet;
+export default Editprofile;
