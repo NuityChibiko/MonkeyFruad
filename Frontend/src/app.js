@@ -39,7 +39,7 @@ const App = () => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         if(user.uid === "Q8YgWOHIlAeCY0TF8jZK21VL7Hb2"){
-          setAdmin(true)
+          setAdmin(true);
           setLoadingAuth(false);
         }
         setUser(user);
@@ -51,9 +51,8 @@ const App = () => {
   }, []);
   console.log(user);
 
-  return loadingAuth ? (
-    ""
-  ) : (admin ? (
+  return loadingAuth ? "" : (
+   admin ? (
     <Router>
     <usercontext.Provider value={{ user, setUser }}>
       <Switch>
@@ -141,5 +140,5 @@ const App = () => {
       </usercontext.Provider>
     </Router>
   ) )
-};
+}
 export default App;
