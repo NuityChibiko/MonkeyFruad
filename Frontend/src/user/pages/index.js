@@ -27,14 +27,14 @@ const Home = () => {
         <div className="row">
           <div className="column1-index">
             <div className="left-index">
-            <MDBCol md="12">
-              <MDBFormInline className="md-form mr-auto mb-4">
-                <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-                <MDBBtn gradient="aqua" rounded size="sm" type="submit" className="mr-auto">
-                  Search
-                </MDBBtn>
-              </MDBFormInline>
-            </MDBCol>
+              <MDBCol md="12">
+                <MDBFormInline className="mr-auto mb-0">
+                    <input className="search-index mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+                  <MDBBtn gradient="aqua" rounded size="sm" type="submit" className="mr-auto">
+                    Search
+                  </MDBBtn>
+                </MDBFormInline>
+              </MDBCol>
             </div>
           </div>
           <div className="column2-index">

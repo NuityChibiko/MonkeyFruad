@@ -32,7 +32,7 @@ render() {
               <MDBNavLink to="#!">Pricing</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBDropdown>
+              <MDBDropdown className="">
                 <MDBDropdownToggle nav caret>
                   <div className="d-none d-md-inline">Dropdown</div>
                 </MDBDropdownToggle>
