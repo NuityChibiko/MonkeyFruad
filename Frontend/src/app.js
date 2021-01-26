@@ -22,7 +22,8 @@ import History from "./user/pages/history";
 import Mypost from "./user/pages/mypost";
 import Linkruleshow from "./user/pages/linkruleshow";
 import Profile from "./user/pages/profile";
-import Editprofile from "./user/pages/profile";
+import Editprofile from "./user/pages/editprofile";
+import Changepass from "./user/pages/changpass";
 import HomeAdmin from "./admin/pages/index";
 import ContractusAdmin  from "./admin/pages/contractus";
 import Managepost from "./admin/pages/managepost";
@@ -139,6 +140,9 @@ const App = () => {
           </Route>
           <Route path="/edit/profile" exact>
             <Editprofile />
+          </Route>
+          <Route path="/changepass" exact>
+            <Changepass />
           </Route>
         </Switch>
       </usercontext.Provider>
