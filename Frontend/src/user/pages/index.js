@@ -6,7 +6,7 @@ import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import Chatbot from "../components/chatbot";
 import "./index.css";
 import { MDBCol, MDBFormInline, MDBBtn } from "mdbreact";
-
+import NavbarPage from "../components/navnew";
 const Home = () => {
   // const [data, setData] = useState();
   // // var user = auth.currentUser;
