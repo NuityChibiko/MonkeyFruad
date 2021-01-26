@@ -22,13 +22,11 @@ import History from "./user/pages/history";
 import Mypost from "./user/pages/mypost";
 import Linkruleshow from "./user/pages/linkruleshow";
 import Profile from "./user/pages/profile";
-
 import HomeAdmin from "./admin/pages/index";
 import ContractusAdmin  from "./admin/pages/contractus";
 import Managepost from "./admin/pages/managepost";
 import Non_verifypost from "./admin/pages/non_verifypost";
 import Verifypost from "./admin/pages/verifypost";
-
 import "./app.css";
 import usercontext from "./user/context/usercontext";
 
