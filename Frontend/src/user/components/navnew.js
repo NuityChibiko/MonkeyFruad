@@ -82,9 +82,9 @@ const NavbarPage = () => {
                     <div className="d-none d-md-inline">ดูรายงาน</div>
                   </MDBDropdownToggle>
                   <MDBDropdownMenu className="dropdown-default">
-                    <MDBDropdownItem href="/non_verifypost">ตรวจสอบแล้ว</MDBDropdownItem>
+                    <MDBDropdownItem href="/non_verifypost">ยังไม่ตรวจสอบ</MDBDropdownItem>
                     <MDBDropdownItem href="/verifypost">
-                    ยังไม่ตรวจสอบ
+                    ตรวจสอบแล้ว
                     </MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>
@@ -141,7 +141,7 @@ const NavbarPage = () => {
               </MDBDropdown>
             </MDBNavItem>
             <MDBNavItem>
-              <Nav.Link to="/contractus">ติดต่อ</Nav.Link>
+              <Nav.Link href="/contractus">ติดต่อ</Nav.Link>
             </MDBNavItem>
           </MDBNavbarNav>
           <MDBNavbarNav right>
