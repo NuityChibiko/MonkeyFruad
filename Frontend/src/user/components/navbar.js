@@ -5,6 +5,9 @@ import "./navbar.css";
 import { firestore, auth} from "../Frontfirebase";
 import usercontext from "../context/usercontext"
 import axios from "axios";
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
+  MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const Usernvabar = () => {
   var { user , setUser} = useContext(usercontext)
@@ -51,21 +54,24 @@ useMemo(()=>{
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
+              
               <Nav.Link href="/managepost">จัดการโพส</Nav.Link>
+
               <NavDropdown title="ดูรายงาน" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/non_verifypost">ตรวจสอบแล้ว</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/verifypost">ยังไม่ตรวจสอบ</NavDropdown.Item>
               </NavDropdown>
+
               <Nav.Link href="/contractus">ติดต่อเรา</Nav.Link>
+
             </Nav>
             <Form inline>
                 <FormControl type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" className="boxsearch" />
                 <button className="buttonnavbarsearch"><i className="material-icons">search</i></button>
               </Form>
-              <Nav.Link onClick={logout} className="link" href="/login">ออกจากระบบ</Nav.Link>
           </Navbar.Collapse>
-        </Navbar>
+        </Navbar> 
       </div>
     )
     : 
@@ -106,6 +112,7 @@ useMemo(()=>{
             }
         </Navbar.Collapse>
       </Navbar>
+      
     </div>
 )
   )
