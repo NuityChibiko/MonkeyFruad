@@ -139,9 +139,9 @@ const Formedit = () => {
       {show ? show.map(ok=>{
         return (
           <div>
-      <div className="container-formpost">
-      <div className="container-formpost1">
-        <div className="profile-badformpost-img">
+      <div className="container-formedit">
+      <div className="container-formedit1">
+        <div className="profile-badformedit-img">
           {imagesProfile ? <img className="img-circle" src={imagesProfile} /> : ok.resultfileitem ? <img className="img-circle" src={`${ok.resultfileitem.url}`} /> : <img className="img-circle" src={"/img/profile.png"} />}
           <div className="rank-label-container-edit">
             <span className="label label-default rank-label">

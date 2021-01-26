@@ -10,6 +10,8 @@ import {
 } from "../Frontfirebase";
 import Axios from "axios";
 import Navbar from "../components/navbar";
+import NavbarPage from "../components/navnew";
+import Commentitem from "../components/commentitem"
 
 import "./mypost.css";
 import usercontext from "../context/usercontext";
@@ -33,6 +35,12 @@ const Mypost = () => {
   const [mypost, Setmypost] = useState();
   const [data, Setdata] = useState();
   let { user, setUser } = useContext(usercontext);
+
+
+  
+  const [Democomments, setDemocomments] = useState([
+    {commment:"ไอนี้อีกแล้วหรอ น่าโดนจริงๆ อย่าให้เจอตัวบอกก่อน "}
+  ])
 
   let { uid } = useParams();
   const history = useHistory();
@@ -72,13 +80,13 @@ const Mypost = () => {
 
   useEffect(() => {
     ok();
-  }, [user]);
+  }, []);
 
-  console.log(data);
+
 
   return (
     <div className="allpage">
-      <Navbar />
+      <NavbarPage />
       <h1 className="h1-mypost">โพสต์ของฉัน</h1>
       {mypost
         ? mypost.map((ok) => {
@@ -99,11 +107,11 @@ const Mypost = () => {
                       </div>
                     </div>
 
-                    <div className="mypostbuttonshared">
+                    {/* <div className="mypostbuttonshared">
                       <a className="mypostbuttonshare" href="/post/edit">
                         <i class="fa fa-share"></i>
                       </a>
-                    </div>
+                    </div> */}
 
                     <div className="container-mypostsetiing">
                       <div className="menu-containermypostsetting">
@@ -302,37 +310,18 @@ const Mypost = () => {
                   </div>
                 </div>
                 <div className="container-mypost4">
-                  <div class="vl"></div>
-                  <div className="mypost-comment-img1">
-                    <img className="img-circle1" src="/img/profile.png" />
-                    <div className="mypost-comment-name1">
-                      @Nuitychibiko{" "}
-                      <span className="mypost-comment-time1"> 40 นาที </span>
-                    </div>
-                    <br />
-                    <div className="mypost-comment-comments1">
-                      ไอนี้อีกแล้วหรอ น่าโดนจริงๆ อย่าให้เจอตัวบอกก่อน
-                    </div>
-                  </div>
-                  <div className="mypost-comment-img2">
-                    <img className="img-circle2" src="/img/profile.png" />
-                    <div className="mypost-comment-name2">
-                      @Nuitychibiko{" "}
-                      <span className="mypost-comment-time2"> 40 นาที </span>
-                    </div>
-                    <br />
+                  {Democomments ?
+                  Democomments.map((value, index) => {
+                    return (
+                      <Commentitem data={value} ok={ok} key={index} />
+                    )
+                  })
+
+                  :<div><p>ไม่มีคอมเม้นต์</p></div>}
+
+                  <div className="line-comment"></div>
+
                     <div className="mypost-comment-comments2">
-                      โดนโกงไป5000 เจ็บใจจริงๆ TT ถ้าเจอจะซัดหน้าให้หมอบ
-                    </div>
-                  </div>
-                  <div className="mypost-comment-img3">
-                    <img className="img-circle3" src="/img/profile.png" />
-                    <div className="mypost-comment-name3">
-                      @Nuitychibiko{" "}
-                      <span className="mypost-comment-time3"> 40 นาที </span>
-                    </div>
-                    <br />
-                    <div className="mypost-comment-comments3">
                       <Form.Row>
                         <Form.Group
                           className="mypost-writecommemt col-lg-6 col-10"
@@ -355,7 +344,7 @@ const Mypost = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              // </div>  
             );
           })
         : null}
