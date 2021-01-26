@@ -26,6 +26,7 @@ const NavbarPage = () => {
   const [role, setRole] = useState();
   const [admin, setAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isOpen,setIsopen] = useState(false)
   const logout = () => {
     auth
       .signOut()
@@ -36,7 +37,9 @@ const NavbarPage = () => {
         console.log(err);
       });
   };
-
+const toggleCollapse = () => {
+ setIsopen(!isOpen)
+}
   useMemo(() => {
     if (user) {
       if (user.displayName === null) {
@@ -70,8 +73,8 @@ const NavbarPage = () => {
           <MDBNavbarBrand href="/">
             <img src="/img/logo-mf.png" className="logo-nav" />
           </MDBNavbarBrand>
-          <MDBNavbarToggler />
-          <MDBCollapse id="navbarCollapse3" navbar>
+          <MDBNavbarToggler onClick={toggleCollapse} />
+          <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
             <MDBNavbarNav left className="center-nav">
             <MDBNavItem>
             <Nav.Link href="/managepost"> จัดการโพส </Nav.Link>
@@ -106,8 +109,8 @@ const NavbarPage = () => {
         <MDBNavbarBrand href="/">
           <img src="/img/logo-mf.png" className="logo-nav" />
         </MDBNavbarBrand>
-        <MDBNavbarToggler />
-        <MDBCollapse id="navbarCollapse3" navbar>
+        <MDBNavbarToggler onClick={toggleCollapse} />
+        <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
           <MDBNavbarNav left className="center-nav">
             <MDBNavItem>
               <MDBDropdown>
