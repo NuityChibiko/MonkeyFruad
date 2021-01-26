@@ -9,10 +9,14 @@ import {
   firestore,
 } from "../Frontfirebase";
 import Axios from "axios";
+<<<<<<< HEAD
 import Navbar from "../components/navbar";
 import NavbarPage from "../components/navnew";
 import Commentitem from "../components/commentitem"
+=======
+>>>>>>> b8164355389d358d0a4a1df7e6033a8b9b827ea9
 
+import NavbarPage from "../components/navnew";
 import "./mypost.css";
 import usercontext from "../context/usercontext";
 const Mypost = () => {

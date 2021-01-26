@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/navbar";
+import NavbarPage from "../components/navnew";
 import Axios from "axios";
 import "./post.css";
 import { Link, useHistory } from "react-router-dom";
@@ -43,7 +43,11 @@ const Post = () => {
 
   return (
     <div>
+<<<<<<< HEAD
       <NavbarPage />
+=======
+        <NavbarPage />
+>>>>>>> b8164355389d358d0a4a1df7e6033a8b9b827ea9
       <h1 className="h1-post">โพสต์ทั้งหมด</h1>
       {/* {show ? show .map(ok =>{
         return (

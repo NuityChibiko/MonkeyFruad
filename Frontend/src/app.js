@@ -22,13 +22,11 @@ import History from "./user/pages/history";
 import Mypost from "./user/pages/mypost";
 import Linkruleshow from "./user/pages/linkruleshow";
 import Profile from "./user/pages/profile";
-
 import HomeAdmin from "./admin/pages/index";
 import ContractusAdmin  from "./admin/pages/contractus";
 import Managepost from "./admin/pages/managepost";
 import Non_verifypost from "./admin/pages/non_verifypost";
 import Verifypost from "./admin/pages/verifypost";
-
 import "./app.css";
 import usercontext from "./user/context/usercontext";
 
@@ -41,7 +39,7 @@ const App = () => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         if(user.uid === "Q8YgWOHIlAeCY0TF8jZK21VL7Hb2"){
-          setAdmin(true)
+          setAdmin(true);
           setLoadingAuth(false);
         }
         setUser(user);
@@ -53,9 +51,8 @@ const App = () => {
   }, []);
   console.log(user);
 
-  return loadingAuth ? (
-    ""
-  ) : (admin ? (
+  return loadingAuth ? "" : (
+   admin ? (
     <Router>
     <usercontext.Provider value={{ user, setUser }}>
       <Switch>
@@ -143,5 +140,5 @@ const App = () => {
       </usercontext.Provider>
     </Router>
   ) )
-};
+}
 export default App;

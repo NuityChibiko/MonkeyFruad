@@ -6,7 +6,7 @@ import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import Chatbot from "../components/chatbot";
 import "./index.css";
 import { MDBCol, MDBFormInline, MDBBtn } from "mdbreact";
-
+import NavbarPage from "../components/navnew";
 const Home = () => {
   // const [data, setData] = useState();
   // // var user = auth.currentUser;
@@ -21,7 +21,7 @@ const Home = () => {
   // };
   return (
     <div>
-      <Navbar />
+      <NavbarPage />
       {/* <h1 className="h1-index">หน้าหลัก</h1> */}
       <div className="container1-index">
         <div className="row">
