@@ -161,10 +161,8 @@ const toggleCollapse = () => {
               {user ? (
                 <MDBDropdown>
                   <MDBDropdownToggle nav caret left>
-                    <span>UserName</span>
+                    <span>{displayname}</span>
                   </MDBDropdownToggle>
-
-
                   <MDBDropdownMenu className="dropdown-default" right>
                     <MDBDropdownItem href="/profile">
                       จัดการโปรไฟล์
