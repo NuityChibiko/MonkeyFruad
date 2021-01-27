@@ -67,7 +67,6 @@ const toggleCollapse = () => {
     ""
   ) : (( admin ? 
     (
-    <div>
       <Router>
         <MDBNavbar light expand="md" className="navbarnew">
           <MDBNavbarBrand href="/">
@@ -102,7 +101,6 @@ const toggleCollapse = () => {
           </MDBCollapse>
         </MDBNavbar>
       </Router>
-    </div>
   ) : (
     <Router>
       <MDBNavbar light expand="md" className="navbarnew">
