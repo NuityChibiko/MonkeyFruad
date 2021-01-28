@@ -26,6 +26,7 @@ const NavbarPage = () => {
   const [role, setRole] = useState();
   const [admin, setAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isOpen,setIsopen] = useState(false)
   const logout = () => {
     auth
       .signOut()
@@ -36,7 +37,9 @@ const NavbarPage = () => {
         console.log(err);
       });
   };
-
+const toggleCollapse = () => {
+ setIsopen(!isOpen)
+}
   useMemo(() => {
     if (user) {
       if (user.displayName === null) {
@@ -64,14 +67,13 @@ const NavbarPage = () => {
     ""
   ) : (( admin ? 
     (
-    <div>
       <Router>
         <MDBNavbar light expand="md" className="navbarnew">
           <MDBNavbarBrand href="/">
             <img src="/img/logo-mf.png" className="logo-nav" />
           </MDBNavbarBrand>
-          <MDBNavbarToggler />
-          <MDBCollapse id="navbarCollapse3" navbar>
+          <MDBNavbarToggler onClick={toggleCollapse} />
+          <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
             <MDBNavbarNav left className="center-nav">
             <MDBNavItem>
             <Nav.Link href="/managepost"> จัดการโพส </Nav.Link>
@@ -99,15 +101,14 @@ const NavbarPage = () => {
           </MDBCollapse>
         </MDBNavbar>
       </Router>
-    </div>
   ) : (
     <Router>
       <MDBNavbar light expand="md" className="navbarnew">
         <MDBNavbarBrand href="/">
           <img src="/img/logo-mf.png" className="logo-nav" />
         </MDBNavbarBrand>
-        <MDBNavbarToggler />
-        <MDBCollapse id="navbarCollapse3" navbar>
+        <MDBNavbarToggler onClick={toggleCollapse} />
+        <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
           <MDBNavbarNav left className="center-nav">
             <MDBNavItem>
               <MDBDropdown>
@@ -146,22 +147,23 @@ const NavbarPage = () => {
           </MDBNavbarNav>
           <MDBNavbarNav right>
             <MDBNavItem>
-              <div className="md-form my-0">
+              <div className=" my-0">
                 <input
-                  className="form-control mr-sm-2"
+                  className="box-nav mr-sm-2"
                   type="text"
-                  placeholder="Search"
+                  placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี"
                   aria-label="Search"
                 />
               </div>
             </MDBNavItem>
+            <button type="submit" className="button-nav">ค้นหา</button>
             <MDBNavItem>
               {user ? (
                 <MDBDropdown>
-                  <MDBDropdownToggle nav caret>
-                    <MDBIcon icon="user" />
+                  <MDBDropdownToggle nav caret left>
+                    <span>{displayname}</span>
                   </MDBDropdownToggle>
-                  <MDBDropdownMenu className="dropdown-default">
+                  <MDBDropdownMenu className="dropdown-default" right>
                     <MDBDropdownItem href="/profile">
                       จัดการโปรไฟล์
                     </MDBDropdownItem>
