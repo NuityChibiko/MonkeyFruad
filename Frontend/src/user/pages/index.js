@@ -677,7 +677,7 @@ const Home = () => {
         </div>
 
       </div>
-      {/* <Chatbot /> */}
+      <Chatbot />
     </div>
   );
 };
