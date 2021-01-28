@@ -69,12 +69,13 @@
 .buttonrule:active {
     width: 100%;
     font-size: 20px;
-    background-color: #8B0000;
+    color: white;
+    background-color: #3c6fce;
     border: none;
     border-radius: 0.5rem;
     padding: 0.5rem;
     margin-top: 10px;
-    border: 2px solid #8B0000;
+    border: 2px solid #3c6fce;
 }
 
 .buttonrule1 {

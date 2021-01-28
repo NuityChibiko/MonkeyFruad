@@ -9,15 +9,10 @@ import {
   firestore,
 } from "../Frontfirebase";
 import Axios from "axios";
-<<<<<<< HEAD
-import Navbar from "../components/navbar";
 import NavbarPage from "../components/navnew";
 import Commentitem from "../components/commentitem"
-=======
->>>>>>> b8164355389d358d0a4a1df7e6033a8b9b827ea9
-
-import NavbarPage from "../components/navnew";
 import "./mypost.css";
+
 import usercontext from "../context/usercontext";
 const Mypost = () => {
   const [isActive, setIsActive] = useState(false);
@@ -43,7 +38,8 @@ const Mypost = () => {
 
   
   const [Democomments, setDemocomments] = useState([
-    {commment:"ไอนี้อีกแล้วหรอ น่าโดนจริงๆ อย่าให้เจอตัวบอกก่อน "}
+    {commment:"ไอนี้อีกแล้วหรอ น่าโดนจริงๆ อย่าให้เจอตัวบอกก่อน"},
+    {commment:"โดนโกงไป5000 เจ็บใจจริงๆ TT ถ้าเจอจะซัดหน้าให้หมอบ"},
   ])
 
   let { uid } = useParams();
@@ -323,28 +319,28 @@ const Mypost = () => {
 
                   :<div><p>ไม่มีคอมเม้นต์</p></div>}
 
-                  <div className="line-comment"></div>
+                  {/* <div className="line-comment"></div> */}
 
-                    <div className="mypost-comment-comments2">
-                      <Form.Row>
-                        <Form.Group
-                          className="mypost-writecommemt col-lg-6 col-10"
-                          controlId="exampleForm.ControlTextarea1"
-                        >
-                          <Form.Control placeholder="เขียนความคิดเห็น..." />
-                        </Form.Group>
+                    <div className="row mypost-comment-comments2">
+                      <div className="mypost-profilecomment-img">
+                        {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
+                        <img className="img-circle" src="/img/profile.png" />
+                      </div>
 
-                        <Form.Group
-                          className="mypost-writecommemt col-lg-6 col-1"
-                          controlId="exampleForm.ControlTextarea1"
-                        >
-                          <div className="mypostbuttonsend">
-                            <a className="mypostbuttonsends" href="">
-                              <i className="fa fa-paper-plane"></i>
-                            </a>
-                          </div>
-                        </Form.Group>
-                      </Form.Row>
+                      <div
+                        className="mypost-writecommemt col-lg-6 col-10"
+                        controlId="exampleForm.ControlTextarea1"
+                      >
+                        <Form.Control placeholder="เขียนความคิดเห็น..." />
+                      </div>
+                      
+                      <div>
+                        <div className="mypostbuttonsend">
+                          <a className="mypostbuttonsends" href="">
+                            <i className="fa fa-paper-plane"></i>
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
