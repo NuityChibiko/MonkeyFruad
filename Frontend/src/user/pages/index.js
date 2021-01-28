@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import NavbarPagee from "../components/navnew2";
+import NavbarPage from "../components/navnew";
 import usercontext from "../context/usercontext";
 import axios from "axios";
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
@@ -20,7 +20,7 @@ const Home = () => {
   // };
   return (
     <div>
-      <NavbarPagee />
+      <NavbarPage />
       {/* <h1 className="h1-index">หน้าหลัก</h1> */}
       <div className="container1-index">
         <div className="row">
