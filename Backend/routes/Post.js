@@ -108,8 +108,6 @@ router.post("/create",uploadFile,async(req, res) => {
     else if(!file && !files){
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date})
     }
-      
-   
       return res.json({ success: "สร้างโพสสำเร็จ" });
   }catch(err){
     // console.log(err)

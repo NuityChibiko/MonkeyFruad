@@ -62,7 +62,7 @@ const toggleCollapse = () => {
     }
     setLoading(false);
   }, [user]);
-
+console.log(displayname)
   return loading ? (
     ""
   ) : (( admin ? 
@@ -104,9 +104,7 @@ const toggleCollapse = () => {
   ) : (
     <Router>
       <MDBNavbar light expand="md" className="navbarnew">
-        <MDBNavbarBrand href="/">
-          <img src="/img/logo-mf.png" className="logo-nav" />
-        </MDBNavbarBrand>
+        <Nav.Link href="/"><img src="/img/logo-mf.png" className="logo-nav" /></Nav.Link>
         <MDBNavbarToggler onClick={toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
           <MDBNavbarNav left className="center-nav">
@@ -161,7 +159,7 @@ const toggleCollapse = () => {
               {user ? (
                 <MDBDropdown>
                   <MDBDropdownToggle nav caret left>
-                    <span>{displayname}</span>
+                  <span>{displayname}</span>
                   </MDBDropdownToggle>
                   <MDBDropdownMenu className="dropdown-default" right>
                     <MDBDropdownItem href="/profile">
