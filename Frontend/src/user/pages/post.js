@@ -44,6 +44,7 @@ const Post = () => {
     <div>
       <NavbarPage />
       <h1 className="h1-post">โพสต์ทั้งหมด</h1>
+      5555
       {/* {show ? show .map(ok =>{
         return (
         <div>
