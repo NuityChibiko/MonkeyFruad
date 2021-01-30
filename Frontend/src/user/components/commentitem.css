@@ -1,43 +1,43 @@
 .mypost-comment-img1 img.img-circle1 {
-  width: 50px;
-  border-radius: 50%;
-}
-
-.mypost-comment-name1 {
-  margin-left: 60px;
-  margin-top: -55px;
-}
-
-.mypost-comment-name1 .mypost-comment-time1 {
-  margin-left: 5px;
-  margin-top: -55px;
-  font-size: 14px;
-  color: grey;
-}
-
-.mypost-comment-comments1 {
-  margin-left: 60px;
-  margin-top: -25px;
-  margin-bottom: 30px;
-  font-size: 18px
-}
-
-.mypostcommentimg-setting {
+    width: 50px;
+    border-radius: 50%;
+  }
+  
+  .mypost-comment-name1 {
+    margin-left: 60px;
+    margin-top: -55px;
+  }
+  
+  .mypost-comment-name1 .mypost-comment-time1 {
+    margin-left: 5px;
+    margin-top: -55px;
+    font-size: 14px;
+    color: grey;
+  }
+  
+  .mypost-comment-comments1 {
+    margin-left: 60px;
+    margin-top: -25px;
+    margin-bottom: 30px;
+    font-size: 18px;
+  }
+  
+  .mypostcommentimg-setting {
     width: 25px;
-}
-
-.menu-containermypostcommentsetting {
+  }
+  
+  .menu-containermypostcommentsetting {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
   
-.mypostcommentbuttonsetting {
+  .mypostcommentbuttonsetting {
     width: 30px;
     /* margin-top: -5px;
-    margin-left: 100px; */
-    background: #e7e7e7;
+      margin-left: 100px; */
+    background: rgb(245, 245, 245);
     border-radius: 50px;
     cursor: pointer;
     display: flex;
@@ -47,14 +47,14 @@
     border: none;
     vertical-align: middle;
     transition: box-shadow 0.4s ease;
-}
-
-.mypostcommentbuttonsetting:hover {
-    background-color: rgb(199, 199, 199);
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-}
+  }
   
-.mypostcommentmenusetting {
+  .mypostcommentbuttonsetting:hover {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .mypostcommentmenusetting {
     background: #ffffff;
     border-radius: 7px;
     position: absolute;
@@ -67,60 +67,69 @@
     visibility: hidden;
     transform: translateY(-20px);
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
- }
+  }
   
-.mypostcommentmenusetting.active {
+  .mypostcommentmenusetting.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-}
+  }
   
-.mypostcommentmenusetting .ul-mypostcommentmenusetting {
+  .mypostcommentmenusetting .ul-mypostcommentmenusetting {
     list-style: none;
     padding: 0;
     margin: 0;
-}
+  }
   
-.mypostcommentmenusetting .li-mypostcommentmenusetting {
+  .mypostcommentmenusetting .li-mypostcommentmenusetting {
     border-bottom: 1px solid #dddddd;
-}
- 
-.mypostcommentmenusetting .li-mypostcommentmenusetting .a-mypostcommentmenusetting {
+  }
+  
+  .mypostcommentmenusetting
+    .li-mypostcommentmenusetting
+    .a-mypostcommentmenusetting {
     text-decoration: none;
     color: black;
     padding: 15px 20px;
     display: block;
-}
-
-.mypostcommentmenusetting .li-mypostcommentmenusetting .a-mypostcommentmenusetting .a-mypostcommentmenusetting1 {
+  }
+  
+  .mypostcommentmenusetting
+    .li-mypostcommentmenusetting
+    .a-mypostcommentmenusetting
+    .a-mypostcommentmenusetting1 {
     color: black;
-}
-
-.mypostcommentmenusetting .li-mypostcommentmenusetting .a-mypostcommentmenusetting .a-mypostcommentmenusetting1:hover {
+  }
+  
+  .mypostcommentmenusetting
+    .li-mypostcommentmenusetting
+    .a-mypostcommentmenusetting
+    .a-mypostcommentmenusetting1:hover {
     color: black;
-}
-
-.mypostcommentrow {
-    background-color: #e7e7e7;
+  }
+  
+  .mypostcommentrow {
+    background-color: rgb(245, 245, 245);
     width: 80%;
-    height: 10%;
-    margin-left: 70px;
-    margin-bottom: 30px;
-    padding-top: 35px;
+    /* height: 0%; */
+    display: table;
+    margin-left: 20px;
+    margin-bottom: 30px;  
     padding-left: 20px;
-    padding-bottom: auto;
-    border-radius: 15px;;
-    box-shadow: 1px 5px 10px rgba(0,0,0,.2);
-}
-
-/* .mypostcommentrow2 {
-    background-color: tomato;
-} */
-
-.column1 {
+    padding-top: 15px;
+    padding-bottom: 0px;
+    border-radius: 15px;
+    box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* .mypostcommentrow2 {
+      background-color: tomato;
+  } */
+  
+  .column1 {
     width: 90%;
-}
-
-.column2 {
+  }
+  
+  .column2 {
     width: 10%;
-}
+  }

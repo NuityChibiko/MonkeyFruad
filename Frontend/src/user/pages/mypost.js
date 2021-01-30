@@ -10,7 +10,7 @@ import {
 } from "../Frontfirebase";
 import Axios from "axios";
 import NavbarPage from "../components/navnew";
-import Commentitem from "../components/commentitem"
+import Commentitem from "../components/commentitem";
 import "./mypost.css";
 
 import usercontext from "../context/usercontext";
@@ -35,12 +35,10 @@ const Mypost = () => {
   const [data, Setdata] = useState();
   let { user, setUser } = useContext(usercontext);
 
-
-  
   const [Democomments, setDemocomments] = useState([
-    {commment:"ไอนี้อีกแล้วหรอ น่าโดนจริงๆ อย่าให้เจอตัวบอกก่อน"},
-    {commment:"โดนโกงไป5000 เจ็บใจจริงๆ TT ถ้าเจอจะซัดหน้าให้หมอบ"},
-  ])
+    { commment: "ไอนี้อีกแล้วหรอ น่าโดนจริงๆ อย่าให้เจอตัวบอกก่อน" },
+    { commment: "โดนโกงไป5000 เจ็บใจจริงๆ TT ถ้าเจอจะซัดหน้าให้หมอบไปเลย55555" },
+  ]);
 
   let { uid } = useParams();
   const history = useHistory();
@@ -51,7 +49,6 @@ const Mypost = () => {
 
   const deleted = async (uid) => {
     if (user2) {
-   
       const postdelete = await Axios.post(
         `http://localhost:7000/post/delete/${uid}`
       );
@@ -81,8 +78,6 @@ const Mypost = () => {
   useEffect(() => {
     ok();
   }, []);
-
-
 
   return (
     <div className="allpage">
@@ -306,45 +301,48 @@ const Mypost = () => {
                             : null}
                         </div>
                       </Form>
-                    </div>
-                  </div>
-                </div>
-                <div className="container-mypost4">
-                  {Democomments ?
-                  Democomments.map((value, index) => {
-                    return (
-                      <Commentitem data={value} ok={ok} key={index} />
-                    )
-                  })
+                      <div className="line-comment1"></div>
+                      <div className="container-mypost4">
+                        {Democomments ? (
+                          Democomments.map((value, index) => {
+                            return (
+                              <Commentitem data={value} ok={ok} key={index} />
+                            );
+                          })
+                        ) : (
+                          <div>
+                          </div>
+                        )}
 
-                  :<div><p>ไม่มีคอมเม้นต์</p></div>}
-
-                  {/* <div className="line-comment"></div> */}
-
-                    <div className="row mypost-comment-comments2">
-                      <div className="mypost-profilecomment-img">
-                        {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
-                        <img className="img-circle" src="/img/profile.png" />
+                        {/* <div className="line-comment2"></div> */}
                       </div>
+                      <h2 className="commentother">ดูอีก 3 ความคิดเห็น</h2>
+                      <div className="row mypost-comment-comments2">
+                        <div className="mypost-profilecomment-img">
+                          {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
+                          <img className="img-circle" src="/img/profile.png" />
+                        </div>
+                        <div className="row mypost-comment-commentsall">
+                          <div
+                            className="mypost-writecommemt col-lg-6 col-10"
+                            controlId="exampleForm.ControlTextarea1"
+                          >
+                            <input className="inputcomment" placeholder="เขียนความคิดเห็น..." />
+                          </div>
 
-                      <div
-                        className="mypost-writecommemt col-lg-6 col-10"
-                        controlId="exampleForm.ControlTextarea1"
-                      >
-                        <Form.Control placeholder="เขียนความคิดเห็น..." />
-                      </div>
-                      
-                      <div>
-                        <div className="mypostbuttonsend">
-                          <a className="mypostbuttonsends" href="">
-                            <i className="fa fa-paper-plane"></i>
-                          </a>
+                          <div>
+                            <div className="column2 mypostbuttonsend">
+                              <a className="mypostbuttonsends" href="">
+                                <i className="fa fa-paper-plane"></i>
+                              </a>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              // </div>  
+              </div>
             );
           })
         : null}

@@ -114,9 +114,9 @@ console.log(displayname)
                   <div className="d-none d-md-inline">โพสต์</div>
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
-                  <MDBDropdownItem href="/post">โพสทั้งหมด</MDBDropdownItem>
+                  <MDBDropdownItem href="/post">โพสต์ทั้งหมด</MDBDropdownItem>
                   <MDBDropdownItem href="/linkruleshow">
-                    สร้างโพส
+                    สร้างโพสต์
                   </MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
