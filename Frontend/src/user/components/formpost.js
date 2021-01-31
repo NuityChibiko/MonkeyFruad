@@ -14,7 +14,6 @@ import Chatbot from "../components/chatbot";
 const Formpost = () => {
 
   // เก็บ State ทุก Input เพื่อส่งไปหลังบ้าน
-  
   const [imagesFile, setImagesFile] = useState([]); //สร้าง State เพื่อเก็บไฟล์ที่อัพโหลด
   const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
   const [files, Setfiles] = useState("");
@@ -53,9 +52,10 @@ const Formpost = () => {
     };
 
   };
+
 // ฟังก์ชันอัพโหลดไฟล์ 
   const FileUpload = (event) => { 
-
+    
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     setImagesFile([]); // reset state รูป เพื่อกันในกรณีที่กดเลือกไฟล์ซ้ำแล้วรูปต่อกันจากอันเดิม
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
