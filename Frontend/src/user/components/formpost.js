@@ -358,7 +358,7 @@ let history = useHistory()
             <Form.Check aria-label="option 1" className="linkrule2"/><a className="linkrule3" href="about.html">ยอมรับข้อตกลง</a>
           </Form.Row> */}
 
-          <button className="buttonformpost" variant="success" type="submit" >
+          <button className="buttonformpost" type="submit" >
             โพสต์
           </button>
        
