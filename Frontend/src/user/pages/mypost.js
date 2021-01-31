@@ -33,6 +33,7 @@ const Mypost = () => {
   const [other, setOther] = useState();
   const [mypost, Setmypost] = useState();
   const [data, Setdata] = useState();
+  const [textcomment, Setcomment] = useState();
   let { user, setUser } = useContext(usercontext);
 
   const [Democomments, setDemocomments] = useState([
@@ -78,6 +79,16 @@ const Mypost = () => {
   useEffect(() => {
     ok();
   }, []);
+
+  const handlecomment = async () =>{
+    try{
+      let sentdata = {textcomment , userid : user.uid}
+      
+      const sentcomment = await Axios.post("http://localhost:7000/post/comment", sentdata)
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   return (
     <div className="allpage">
@@ -322,23 +333,30 @@ const Mypost = () => {
                           {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
                           <img className="img-circle" src="/img/profile.png" />
                         </div>
+                     
                         <div className="row mypost-comment-commentsall">
+                       
                           <div
                             className="mypost-writecommemt col-lg-6 col-10"
                             controlId="exampleForm.ControlTextarea1"
                           >
-                            <input className="inputcomment" placeholder="เขียนความคิดเห็น..." />
+                         
+                            <input className="inputcomment" placeholder="เขียนความคิดเห็น..." onChange={(e) =>{Setcomment(e.target.value)}}/>
                           </div>
 
                           <div>
                             <div className="column2 mypostbuttonsend">
-                              <a className="mypostbuttonsends" href="">
+                              <a className="mypostbuttonsends" onClick={handlecomment}>
                                 <i className="fa fa-paper-plane"></i>
                               </a>
                             </div>
+                       
                           </div>
+                       
                         </div>
+                       
                       </div>
+                      
                     </div>
                   </div>
                 </div>
