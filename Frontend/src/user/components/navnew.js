@@ -26,6 +26,7 @@ const NavbarPage = () => {
   const [role, setRole] = useState();
   const [admin, setAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isOpen,setIsopen] = useState(false)
   const logout = () => {
     auth
       .signOut()
@@ -36,7 +37,9 @@ const NavbarPage = () => {
         console.log(err);
       });
   };
-
+const toggleCollapse = () => {
+ setIsopen(!isOpen)
+}
   useMemo(() => {
     if (user) {
       if (user.displayName === null) {
@@ -59,19 +62,18 @@ const NavbarPage = () => {
     }
     setLoading(false);
   }, [user]);
-
+console.log(displayname)
   return loading ? (
     ""
   ) : (( admin ? 
     (
-    <div>
       <Router>
         <MDBNavbar light expand="md" className="navbarnew">
           <MDBNavbarBrand href="/">
             <img src="/img/logo-mf.png" className="logo-nav" />
           </MDBNavbarBrand>
-          <MDBNavbarToggler />
-          <MDBCollapse id="navbarCollapse3" navbar>
+          <MDBNavbarToggler onClick={toggleCollapse} />
+          <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
             <MDBNavbarNav left className="center-nav">
             <MDBNavItem>
             <Nav.Link href="/managepost"> จัดการโพส </Nav.Link>
@@ -99,15 +101,12 @@ const NavbarPage = () => {
           </MDBCollapse>
         </MDBNavbar>
       </Router>
-    </div>
   ) : (
     <Router>
       <MDBNavbar light expand="md" className="navbarnew">
-        <MDBNavbarBrand href="/">
-          <img src="/img/logo-mf.png" className="logo-nav" />
-        </MDBNavbarBrand>
-        <MDBNavbarToggler />
-        <MDBCollapse id="navbarCollapse3" navbar>
+        <Nav.Link href="/"><img src="/img/logo-mf.png" className="logo-nav" /></Nav.Link>
+        <MDBNavbarToggler onClick={toggleCollapse} />
+        <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
           <MDBNavbarNav left className="center-nav">
             <MDBNavItem>
               <MDBDropdown>
@@ -115,9 +114,9 @@ const NavbarPage = () => {
                   <div className="d-none d-md-inline">โพสต์</div>
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
-                  <MDBDropdownItem href="/post">โพสทั้งหมด</MDBDropdownItem>
+                  <MDBDropdownItem href="/post">โพสต์ทั้งหมด</MDBDropdownItem>
                   <MDBDropdownItem href="/linkruleshow">
-                    สร้างโพส
+                    สร้างโพสต์
                   </MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
@@ -126,7 +125,7 @@ const NavbarPage = () => {
                 <Nav.Link href="/ranking">จัดอันดับคนโกง</Nav.Link>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBDropdown>
+              <MDBDropdown className="">
                 <MDBDropdownToggle nav caret>
                   <div className="d-none d-md-inline">ช่วยเหลือ</div>
                 </MDBDropdownToggle>
@@ -146,22 +145,23 @@ const NavbarPage = () => {
           </MDBNavbarNav>
           <MDBNavbarNav right>
             <MDBNavItem>
-              <div className="md-form my-0">
+              <div className=" my-0">
                 <input
-                  className="form-control mr-sm-2"
+                  className="box-nav mr-sm-2"
                   type="text"
-                  placeholder="Search"
+                  placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี"
                   aria-label="Search"
                 />
               </div>
             </MDBNavItem>
+            <button type="submit" className="button-nav">ค้นหา</button>
             <MDBNavItem>
               {user ? (
                 <MDBDropdown>
-                  <MDBDropdownToggle nav caret>
-                    <MDBIcon icon="user" />
+                  <MDBDropdownToggle nav caret left>
+                  <span>{displayname}</span>
                   </MDBDropdownToggle>
-                  <MDBDropdownMenu className="dropdown-default">
+                  <MDBDropdownMenu className="dropdown-default" right>
                     <MDBDropdownItem href="/profile">
                       จัดการโปรไฟล์
                     </MDBDropdownItem>
@@ -174,7 +174,7 @@ const NavbarPage = () => {
                   </MDBDropdownMenu>
                 </MDBDropdown>
               ) : (
-                <Nav.Link href="/login">เข้าสู่ระบบ</Nav.Link>
+                <Nav.Link href="/login" >เข้าสู่ระบบ</Nav.Link>
               )}
             </MDBNavItem>
           </MDBNavbarNav>

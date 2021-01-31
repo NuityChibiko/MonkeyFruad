@@ -42,7 +42,7 @@ const Post = () => {
 
   return (
     <div>
-        <NavbarPage />
+      <NavbarPage />
       <h1 className="h1-post">โพสต์ทั้งหมด</h1>
       {/* {show ? show .map(ok =>{
         return (
