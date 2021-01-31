@@ -125,9 +125,12 @@ console.log(displayname)
                 <Nav.Link href="/ranking">จัดอันดับคนโกง</Nav.Link>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBDropdown>
+              <MDBNavLink to="#!">Pricing</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBDropdown className="">
                 <MDBDropdownToggle nav caret>
-                  <div className="d-none d-md-inline">ช่วยเหลือ</div>
+                  <div className="d-none d-md-inline">Dropdown</div>
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
                   <MDBDropdownItem href="/prevent">
