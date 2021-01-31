@@ -12,7 +12,6 @@ const Signup = () => {
   let history = useHistory();
 
   // ที่เก็บ state
-
   const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
   const [surname, setSurname] = useState("");
@@ -25,7 +24,6 @@ const Signup = () => {
   const [emailis_inVaild, setEmailis_inVaild] = useState(false);
 
   // ฟังกชันการ Signup
-
   const SignupSubmit = (e) => {
     e.preventDefault();
     console.log("submit");
@@ -60,7 +58,6 @@ const Signup = () => {
   };
 
   // ฟังกชันการ Login ผ่าน Google
-
   const googleLogin = async (e) => {
     e.preventDefault();
     const result = await auth.signInWithPopup(googleProvider);
@@ -77,7 +74,6 @@ const Signup = () => {
   };
 
   // ฟังกชันการ Login ผ่าน Facebook
-
   const facebookLogin = async (e) => {
     e.preventDefault();
     const result = await auth.signInWithPopup(facebookProvider);
@@ -94,7 +90,6 @@ const Signup = () => {
   };
 
   // ฟังกชันการเลือกเพศใน input
-
   const selectSex = (e) => {
     if (e.target.value === "male") {
       setSex(e.target.value);
@@ -102,7 +97,6 @@ const Signup = () => {
   };
 
   // Style มาตรฐานของ Formik
-
   const styles = {
     row: {
       marginTop: "8rem",
@@ -123,7 +117,6 @@ const Signup = () => {
   };
 
   //object schema สำหรับทำ validation
-
   const RegisterSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, "สั้นเกินไป")
@@ -170,9 +163,7 @@ const Signup = () => {
       <div className="container-signup">
         <form className="LoginForm">
           <img src="/img/logoLogin.png" className="Logo-signup" />
-          <p className="h2 text-center mb-2 font-weight-bold text1-signup">
-            สมัครสมาชิก
-          </p>
+          <p className="h2 text-center mb-2 font-weight-bold text1-signup">สมัครสมาชิก</p>
           {emailis_inVaild ? (
             <div className="alert-signup">
               {" "}
