@@ -120,10 +120,6 @@
     font-family: 'Kanit', sans-serif;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-
 .search-index {
     background-color: transparent;
     border: none;
@@ -133,9 +129,8 @@
     box-shadow: none;
     transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
     width: 100%;
-=======
-.container3-index{
-=======
+}
+
 .text3-index{
     text-align: center;
     color: #5c83cc;
@@ -152,7 +147,6 @@
 }
 
 .container3-index {
->>>>>>> 1cd41764c8d10f1df5238d3fdda97986eb93c589
     width: 60%;
     height: 3280px;
     margin-left: auto;
@@ -384,11 +378,5 @@
 .seemore{
     margin-left: auto;
     margin-right: auto;
-<<<<<<< HEAD
-    display: block;
->>>>>>> a884fb280e05c979c2a1bc3ea49d4581e57afa28
-}
-=======
     margin-bottom: 5px;
 }
->>>>>>> 1cd41764c8d10f1df5238d3fdda97986eb93c589

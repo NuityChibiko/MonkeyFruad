@@ -27,18 +27,6 @@ const Home = () => {
       <div className="container1-index">
         <div className="row">
           <div className="column1-index">
-<<<<<<< HEAD
-            <div className="left-index">
-              <MDBCol md="12">
-                <MDBFormInline className="mr-auto mb-0">
-                    <input className="search-index mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-                  <MDBBtn gradient="aqua" rounded size="sm" type="submit" className="mr-auto">
-                    Search
-                  </MDBBtn>
-                </MDBFormInline>
-              </MDBCol>
-            </div>
-=======
               <div className="text1-index">ค้นหาผ่านเว็บไซต์ของเราได้ที่นี่</div>
             <MDBCol>
               <MDBFormInline className="mr-auto mb-4">
@@ -46,7 +34,6 @@ const Home = () => {
                 <button type="submit" className="button1-index">ค้นหา</button>
               </MDBFormInline>
             </MDBCol>
->>>>>>> a884fb280e05c979c2a1bc3ea49d4581e57afa28
           </div>
           <div class="line-index"></div>
           <div className="column2-index">
