@@ -76,7 +76,7 @@ console.log(displayname)
           <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
             <MDBNavbarNav left className="center-nav">
             <MDBNavItem>
-            <Nav.Link href="/managepost"> จัดการโพส </Nav.Link>
+            <Nav.Link href="/managepost"> จัดการโพสต์ </Nav.Link>
             </MDBNavItem>
             <MDBNavItem>
                 <MDBDropdown>
