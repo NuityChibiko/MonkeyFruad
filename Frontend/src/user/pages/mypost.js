@@ -45,7 +45,7 @@ const Mypost = () => {
 
   // let user2 = auth.currentUser;
   const deleted = async (uid) => {
-   
+
     const postdelete = await Axios.post(
       `http://localhost:7000/post/delete/${uid}`
     );
@@ -71,7 +71,7 @@ const Mypost = () => {
       Setallcomment(getcomment.data.item)
       Setmypost(ok.data.item);
       Setdata(nameuser.data.item);
-     
+      
      
      
     } catch (err) {
@@ -86,7 +86,6 @@ const Mypost = () => {
   const handlecomment = async (e) =>{
     try{
       e.preventDefault()
- 
       let sentdata = {textcomment , username : data[0].username , userid : user.uid}
       
       const sentcomment = await Axios.post(`http://localhost:7000/post/comment/${uid}`, sentdata)

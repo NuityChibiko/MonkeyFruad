@@ -13,7 +13,6 @@ const EditProfile = () => {
   const [value, onChange] = useState(new Date());
   var { user, setUser } = useContext(usercontext);
   let history = useHistory();
-  const { uid } = useParams()
   // ที่เก็บ state
   const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
   const [username, setUsername] = useState("");
@@ -37,16 +36,32 @@ const EditProfile = () => {
     event.preventDefault(); // ใส่ไว้ไม่ให้ refresh หน้าเว็บ
     let files = event.target.files; //ใช้เพื่อแสดงไฟลทั้งหมดที่กดเลือกไฟล
     Setphoto(files[0])
-    Seterror()
     let reader = new FileReader(); //ใช้ Class  FileReader เป็นตัวอ่านไฟล์
     reader.readAsDataURL(files[0]); //เป็นคำสั่งสำหรับการแปลง url มาเป็น file
     reader.onloadend = () => {
       setImagesProfile(reader.result); // ใส่ข้อมูลเข้าไปยัง state ผาน setImagesProfile
     };
   };
+
   const SubmitHandle = (e) =>{
     e.preventDefault();
+    try{
+      let formdata = new FormData()
+      formdata.append("photo" , photo)
+      formdata.append("username" , username)
+      formdata.append("firstname" , firstname)
+      formdata.append("surname" , surname)
+      formdata.append("sex" , sex)
+      formdata.append("phone" ,phone)
+      formdata.append("province" , province)
+      // let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
+       axios.post(`http://localhost:7000/user/edit/profile/${user.uid}`,formdata)
+      console.log("ok")
+    }catch(err){
+      console.log(err)
+    }
   }
+console.log(user.uid)
   useMemo(() => {
     axios
       .post("http://localhost:7000/user/session", { user: user })
@@ -57,6 +72,7 @@ const EditProfile = () => {
         setSex(result.data.data.sex);
         setPhone(result.data.data.phone);
         setProvince(result.data.data.province);
+        Setphoto(result.data.data.photo)
         setLoading(false);
       })
       .catch((err) => {
@@ -91,7 +107,7 @@ const EditProfile = () => {
           <p className="h2 text-center mb-2 font-weight-bold text1-signup">แก้ไขข้อมูลส่วนตัว</p>
 
           <div className="profile-badformpost-img">
-            <img className="img-circle" src={imagesProfile}/>
+            <img className="img-circle" src={`${ok.resultfileitem.url}`}/>
             <div className="rank-label-container">
               <span className="label label-default rank-label">
                 <div className="formpost-ImageUpload">

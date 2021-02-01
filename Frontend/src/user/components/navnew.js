@@ -168,7 +168,7 @@ const NavbarPage = () => {
                     {displayname}
                   </MDBDropdownToggle>
                   <MDBDropdownMenu className="dropdown-default" right>
-                    <MDBDropdownItem href="/profile">
+                    <MDBDropdownItem href={`/profile/${user.uid}`}>
                       จัดการโปรไฟล์
                     </MDBDropdownItem>
                     <MDBDropdownItem href="/post/history">
