@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import "./profile.css";
 import Chatbot from "../components/chatbot";
@@ -8,80 +8,89 @@ import * as Yup from "yup";
 import axios from "axios";
 import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import NavbarPage from "../components/navnew";
-
+import usercontext from "../context/usercontext";
 const Profile = () => {
   let history = useHistory();
-
+  var { user, setUser } = useContext(usercontext);
   // ที่เก็บ state
-  const [username, setUsername] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [surname, setSurname] = useState("");
-  const [sex, setSex] = useState("");
-  const [date, setDate] = useState();
-  const [phone, setPhone] = useState("");
-  const [province, setProvince] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailis_inVaild, setEmailis_inVaild] = useState(false);
+  const [username, setUsername] = useState("-");
+  const [firstname, setFirstname] = useState("-");
+  const [surname, setSurname] = useState("-");
+  const [sex, setSex] = useState("-");
+  const [phone, setPhone] = useState("-");
+  const [province, setProvince] = useState("-");
+  const [loading, setLoading] = useState(true);
+  useMemo(() => {
+    axios
+      .post("http://localhost:7000/user/session", { user: user })
+      .then((result) => {
+        setUsername(result.data.data.username);
+        setFirstname(result.data.data.firstname);
+        setSurname(result.data.data.surname);
+        setSex(result.data.data.sex);
+        setPhone(result.data.data.phone);
+        setProvince(result.data.data.province);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [user]);
 
-
-  return (
+  return loading ? (
+    ""
+  ) : (
     <div>
       <NavbarPage />
       <div className="container-signup">
         <form className="LoginForm">
-          <p className="h2 text-center mb-2 font-weight-bold text1-signup">ข้อมูลส่วนตัว</p>
+          <p className="h2 text-center mb-2 font-weight-bold text1-signup">
+            ข้อมูลส่วนตัว
+          </p>
 
           <div className="profile-badformpost-img">
-            <img src='/img/profile.png' className="img-circle"/>
-          </div> 
+            <img src="/img/profile.png" className="img-circle" />
+          </div>
 
           <div className="form-group my-0">
             <label className="label-form-title-profile">Username</label>
             <div className="form-inside-profile">
-                <p>NuityChibiko</p>
+              <p>{username}</p>
             </div>
           </div>
 
           <div className="form-group my-0">
             <label className="label-form-title-profile">ชื่อจริง</label>
             <div className="form-inside-profile">
-                <p>บวรศักดิ์</p>
+              <p>{firstname}</p>
             </div>
           </div>
 
           <div className="form-group my-0">
             <label className="label-form-title-profile">นามสกุล</label>
             <div className="form-inside-profile">
-                <p>เหลือจันทร์</p>
+              <p>{surname}</p>
             </div>
           </div>
 
           <div className="form-group my-0">
             <label className="label-form-title-profile">เพศ</label>
             <div className="form-inside-profile">
-                <p>ชาย</p>
-            </div>
-          </div>
-
-          <div className="form-group my-0">
-            <label className="label-form-title-profile">วันเกิด</label>
-            <div className="form-inside-profile">
-                <p><span>09</span> / <span>02</span> / <span>2000</span></p>
+              <p>{sex}</p>
             </div>
           </div>
 
           <div className="form-group my-0">
             <label className="label-form-title-profile">เบอร์โทรศัพท์</label>
             <div className="form-inside-profile">
-                <p>0930239802</p>
+              <p>{phone}</p>
             </div>
           </div>
 
           <div className="form-group my-0">
             <label className="label-form-title-profile">จังหวัด</label>
             <div className="form-inside-profile">
-                <p>กรุงเทพมหานคร</p>
+              <p>{province}</p>
             </div>
           </div>
 
@@ -90,16 +99,19 @@ const Profile = () => {
               <div>
                 <i class="fas fa-user-edit"></i>
               </div>
-              <a href="/edit/profile" className="mx-auto my-1">แก้ไขข้อมูลส่วนตัว</a>
+              <a href="/profile/edit" className="mx-auto my-1">
+                แก้ไขข้อมูลส่วนตัว
+              </a>
             </button>
             <button className="btn-block LoginGoogle">
               <div>
                 <i class="fas fa-unlock"></i>
               </div>
-              <a href="/changepass" className="mx-auto my-1">เปลี่ยนรหัสผ่าน</a>
+              <a href="/changepass" className="mx-auto my-1">
+                เปลี่ยนรหัสผ่าน
+              </a>
             </button>
           </div>
-
         </form>
       </div>
       <Chatbot />
@@ -108,5 +120,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-

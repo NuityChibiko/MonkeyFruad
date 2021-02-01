@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState ,useMemo,useContext} from "react";
+import { useParams , useHistory} from "react-router-dom";
 import "./profile.css";
 import Chatbot from "../components/chatbot";
 import styled from "styled-components";
@@ -8,27 +8,23 @@ import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
 import NavbarPage from "../components/navnew";
 import { MDBInputGroup } from "mdbreact";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-
+import usercontext from "../context/usercontext";
 const EditProfile = () => {
   const [value, onChange] = useState(new Date());
-
+  var { user, setUser } = useContext(usercontext);
   let history = useHistory();
-
+  const { uid } = useParams()
   // ที่เก็บ state
   const [imagesProfile, setImagesProfile] = useState("/img/profile.png"); //สร้าง State เพื่อเก็บรูปโปรไฟล์
   const [username, setUsername] = useState("");
   const [firstname, setFirstname] = useState("");
   const [surname, setSurname] = useState("");
   const [sex, setSex] = useState("");
-  const [date, setDate] = useState();
   const [phone, setPhone] = useState("");
   const [province, setProvince] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailis_inVaild, setEmailis_inVaild] = useState(false);
   const [photo, Setphoto] = useState("");
   const [error, Seterror] = useState();
-
+  const [loading, setLoading] = useState(true);
 
   // ฟังกชันการเลือกเพศใน input
   const selectSex = (e) => {
@@ -48,7 +44,25 @@ const EditProfile = () => {
       setImagesProfile(reader.result); // ใส่ข้อมูลเข้าไปยัง state ผาน setImagesProfile
     };
   };
-
+  const SubmitHandle = (e) =>{
+    e.preventDefault();
+  }
+  useMemo(() => {
+    axios
+      .post("http://localhost:7000/user/session", { user: user })
+      .then((result) => {
+        setUsername(result.data.data.username);
+        setFirstname(result.data.data.firstname);
+        setSurname(result.data.data.surname);
+        setSex(result.data.data.sex);
+        setPhone(result.data.data.phone);
+        setProvince(result.data.data.province);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [user]);
     // Style มาตรฐานของ Formik
     const styles = {
       row: {
@@ -73,7 +87,7 @@ const EditProfile = () => {
     <div>
       <NavbarPage />
       <div className="container-signup">
-        <form className="LoginForm">
+        <form className="LoginForm" onSubmit={SubmitHandle}>
           <p className="h2 text-center mb-2 font-weight-bold text1-signup">แก้ไขข้อมูลส่วนตัว</p>
 
           <div className="profile-badformpost-img">
@@ -108,8 +122,12 @@ const EditProfile = () => {
             <div className="form-inside-profile">
               <MDBInputGroup
                 material
+                value={username}
                 containerClassName="mt-0"
                 size="sm"
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -121,6 +139,10 @@ const EditProfile = () => {
                   material
                   containerClassName="mt-0"
                   size="sm"
+                  value={firstname}
+                  onChange={(e) => {
+                    setFirstname(e.target.value);
+                  }}
                 />
             </div>
           </div>
@@ -132,6 +154,10 @@ const EditProfile = () => {
                 material
                 containerClassName="mt-0"
                 size="sm"
+                value={surname}
+                onChange={(e) => {
+                  setSurname(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -148,6 +174,7 @@ const EditProfile = () => {
                   id="male"
                   value="male"
                   className="mr-1"
+                  value={sex}
                 />
                 <label htmlFor="male">ชาย</label>
               </div>
@@ -166,13 +193,6 @@ const EditProfile = () => {
             </div>
           </div>
 
-          <div className="form-group my-3">
-            <label className="label-form-title-profile pt-1">วันเกิด</label>
-            <div className="form-inside-profile">
-              <input type="date" className="DatePicker"></input>
-            </div>
-          </div>
-
           <div className="form-group my-0">
             <label className="label-form-title-profile pt-2">เบอร์โทรศัพท์</label>
             <div className="form-inside-profile">
@@ -180,6 +200,10 @@ const EditProfile = () => {
                   material
                   containerClassName="mt-0"
                   size="sm"
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
                 />
             </div>
           </div>
@@ -195,7 +219,7 @@ const EditProfile = () => {
                   setProvince(e.target.value);
                 }}
               >
-                <option value="" selected>
+                <option value={province} selected>
                   กรุณาเลือกจังหวัด
                 </option>
                 <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
@@ -284,7 +308,7 @@ const EditProfile = () => {
           </div>
 
             <div className="col-md-12 mt-2">
-              <button className="btn-block LoginFacebook">
+              <button type="submit" className="btn-block LoginFacebook">
                 <div>
                   <i class="fas fa-save pr-1"></i>
                 </div>
