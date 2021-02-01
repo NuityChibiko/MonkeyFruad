@@ -5,7 +5,8 @@ const { auth, firestore } = require("../models/index"),
   router = express.Router(),
   bcrypt = require("bcryptjs"),
   { Result } = require("express-validator"),
-  cloudinary = require("../utils/cloudinary");
+  cloudinary = require("../utils/cloudinary"),
+  path = require("path")
 
 const storage = multer.diskStorage({
   filename: (req, file, cb) => {
@@ -218,19 +219,19 @@ router.post("/edit/profile/:uid", uploadFile, async (req, res) => {
     const {
       firstname,username,surname,sex,phone,province
     } = req.body;
-    console.log(file);
-    if (file) {
-      const photoURL = cloudinary.uploader.upload(file[0].path);
-      firestore.collection("User").doc(uid).update({
-        firstname,username,surname,sex,phone,province,file,photoURL
-      });
+    if(file){
+      const resultfile = await cloudinary.uploader.upload(file[0].path);
+      const {url,public_id} = resultfile
+      const photoURL = {url,public_id}
+      console.log(photoURL)
+      firestore.collection("User").doc(uid).update({firstname,username,surname,sex,phone,province,photoURL});
     } else if (!file) {
       firestore.collection("User").doc(uid).update({
         firstname,username,surname,sex,phone,province
       });
     }
     return res.json({
-      success: "แก้ไขสำเร็จ",
+      success: "แก้ไขสำเร็จ"
     });
   } catch (err) {
     return res.status(500).json({ msg: err });

@@ -50,6 +50,7 @@ const App = () => {
       }
       setLoadingAuth(false);
     });
+    
   }, []);
   console.log(user)
   return loadingAuth ? "" : (
