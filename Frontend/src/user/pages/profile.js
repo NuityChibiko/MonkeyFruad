@@ -90,13 +90,13 @@ const Profile = () => {
               <div>
                 <i class="fas fa-user-edit"></i>
               </div>
-              <p className="mx-auto my-1">แก้ไขข้อมูลส่วนตัว</p>
+              <a href="/edit/profile" className="mx-auto my-1">แก้ไขข้อมูลส่วนตัว</a>
             </button>
             <button className="btn-block LoginGoogle">
               <div>
                 <i class="fas fa-unlock"></i>
               </div>
-              <p className="mx-auto my-1">เปลี่ยนรหัสผ่าน</p>
+              <a href="/changepass" className="mx-auto my-1">เปลี่ยนรหัสผ่าน</a>
             </button>
           </div>
 
