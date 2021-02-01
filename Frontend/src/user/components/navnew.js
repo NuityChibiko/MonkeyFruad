@@ -61,7 +61,7 @@ const NavbarPage = () => {
       }
     }
   }, [user]);
-  console.log(displayname);
+
   return loading ? (
     ""
   ) : admin ? (

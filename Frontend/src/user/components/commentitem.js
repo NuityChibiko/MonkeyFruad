@@ -24,25 +24,27 @@ const Commentitem = ({ data, ok ,uid}) => {
       const postdelete = await Axios.post(
         `http://localhost:7000/post/delete/comment/${commentid}`
       );
-      console.log(postdelete.data);
-      const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
-      console.log( getcomment.data.item);
-      Setallcomment( getcomment.data.item);
+      // const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
+      // console.log( getcomment.data.item);
+      // Setallcomment( getcomment.data.item);
       window.location.reload(false);
   };
   const edit = async () =>{
     Setcheckedittext(true)
   }
   const handleedit = async (commentid) =>{
-    const editcomment = await Axios.post(`http://localhost:7000/post/edit/comment/${commentid}`,  {textcomment} )
-    window.location.reload(false);
+  const editcomment = await Axios.post(`http://localhost:7000/post/edit/comment/${commentid}`,  {textcomment} )
+  
   }
 
   const gg = async () => {
     try {
-      Settextcomment(data.textcomment)
-      const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
-      Setallcomment(getcomment.data.item)
+      // Settextcomment(data.textcomment)
+     
+      // const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
+      // Setallcomment(getcomment.data.item)
+        const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
+      Settextcomment(getcomment.data.item)
       
     } catch (err) {
       console.log("error");
@@ -53,61 +55,120 @@ const Commentitem = ({ data, ok ,uid}) => {
   }, []);
   
   return (
-    
-    <div className="row mypostcommentrow">
-      <div className="column1 mypostcommentrow1">
-        <div class="vl"></div>
-        <div className="mypost-comment-img1">
-          <img className="img-circle1" src="/img/profile.png" />
-          <div className="mypost-comment-name1">
-           {data ? "@" : null}{data.username}
-            <span className="mypost-comment-time1"> {data.datetime} </span>
+    <div>
+      {textcomment ? textcomment.map(res=>{
+        return (<div> <div className="row mypostcommentrow">
+        <div className="column1 mypostcommentrow1">
+          <div class="vl"></div>
+          <div className="mypost-comment-img1">
+            <img className="img-circle1" src="/img/profile.png" />
+            <div className="mypost-comment-name1">
+             {data ? "@" : null}{data.username}
+              <span className="mypost-comment-time1"> {data.datetime} </span>
+            </div>
+            <br />
+           {checkedittext ? <div><input value={res.textcomment} onChange={(e) =>{Settextcomment(e.target.value)}}></input> <button onClick={() => handleedit(res.commentid)}>ตกลง</button> </div>: <div className="mypost-comment-comments1">
+              <div className="mypostcomment1">{res.textcomment}</div> 
+            </div> 
+            } 
           </div>
-          <br />
-         {checkedittext ? <div><input value={textcomment} onChange={(e) =>{Settextcomment(e.target.value)}}></input> <button onClick={() => handleedit(data.commentid)}>ตกลง</button> </div>: <div className="mypost-comment-comments1">
-            <div className="mypostcomment1">{textcomment}</div> 
-          </div> 
-          } 
         </div>
+        {res.userid == user.uid ? <div className="column2 mypostcommentrow2">
+          <div className="menu-containermypostcommentsetting">
+            <div onClick={onClick} className="mypostcommentbuttonsetting">
+              <img
+                className="mypostcommentimg-setting"
+                src="/img/setting.png"
+                alt="avatar"
+              ></img>
+            </div>
+  
+            <div
+              className={`mypostcommentmenusetting ${
+                isActive ? "active" : "inactive"
+              }`}
+            >
+              <ul className="ul-mypostcommentmenusetting">
+             <li className="li-mypostcommentmenusetting">
+                  <a className="a-mypostcommentmenusetting"
+                  onClick={() => edit(res.commentid)}
+                  >
+                      แก้ไขคอมเมนต์
+                  </a>
+                </li> 
+                <li className="li-mypostcommentmenusetting">
+                  <a
+                    className="a-mypostcommentmenusetting"
+                    onClick={() => deleted(res.commentid)}
+                  >
+                    {" "}
+                    ลบคอมเมนต์{" "}
+                  </a>
+                </li> 
+              </ul>
+            </div>
+          </div>
+        </div> : null }
       </div>
-      {data.userid == user.uid ? <div className="column2 mypostcommentrow2">
-        <div className="menu-containermypostcommentsetting">
-          <div onClick={onClick} className="mypostcommentbuttonsetting">
-            <img
-              className="mypostcommentimg-setting"
-              src="/img/setting.png"
-              alt="avatar"
-            ></img>
-          </div>
-
-          <div
-            className={`mypostcommentmenusetting ${
-              isActive ? "active" : "inactive"
-            }`}
-          >
-            <ul className="ul-mypostcommentmenusetting">
-           <li className="li-mypostcommentmenusetting">
-                <a className="a-mypostcommentmenusetting"
-                onClick={() => edit(data.commentid)}
-                >
-                    แก้ไขคอมเมนต์
-                </a>
-              </li> 
-              <li className="li-mypostcommentmenusetting">
-                <a
-                  className="a-mypostcommentmenusetting"
-                  onClick={() => deleted(data.commentid)}
-                >
-                  {" "}
-                  ลบคอมเมนต์{" "}
-                </a>
-              </li> 
-            </ul>
-          </div>
-        </div>
-      </div> : null }
+      </div>)
+      }) : null}
     </div>
   );
 };
 
 export default Commentitem;
+
+
+ {/* // <div className="row mypostcommentrow">
+    //   <div className="column1 mypostcommentrow1">
+    //     <div class="vl"></div>
+    //     <div className="mypost-comment-img1">
+    //       <img className="img-circle1" src="/img/profile.png" />
+    //       <div className="mypost-comment-name1">
+    //        {data ? "@" : null}{data.username}
+    //         <span className="mypost-comment-time1"> {data.datetime} </span>
+    //       </div>
+    //       <br />
+    //      {checkedittext ? <div><input value={textcomment} onChange={(e) =>{Settextcomment(e.target.value)}}></input> <button onClick={() => handleedit(data.commentid)}>ตกลง</button> </div>: <div className="mypost-comment-comments1">
+    //         <div className="mypostcomment1">{textcomment}</div> 
+    //       </div>  */}
+    {/* //       } 
+    //     </div> */}
+    {/* //   </div> */}
+    {/* //   {data.userid == user.uid ? <div className="column2 mypostcommentrow2">
+    //     <div className="menu-containermypostcommentsetting">
+    //       <div onClick={onClick} className="mypostcommentbuttonsetting">
+    //         <img */}
+    {/* //           className="mypostcommentimg-setting"
+    //           src="/img/setting.png"
+    //           alt="avatar"
+    //         ></img> */}
+    {/* //       </div>
+
+    //       <div
+    //         className={`mypostcommentmenusetting ${
+    //           isActive ? "active" : "inactive"
+    //         }`}
+    //       >
+    //         <ul className="ul-mypostcommentmenusetting">
+    //        <li className="li-mypostcommentmenusetting">
+    //             <a className="a-mypostcommentmenusetting"
+    //             onClick={() => edit(data.commentid)}
+    //             >
+    //                 แก้ไขคอมเมนต์
+    //             </a>
+    //           </li> 
+    //           <li className="li-mypostcommentmenusetting">
+    //             <a
+    //               className="a-mypostcommentmenusetting"
+    //               onClick={() => deleted(data.commentid)}
+    //             >
+    //               {" "}
+    //               ลบคอมเมนต์{" "}
+    //             </a>
+    //           </li> 
+    //         </ul>
+    //       </div>
+    //     </div>
+    //   </div> : null }
+    // </div> */}

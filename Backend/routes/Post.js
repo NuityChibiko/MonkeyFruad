@@ -219,7 +219,7 @@ router.post("/delete/:uid",async(req, res) => {
 
 router.get("/mypost/:uid",async(req, res) => {
   try{
-    console.log("ok")
+    
     let getid = req.params.uid
   
     const postdelete =await firestore.collection("Post").where("uid" , "==" , getid).get()
