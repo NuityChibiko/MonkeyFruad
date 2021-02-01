@@ -19,7 +19,7 @@ import "./navnew.css";
 import { auth } from "../Frontfirebase";
 import usercontext from "../context/usercontext";
 import axios from "axios";
-import {  Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
+import { Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
 const NavbarPage = () => {
   var { user, setUser } = useContext(usercontext);
   const [displayname, setDisplayname] = useState();
@@ -60,7 +60,6 @@ const NavbarPage = () => {
         setRole("user");
       }
     }
-    setLoading(false);
   }, [user]);
   console.log(displayname);
   return loading ? (

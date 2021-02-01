@@ -138,7 +138,7 @@ const App = () => {
          <Route path="/profile" exact>
             <Profile />
           </Route>
-          <Route path="/edit/profile" exact>
+          <Route path="/profile/edit" exact>
             <Editprofile />
           </Route>
           <Route path="/changepass" exact>
