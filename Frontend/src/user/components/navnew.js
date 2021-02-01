@@ -62,11 +62,7 @@ const NavbarPage = () => {
     }
     setLoading(false);
   }, [user]);
-<<<<<<< HEAD
-
-=======
-  console.log(admin);
->>>>>>> 02bc1d9d89a19d397f0d4f95c10ebdd97b5533be
+  
   return loading ? (
     ""
   ) : admin ? (

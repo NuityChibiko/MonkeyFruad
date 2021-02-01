@@ -298,6 +298,7 @@ router.post("/comment/:id", async (req, res) => {
          item.push(doc2.data())
 
         })
+       
         
           return res.json({
              item
