@@ -7,7 +7,7 @@ import Axios from "axios";
 const Historyitem = ({ ok, user }) => {
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
-  
+
   const [mypost, Setmypost] = useState();
   const [error, Seterror] = useState();
 
@@ -27,7 +27,7 @@ const Historyitem = ({ ok, user }) => {
         });
         console.log(ok.data.item);
         Setmypost(ok.data.item);
-        
+        window.location.reload(false);
       }
     } catch (err) {
       console.log(err);
