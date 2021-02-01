@@ -174,7 +174,7 @@ router.post("/session", function (req, res) {
       }
     })
     .catch((Error) => {
-      connsole.log(Error);
+      console.log(Error);
     });
 });
 

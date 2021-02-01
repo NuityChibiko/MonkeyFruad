@@ -49,6 +49,7 @@ const NavbarPage = () => {
             if (result.data.data.role === "admin") {
               setAdmin(true);
             }
+            console.log("kkkk")
             setDisplayname(result.data.data.username);
             setLoading(false);
           })
@@ -61,7 +62,7 @@ const NavbarPage = () => {
       }
     }
   }, [user]);
-  console.log(displayname);
+  console.log(admin);
   return loading ? (
     ""
   ) : admin ? (
@@ -162,7 +163,7 @@ const NavbarPage = () => {
               ค้นหา
             </button>
             <MDBNavItem>
-              {user ? (
+            {user ? (
                 <MDBDropdown>
                   <MDBDropdownToggle nav caret left>
                     {displayname}
