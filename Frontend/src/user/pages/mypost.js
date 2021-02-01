@@ -33,43 +33,47 @@ const Mypost = () => {
   const [other, setOther] = useState();
   const [mypost, Setmypost] = useState();
   const [data, Setdata] = useState();
+  const [textcomment, Settextcomment] = useState();
+  const [allcomment, Setallcomment] = useState();
   let { user, setUser } = useContext(usercontext);
 
-  const [Democomments, setDemocomments] = useState([
-    { commment: "ไอนี้อีกแล้วหรอ น่าโดนจริงๆ อย่าให้เจอตัวบอกก่อน" },
-    { commment: "โดนโกงไป5000 เจ็บใจจริงๆ TT ถ้าเจอจะซัดหน้าให้หมอบไปเลย55555" },
-  ]);
-
+  
   let { uid } = useParams();
   const history = useHistory();
 
   const ImageHoverZoom = ({ imagePreviewUrl }) => {};
 
-  let user2 = auth.currentUser;
-
+  // let user2 = auth.currentUser;
   const deleted = async (uid) => {
-    if (user2) {
-      const postdelete = await Axios.post(
-        `http://localhost:7000/post/delete/${uid}`
-      );
-      console.log(postdelete.data);
-      const ok = await Axios.post("http://localhost:7000/post/postapi", {
-        result: user2,
-      });
-      console.log(ok.data.item);
-      Setmypost(ok.data.item);
-      history.push("/post/history");
-    }
-  };
+   
+    const postdelete = await Axios.post(
+      `http://localhost:7000/post/delete/${uid}`
+    );
+    console.log(postdelete.data);
+    // const ok = await Axios.post("http://localhost:7000/post/postapi", {
+    //   result: user,
+    // });
+    // console.log(ok.data.item);
+    // Setmypost(ok.data.item);
+    history.push("/post/history");
+  
+};
+ 
 
   const ok = async () => {
     try {
+      const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
       const ok = await Axios.get(`http://localhost:7000/post/mypost/${uid}`);
-      const name = await Axios.post("http://localhost:7000/user/userid", {
+      const nameuser = await Axios.post("http://localhost:7000/user/userid", {
         result: user,
       });
+    
+      Setallcomment(getcomment.data.item)
       Setmypost(ok.data.item);
-      Setdata(name.data.item);
+      Setdata(nameuser.data.item);
+     
+     
+     
     } catch (err) {
       console.log("error");
     }
@@ -79,12 +83,26 @@ const Mypost = () => {
     ok();
   }, []);
 
+  const handlecomment = async (e) =>{
+    try{
+      e.preventDefault()
+ 
+      let sentdata = {textcomment , username : data[0].username , userid : user.uid}
+      
+      const sentcomment = await Axios.post(`http://localhost:7000/post/comment/${uid}`, sentdata)
+      const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
+      Setallcomment(getcomment.data.item)
+      
+    }catch(err){
+      console.log(err)
+    }
+  }
+
   return (
     <div className="allpage">
       <NavbarPage />
       <h1 className="h1-mypost">โพสต์ของฉัน</h1>
-      {mypost
-        ? mypost.map((ok) => {
+      {mypost ? mypost.map((ok) => {
             return (
               <div>
                 <div className="container-mypost">
@@ -93,7 +111,7 @@ const Mypost = () => {
                       {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
                       <img className="img-circle" src="/img/profile.png" />
                       <div className="mypost-name">
-                        {data ? data[0].username : null}
+                       {data ? "@" : null}{data ? data[0].username : null}
                       </div>
                       <br />
                       <div className="mypost-date">
@@ -158,7 +176,7 @@ const Mypost = () => {
                           <img className="img-circle" src="/img/profile.png" />
                         )}
                       </div>
-                      <Form className="formsize-mypost">
+                      <Form className="formsize-mypost" onSubmit={handlecomment}>
                         <Form.Row>
                           <Form.Group
                             as={Col}
@@ -300,13 +318,13 @@ const Mypost = () => {
                               })
                             : null}
                         </div>
-                      </Form>
+                      
                       <div className="line-comment1"></div>
                       <div className="container-mypost4">
-                        {Democomments ? (
-                          Democomments.map((value, index) => {
+                        {allcomment ? (
+                          allcomment.map((value, index) => {
                             return (
-                              <Commentitem data={value} ok={ok} key={index} />
+                              <Commentitem data={value} ok={ok} key={index} uid={uid} />
                             );
                           })
                         ) : (
@@ -322,23 +340,30 @@ const Mypost = () => {
                           {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
                           <img className="img-circle" src="/img/profile.png" />
                         </div>
+                     
                         <div className="row mypost-comment-commentsall">
+                       
                           <div
                             className="mypost-writecommemt col-lg-6 col-10"
                             controlId="exampleForm.ControlTextarea1"
                           >
-                            <input className="inputcomment" placeholder="เขียนความคิดเห็น..." />
+                         
+                            <input className="inputcomment" placeholder="เขียนความคิดเห็น..." value={textcomment} onChange={(e) =>{Settextcomment(e.target.value)}}/>
                           </div>
 
                           <div>
                             <div className="column2 mypostbuttonsend">
-                              <a className="mypostbuttonsends" href="">
+                              <button className="mypostbuttonsends" type="submit">
                                 <i className="fa fa-paper-plane"></i>
-                              </a>
+                              </button>
                             </div>
+                       
                           </div>
+                       
                         </div>
+                       
                       </div>
+                      </Form>
                     </div>
                   </div>
                 </div>

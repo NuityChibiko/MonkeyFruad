@@ -68,9 +68,9 @@ router.post("/create",uploadFile,async(req, res) => {
     
     const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
     const uid = uuidv4()
-    const date = moment().format('MM/DD/YYYY, h:mm:ss a')
-    // console.log(file)
-    // console.log(files)
+    // const date = moment().format('MM/DD/YYYY, h:mm:ss a')
+    moment.locale("th")
+    const date = moment().format('lll')
     if(!files){
       return res.status(400).json({msg : "** กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง **"})
     }
@@ -120,10 +120,10 @@ router.post("/edit/:uid",uploadFile,async (req, res) => {
     let file = req.files.photo
     let files = req.files.eiei
   let uid = req.params.uid
-  const date = moment().format('MM/DD/YYYY, h:mm:ss a')
+  // const date = moment().format('MM/DD/YYYY, h:mm:ss a')
+  moment.locale("th")
+  const date = moment().format('lll')
   const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
-    // console.log(file)
-    // console.log(files)
     if(file && files){
       const resultfile = await cloudinary.uploader.upload(file[0].path )
       let item = []
@@ -166,52 +166,7 @@ router.post("/edit/:uid",uploadFile,async (req, res) => {
 
 
 
-// router.post("/create" ,async(req, res) => { 
-//   try{
-//     upload.fields([{name: "photo" ,maxCount:1} , {name: "eiei" , maxCount:10} ]) async(req , res , (err => {
-//       if (err) {
-//         console.log(err)
-//        }
-//     }) 
-     
-//     )
-//     const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
-//     const uid = uuidv4()
-//     const date = moment().format('MM/DD/YYYY, h:mm:ss')
-//     let file = req.files.photo 
-//     let files = req.files.eiei 
-//     console.log(file)
-//     console.log(files)
-//     if(!files){
-//       return res.status(400).json({msg : "กรุณาใส่ไฟลล์หลักฐาน"})
-//     }
 
-//     else if(file && files ){
-//       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file,files})
-//     }
-//     else if(file){
-//       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,file})
-//     }
-//     else if(files){
-
-//       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,files})
-//     }else{
-//       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date})
-//     }
-    
-      
-//   return res.json({ success: "สร้างโพสสำเร็จ" });
-//   }catch(err){
-//     console.log("ok")
-//     return res.status(500).json({msg : err})
-//   } 
-  
-// });
-
-
-// router.get("/search", function (req, res) {
-//   res.json({ success: true });
-// });
 
 router.get("/edit/:uid",async (req, res) => {
   let uid = req.params.uid
@@ -302,6 +257,8 @@ console.log(err)
   }}
 })
 
+
+
 // router.post("/upload", upload.array("eiei"), async(req, res) => {
 //   try{
 //         console.log(req.files.path)
@@ -310,12 +267,64 @@ console.log(err)
 //   }
   
 // });
-// router.post("/comment/:id", function (req, res) {
-//     res.json({ success: true });
-//   });
+router.post("/comment/:id", async (req, res) => {
+   try{
+    
+    const { textcomment , username , userid} = req.body
+      const postid = req.params.id
+      const uuid = uuidv4()
+      moment.locale()
+      const datetime = moment().format('LTS')
+      console.log("ok")
+      const savetodb = await firestore.collection("Comment").doc(uuid).set({ commentid : uuid , postid , username ,textcomment, datetime , userid })
+      
+   }catch(err){
+     console.log(err)
+   }
+  });
+
+  router.get("/comment/:id", async (req, res) => {
+    try{  
+
+      let idpost = req.params.id
+      
+       const getcomment = await firestore.collection("Comment").where("postid" , "==" , idpost )
+    
+      //  const userpost = await firestore.collection("User").where(uid , "==" ,  ).get()
+      getcomment.get().then((doc)=>{
+        let item = []
+        doc.forEach( doc2 =>{
+         item.push(doc2.data())
+
+        })
+        
+          return res.json({
+             item
+           })
+       
+        })
+    }catch(err){
+      return res.status(500).json({
+        msg : err
+      })
+    }
+   });
+
+   router.post("/delete/comment/:uid",async(req, res) => {
+    try{
+      let getid = req.params.uid
+      console.log(getid)
+      const postdelete = await firestore.collection("Comment").doc(getid).delete()
+      return  res.json({ success: "Delete" });
+    }catch(err){
+      return  res.status(500).json({msg : err})
+    }
+    
+  });
+  
 
 
-const userRef = firestore.collection("User")
+// const userRef = firestore.collection("User")
 
 
 

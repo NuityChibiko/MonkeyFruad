@@ -3,13 +3,15 @@ import { Form, Col, FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
+
 const Historyitem = ({ ok, user }) => {
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
 
+
   const [mypost, Setmypost] = useState();
   const [error, Seterror] = useState();
-  // let { user , setUser} = useContext(usercontext)
+ 
 
   //   let user = auth.currentUser;
 
@@ -31,6 +33,7 @@ const Historyitem = ({ ok, user }) => {
       console.log(err);
     }
   };
+
 
   return (
     <div>
