@@ -40,7 +40,7 @@ const App = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        if(user.uid === "Q8YgWOHIlAeCY0TF8jZK21VL7Hb2"){
+        if(user.uid === "Bm4bg6z0KAavVlnCijLzIxjXN9y2"){
           setAdmin(true);
           setLoadingAuth(false);
         }
@@ -51,8 +51,7 @@ const App = () => {
       setLoadingAuth(false);
     });
   }, []);
-  console.log(user);
-
+  console.log(user)
   return loadingAuth ? "" : (
    admin ? (
     <Router>
@@ -135,10 +134,10 @@ const App = () => {
                 />
               }
           </Route>
-         <Route path="/profile" exact>
+         <Route path="/profile/:uid" exact>
             <Profile />
           </Route>
-          <Route path="/profile/edit" exact>
+          <Route path="/profile/edit/:uid" exact>
             <Editprofile />
           </Route>
           <Route path="/changepass" exact>

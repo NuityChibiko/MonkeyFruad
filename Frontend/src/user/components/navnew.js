@@ -60,8 +60,13 @@ const NavbarPage = () => {
         setRole("user");
       }
     }
+    setLoading(false);
   }, [user]);
+<<<<<<< HEAD
 
+=======
+  console.log(admin);
+>>>>>>> 02bc1d9d89a19d397f0d4f95c10ebdd97b5533be
   return loading ? (
     ""
   ) : admin ? (
@@ -162,13 +167,13 @@ const NavbarPage = () => {
               ค้นหา
             </button>
             <MDBNavItem>
-              {user ? (
+            {user ? (
                 <MDBDropdown>
                   <MDBDropdownToggle nav caret left>
                     {displayname}
                   </MDBDropdownToggle>
                   <MDBDropdownMenu className="dropdown-default" right>
-                    <MDBDropdownItem href="/profile">
+                    <MDBDropdownItem href={`/profile/${user.uid}`}>
                       จัดการโปรไฟล์
                     </MDBDropdownItem>
                     <MDBDropdownItem href="/post/history">
@@ -187,7 +192,7 @@ const NavbarPage = () => {
         </MDBCollapse>
       </MDBNavbar>
     </Router>
-  );
-};
+  )
+}
 
 export default NavbarPage;

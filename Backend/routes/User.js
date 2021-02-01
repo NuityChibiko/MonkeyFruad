@@ -174,7 +174,7 @@ router.post("/session", function (req, res) {
       }
     })
     .catch((Error) => {
-      connsole.log(Error);
+      console.log(Error);
     });
 });
 
@@ -216,17 +216,17 @@ router.post("/edit/profile/:uid", uploadFile, async (req, res) => {
     let file = req.files.photo;
     let uid = req.params.uid;
     const {
-
+      firstname,username,surname,sex,phone,province
     } = req.body;
     console.log(file);
     if (file) {
-      cloudinary.uploader.upload(file[0].path);
-      firestore.collection("Post").doc(uid).update({
-
+      const photoURL = cloudinary.uploader.upload(file[0].path);
+      firestore.collection("User").doc(uid).update({
+        firstname,username,surname,sex,phone,province,file,photoURL
       });
     } else if (!file) {
-      firestore.collection("Post").doc(uid).update({
-        
+      firestore.collection("User").doc(uid).update({
+        firstname,username,surname,sex,phone,province
       });
     }
     return res.json({

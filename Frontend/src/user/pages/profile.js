@@ -99,7 +99,7 @@ const Profile = () => {
               <div>
                 <i class="fas fa-user-edit"></i>
               </div>
-              <a href="/profile/edit" className="mx-auto my-1">
+              <a href={`/profile/edit/${user.uid}`} className="mx-auto my-1">
                 แก้ไขข้อมูลส่วนตัว
               </a>
             </button>

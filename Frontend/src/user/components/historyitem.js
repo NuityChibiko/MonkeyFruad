@@ -8,10 +8,9 @@ const Historyitem = ({ ok, user }) => {
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
 
-
   const [mypost, Setmypost] = useState();
   const [error, Seterror] = useState();
- 
+
 
   //   let user = auth.currentUser;
 

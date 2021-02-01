@@ -37,16 +37,13 @@ const Mypost = () => {
   const [allcomment, Setallcomment] = useState();
   let { user, setUser } = useContext(usercontext);
 
-  
   let { uid } = useParams();
   const history = useHistory();
-
   const ImageHoverZoom = ({ imagePreviewUrl }) => {};
-
   // let user2 = auth.currentUser;
 
   const deleted = async (uid) => {
-   
+
     const postdelete = await Axios.post(
       `http://localhost:7000/post/delete/${uid}`
     );
@@ -59,8 +56,6 @@ const Mypost = () => {
     history.push("/post/history");
   
 };
- 
-
   const ok = async () => {
     try {
       const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
@@ -72,7 +67,7 @@ const Mypost = () => {
       Setallcomment(getcomment.data.item)
       Setmypost(ok.data.item);
       Setdata(nameuser.data.item);
-     
+      
      
      
     } catch (err) {
