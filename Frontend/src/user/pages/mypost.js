@@ -86,13 +86,12 @@ const Mypost = () => {
   const handlecomment = async (e) =>{
     try{
       e.preventDefault()
- 
       let sentdata = {textcomment , username : data[0].username , userid : user.uid}
       
       const sentcomment = await Axios.post(`http://localhost:7000/post/comment/${uid}`, sentdata)
       const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
       Setallcomment(getcomment.data.item)
-      
+    
     }catch(err){
       console.log(err)
     }
@@ -111,7 +110,7 @@ const Mypost = () => {
                       {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
                       <img className="img-circle" src="/img/profile.png" />
                       <div className="mypost-name">
-                       {data ? "@" : null}{data ? data[0].username : null}
+                         {data ? "@" : null}{data ? data[0].username : null}
                       </div>
                       <br />
                       <div className="mypost-date">

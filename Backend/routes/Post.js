@@ -5,11 +5,12 @@ router = express.Router();
 const {firestore} = require("../models/index")
 const admin = require("firebase-admin");
 const moment = require("moment")
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4, NIL } = require('uuid');
 const cloudinary = require("../utils/cloudinary")
 const multer = require("multer");
 const path = require("path");
 const e = require("express");
+const { text } = require("body-parser");
 
 
 let storage = multer.diskStorage({
@@ -275,7 +276,7 @@ router.post("/comment/:id", async (req, res) => {
       const uuid = uuidv4()
       moment.locale()
       const datetime = moment().format('LTS')
-      console.log("ok")
+   
       const savetodb = await firestore.collection("Comment").doc(uuid).set({ commentid : uuid , postid , username ,textcomment, datetime , userid })
       
    }catch(err){
@@ -288,7 +289,7 @@ router.post("/comment/:id", async (req, res) => {
 
       let idpost = req.params.id
       
-       const getcomment = await firestore.collection("Comment").where("postid" , "==" , idpost )
+       const getcomment = await firestore.collection("Comment").where("postid" , "==" , idpost ).orderBy("datetime", "desc")
     
       //  const userpost = await firestore.collection("User").where(uid , "==" ,  ).get()
       getcomment.get().then((doc)=>{
@@ -313,7 +314,7 @@ router.post("/comment/:id", async (req, res) => {
    router.post("/delete/comment/:uid",async(req, res) => {
     try{
       let getid = req.params.uid
-      console.log(getid)
+    
       const postdelete = await firestore.collection("Comment").doc(getid).delete()
       return  res.json({ success: "Delete" });
     }catch(err){
@@ -321,6 +322,27 @@ router.post("/comment/:id", async (req, res) => {
     }
     
   });
+
+  router.post("/edit/comment/:id",async (req, res) => {
+    try{
+      let id = req.params.id
+      let {textcomment} = req.body
+  
+      if(textcomment == ""){
+        const commentdelete = await firestore.collection("Comment").doc(id).delete()
+      }
+      else{
+        const commentedit = await firestore.collection("Comment").doc(id).update({textcomment})
+      }
+    }catch(err){
+     return res.status(500).json({msg : err})
+    }
+    
+  });
+  
+  
+  
+  
   
 
 

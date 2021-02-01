@@ -14,8 +14,11 @@ const Commentitem = ({ data, ok ,uid}) => {
   let { user, setUser } = useContext(usercontext);
   const [allcomment , Setallcomment] = useState()
   const [item , Setitem] = useState([])
+  const [checkedittext , Setcheckedittext] = useState(false)
+  // const [edittextcomment , Setedittextcomment] = useState()
+  const [textcomment , Settextcomment] = useState()
 
-
+ 
 
   const deleted = async (commentid) => {
       const postdelete = await Axios.post(
@@ -25,25 +28,32 @@ const Commentitem = ({ data, ok ,uid}) => {
       const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
       console.log( getcomment.data.item);
       Setallcomment( getcomment.data.item);
-     
-    
+      window.location.reload(false);
   };
+  const edit = async () =>{
+    Setcheckedittext(true)
+  }
+  const handleedit = async (commentid) =>{
+    const editcomment = await Axios.post(`http://localhost:7000/post/edit/comment/${commentid}`,  {textcomment} )
+    window.location.reload(false);
+  }
 
-  // const gg = async () => {
-  //   try {
-  //     const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
-  //     Setallcomment(getcomment.data.item)
-
-  //   } catch (err) {
-  //     console.log("error");
-  //   }
-  // };
-  // useEffect(() => {
-  //   gg();
-  // }, []);
-
- 
+  const gg = async () => {
+    try {
+      Settextcomment(data.textcomment)
+      const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
+      Setallcomment(getcomment.data.item)
+      
+    } catch (err) {
+      console.log("error");
+    }
+  };
+  useEffect(() => {
+    gg();
+  }, []);
+  
   return (
+    
     <div className="row mypostcommentrow">
       <div className="column1 mypostcommentrow1">
         <div class="vl"></div>
@@ -54,9 +64,10 @@ const Commentitem = ({ data, ok ,uid}) => {
             <span className="mypost-comment-time1"> {data.datetime} </span>
           </div>
           <br />
-          <div className="mypost-comment-comments1">
-            <div className="mypostcomment1">{data.textcomment}</div> 
-          </div>
+         {checkedittext ? <div><input value={textcomment} onChange={(e) =>{Settextcomment(e.target.value)}}></input> <button onClick={() => handleedit(data.commentid)}>ตกลง</button> </div>: <div className="mypost-comment-comments1">
+            <div className="mypostcomment1">{textcomment}</div> 
+          </div> 
+          } 
         </div>
       </div>
       {data.userid == user.uid ? <div className="column2 mypostcommentrow2">
@@ -76,13 +87,10 @@ const Commentitem = ({ data, ok ,uid}) => {
           >
             <ul className="ul-mypostcommentmenusetting">
            <li className="li-mypostcommentmenusetting">
-                <a className="a-mypostcommentmenusetting">
-                  <Link
-                    className="a-mypostcommentmenusetting1"
-                    to={`/post/edit/${data.commentid}`}
-                  >
+                <a className="a-mypostcommentmenusetting"
+                onClick={() => edit(data.commentid)}
+                >
                     แก้ไขคอมเมนต์
-                  </Link>
                 </a>
               </li> 
               <li className="li-mypostcommentmenusetting">

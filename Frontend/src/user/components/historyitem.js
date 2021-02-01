@@ -28,6 +28,7 @@ const Historyitem = ({ ok, user }) => {
         });
         console.log(ok.data.item);
         Setmypost(ok.data.item);
+        window.location.reload(false);
       }
     } catch (err) {
       console.log(err);
