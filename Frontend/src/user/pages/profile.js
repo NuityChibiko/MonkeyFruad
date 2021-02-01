@@ -19,25 +19,25 @@ const Profile = () => {
   const [sex, setSex] = useState("-");
   const [phone, setPhone] = useState("-");
   const [province, setProvince] = useState("-");
+  const [imagesProfile, setImagesProfile] = useState(""); //สร้าง State เพื่อเก็บรูปโปรไฟล์
+  const [photo, Setphoto] = useState("");
   const [loading, setLoading] = useState(true);
-  useMemo(() => {
-    axios
-      .post("http://localhost:7000/user/session", { user: user })
-      .then((result) => {
-        setUsername(result.data.data.username);
-        setFirstname(result.data.data.firstname);
-        setSurname(result.data.data.surname);
-        setSex(result.data.data.sex);
-        setPhone(result.data.data.phone);
-        setProvince(result.data.data.province);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      setLoading(false);
+  useMemo(async () =>  {
+    try {
+   var profiledata = await axios.post("http://localhost:7000/user/session", { user: user })
+        setUsername(profiledata.data.data.username);
+        setFirstname(profiledata.data.data.firstname);
+        setSurname(profiledata.data.data.surname);
+        setSex(profiledata.data.data.sex);
+        setPhone(profiledata.data.data.phone);
+        setProvince(profiledata.data.data.province);
+        Setphoto(profiledata.data.data.photoURL);
+    }
+    catch (err){
+      console.log(err)
+    }
+    setLoading(false);
   }, [user]);
-
   return loading ? (
     ""
   ) : (
@@ -50,7 +50,13 @@ const Profile = () => {
           </p>
 
           <div className="profile-badformpost-img">
-            <img src="/img/profile.png" className="img-circle" />
+          {imagesProfile ? (
+              <img className="img-circle" src={imagesProfile} />
+            ) : photo ? (
+              <img className="img-circle" src={`${photo.url}`} />
+            ) : (
+              <img className="img-circle" src={"/img/profile.png"} />
+            )}
           </div>
 
           <div className="form-group my-0">
@@ -96,18 +102,22 @@ const Profile = () => {
           </div>
 
           <div className="col-md-12 mt-2">
+            {/* <button className="btn-block LoginFacebook"> */}
               <div>
                 <i class="fas fa-user-edit"></i>
               </div>
-              <a href={`/profile/edit/${user.uid}`} className="mx-auto my-1">
+              <a href={`/profile/edit/${user.uid}`} className="mx-auto my-1 btn-block LoginFacebook">
                 แก้ไขข้อมูลส่วนตัว
               </a>
+            {/* </button> */}
+            {/* <button className="btn-block LoginGoogle"> */}
               <div>
                 <i class="fas fa-unlock"></i>
               </div>
-              <a href="/changepass" className="mx-auto my-1">
+              <a href="/changepass" className="mx-auto my-1 btn-block LoginGoogle">
                 เปลี่ยนรหัสผ่าน
               </a>
+            {/* </button> */}
           </div>
         </form>
       </div>

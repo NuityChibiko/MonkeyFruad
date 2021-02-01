@@ -42,7 +42,7 @@ const EditProfile = () => {
     };
   };
 
-  const SubmitHandle = (e) => {
+  const SubmitHandle = async (e) => {
     e.preventDefault();
     try {
       let formdata = new FormData();
@@ -53,7 +53,7 @@ const EditProfile = () => {
       formdata.append("sex", sex);
       formdata.append("phone", phone);
       formdata.append("province", province);
-      axios.post(
+      await axios.post(
         `http://localhost:7000/user/edit/profile/${user.uid}`,
         formdata
       );
