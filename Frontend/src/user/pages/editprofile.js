@@ -42,7 +42,7 @@ const EditProfile = () => {
     };
   };
 
-  const SubmitHandle = (e) => {
+  const SubmitHandle = async (e) => {
     e.preventDefault();
     try {
       let formdata = new FormData();
@@ -53,17 +53,16 @@ const EditProfile = () => {
       formdata.append("sex", sex);
       formdata.append("phone", phone);
       formdata.append("province", province);
-      // let sentdata = {imagesFile,imagesProfile,name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other}
-      axios.post(
+      await axios.post(
         `http://localhost:7000/user/edit/profile/${user.uid}`,
         formdata
       );
       console.log("ok");
+      history.push(`/profile/${user.uid}`);
     } catch (err) {
       console.log(err);
     }
   };
-  console.log(user.uid);
   useMemo(() => {
     axios
       .post("http://localhost:7000/user/session", { user: user })
@@ -80,6 +79,7 @@ const EditProfile = () => {
       .catch((err) => {
         console.log(err);
       });
+
   }, [user]);
   // Style มาตรฐานของ Formik
   const styles = {
@@ -101,7 +101,7 @@ const EditProfile = () => {
     },
   };
 
-  return (
+  return  (
     <div>
       <NavbarPage />
       <div className="container-signup">
@@ -198,7 +198,6 @@ const EditProfile = () => {
                     id="male"
                     value="male"
                     className="mr-1"
-                    value={sex}
                   />
                   <label htmlFor="male">ชาย</label>
                 </div>
