@@ -41,12 +41,13 @@ const Mypost = () => {
   const history = useHistory();
   const ImageHoverZoom = ({ imagePreviewUrl }) => {};
   // let user2 = auth.currentUser;
+
   const deleted = async (uid) => {
 
     const postdelete = await Axios.post(
       `http://localhost:7000/post/delete/${uid}`
     );
-    console.log(postdelete.data);
+    // console.log(postdelete.data);
     // const ok = await Axios.post("http://localhost:7000/post/postapi", {
     //   result: user,
     // });
@@ -68,12 +69,12 @@ const Mypost = () => {
       Setdata(nameuser.data.item);
       
      
-     
+   
     } catch (err) {
       console.log("error");
     }
   };
-
+console.log(allcomment)
   useEffect(() => {
     ok();
   }, []);
@@ -84,9 +85,9 @@ const Mypost = () => {
       let sentdata = {textcomment , username : data[0].username , userid : user.uid}
       
       const sentcomment = await Axios.post(`http://localhost:7000/post/comment/${uid}`, sentdata)
-      const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
-      Setallcomment(getcomment.data.item)
-    
+      // const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
+      // Setallcomment(getcomment.data.item)
+      
     }catch(err){
       console.log(err)
     }
@@ -321,10 +322,7 @@ const Mypost = () => {
                               <Commentitem data={value} ok={ok} key={index} uid={uid} />
                             );
                           })
-                        ) : (
-                          <div>
-                          </div>
-                        )}
+                        ) : null}
 
                         {/* <div className="line-comment2"></div> */}
                       </div>

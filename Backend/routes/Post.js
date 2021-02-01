@@ -219,7 +219,7 @@ router.post("/delete/:uid",async(req, res) => {
 
 router.get("/mypost/:uid",async(req, res) => {
   try{
-    console.log("ok")
+    
     let getid = req.params.uid
   
     const postdelete =await firestore.collection("Post").where("uid" , "==" , getid).get()
@@ -298,6 +298,7 @@ router.post("/comment/:id", async (req, res) => {
          item.push(doc2.data())
 
         })
+       
         
           return res.json({
              item
