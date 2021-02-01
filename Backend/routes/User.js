@@ -85,8 +85,7 @@ router.post("/signup", async (req, res) => {
             sex: sex,
             phone: phone,
             province: province,
-            role: "user",
-            type: "On web",
+            role: "user"
           });
           return res.json({ user: result });
         }
@@ -109,11 +108,13 @@ router.post("/googlesignup", function (req, res) {
           userRef.set({
             uid: result.user.uid,
             email: result.user.email,
-            displayName: result.user.displayName,
-            photoURL: result.user.photoURL,
-            created: new Date().valueOf(),
             role: "user",
-            type: "Google",
+            username : result.user.displayName,
+            firstname : "-",
+            surname: "-",
+            sex : "-",
+            phone : "-",
+            province : "-"
           });
           return res.json({ msg: "google signup success" });
         } else {
@@ -138,11 +139,13 @@ router.post("/facebooksignup", function (req, res) {
           userRef.set({
             uid: result.user.uid,
             email: result.user.email,
-            displayName: result.user.displayName,
-            photoURL: result.user.photoURL,
-            created: new Date().valueOf(),
             role: "user",
-            type: "Facebook",
+            username : result.user.displayName,
+            firstname : "-",
+            surname: "-",
+            sex : "-",
+            phone : "-",
+            province : "-"
           });
           return res.json({ msg: "facebook signup success" });
         } else {

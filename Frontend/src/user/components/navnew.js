@@ -40,10 +40,9 @@ const NavbarPage = () => {
   const toggleCollapse = () => {
     setIsopen(!isOpen);
   };
-  useMemo(() => {
+  useMemo(async () => {
     if (user) {
-      if (user.displayName === null) {
-        axios
+       await axios
           .post("http://localhost:7000/user/session", { user: user })
           .then((result) => {
             if (result.data.data.role === "admin") {
@@ -55,10 +54,6 @@ const NavbarPage = () => {
           .catch((err) => {
             console.log(err);
           });
-      } else {
-        setDisplayname(user.displayName);
-        setRole("user");
-      }
     }
     setLoading(false);
   }, [user]);
