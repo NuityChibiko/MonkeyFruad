@@ -49,7 +49,6 @@ const NavbarPage = () => {
             if (result.data.data.role === "admin") {
               setAdmin(true);
             }
-            console.log("kkkk")
             setDisplayname(result.data.data.username);
             setLoading(false);
           })
@@ -61,6 +60,7 @@ const NavbarPage = () => {
         setRole("user");
       }
     }
+    setLoading(false);
   }, [user]);
   console.log(admin);
   return loading ? (
@@ -188,7 +188,7 @@ const NavbarPage = () => {
         </MDBCollapse>
       </MDBNavbar>
     </Router>
-  );
-};
+  )
+}
 
 export default NavbarPage;
