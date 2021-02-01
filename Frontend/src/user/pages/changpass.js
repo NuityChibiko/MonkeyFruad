@@ -6,14 +6,37 @@ import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { auth, googleProvider, facebookProvider } from "../Frontfirebase";
+import { auth, googleProvider, facebookProvider,authcredentail } from "../Frontfirebase";
 import NavbarPage from "../components/navnew";
 
 const Changepass = () => {
   let history = useHistory();
-
-  // ที่เก็บ state
   const [password, setPassword] = useState("");
+  const [newpassword, setNewPassword] = useState("");
+  const [invalidpass , setInvalidpass] = useState(false)
+  const [existpass , setExistpass] = useState(false)
+  const [successpass, setSuccesspass] = useState(false)
+  var user = auth.currentUser
+ const reauthenticate = (currentPassword) => {
+    var cred = authcredentail.EmailAuthProvider.credential(
+        user.email, currentPassword);
+    return user.reauthenticateWithCredential(cred);
+  }
+const submitpass = async (e,oldPassword, newPassword) => {
+  e.preventDefault();
+    try {
+      // reauthenticating
+     await reauthenticate(oldPassword)
+      // updating password
+     await user.updatePassword(newPassword)
+      setSuccesspass(true)
+      setInvalidpass(false)
+    } catch(err){
+      console.log(err)
+      setInvalidpass(true)
+      setSuccesspass(false)
+    }
+  }
 
   // Style มาตรฐานของ Formik
   const styles = {
@@ -59,10 +82,21 @@ const Changepass = () => {
     <div>
       <NavbarPage />
       <div className="container-signup">
-        <form className="LoginForm">
+        <form className="LoginForm" onSubmit={(e)=>submitpass(e,password,newpassword)}>
           <img src="/img/logoLogin.png" className="Logo-signup" />
           <p className="h2 text-center mb-2 font-weight-bold text1-signup">เปลี่ยนรหัสผ่าน</p>
-
+          {invalidpass ? (
+            <div className="alert-signup">
+              <span>คุณกรอกรหัสผ่านเก่าผิด</span>
+            </div>
+          ) : (
+            <p></p>
+          )}
+           {successpass ? (
+              <div className="alert-forgetpass"><span>รหัสผ่านของคุณถูกเปลี่ยนแล้ว</span></div>
+          ) : (
+            <p></p>
+          )}
           <div className="col-md-12">
             <Formik
               initialValues={{
@@ -81,7 +115,7 @@ const Changepass = () => {
               }}
             >
               {({ errors, touched }) => (
-                <Form>
+                <Form >
 
                   <div className="form-group mb-1">
                     <label htmlFor="oldPassword" style={styles.txt2}>
@@ -127,7 +161,7 @@ const Changepass = () => {
                       id="password"
                       placeholder="รหัสผ่านใหม่"
                       onKeyUp={(e) => {
-                        setPassword(e.target.value);
+                        setNewPassword(e.target.value);
                       }}
                     />
                     <ErrorMessage
@@ -165,7 +199,7 @@ const Changepass = () => {
               )}
             </Formik>
 
-            <button className="btn-block LoginFacebook mt-5">
+            <button type="submit"className="btn-block LoginFacebook mt-5">
               <div>
                 <i class="fas fa-save pr-1"></i>
               </div>
