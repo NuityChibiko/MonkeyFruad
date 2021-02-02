@@ -241,7 +241,7 @@ let history = useHistory()
               <Form.Label className="text-formpost">
                 จำนวนเงิน (บาท)<span className="spanformpost">*</span>
               </Form.Label>
-              <Form.Control type="text" id="nameproduct" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
+              <Form.Control type="number" id="nameproduct" pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น" placeholder="" required onChange={(event)=>{
                 setMoney(event.target.value)
               }}/>
             </Form.Group>

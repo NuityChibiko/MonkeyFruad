@@ -69,6 +69,8 @@ router.post("/create",uploadFile,async(req, res) => {
     
     const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
     const uid = uuidv4()
+    const newmoney = Number(money)
+    
     // const date = moment().format('MM/DD/YYYY, h:mm:ss a')
     moment.locale("th")
     const date = moment().format('lll')
@@ -86,14 +88,50 @@ router.post("/create",uploadFile,async(req, res) => {
         let {url,public_id} = resultfiles
         item.push({url,public_id})
       }
-      console.log(item)
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,resultfileitem,item})
+     
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date,resultfileitem,item})
+
+      const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).get()
+
+      let items = []
+       getpost.forEach(doc =>{
+        items.push(doc.data())
+      })
+        let sum = 0
+      items.forEach(res =>{
+        sum += res.money
+      })
+      let count = 0
+      for(i=1 ; i<=items.length ; i++){
+        count++
+      }
+  
+      const theif = await firestore.collection("Theif").doc(accountnumber).set({name,surname,id,accountnumber,nameproduct,productcategory,summoney : sum,bank,datetime,social,other,uid,useruid,date,resultfileitem,item,count})
+      
+     
+   
     }
     else if(file){
       const resultfile = await cloudinary.uploader.upload(file[0].path)
       const {url,public_id} = resultfile
       const resultfileitem = {url,public_id}
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,resultfileitem})
+      const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).get()
+
+      let items = []
+       getpost.forEach(doc =>{
+        items.push(doc.data())
+      })
+        let sum = 0
+      items.forEach(res =>{
+        sum += res.money
+      })
+      let count = 0
+      for(i=1 ; i<=items.length ; i++){
+        count++
+      }
+  
+      const theif = await firestore.collection("Theif").doc(accountnumber).set({name,surname,id,accountnumber,nameproduct,productcategory,summoney : sum,bank,datetime,social,other,uid,useruid,date,resultfileitem,count})
     }
     else if(files){
       let item = []
@@ -105,9 +143,41 @@ router.post("/create",uploadFile,async(req, res) => {
       }
       console.log(item)
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date,item})
+      const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).get()
+
+      let items = []
+       getpost.forEach(doc =>{
+        items.push(doc.data())
+      })
+        let sum = 0
+      items.forEach(res =>{
+        sum += res.money
+      })
+      let count = 0
+      for(i=1 ; i<=items.length ; i++){
+        count++
+      }
+  
+      const theif = await firestore.collection("Theif").doc(accountnumber).set({name,surname,id,accountnumber,nameproduct,productcategory,summoney : sum,bank,datetime,social,other,uid,useruid,date,item,count})
     }
     else if(!file && !files){
       const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,uid,useruid,date})
+      const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).get()
+
+      let items = []
+       getpost.forEach(doc =>{
+        items.push(doc.data())
+      })
+        let sum = 0
+      items.forEach(res =>{
+        sum += res.money
+      })
+      let count = 0
+      for(i=1 ; i<=items.length ; i++){
+        count++
+      }
+  
+      const theif = await firestore.collection("Theif").doc(accountnumber).set({name,surname,id,accountnumber,nameproduct,productcategory,summoney : sum,bank,datetime,social,other,uid,useruid,date,count})
     }
       return res.json({ success: "สร้างโพสสำเร็จ" });
   }catch(err){
