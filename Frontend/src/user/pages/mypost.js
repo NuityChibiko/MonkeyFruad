@@ -103,10 +103,10 @@ console.log(allcomment)
                 <div className="container-mypost">
                   <div className="cotainer-mypost2">
                     <div className="mypost-profile-img">
-                      {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
-                      <img className="img-circle" src="/img/profile.png" />
+                      {ok.photoURL ? <img className="img-circle" src={`${ok.photoURL.url}`}  /> : <img className="img-circle" src="/img/profile.png" /> }
+      
                       <div className="mypost-name">
-                         {data ? "@" : null}{data ? data[0].username : null}
+                         {ok.username ? "@" : null}{ok ? ok.username : null}
                       </div>
                       <br />
                       <div className="mypost-date">

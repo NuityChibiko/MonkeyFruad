@@ -13,9 +13,11 @@ import {
   facebookProvider,
   firestore,
 } from "../Frontfirebase";
+import { object } from "yup/lib/locale";
 const Post = () => {
   const [data, Setdata] = useState();
   const [show, Setshow] = useState();
+  const [userinfomation, Setuserinfomation] = useState();
   const history = useHistory();
 
   const [isActive, setIsActive] = useState(false);
@@ -29,17 +31,14 @@ const Post = () => {
   ]);
 
   const ok = async () => {
-    const showdata = await firestore
-      .collection("Post")
-      .onSnapshot((querySnapshot) => {
-        let item = [];
-        querySnapshot.forEach((doc) => {
-          item.push(doc.data());
-          console.log(item);
-        });
-        Setshow(item);
-      });
+
+    const getpost = await Axios.get(`http://localhost:7000/post/post`);
+    Setshow(getpost.data.item)
+    
+ 
+       
   };
+  console.log(userinfomation)
 
   useEffect(() => {
     ok();
@@ -55,7 +54,7 @@ const Post = () => {
   return (
     <div>
       <NavbarPage />
-      {/* <h1 className="h1-post">โพสต์ทั้งหมด</h1> */}
+      
       <div className="container-post1">
         <div className="row postrow">
           <div className="column1-postrow1">
@@ -78,18 +77,23 @@ const Post = () => {
           </div>
         </div>
       </div>
+      <h1 className="h1-post"> มีโพสทั้งหมด {show ? show.length : null} โพส</h1>
+      {show ? show.map(res =>{
+         return (<div>
+         
       <div>
         <div className="container-post2">
           <div className="cotainer-post3">
             <div className="post-profile-img">
               {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
-              <img className="img-circle" src="/img/profile.png" />
+              {res.photoURL ? <img className="img-circle" src={`${res.photoURL.url}`} /> : <img className="img-circle" src={"/img/profile.png"} />} 
               <div className="post-name">
-                @Nuitychibiko
+               {res.username ? "@" : null}{res.username}
+               
               </div>
               <br />
               <div className="post-date">
-                <span className="post-time">01/26/2021, 8:02:10 pm</span>
+                <span className="post-time">{res.date}</span>
               </div>
             </div>
 
@@ -113,7 +117,7 @@ const Post = () => {
 
                     <Form.Group>
                       <span className="spanpost">
-                        {ok.name} {ok.surname}
+                        {res.name} {res.surname}
                       </span>
                     </Form.Group>
                   </Form.Row>
@@ -128,7 +132,7 @@ const Post = () => {
                     </Form.Group>
 
                     <Form.Group>
-                      <span className="spanpost">{ok.accountnumber}</span>
+                      <span className="spanpost">{res.accountnumber}</span>
                     </Form.Group>
                   </Form.Row>
 
@@ -142,7 +146,7 @@ const Post = () => {
                     </Form.Group>
 
                     <Form.Group>
-                      <span className="spanpost">{ok.nameproduct} </span>
+                      <span className="spanpost">{res.nameproduct} </span>
                     </Form.Group>
                   </Form.Row>
 
@@ -156,7 +160,7 @@ const Post = () => {
                     </Form.Group>
 
                     <Form.Group>
-                      <span className="spanpost">{ok.money} </span>
+                      <span className="spanpost">{res.money} </span>
                     </Form.Group>
                   </Form.Row>
 
@@ -170,12 +174,12 @@ const Post = () => {
                     </Form.Group>
 
                     <Form.Group>
-                      <span className="spanpost">{ok.date} </span>
+                      <span className="spanpost">{res.date} </span>
                     </Form.Group>
                   </Form.Row>
                 </Form>
                 <div className="postother">
-                  <Link className="postother1" to={`/mypost/${ok.uid}`}>
+                  <Link className="postother1" to={`/mypost/${res.uid}`}>
                     ดูเพิ่มเติม
                   </Link>
                 </div>
@@ -222,20 +226,8 @@ const Post = () => {
           </div>
         </div>
       </div>
-
-      {/* {show ? show .map(ok =>{
-        return (
-        <div>
-        {ok.name} <br></br>
-        {ok.accountnumber} <br></br>
-        {ok.nameproduct} <br></br>
-        {ok.money} <br></br>
-        {ok.datetime} <br></br>
-        <Link to={`/post/edit/${ok.uid}`}> Edit </Link>
-        <button onClick={() =>  deleted(ok.uid)}> x </button> 
-        </div>
-      )
-      }) : null} */}
+         </div>)
+      }) : null}
 
       <Chatbot />
     </div>

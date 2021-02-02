@@ -65,11 +65,10 @@ router.post("/create",uploadFile,async(req, res) => {
   try{
     let file = req.files.photo 
     let files = req.files.eiei 
-
-    
-    const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid} = req.body
+    const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid , username ,photoprofilepublic_id , photoprofileurl} = req.body
     const uid = uuidv4()
     const newmoney = Number(money)
+    let photoURL = {public_id : photoprofilepublic_id , url : photoprofileurl}
     
     // const date = moment().format('MM/DD/YYYY, h:mm:ss a')
     moment.locale("th")
@@ -88,8 +87,8 @@ router.post("/create",uploadFile,async(req, res) => {
         let {url,public_id} = resultfiles
         item.push({url,public_id})
       }
-     
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date,resultfileitem,item})
+      
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date,resultfileitem,item,username , photoURL})
 
       const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).orderBy("datetime", "desc")
       
@@ -118,7 +117,7 @@ router.post("/create",uploadFile,async(req, res) => {
       const resultfile = await cloudinary.uploader.upload(file[0].path)
       const {url,public_id} = resultfile
       const resultfileitem = {url,public_id}
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date,resultfileitem})
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date,resultfileitem,username , photoURL})
       const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).orderBy("datetime", "desc")
       
       getpost.get().then((doc)=>{
@@ -152,7 +151,7 @@ router.post("/create",uploadFile,async(req, res) => {
         item.push({url,public_id})
       }
       console.log(item)
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date,item})
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date,item,username , photoURL})
       const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).orderBy("datetime", "desc")
       
       getpost.get().then((doc)=>{
@@ -179,7 +178,7 @@ router.post("/create",uploadFile,async(req, res) => {
 
     }
     else if(!file && !files){
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date})
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date,username , photoURL})
       const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).orderBy("datetime", "desc")
       
       getpost.get().then((doc)=>{
@@ -232,7 +231,7 @@ router.post("/edit/:uid",uploadFile,async (req, res) => {
       }
       console.log(item)
       
-      const update = await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,date,resultfile,item})
+      const update = await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,date,resultfile,item,username , photoURL})
       const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).orderBy("datetime", "desc")
       
       getpost.get().then((doc)=>{
@@ -259,7 +258,7 @@ router.post("/edit/:uid",uploadFile,async (req, res) => {
     }
     else if(file){
       const resultfile = await cloudinary.uploader.upload(file[0].path )
-      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,date,resultfile})
+      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,date,resultfile,username , photoURL})
       const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).orderBy("datetime", "desc")
       
       getpost.get().then((doc)=>{
@@ -293,7 +292,7 @@ router.post("/edit/:uid",uploadFile,async (req, res) => {
         item.push({url,public_id})
       }
       console.log(item)
-      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,date,item})
+      const update =await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,date,item,username , photoURL})
       const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).orderBy("datetime", "desc")
       
       getpost.get().then((doc)=>{
@@ -319,7 +318,7 @@ router.post("/edit/:uid",uploadFile,async (req, res) => {
 
     }
    else if(!file && !files){
-    const update = await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,date})
+    const update = await firestore.collection("Post").doc(uid).update({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,date,username , photoURL})
     const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).orderBy("datetime", "desc")
       
     getpost.get().then((doc)=>{
@@ -447,6 +446,27 @@ router.post("/postapi",async (req,res)=>{
 console.log(err)
   }}
 })
+
+
+router.get("/post",async (req, res) => {
+  try{
+      const showdata = await firestore.collection("Post")
+      showdata.get().then(ok =>{
+        let item = [];
+        ok.forEach((doc) => {
+          item.push(doc.data())
+        });
+        return  res.json({
+          item
+        })
+  })
+ 
+  
+  }catch(err){
+   return res.status(500).json({msg : err})
+  }
+  
+});
 
 
 
