@@ -38,8 +38,6 @@ const Post = () => {
  
        
   };
-  console.log(userinfomation)
-
   useEffect(() => {
     ok();
   }, []);
