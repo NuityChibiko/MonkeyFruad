@@ -13,12 +13,12 @@ const Profile = () => {
   let history = useHistory();
   var { user, setUser } = useContext(usercontext);
   // ที่เก็บ state
-  const [username, setUsername] = useState("-");
-  const [firstname, setFirstname] = useState("-");
-  const [surname, setSurname] = useState("-");
-  const [sex, setSex] = useState("-");
-  const [phone, setPhone] = useState("-");
-  const [province, setProvince] = useState("-");
+  const [username, setUsername] = useState();
+  const [firstname, setFirstname] = useState();
+  const [surname, setSurname] = useState();
+  const [sex, setSex] = useState();
+  const [phone, setPhone] = useState();
+  const [province, setProvince] = useState();
   const [imagesProfile, setImagesProfile] = useState(""); //สร้าง State เพื่อเก็บรูปโปรไฟล์
   const [photo, Setphoto] = useState("");
   const [loading, setLoading] = useState(true);
