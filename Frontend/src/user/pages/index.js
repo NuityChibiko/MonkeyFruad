@@ -30,8 +30,10 @@ const Home = () => {
               <div className="text1-index">ค้นหาผ่านเว็บไซต์ของเราได้ที่นี่</div>
             <MDBCol>
               <MDBFormInline className="mr-auto mb-4">
-                <input className="mr-sm-2 box1-index" type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" aria-label="Search" />
-                <button type="submit" className="button1-index">ค้นหา</button>
+                <div className="containermini1-index">
+                  <input className="mr-sm-2 box1-index" type="text" placeholder="ค้นหาด้วยชื่อหรือเลขที่บัญชี" aria-label="Search" />
+                  <button type="submit" className="button1-index">ค้นหา</button>
+                </div>
               </MDBFormInline>
             </MDBCol>
           </div>
@@ -49,12 +51,8 @@ const Home = () => {
         <div className="row">
             <div className="column3-index">
               <MDBCard>
-                <MDBCardImage className="img-fluid image2-index" src='https://mdbootstrap.com/img/Photos/Others/men.jpg' waves />
                 <MDBCardBody cascade className='text-center'>
-                <p className="rank-index">อันดับ 1</p>
-                  <MDBCardTitle className='card-title'>
-                    <strong className="text2-index">ข้าวเหนียว หมูปิ้ง</strong>
-                  </MDBCardTitle>
+                <div className="coin1 rank-index1">1</div>
                   <p className='text3-index'>เลขที่บัญชีธนาคาร : 11111111111 <br/>ธนาคาร : กสิกร</p>
                   <p className="text4-index">
                     จำนวนครั้งที่ถูกแจ้ง : 160 ครั้ง <br/>
@@ -62,10 +60,10 @@ const Home = () => {
                     วันที่โกงล่าสุด : 18/01/2021 08:53pm
                   </p>
                   <a href='!#' className='orange-text mt-1 d-flex justify-content-end align-items-center'>
-                    <h5 className=''>
+                    <h6 className='readmore'>
                       อ่านเพิ่มเติม{' '}
                       <MDBIcon icon='chevron-right' className='ml-2' size='sm'></MDBIcon>
-                    </h5>
+                    </h6>
                   </a>
                 </MDBCardBody>
               </MDBCard>
@@ -73,12 +71,8 @@ const Home = () => {
             
             <div className="column3-index">
               <MDBCard>
-                <MDBCardImage className="img-fluid image2-index" src='https://mdbootstrap.com/img/Photos/Others/men.jpg' waves />
                 <MDBCardBody cascade className='text-center'>
-                <p className="rank-index">อันดับ 2</p>
-                  <MDBCardTitle className='card-title'>
-                    <strong className="text2-index">ข้าวเหนียว หมูปิ้ง</strong>
-                  </MDBCardTitle>
+                <div className="coin2 rank-index1">2</div>
                   <p className='text3-index'>เลขที่บัญชีธนาคาร : 11111111111 <br/>ธนาคาร : กสิกร</p>
                   <p className="text4-index">
                     จำนวนครั้งที่ถูกแจ้ง : 160 ครั้ง <br/>
@@ -86,22 +80,18 @@ const Home = () => {
                     วันที่โกงล่าสุด : 18/01/2021 08:53pm
                   </p>
                   <a href='!#' className='orange-text mt-1 d-flex justify-content-end align-items-center'>
-                    <h5 className=''>
+                    <h6 className='readmore'>
                     อ่านเพิ่มเติม{' '}
                       <MDBIcon icon='chevron-right' className='ml-2' size='sm'></MDBIcon>
-                    </h5>
+                    </h6>
                   </a>
                 </MDBCardBody>
               </MDBCard>
             </div>
             <div className="column3-index">
               <MDBCard>
-                <MDBCardImage className="img-fluid image2-index" src='https://mdbootstrap.com/img/Photos/Others/men.jpg' waves />
                 <MDBCardBody cascade className='text-center'>
-                <p className="rank-index">อันดับ 3</p>
-                  <MDBCardTitle className='card-title'>
-                    <strong className="text2-index">ข้าวเหนียว หมูปิ้ง</strong>
-                  </MDBCardTitle>
+                <div className="coin3 rank-index1">3</div>
                   <p className='text3-index'>เลขที่บัญชีธนาคาร : 11111111111 <br/>ธนาคาร : กสิกร</p>
                   <p className="text4-index">
                     จำนวนครั้งที่ถูกแจ้ง : 160 ครั้ง <br/>
@@ -109,10 +99,10 @@ const Home = () => {
                     วันที่โกงล่าสุด : 18/01/2021 08:53pm
                   </p>
                   <a href='!#' className='orange-text mt-1 d-flex justify-content-end align-items-center'>
-                    <h5 className=''>
+                    <h6 className='readmore'>
                     อ่านเพิ่มเติม{' '}
                       <MDBIcon icon='chevron-right' className='ml-2' size='sm'></MDBIcon>
-                    </h5>
+                    </h6>
                   </a>
                 </MDBCardBody>
               </MDBCard>
