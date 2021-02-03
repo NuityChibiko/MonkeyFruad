@@ -102,12 +102,6 @@ let history = useHistory()
       formdata.append("username" , username)
       formdata.append("photoprofilepublic_id" , photoprofilepublic_id)
       formdata.append("photoprofileurl" , photoprofileurl)
-
-      
-      
-      
-      
-      
       const a = await Axios.post("http://localhost:7000/post/create", formdata) 
       console.log("eiei")
         history.push("/post/history")
@@ -116,8 +110,6 @@ let history = useHistory()
     }
   
   }
-  console.log()
-
   useMemo(async () =>  {
     try {
    var profiledata = await Axios.post("http://localhost:7000/user/session", { user: user })

@@ -19,18 +19,27 @@ import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider";
 
 const Home = () => {
   const [ThiefCount, setThiefCount] = useState();
+  const [FacebookCount, setFacebookCount] = useState();
 
+
+const Getdata = async () =>{
+  try {
+    const thiefcount = await axios.get(
+      "http://localhost:7000/thief/orderbycount"
+    );
+    setThiefCount(thiefcount.data.data);
+    const facebookCount = await axios.get(
+      "http://localhost:7000/post/orderbyfacebook"
+    );
+    setFacebookCount(facebookCount.data.data);
+  } catch (err) {
+    console.log(err);
+  }
+}
   useMemo(async () => {
-    try {
-      var thiefcount = await axios.get(
-        "http://localhost:7000/thief/orderbycount"
-      );
-      setThiefCount(thiefcount.data.data);
-    } catch (err) {
-      console.log(err);
-    }
+    await Getdata()
   }, []);
-  console.log(ThiefCount);
+  console.log(FacebookCount);
   return (
     <div>
       <NavbarPage />
@@ -67,7 +76,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="h1-index">รายชื่อคนโกงที่ถูกแจ้งมากที่สุด</div>
+      <div className="h1-index">เลขที่บัญชีที่ถูกแจ้งมากที่สุด</div>
       <div className="container2-index">
         <div className="row">
           {ThiefCount
@@ -79,7 +88,7 @@ const Home = () => {
                           <div className={`coin${index+1} rank-index1`}>{index+1}</div>
                           <p className="text3-index">
                             เลขที่บัญชีธนาคาร : {element.accountnumber} <br />
-                            ธนาคาร : {element.bank}
+                            {element.bank}
                           </p>
                           <p className="text4-index">
                             จำนวนครั้งที่ถูกแจ้ง : {element.count} ครั้ง <br />
@@ -92,7 +101,7 @@ const Home = () => {
                             className="orange-text mt-1 d-flex justify-content-end align-items-center"
                           >
                             <h6 className="readmore">
-                              อ่านเพิ่มเติม{" "}
+                              ดูโพสต์ที่เกี่ยวข้องทั้งหมด{" "}
                               <MDBIcon
                                 icon="chevron-right"
                                 className="ml-2"

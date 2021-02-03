@@ -72,9 +72,9 @@ router.post("/create",uploadFile,async(req, res) => {
     let photoURL = {public_id : photoprofilepublic_id , url : photoprofileurl}
     
     // const date = moment().format('MM/DD/YYYY, h:mm:ss a')
-    moment.locale("th")
-    const date = moment().format('lll')
-     datetime = moment().format('lll')
+    moment.locale('th')
+    const date =  moment().format('lll')
+    datetime = moment(datetime).format('lll')
     if(!files){
       return res.status(400).json({msg : "** กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง **"})
     }
@@ -90,7 +90,7 @@ router.post("/create",uploadFile,async(req, res) => {
         item.push({url,public_id})
       }
       
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date,resultfileitem,item,username , photoURL})
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank, datetime,social,other,uid,useruid,date,resultfileitem,item,username , photoURL})
 
       const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).orderBy("datetime", "desc")
       
@@ -464,8 +464,6 @@ router.get("/post",async (req, res) => {
           item
         })
   })
- 
-  
   }catch(err){
    return res.status(500).json({msg : err})
   }
@@ -474,13 +472,14 @@ router.get("/post",async (req, res) => {
 router.get("/orderbyfacebook",async (req, res) => {
   try{
       const showdata = await firestore.collection("Post").where("social" , "==" ,"Facebook").orderBy("datetime","desc").limit(4)
-      showdata.get().then(ok =>{
-        let item = [];
-        ok.forEach((doc) => {
-          item.push(doc.data())
+      showdata.get().then(element =>{
+        let data = [];
+        element.forEach((doc) => {
+          console.log(doc.data())
+          data.push(doc.data())
         });
-        return  res.json({
-          item
+        return res.json({
+          data : data
         })
       })
     }catch(err){
@@ -490,15 +489,15 @@ router.get("/orderbyfacebook",async (req, res) => {
 router.get("/orderbyinstargram",async (req, res) => {
     try{
       const showdata = await firestore.collection("Post").where("social" , "==" ,"Instragram").orderBy("datetime","desc").limit(4)
-        showdata.get().then(ok =>{
-          let item = [];
-          ok.forEach((doc) => {
-            item.push(doc.data())
-          });
-          return  res.json({
-            item
-          })
+      showdata.get().then(element =>{
+        let data = [];
+        element.forEach((doc) => {
+          data.push(doc.data())
+        });
+        return res.json({
+          data
         })
+      })
       }catch(err){
           return res.status(500).json({msg : err})
          }
@@ -506,13 +505,13 @@ router.get("/orderbyinstargram",async (req, res) => {
 router.get("/orderbyline",async (req, res) => {
       try{
           const showdata = await firestore.collection("Post").where("social" , "==" ,"Line").orderBy("datetime","desc").limit(4)
-          showdata.get().then(ok =>{
-            let item = [];
-            ok.forEach((doc) => {
-              item.push(doc.data())
+          sshowdata.get().then(element =>{
+            let data = [];
+            element.forEach((doc) => {
+              data.push(doc.data())
             });
-            return  res.json({
-              item
+            return res.json({
+              data
             })
           })
         }catch(err){
@@ -522,19 +521,35 @@ router.get("/orderbyline",async (req, res) => {
 router.get("/orderbytwitter",async (req, res) => {
         try{
           const showdata = await firestore.collection("Post").where("social" , "==" ,"Twitter").orderBy("datetime","desc").limit(4)
-            showdata.get().then(ok =>{
-              let item = [];
-              ok.forEach((doc) => {
-                item.push(doc.data())
-              });
-              return  res.json({
-                item
-              })
+          showdata.get().then(element =>{
+            let data = [];
+            element.forEach((doc) => {
+              data.push(doc.data())
+            });
+            return res.json({
+              data
             })
+          })
           }catch(err){
               return res.status(500).json({msg : err})
              }
         })
+router.get("/orderbytwitter",async (req, res) => {
+          try{
+            const showdata = await firestore.collection("Post").where("social" , "==" ,"Twitter").orderBy("datetime","desc").limit(4)
+            showdata.get().then(element =>{
+              let data = [];
+              element.forEach((doc) => {
+                data.push(doc.data())
+              });
+              return res.json({
+                data
+              })
+            })
+            }catch(err){
+                return res.status(500).json({msg : err})
+               }
+          })
 
 // router.post("/upload", upload.array("eiei"), async(req, res) => {
 //   try{
