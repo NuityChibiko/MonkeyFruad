@@ -65,14 +65,16 @@ router.post("/create",uploadFile,async(req, res) => {
   try{
     let file = req.files.photo 
     let files = req.files.eiei 
-    const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other,useruid , username ,photoprofilepublic_id , photoprofileurl} = req.body
+    const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,social,other,useruid , username ,photoprofilepublic_id , photoprofileurl} = req.body
+    let {datetime} = req.body
     const uid = uuidv4()
     const newmoney = Number(money)
     let photoURL = {public_id : photoprofilepublic_id , url : photoprofileurl}
     
     // const date = moment().format('MM/DD/YYYY, h:mm:ss a')
-    moment.locale("th")
-    const date = moment().format('lll')
+    moment.locale('th')
+    const date =  moment().format('lll')
+    datetime = moment(datetime).format('lll')
     if(!files){
       return res.status(400).json({msg : "** กรุณาแนบหลักฐานการโอนเงินและหลักฐานการโดนโกง **"})
     }
@@ -88,7 +90,7 @@ router.post("/create",uploadFile,async(req, res) => {
         item.push({url,public_id})
       }
       
-      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank,datetime,social,other,uid,useruid,date,resultfileitem,item,username , photoURL})
+      const create = await firestore.collection("Post").doc(uid).set({name,surname,id,accountnumber,nameproduct,productcategory,money : newmoney,bank, datetime,social,other,uid,useruid,date,resultfileitem,item,username , photoURL})
 
       const getpost = await firestore.collection("Post").where("accountnumber" , "==" , accountnumber).orderBy("datetime", "desc")
       
@@ -216,10 +218,12 @@ router.post("/edit/:uid",uploadFile,async (req, res) => {
     let files = req.files.eiei
   let uid = req.params.uid
   // const date = moment().format('MM/DD/YYYY, h:mm:ss a')
-  moment.locale("th")
-  const date = moment().format('lll')
-  const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,datetime,social,other} = req.body
+    moment.locale('th')
+    const date =  moment().format('lll')
+  const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,social,other} = req.body
+  let {datetime} = req.body
   const newmoney = Number(money)
+  datetime = moment(datetime).format('lll')
     if(file && files){
       const resultfile = await cloudinary.uploader.upload(file[0].path )
       let item = []
@@ -460,15 +464,92 @@ router.get("/post",async (req, res) => {
           item
         })
   })
- 
-  
   }catch(err){
    return res.status(500).json({msg : err})
   }
   
 });
-
-
+router.get("/orderbyfacebook",async (req, res) => {
+  try{
+      const showdata = await firestore.collection("Post").where("social" , "==" ,"Facebook").orderBy("datetime","desc").limit(4)
+      showdata.get().then(element =>{
+        let data = [];
+        element.forEach((doc) => {
+          console.log(doc.data())
+          data.push(doc.data())
+        });
+        return res.json({
+          data : data
+        })
+      })
+    }catch(err){
+        return res.status(500).json({msg : err})
+       }
+  })
+router.get("/orderbyinstargram",async (req, res) => {
+    try{
+      const showdata = await firestore.collection("Post").where("social" , "==" ,"Instragram").orderBy("datetime","desc").limit(4)
+      showdata.get().then(element =>{
+        let data = [];
+        element.forEach((doc) => {
+          data.push(doc.data())
+        });
+        return res.json({
+          data
+        })
+      })
+      }catch(err){
+          return res.status(500).json({msg : err})
+         }
+    })
+router.get("/orderbyline",async (req, res) => {
+      try{
+          const showdata = await firestore.collection("Post").where("social" , "==" ,"Line").orderBy("datetime","desc").limit(4)
+          sshowdata.get().then(element =>{
+            let data = [];
+            element.forEach((doc) => {
+              data.push(doc.data())
+            });
+            return res.json({
+              data
+            })
+          })
+        }catch(err){
+            return res.status(500).json({msg : err})
+           }
+      })
+router.get("/orderbytwitter",async (req, res) => {
+        try{
+          const showdata = await firestore.collection("Post").where("social" , "==" ,"Twitter").orderBy("datetime","desc").limit(4)
+          showdata.get().then(element =>{
+            let data = [];
+            element.forEach((doc) => {
+              data.push(doc.data())
+            });
+            return res.json({
+              data
+            })
+          })
+          }catch(err){
+              return res.status(500).json({msg : err})
+             }
+        })
+router.get("/orderbytwitter",async (req, res) => {
+          try{
+            const showdata = await firestore.collection("Post").where("social" , "==" ,"Twitter").orderBy("datetime","desc").limit(4)
+            showdata.get().then(element =>{
+              let data = [];
+              element.forEach((doc) => {
+                data.push(doc.data())
+              });
+              return res.json({
+                data
+              })
+            })
+            }catch(err){
+                return res.status(500).json({msg : err})
+               }
+          })
 
 // router.post("/upload", upload.array("eiei"), async(req, res) => {
 //   try{
