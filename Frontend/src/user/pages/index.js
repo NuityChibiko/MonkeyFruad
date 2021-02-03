@@ -51,8 +51,8 @@ const Home = () => {
         <div className="row">
             <div className="column3-index">
               <MDBCard>
+                <div className="image2-index">1</div>
                 <MDBCardBody cascade className='text-center'>
-                <div className="coin1 rank-index1">1</div>
                   <p className='text3-index'>เลขที่บัญชีธนาคาร : 11111111111 <br/>ธนาคาร : กสิกร</p>
                   <p className="text4-index">
                     จำนวนครั้งที่ถูกแจ้ง : 160 ครั้ง <br/>
