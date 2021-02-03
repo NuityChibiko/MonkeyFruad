@@ -7,18 +7,18 @@ import usercontext from "../context/usercontext";
 
 
 
-const Commentitem = ({ data, ok ,uid}) => {
+const Commentitem = ({   postid}) => {
 
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
   let { user, setUser } = useContext(usercontext);
-  const [allcomment , Setallcomment] = useState()
+  const [commentid , Setcommentid] = useState()
   const [item , Setitem] = useState([])
   const [checkedittext , Setcheckedittext] = useState(false)
   // const [edittextcomment , Setedittextcomment] = useState()
   const [textcomment , Settextcomment] = useState()
 
- 
+    
 
   const deleted = async (commentid) => {
       const postdelete = await Axios.post(`http://localhost:7000/post/delete/comment/${commentid}`);
@@ -31,44 +31,50 @@ const Commentitem = ({ data, ok ,uid}) => {
     Setcheckedittext(true)
   }
   const handleedit = async (commentid) =>{
+  
   const editcomment = await Axios.post(`http://localhost:7000/post/edit/comment/${commentid}`,  {textcomment} )
   
   }
 
   const gg = async () => {
     try {
-      Settextcomment(data.textcomment)
-     
-      // const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
-      // Setallcomment(getcomment.data.item)
-   
-      
+      // Settextcomment(commentid.textcomment)
+      // Setcomment(commentid)
+
+      const editcomment = await Axios.get(`http://localhost:7000/post/comment/${postid}` )
+      Setcommentid(editcomment.data.item)
     } catch (err) {
-      console.log("error");
+      console.log(err);
     }
+
   };
   useEffect(() => {
     gg();
   }, []);
+ console.log(commentid)
   
   return (
-    <div className="row mypostcommentrow">
-      <div className="column1 mypostcommentrow1">
+      <div>
+
+      {commentid ? commentid.map(commentid =>{
+          return (<div>
+            <div className="row mypostcommentrow">
+         <div className="column1 mypostcommentrow1">
         <div class="vl"></div>
         <div className="mypost-comment-img1">
           <img className="img-circle1" src="/img/profile.png" />
           <div className="mypost-comment-name1">
-           {data ? "@" : null}{data.username}
-            <span className="mypost-comment-time1"> {data.datetime} </span>
+           {commentid ? "@" : null}{commentid.username}
+            <span className="mypost-comment-time1"> {commentid.datetime} </span>
           </div>
           <br />
-         {checkedittext ? <div><input value={textcomment} onChange={(e) =>{Settextcomment(e.target.value)}}></input> <button onClick={() => handleedit(data.commentid)}>ตกลง</button> </div>: <div className="mypost-comment-comments1">
-            <div className="mypostcomment1">{textcomment}</div> 
+         {checkedittext ? <div><input value={textcomment} onChange={(e) =>{Settextcomment(e.target.value)}}></input> <button onClick={() => handleedit(commentid.commentid)}>ตกลง</button> </div>: <div className="mypost-comment-comments1">
+            <div className="mypostcomment1">{commentid.textcomment}</div> 
           </div>  
          } 
         </div> 
        </div> 
-       {data.userid == user.uid ? <div className="column2 mypostcommentrow2">
+       {user && commentid.userid == user.uid ? <div className="column2 mypostcommentrow2">
         <div className="menu-containermypostcommentsetting">
           <div onClick={onClick} className="mypostcommentbuttonsetting">
             <img 
@@ -86,7 +92,7 @@ const Commentitem = ({ data, ok ,uid}) => {
             <ul className="ul-mypostcommentmenusetting">
            <li className="li-mypostcommentmenusetting">
                 <a className="a-mypostcommentmenusetting"
-                onClick={() => edit(data.commentid)}
+                onClick={() => edit(commentid.commentid)}
                 >
                     แก้ไขคอมเมนต์
                 </a>
@@ -94,7 +100,7 @@ const Commentitem = ({ data, ok ,uid}) => {
               <li className="li-mypostcommentmenusetting">
                 <a
                   className="a-mypostcommentmenusetting"
-                  onClick={() => deleted(data.commentid)}
+                  onClick={() => deleted(commentid.commentid)}
                 >
                   {" "}
                   ลบคอมเมนต์{" "}
@@ -104,7 +110,75 @@ const Commentitem = ({ data, ok ,uid}) => {
           </div>
         </div>
       </div> : null }
+          </div>
+          </div>)
+      }): null}
+      
     </div> 
+    
+
+
+//     <div>
+//       {comment ? comment.map(doc =>{
+//         return (<div>
+//            <div className="row mypostcommentrow">
+
+// <div className="column1 mypostcommentrow1">
+//   <div class="vl"></div>
+//   <div className="mypost-comment-img1">
+//     <img className="img-circle1" src="/img/profile.png" />
+//     <div className="mypost-comment-name1">
+//      {doc ? "@" : null}{doc.username}
+//       <span className="mypost-comment-time1"> {doc.datetime} </span>
+//     </div>
+//     <br />
+//    {checkedittext ? <div><input value={textcomment} onChange={(e) =>{Settextcomment(e.target.value)}}></input> <button onClick={() => handleedit(doc.commentid)}>ตกลง</button> </div>: <div className="mypost-comment-comments1">
+//       <div className="mypostcomment1">{doc.textcomment}</div> 
+//     </div>  
+//    } 
+//   </div> 
+//  </div> 
+//  {user && doc.userid == user.uid ? <div className="column2 mypostcommentrow2">
+//   <div className="menu-containermypostcommentsetting">
+//     <div onClick={onClick} className="mypostcommentbuttonsetting">
+//       <img 
+//         className="mypostcommentimg-setting"
+//         src="/img/setting.png"
+//         alt="avatar"
+//       ></img> 
+//  </div>
+
+//     <div
+//       className={`mypostcommentmenusetting ${
+//         isActive ? "active" : "inactive"
+//       }`}
+//     >
+//       <ul className="ul-mypostcommentmenusetting">
+//      <li className="li-mypostcommentmenusetting">
+//           <a className="a-mypostcommentmenusetting"
+//           onClick={() => edit(doc.commentid)}
+//           >
+//               แก้ไขคอมเมนต์
+//           </a>
+//         </li> 
+//         <li className="li-mypostcommentmenusetting">
+//           <a
+//             className="a-mypostcommentmenusetting"
+//             onClick={() => deleted(doc.commentid)}
+//           >
+//             {" "}
+//             ลบคอมเมนต์{" "}
+//           </a>
+//         </li> 
+//       </ul>
+//     </div>
+//   </div>
+// </div> : null }
+// </div> 
+//         </div>)
+//       }): null}
+   
+  // </div>
   );
 };
 

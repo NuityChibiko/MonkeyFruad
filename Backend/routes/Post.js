@@ -486,30 +486,56 @@ router.post("/comment/:id", async (req, res) => {
       const uuid = uuidv4()
       moment.locale()
       const datetime = moment().format('LTS')
-   
       const savetodb = await firestore.collection("Comment").doc(uuid).set({ commentid : uuid , postid , username ,textcomment, datetime , userid })
+    
       
    }catch(err){
      console.log(err)
    }
   });
 
+  // router.get("/comment/:id", async (req, res) => {
+  //   try{  
+
+  //     let idpost = req.params.id
+      
+  //      const getcomment = await firestore.collection("Comment").where("postid" , "==" , idpost ).orderBy("datetime", "desc")
+    
+  //     //  const userpost = await firestore.collection("User").where(uid , "==" ,  ).get()
+  //     getcomment.get().then((doc)=>{
+  //       let item = []
+  //       doc.forEach( doc2 =>{
+  //        item.push(doc2.data())
+
+  //       })
+       
+        
+  //         return res.json({
+  //            item
+  //          })
+       
+  //       })
+  //   }catch(err){
+  //     return res.status(500).json({
+  //       msg : err
+  //     })
+  //   }
+  //  });
+
+
   router.get("/comment/:id", async (req, res) => {
     try{  
-
-      let idpost = req.params.id
+      let postid = req.params.id
+       const getcomment = await firestore.collection("Comment").where("postid" , "==" , postid ).orderBy("datetime" , "desc")
       
-       const getcomment = await firestore.collection("Comment").where("postid" , "==" , idpost ).orderBy("datetime", "desc")
-    
-      //  const userpost = await firestore.collection("User").where(uid , "==" ,  ).get()
       getcomment.get().then((doc)=>{
         let item = []
-        doc.forEach( doc2 =>{
+        doc.forEach(doc2 =>{
          item.push(doc2.data())
 
         })
-       
-        
+
+          console.log(item)
           return res.json({
              item
            })
@@ -521,6 +547,8 @@ router.post("/comment/:id", async (req, res) => {
       })
     }
    });
+
+
 
    router.post("/delete/comment/:uid",async(req, res) => {
     try{

@@ -1,5 +1,5 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useState ,useContext} from "react";
 import NavbarPage from "../components/navnew";
 import Axios from "axios";
 import "./post.css";
@@ -14,11 +14,16 @@ import {
   firestore,
 } from "../Frontfirebase";
 import { object } from "yup/lib/locale";
+import usercontext from "../context/usercontext"
 const Post = () => {
   const [data, Setdata] = useState();
   const [show, Setshow] = useState();
   const [userinfomation, Setuserinfomation] = useState();
+  const [textcomment, Settextcomment] = useState();
+  const [photo,  Setphoto] = useState();
   const history = useHistory();
+  let { user, setUser } = useContext(usercontext);
+  
 
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
@@ -30,15 +35,37 @@ const Post = () => {
     },
   ]);
 
+  const handlecomment = async (uid) =>{
+    try{
+    
+      console.log(uid)
+      let sentdata = {textcomment , username : data[0].username , userid : user.uid}
+      
+      const sentcomment = await Axios.post(`http://localhost:7000/post/comment/${uid}`, sentdata)
+      // const getcomment = await Axios.get(`http://localhost:7000/post/comment/${uid}`)
+      // Setallcomment(getcomment.data.item)
+      
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+
   const ok = async () => {
 
     const getpost = await Axios.get(`http://localhost:7000/post/post`);
     Setshow(getpost.data.item)
     
- 
+    const nameuser = await Axios.post("http://localhost:7000/user/userid", {
+      result: user,
+    });
+    Setdata(nameuser.data.item);
+
+    var profiledata = await Axios.post("http://localhost:7000/user/session", { user: user })
+    Setphoto(profiledata.data.data.photoURL);
        
   };
-  console.log(userinfomation)
+  console.log(photo)
 
   useEffect(() => {
     ok();
@@ -79,7 +106,7 @@ const Post = () => {
       </div>
       <h1 className="h1-post"> มีโพสทั้งหมด {show ? show.length : null} โพส</h1>
       {show ? show.map(res =>{
-         return (<div>
+         return (
          
       <div>
         <div className="container-post2">
@@ -177,56 +204,55 @@ const Post = () => {
                       <span className="spanpost">{res.date} </span>
                     </Form.Group>
                   </Form.Row>
-                </Form>
+                  </Form>
                 <div className="postother">
                   <Link className="postother1" to={`/mypost/${res.uid}`}>
                     ดูเพิ่มเติม
                   </Link>
                 </div>
-              </div>
+            
               <div className="line-post1"></div>
               <div className="container-post6">
-                {Democomments ? (
-                  Democomments.map((value, index) => {
-                    return <Commentitem data={value} ok={ok} key={index} />;
-                  })
-                ) : (
-                  <div></div>
-                )}
-
+          
+                  <Commentitem   postid={res.uid}/>;
+                
+             
                 {/* <div className="line-comment2"></div> */}
               </div>
               <h2 className="postother2">ดูอีก 3 ความคิดเห็น</h2>
               <div className="row post-comment-comments1">
                 <div className="post-profilecomment-img1">
-                  {/* {ok.file ? <img className="img-circle" src={`/uploads/${ok.file[0].filename}`}  /> : <img className="img-circle" src="/img/profile.png" /> } */}
-                  <img className="img-circle" src="/img/profile.png" />
+                  {photo ? <img className="img-circle" src={`${photo.url}`}  /> : <img className="img-circle" src="/img/profile.png" /> }
+             
                 </div>
                 <div className="row post-comment-commentsall">
                   <div
                     className="post-writecommemt col-lg-6 col-10"
                     controlId="exampleForm.ControlTextarea1"
                   >
-                    <input
-                      className="postinputcomment"
-                      placeholder="เขียนความคิดเห็น..."
-                    />
+                     <input className="inputcomment" placeholder="เขียนความคิดเห็น..." value={textcomment} onChange={(e) =>{Settextcomment(e.target.value)}}/>
                   </div>
 
-                  <div>
-                    <div className="postbuttonsend">
-                      <a className="postbuttonsends" href="">
-                        <i className="fa fa-paper-plane"></i>
-                      </a>
-                    </div>
-                  </div>
+                          <div>
+                            <div className="column2 mypostbuttonsend">
+                              <button className="mypostbuttonsends" onClick={() => handlecomment(res.uid)}>
+                                <i className="fa fa-paper-plane"></i>
+                              </button>
+                            </div>
+                       
+                          </div>
                 </div>
+                
               </div>
+              
             </div>
+            </div>
+            
           </div>
+          
         </div>
       </div>
-         </div>)
+         )
       }) : null}
 
       <Chatbot />
