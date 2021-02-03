@@ -1,3 +1,24 @@
+.container-bigpost {
+  width: 70%;
+  height: 100px;
+  background-color: red;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.column-post-left {
+  width: 63%;
+  margin-left: 15px;
+  height: 2000px;
+  background-color: aqua;
+}
+
+.column-post-right {
+  width: 34%;
+  height: 50px;
+  background-color: rgb(255, 0, 128);
+}
+
 /* .h1-post { 
     margin-top: 50px;
     text-align: center;
@@ -7,8 +28,25 @@
 } */
 
 .container-post1 {
-  width: 40%;
+  width: 90%;
   background-color: white;
+  border-radius: 10px;
+  margin-top: 100px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: "Kanit", sans-serif;
+  font-size: 20px;
+  box-shadow: 10px 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.container-post1:hover {
+  width: 90%;
+  background-color:rgb(245, 245, 245);
   border-radius: 10px;
   margin-top: 100px;
   margin-bottom: 40px;
@@ -33,21 +71,14 @@
 
 .monkey {
   width: 80%;
-  margin-left: 50px;
-}
-
-.monkey:hover {
-  width: 80%;
-  margin-left: 70px;
+  margin-left: 30px;
 }
 
 .post-linkformpost1 {
   text-align: center;
-  margin-top: 40px;
-}
-
-.post-linkformpost2 {
-  text-align: center;
+  margin-top: 60px;
+  margin-bottom: -20px;
+  color: black;
 }
 
 .buttonpost {
@@ -79,15 +110,15 @@
 }
 
 .container-post2 {
-  width: 60%;
+  width: 90%;
   background-color: white;
   border-radius: 10px;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 40px;
-  padding-bottom: 30px;
+  padding-top: 30px;
+  padding-bottom: 0px;
   padding-left: 20px;
   padding-right: 20px;
   font-family: "Kanit", sans-serif;
@@ -146,11 +177,11 @@
 
 .container-post4 {
   width: 80%;
-  margin-top: 70px;
+  margin-top: 50px;
   margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 20px;
+  padding-top: 0px;
   padding-bottom: 20px;
   /* padding-left: 10px;
         padding-right: 10px; */
@@ -171,7 +202,7 @@
 .line-post1 {
   border-bottom: 2px solid rgba(146, 146, 146, 0.3);
   align: center;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .container-post6 {
@@ -181,7 +212,7 @@
   margin-bottom: 0px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 60px;
+  padding-top: 30px;
   padding-bottom: 20px;
   font-family: "Kanit", sans-serif;
   font-size: 20px;
@@ -195,7 +226,7 @@
   margin-bottom: 30px;
 }
 
-.row .post-comment-comments1 {
+.post-comment-comments1 {
   width: 80%;
   height: 10%;
   margin-left: 250px;
@@ -215,7 +246,7 @@
   margin-top: -10px;
 }
 
-.row .post-comment-commentsall {
+.post-comment-commentsall {
   background-color: rgb(245, 245, 245);
   width: 60%;
   margin-left: 20px;
@@ -258,4 +289,12 @@
   margin-left: 80px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.column1-postrow1 {
+  width: 30%;
+}
+
+.column2-postrow2 {
+  width: 70%;
 }
