@@ -218,12 +218,12 @@ router.post("/edit/:uid",uploadFile,async (req, res) => {
     let files = req.files.eiei
   let uid = req.params.uid
   // const date = moment().format('MM/DD/YYYY, h:mm:ss a')
-  moment.locale("th")
-  const date = moment().format('lll')
+    moment.locale('th')
+    const date =  moment().format('lll')
   const {name,surname,id,accountnumber,nameproduct,productcategory,money,bank,social,other} = req.body
   let {datetime} = req.body
   const newmoney = Number(money)
-  datetime = moment().format('lll')
+  datetime = moment(datetime).format('lll')
     if(file && files){
       const resultfile = await cloudinary.uploader.upload(file[0].path )
       let item = []
