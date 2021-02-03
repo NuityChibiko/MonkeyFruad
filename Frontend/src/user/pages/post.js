@@ -65,11 +65,6 @@ const Post = () => {
     Setphoto(profiledata.data.data.photoURL);
        
   };
-<<<<<<< HEAD
-  console.log(photo)
-
-=======
->>>>>>> d7be88e964ccbc9a1dea6c6baa6c64799d8da07a
   useEffect(() => {
     ok();
   }, []);
